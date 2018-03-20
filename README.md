@@ -31,6 +31,9 @@ case tearDown and fail the test if any accessibility checks fail. Note that code
 is being added to `+setUp` method not the instance method `-setUp` since GTX
 must only be installed once (for a given test run).
 
+To Add GTXiLib to your project use the xcodeproj file in this project or
+[cocoapods](https://cocoapods.org/pods/GTXiLib).
+
 ## Incremental Accessibility
 
 GTXiLib APIs support a practical solution for improving accessibility of large
