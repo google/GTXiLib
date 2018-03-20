@@ -1,0 +1,73 @@
+//
+// Copyright 2018 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+#import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import <XCTest/XCTest.h>
+
+#import "GTAxe.h"
+#import "GTXTestViewController.h"
+
+/**
+ Check that fails if the element is of Class @c GTXTestFailingClass.
+ */
+id<GTXChecking> checkFailsIfFailingClass;
+
+/**
+ Check that always passes.
+ */
+id<GTXChecking> alwaysFail;
+
+/**
+ Check that always fails.
+ */
+id<GTXChecking> alwaysPass;
+
+/**
+ Base test for all GTAxe functional/integration tests used to setup GTAxe and capture check
+ failures.
+ */
+@interface GTXTestBaseTest : XCTestCase
+
+
+/**
+ Assert that @c count failures were detected.
+ */
+- (void)assertFailureCount:(NSInteger)count;
+
+/**
+ Assert that no failures were detected.
+ */
+- (void)assertNoFailure;
+
+/**
+ Assert a single failure then clear the detected failures.
+ */
+- (void)assertAndClearSingleFailure;
+
+@end
+
+/**
+ Placeholder class for passing elements.
+ */
+@interface GTXTestPassingClass : UIView
+@end
+
+/**
+ Placeholder class for failing elements.
+ */
+@interface GTXTestFailingClass : UIView
+@end

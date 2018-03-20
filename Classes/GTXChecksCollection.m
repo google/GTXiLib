@@ -1,0 +1,499 @@
+//
+// Copyright 2018 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+#import "GTXChecksCollection.h"
+
+#import "GTXCheckBlock.h"
+#import "GTXChecking.h"
+#import "GTXImageAndColorUtils.h"
+#import "NSError+GTXAdditions.h"
+
+#pragma mark - Externs
+
+NSString *const kGTXCheckNameAccessibilityLabelPresent = @"Accessibility Label Present";
+NSString *const kGTXCheckNameAccessibilityLabelNotPunctuated =
+    @"Accessibility Label Not Punctuated";
+NSString *const kGTXCheckNameAccessibilityTraitsDontConflict =
+    @"Accessibility Traits Don't Conflict";
+NSString *const kGTXCheckNameMinimumTappableArea = @"Element has Minimum Tappable Area";
+NSString *const kGTXCheckNameMinimumContrastRatio = @"Element has Minimum Contrast Ratio";
+
+#pragma mark - Globals
+
+/**
+ *  The minimum size (width or height) for a given element to be accessible as per iOS Accessibility
+ *  standards. For more info see go/ios-gtx-touch-target-ref.
+ */
+static const float kMinSizeForAccessibleElements = 48.0;
+
+/**
+ *  The minimum contrast ratio for any given text to be considered accessible. Note that smaller
+ *  text has even stricter requirement of 4.5:1.
+ */
+static const float kMinContrastRatioForAccessibleText = 3.0;
+
+/**
+ *  A global array of dictionaries mapping default GTX check names to their instances.
+ */
+NSArray *gGTXBuiltInChecks;
+
+/**
+ *  A global dictionary mapping custom GTX check names to their instances.
+ */
+NSMutableDictionary *gGTXCustomChecks;
+
+#pragma mark - Implementations
+
+@implementation GTXChecksCollection
+
++ (NSArray *)gGTXDefaultChecks {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    NSMutableArray *mutableBuiltInChecks = [[NSMutableArray alloc] init];
+    for (NSUInteger i = 0; i < GTXSystemVersionMax; i++) {
+      [mutableBuiltInChecks addObject:[[NSMutableDictionary alloc] init]];
+    }
+    gGTXBuiltInChecks = mutableBuiltInChecks;
+  });
+  return gGTXBuiltInChecks;
+}
+
++ (NSMutableDictionary *)gGTXCustomChecks {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    gGTXCustomChecks = [[NSMutableDictionary alloc] init];
+  });
+  return gGTXCustomChecks;
+}
+
++ (NSArray *)checksWithVersion:(GTXSystemVersion)version {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    // Register the default checks.
+    // GTXSystemVersionLatest will have *all* checks.
+    [self registerDefaultCheck:[self GTXCheckForAXLabelPresent]
+                    forVersion:GTXSystemVersionLatest];
+    [self registerDefaultCheck:[self GTXCheckForAXLabelNotPunctuated]
+                    forVersion:GTXSystemVersionLatest];
+    [self registerDefaultCheck:[self GTXCheckForAXTraitDontConflict]
+                    forVersion:GTXSystemVersionLatest];
+    [self registerDefaultCheck:[self GTXCheckForMinimumTappableArea]
+                    forVersion:GTXSystemVersionLatest];
+    [self registerDefaultCheck:[self GTXCheckForContrastRatio]
+                    forVersion:GTXSystemVersionLatest];
+
+    // GTXSystemVersionStable currently has the following checks.
+    [self registerDefaultCheck:[self GTXCheckForAXLabelPresent]
+                    forVersion:GTXSystemVersionStable];
+    [self registerDefaultCheck:[self GTXCheckForAXLabelNotPunctuated]
+                    forVersion:GTXSystemVersionStable];
+    [self registerDefaultCheck:[self GTXCheckForAXTraitDontConflict]
+                    forVersion:GTXSystemVersionStable];
+  });
+  NSArray *defaultChecks = [[self gGTXDefaultChecks][version] allValues];
+  NSArray *customChecks = [[self gGTXCustomChecks] allValues];
+  return [defaultChecks arrayByAddingObjectsFromArray:customChecks];
+}
+
++ (NSArray *)allGTXChecks {
+  return [self checksWithVersion:GTXSystemVersionLatest];
+}
+
++ (id<GTXChecking>)GTXCheckWithName:(NSString *)name {
+  for (id<GTXChecking> check in [self allGTXChecks]) {
+    if ([name isEqualToString:[check name]]) {
+      return check;
+    }
+  }
+  return nil;
+}
+
++ (void)registerDefaultCheck:(id<GTXChecking>)check forVersion:(GTXSystemVersion)version {
+  NSMutableDictionary *defaultChecks = [self gGTXDefaultChecks][version];
+  NSAssert(!defaultChecks[[check name]],
+           @"GtxCheck with name %@ already registered.", [check name]);
+  defaultChecks[[check name]] = check;
+}
+
++ (void)registerCheck:(id<GTXChecking>)check {
+  NSAssert(![self gGTXCustomChecks][[check name]],
+           @"GtxCheck with name %@ already registered.", [check name]);
+  [self gGTXCustomChecks][[check name]] = check;
+}
+
++ (void)deRegisterCheck:(NSString *)checkName {
+  NSAssert([self gGTXCustomChecks][checkName],
+           @"GtxCheck with name %@ was not registered.", checkName);
+  [[self gGTXCustomChecks] removeObjectForKey:checkName];
+}
+
+#pragma mark - GTXChecks
+
++ (id<GTXChecking>)GTXCheckForAXLabelPresent {
+  id<GTXChecking> check = [GTXCheckBlock GTXCheckWithName:kGTXCheckNameAccessibilityLabelPresent
+                                   block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+    if ([self gtx_isTextDisplayingElement:element]) {
+      // Elements that display text can use its text as an accessibility value making the
+      // accessibility label optional.
+      return YES;
+    }
+    NSError *error;
+    NSString *label = [self stringValueOfAccessibilityLabelForElement:element
+                                                                error:&error];
+    if (error) {
+      if (errorOrNil) {
+        *errorOrNil = error;
+      }
+      return NO;
+    }
+    label = [self trimmedStringFromString:label];
+    if ([label length] > 0) {
+      // Check passed.
+      return YES;
+    }
+    [NSError gtx_logOrSetGTXCheckFailedError:errorOrNil
+                                     element:element
+                                        name:kGTXCheckNameAccessibilityLabelPresent
+                                 description:@"Accessibility elements should have an appropriate "
+                                             @"accessibility label."];
+    return NO;
+  }];
+  return check;
+}
+
++ (id<GTXChecking>)GTXCheckForAXLabelNotPunctuated {
+  id<GTXChecking> check =
+      [GTXCheckBlock GTXCheckWithName:kGTXCheckNameAccessibilityLabelNotPunctuated
+                                block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+    if ([self gtx_isTextDisplayingElement:element]) {
+      // This check is not applicable to text elements as accessibility labels can hold static text
+      // that can be punctuated and formatted like a string.
+      return YES;
+    }
+    NSError *error;
+    NSString *stringValue = [self stringValueOfAccessibilityLabelForElement:element
+                                                                      error:&error];
+    if (error) {
+      if (errorOrNil) {
+        *errorOrNil = error;
+      }
+      return NO;
+    }
+    NSString *label = [self trimmedStringFromString:stringValue];
+    // This check is not applicable for container elements that combine individual labels joined
+    // with commas.
+    if ([label rangeOfString:@","].location != NSNotFound) {
+      return YES;
+    }
+    if ([label length] > 0 && [label hasSuffix:@"."]) {
+      // Check failed.
+      NSString *errorDescription = @"Suggest removing the period at the end of this element's "
+                                   @"accessibility label. Accessibility labels are not sentences "
+                                   @"therefore they should not end in period. If the element "
+                                   @"visually displays text it should have the "
+                                   @"UIAccessibilityTraitStaticText trait similar to "
+                                   @"UITextView or UILabel.";
+      [NSError gtx_logOrSetGTXCheckFailedError:errorOrNil
+                                       element:element
+                                          name:kGTXCheckNameAccessibilityLabelNotPunctuated
+                                   description:errorDescription];
+      return NO;
+    }
+    return YES;
+  }];
+  return check;
+}
+
++ (id<GTXChecking>)GTXCheckForAXTraitDontConflict {
+  id<GTXChecking> check =
+      [GTXCheckBlock GTXCheckWithName:kGTXCheckNameAccessibilityTraitsDontConflict
+                                block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+    if ([NSStringFromClass([element class]) isEqualToString:@"UIAccessibilityElementKBKey"]) {
+      // iOS keyboard keys are known to have conflicting traits skip them.
+      return YES;
+    }
+    UIAccessibilityTraits elementAXTraits = [element accessibilityTraits];
+    // Even though we can check for valid accessibility traits, we are not doing that because some
+    // undocumented UIKit controls, e.g., UINavigationItemButtonView, are known to have unknown
+    // values. Check b/29226386 for more details.
+    // Check mutually exclusive conflicts for the element's accessibility traits.
+    for (NSArray<NSNumber *> *traitsConflictRule in [self traitsMutuallyExclusiveRules]) {
+      NSMutableArray<NSString *> *conflictTraitsNameList = [[NSMutableArray alloc] init];
+      for (NSNumber *testTrait in traitsConflictRule) {
+        UIAccessibilityTraits testUITrait = [testTrait unsignedLongLongValue];
+        if ((BOOL)(elementAXTraits & testUITrait)) {
+          NSError *error;
+          NSString *stringValue = [self stringValueOfUIAccessibilityTraits:testUITrait
+                                                                     error:&error];
+          if (error) {
+            if (errorOrNil) {
+              *errorOrNil = error;
+            }
+            return NO;
+          }
+          [conflictTraitsNameList addObject:stringValue];
+        }
+      }
+      if ([conflictTraitsNameList count] > 1) {
+        NSString *stringOfConflictTraitsNameList =
+            [conflictTraitsNameList componentsJoinedByString:@", "];
+        NSString *description =
+            [NSString stringWithFormat:@"Suggest removing the trait conflict among %@ since they "
+                                       @"are mutually exclusive.", stringOfConflictTraitsNameList];
+        [NSError gtx_logOrSetGTXCheckFailedError:errorOrNil
+                                         element:element
+                                            name:kGTXCheckNameAccessibilityTraitsDontConflict
+                                     description:description];
+        return NO;
+      }
+    }
+    return YES;
+  }];
+  return check;
+}
+
++ (id<GTXChecking>)GTXCheckForMinimumTappableArea {
+  id<GTXChecking> check =
+      [GTXCheckBlock GTXCheckWithName:kGTXCheckNameMinimumTappableArea
+                                block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+    if (![self gtx_isTappableNonLinkElement:element]) {
+      // Element is not tappable or is a link, links follow the font size of the text on page and
+      // are exempt from this check.
+      return YES;
+    }
+    if ([element respondsToSelector:@selector(accessibilityFrame)]) {
+      CGRect frame = [element accessibilityFrame];
+      BOOL hasSmallWidth = CGRectGetWidth(frame) < kMinSizeForAccessibleElements;
+      BOOL hasSmallHeight = CGRectGetHeight(frame) < kMinSizeForAccessibleElements;
+      if (hasSmallWidth || hasSmallHeight) {
+        NSString *dimensionsToBeFixed;
+        // Append a suggestion to the error description.
+        if (hasSmallWidth && hasSmallHeight) {
+          // Both width and height make the element inaccessible.
+          dimensionsToBeFixed = @"frame width and height";
+        } else if (hasSmallWidth) {
+          // Only width is making the element inaccessible.
+          dimensionsToBeFixed = @"frame width";
+        } else {
+          // Only height is making the element inaccessible.
+          dimensionsToBeFixed = @"frame height";
+        }
+        NSString *description =
+            [NSString stringWithFormat:@"Suggest increasing element's %@ to at least %d for "
+                                       @"a suggested tappable area of at least %dX%d",
+                                       dimensionsToBeFixed,
+                                       (int)kMinSizeForAccessibleElements,
+                                       (int)kMinSizeForAccessibleElements,
+                                       (int)kMinSizeForAccessibleElements];
+
+        [NSError gtx_logOrSetGTXCheckFailedError:errorOrNil
+                                         element:element
+                                            name:kGTXCheckNameMinimumTappableArea
+                                     description:description];
+        return NO;
+      }
+    }
+    return YES;
+  }];
+  return check;
+}
+
++ (id<GTXChecking>)GTXCheckForContrastRatio {
+  id<GTXChecking> check =
+      [GTXCheckBlock GTXCheckWithName:kGTXCheckNameMinimumContrastRatio
+                                block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+    if (![element isKindOfClass:[UILabel class]]) {
+      return YES;
+    }
+    CGFloat ratio = [GTXImageAndColorUtils contrastRatioOfUILabel:element];
+    BOOL hasSufficientContrast =
+        (ratio >= kMinContrastRatioForAccessibleText - kContrastRatioAccuracy);
+    if (!hasSufficientContrast) {
+      NSString *description =
+          [NSString stringWithFormat:@"Suggest increasing this element's contrast ratio to at "
+                                     "least "
+                                     @"%.5f the actual ratio was computed as %.5f",
+                                     (float)kMinContrastRatioForAccessibleText, (float)ratio];
+      [NSError gtx_logOrSetGTXCheckFailedError:errorOrNil
+                                       element:element
+                                          name:kGTXCheckNameMinimumContrastRatio
+                                   description:description];
+    }
+    return hasSufficientContrast;
+  }];
+  return check;
+}
+
+
+#pragma mark - Private
+
+/**
+ *  @return The NSArray contains the mutually exclusive rules for accessibility traits.
+ *          For details, check go/gtx-ios.
+ */
++ (NSArray<NSArray<NSNumber *> *> *)traitsMutuallyExclusiveRules {
+  // Each item below consists of a mutually exclusive traits rule.
+  return @[
+    // Conflicting Rule No. 1
+    @[
+      @(UIAccessibilityTraitButton),
+      @(UIAccessibilityTraitLink),
+      @(UIAccessibilityTraitSearchField),
+      @(UIAccessibilityTraitKeyboardKey)
+    ],
+    // Conflicting Rule No. 2
+    @[
+      @(UIAccessibilityTraitButton),
+      @(UIAccessibilityTraitAdjustable)
+    ]
+  ];
+}
+
+/**
+ *  @return The UIAccessibilityTraits to NSString mapping dictionary as type
+ *          NSDictionary<NSNumber *, NSString *> *.
+ */
++ (NSDictionary<NSNumber *, NSString *> const *)traitsToStringDictionary {
+  // Each element below is an valid accessibility traits entity.
+  return @{
+    @(UIAccessibilityTraitNone):
+      @"UIAccessibilityTraitNone",
+    @(UIAccessibilityTraitButton):
+      @"UIAccessibilityTraitButton",
+    @(UIAccessibilityTraitLink):
+      @"UIAccessibilityTraitLink",
+    @(UIAccessibilityTraitSearchField):
+      @"UIAccessibilityTraitSearchField",
+    @(UIAccessibilityTraitImage):
+      @"UIAccessibilityTraitImage",
+    @(UIAccessibilityTraitSelected):
+      @"UIAccessibilityTraitSelected",
+    @(UIAccessibilityTraitPlaysSound):
+      @"UIAccessibilityTraitPlaysSound",
+    @(UIAccessibilityTraitKeyboardKey):
+      @"UIAccessibilityTraitKeyboardKey",
+    @(UIAccessibilityTraitStaticText):
+      @"UIAccessibilityTraitStaticText",
+    @(UIAccessibilityTraitSummaryElement):
+      @"UIAccessibilityTraitSummaryElement",
+    @(UIAccessibilityTraitNotEnabled):
+      @"UIAccessibilityTraitNotEnabled",
+    @(UIAccessibilityTraitUpdatesFrequently):
+      @"UIAccessibilityTraitUpdatesFrequently",
+    @(UIAccessibilityTraitStartsMediaSession):
+      @"UIAccessibilityTraitStartsMediaSession",
+    @(UIAccessibilityTraitAdjustable):
+      @"UIAccessibilityTraitAdjustable",
+    @(UIAccessibilityTraitAllowsDirectInteraction):
+      @"UIAccessibilityTraitAllowsDirectInteraction",
+    @(UIAccessibilityTraitCausesPageTurn):
+      @"UIAccessibilityTraitCausesPageTurn",
+    @(UIAccessibilityTraitHeader):
+      @"UIAccessibilityTraitHeader"
+  };
+}
+
+/**
+ *  @return The NSString value of the specified accessibility traits.
+ */
++ (NSString *)stringValueOfUIAccessibilityTraits:(UIAccessibilityTraits)traits
+                                           error:(GTXErrorRefType)errorOrNil {
+  NSString *stringValue = [[self traitsToStringDictionary]
+      objectForKey:[NSNumber numberWithUnsignedLongLong:traits]];
+  if (nil == stringValue) {
+    NSString *errorMessage =
+        [NSString stringWithFormat:@"This element defines accessibility traits 0x%016llx which may "
+                                   @"be invalid.", traits];
+    [NSError gtx_logOrSetError:errorOrNil
+                   description:errorMessage
+                          code:GTXCheckErrorCodeGenericError
+                      userInfo:nil];
+    return nil;
+  }
+  return stringValue;
+}
+
+/**
+ *  @return The NSString value of the @c element's accessibility label or @c nil if label was not
+ *          set or an error occurred extracting the label.
+ */
++ (NSString *)stringValueOfAccessibilityLabelForElement:(id)element
+                                                  error:(GTXErrorRefType)errorOrNil {
+  NSString *stringValue;
+  id accessibilityLabel = [element accessibilityLabel];
+  if ([accessibilityLabel isKindOfClass:[NSString class]]) {
+    stringValue = accessibilityLabel;
+  } else if ([accessibilityLabel respondsToSelector:@selector(string)]) {
+    stringValue = [accessibilityLabel string];
+  } else if (accessibilityLabel) {
+    NSString *errorMessage =
+        [NSString stringWithFormat:@"String value of accessibility label %@ of class"
+                                   @" %@ could not be extracted from element %@",
+                                   accessibilityLabel,
+                                   NSStringFromClass([accessibilityLabel class]),
+                                   element];
+    [NSError gtx_logOrSetError:errorOrNil
+                   description:errorMessage
+                          code:GTXCheckErrorCodeGenericError
+                      userInfo:nil];
+    return nil;
+  }
+  return stringValue;
+}
+
+/**
+ *  @return Returns the string obtained by removing whitespace and newlines present at the beginning
+ *          and the end of the specified @c string.
+ */
++ (NSString *)trimmedStringFromString:(NSString *)string {
+  return [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
+/**
+ *  @return @c YES if @c element is tappable (for ex button) @c NO otherwise.
+ */
++ (BOOL)gtx_isTappableNonLinkElement:(id)element {
+  BOOL hasTappableTrait = NO;
+  if ([element respondsToSelector:@selector(accessibilityTraits)]) {
+    UIAccessibilityTraits traits = [element accessibilityTraits];
+    hasTappableTrait = ((traits & UIAccessibilityTraitButton) ||
+                        (traits & UIAccessibilityTraitLink) ||
+                        (traits & UIAccessibilityTraitSearchField) ||
+                        (traits & UIAccessibilityTraitPlaysSound) ||
+                        (traits & UIAccessibilityTraitKeyboardKey));
+  }
+  return hasTappableTrait;
+}
+
+/**
+ *  @return @c YES if @c element displays text @c NO otherwise.
+ */
++ (BOOL)gtx_isTextDisplayingElement:(id)element {
+  BOOL hasTextTrait = NO;
+  if ([element respondsToSelector:@selector(accessibilityTraits)]) {
+    UIAccessibilityTraits traits = [element accessibilityTraits];
+    hasTextTrait = ((traits & UIAccessibilityTraitStaticText) ||
+                    (traits & UIAccessibilityTraitLink) ||
+                    (traits & UIAccessibilityTraitSearchField) ||
+                    (traits & UIAccessibilityTraitKeyboardKey));
+  }
+  return ([element isKindOfClass:[UILabel class]] ||
+          [element isKindOfClass:[UITextView class]] ||
+          [element isKindOfClass:[UITextField class]] ||
+          hasTextTrait);
+}
+
+@end

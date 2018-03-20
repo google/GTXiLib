@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GTXTestViewController">
+            <connections>
+                <outlet property="actionsContainerView" destination="1a2-cF-Pv8" id="wRj-zQ-69M"/>
+                <outlet property="testArea" destination="zKb-0p-goZ" id="RXg-q4-JQl"/>
+                <outlet property="view" destination="iN0-l3-epB" id="14e-NV-T1Q"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zKb-0p-goZ">
+                    <rect key="frame" x="8" y="300" width="359" height="359"/>
+                    <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="zKb-0p-goZ" secondAttribute="height" multiplier="1:1" id="Yet-6y-VDN"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gza-Sc-brM">
+                    <rect key="frame" x="8" y="8" width="89" height="48"/>
+                    <accessibility key="accessibilityConfiguration" label="Scroll To Top"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="O2j-dY-uEM"/>
+                    </constraints>
+                    <state key="normal" title="Scroll To Top"/>
+                    <connections>
+                        <action selector="userTappedScrollToTop:" destination="-1" eventType="touchUpInside" id="ue4-EW-Mce"/>
+                    </connections>
+                </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1a2-cF-Pv8">
+                    <rect key="frame" x="8" y="57" width="359" height="235"/>
+                </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6E-IP-0vu">
+                    <rect key="frame" x="262" y="8" width="105" height="48"/>
+                    <accessibility key="accessibilityConfiguration" label="Clear Test Area"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="GME-u0-LlX"/>
+                    </constraints>
+                    <state key="normal" title="Clear Test Area"/>
+                    <connections>
+                        <action selector="userTappedClearFields:" destination="-1" eventType="touchUpInside" id="egH-O5-JO0"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="zKb-0p-goZ" secondAttribute="bottom" constant="8" id="2ZM-md-Qcg"/>
+                <constraint firstItem="gza-Sc-brM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="HAt-xL-mMR"/>
+                <constraint firstItem="zKb-0p-goZ" firstAttribute="top" secondItem="1a2-cF-Pv8" secondAttribute="bottom" constant="8" id="Kif-GH-Lmu"/>
+                <constraint firstItem="e6E-IP-0vu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Qih-b1-KdD"/>
+                <constraint firstAttribute="trailing" secondItem="e6E-IP-0vu" secondAttribute="trailing" constant="8" id="SeZ-vD-JjG"/>
+                <constraint firstItem="1a2-cF-Pv8" firstAttribute="top" secondItem="gza-Sc-brM" secondAttribute="bottom" constant="1" id="Y5L-Db-NkF"/>
+                <constraint firstAttribute="trailing" secondItem="1a2-cF-Pv8" secondAttribute="trailing" constant="8" id="YQN-mj-2Fm"/>
+                <constraint firstItem="1a2-cF-Pv8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Zwd-LM-HOV"/>
+                <constraint firstItem="zKb-0p-goZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="eMS-dM-fi4"/>
+                <constraint firstItem="gza-Sc-brM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="fPt-Fo-6L9"/>
+                <constraint firstAttribute="trailing" secondItem="zKb-0p-goZ" secondAttribute="trailing" constant="8" id="gUb-Ct-Q7M"/>
+            </constraints>
+            <point key="canvasLocation" x="306.5" y="392.5"/>
+        </view>
+    </objects>
+</document>
