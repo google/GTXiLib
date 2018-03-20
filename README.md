@@ -27,7 +27,7 @@ snippet of code to it.
 ```
 
 Once installed, GTX will run all registered accessibility checks before test
-case tearDown and fail the test if any accessibility checks fail. Note that GTX
+case tearDown and fail the test if any accessibility checks fail. Note that code
 is being added to `+setUp` method not the instance method `-setUp` since GTX
 must only be installed once (for a given test run).
 
@@ -82,8 +82,9 @@ away in which case you have the following options at your disposal:
 + Temporarily blacklist the offending element using element blacklist APIs
 
 But if you believe GTXiLib has caught a bug that is not an accessibility issue
-please let us know by [filing a bug](TODO) or better [fix it](TODO) for
-everyone.
+please let us know by [filing a bug](https://github.com/google/GTXiLib/issues)
+or better [fix it](https://github.com/google/GTXiLib/blob/master/CONTRIBUTING.md)
+for everyone.
 
 ## Analytics
 
@@ -93,7 +94,7 @@ of the test app's Bundle ID and pass/fail status of GTXiLib checks. This
 information allows us to measure the volume of usage. For more detailed
 information about our analytics collection, please peruse the `GTXAnalytics.m`
 file which contains the implementation details. If they wish, users can choose
-to opt out by disabling the Analytics by adding the folling code snippet in
+to opt out by disabling the Analytics by adding the following code snippet in
 test’s `+(void) setUp` method:
 
 ```
