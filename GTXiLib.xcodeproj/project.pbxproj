@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		610CA3FD204DFC76008BAAA1 /* GTXPluginXCTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 610CA3FB204DFC76008BAAA1 /* GTXPluginXCTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		610CA3FE204DFC76008BAAA1 /* GTXPluginXCTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 610CA3FC204DFC76008BAAA1 /* GTXPluginXCTestCase.m */; };
-		610CA405204E04AC008BAAA1 /* GTXAxeCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 610CA403204E04AB008BAAA1 /* GTXAxeCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		610CA406204E04AC008BAAA1 /* GTXAxeCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 610CA404204E04AB008BAAA1 /* GTXAxeCore.m */; };
-		6115E78B204F5BA3003E32F9 /* GTAxe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613C3F41204A09E8007D44A8 /* GTAxe.framework */; };
+		6115E78B204F5BA3003E32F9 /* GTXiLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613C3F41204A09E8007D44A8 /* GTXiLib.framework */; };
 		6115E79B204F5BC9003E32F9 /* GTXToolKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6115E791204F5BC6003E32F9 /* GTXToolKitTests.m */; };
 		6115E79C204F5BC9003E32F9 /* GTXTestSuiteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6115E792204F5BC6003E32F9 /* GTXTestSuiteTests.m */; };
 		6115E79D204F5BC9003E32F9 /* GTXChecksCollectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6115E793204F5BC7003E32F9 /* GTXChecksCollectionTests.m */; };
@@ -20,6 +18,9 @@
 		6115E7A0204F5BC9003E32F9 /* GTXTestAccessibilityElements.m in Sources */ = {isa = PBXBuildFile; fileRef = 6115E798204F5BC8003E32F9 /* GTXTestAccessibilityElements.m */; };
 		6115E7A1204F5BC9003E32F9 /* GTXImageAndColorUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6115E799204F5BC8003E32F9 /* GTXImageAndColorUtilsTests.m */; };
 		6115E7A2204F5BC9003E32F9 /* GTXBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6115E79A204F5BC9003E32F9 /* GTXBaseTestCase.m */; };
+		61A0C4DE2061896300DF0169 /* GTXiLibCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A0C4DB2061896300DF0169 /* GTXiLibCore.m */; };
+		61A0C4DF2061896300DF0169 /* GTXiLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A0C4DC2061896300DF0169 /* GTXiLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61A0C4E02061896300DF0169 /* GTXiLibCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A0C4DD2061896300DF0169 /* GTXiLibCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61ABAEB0204A0B0B006DBF0A /* GTXAnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAE8E204A0B02006DBF0A /* GTXAnalyticsUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61ABAEB1204A0B0B006DBF0A /* GTXAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAE8F204A0B02006DBF0A /* GTXAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61ABAEB2204A0B0B006DBF0A /* GTXErrorReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAE90204A0B02006DBF0A /* GTXErrorReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,7 +50,6 @@
 		61ABAECC204A0B0B006DBF0A /* GTXErrorReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ABAEAA204A0B09006DBF0A /* GTXErrorReporter.m */; };
 		61ABAECD204A0B0B006DBF0A /* GTXToolKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAEAB204A0B09006DBF0A /* GTXToolKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61ABAECE204A0B0B006DBF0A /* GTXImageRGBAData.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ABAEAC204A0B0A006DBF0A /* GTXImageRGBAData.m */; };
-		61ABAECF204A0B0B006DBF0A /* GTAxe.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAEAD204A0B0A006DBF0A /* GTAxe.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61ABAED1204A0B0B006DBF0A /* GTXElementBlacklist.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAEAF204A0B0A006DBF0A /* GTXElementBlacklist.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -66,9 +66,7 @@
 /* Begin PBXFileReference section */
 		610CA3FB204DFC76008BAAA1 /* GTXPluginXCTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXPluginXCTestCase.h; path = Classes/GTXPluginXCTestCase.h; sourceTree = SOURCE_ROOT; };
 		610CA3FC204DFC76008BAAA1 /* GTXPluginXCTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXPluginXCTestCase.m; path = Classes/GTXPluginXCTestCase.m; sourceTree = SOURCE_ROOT; };
-		610CA403204E04AB008BAAA1 /* GTXAxeCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXAxeCore.h; path = Classes/GTXAxeCore.h; sourceTree = SOURCE_ROOT; };
-		610CA404204E04AB008BAAA1 /* GTXAxeCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXAxeCore.m; path = Classes/GTXAxeCore.m; sourceTree = SOURCE_ROOT; };
-		6115E786204F5BA2003E32F9 /* GTAxeUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GTAxeUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6115E786204F5BA2003E32F9 /* GTXiUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GTXiUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6115E791204F5BC6003E32F9 /* GTXToolKitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXToolKitTests.m; path = Tests/UnitTests/GTXToolKitTests.m; sourceTree = SOURCE_ROOT; };
 		6115E792204F5BC6003E32F9 /* GTXTestSuiteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestSuiteTests.m; path = Tests/UnitTests/GTXTestSuiteTests.m; sourceTree = SOURCE_ROOT; };
 		6115E793204F5BC7003E32F9 /* GTXChecksCollectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXChecksCollectionTests.m; path = Tests/UnitTests/GTXChecksCollectionTests.m; sourceTree = SOURCE_ROOT; };
@@ -79,7 +77,10 @@
 		6115E798204F5BC8003E32F9 /* GTXTestAccessibilityElements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestAccessibilityElements.m; path = Tests/UnitTests/GTXTestAccessibilityElements.m; sourceTree = SOURCE_ROOT; };
 		6115E799204F5BC8003E32F9 /* GTXImageAndColorUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXImageAndColorUtilsTests.m; path = Tests/UnitTests/GTXImageAndColorUtilsTests.m; sourceTree = SOURCE_ROOT; };
 		6115E79A204F5BC9003E32F9 /* GTXBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXBaseTestCase.m; path = Tests/UnitTests/GTXBaseTestCase.m; sourceTree = SOURCE_ROOT; };
-		613C3F41204A09E8007D44A8 /* GTAxe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GTAxe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		613C3F41204A09E8007D44A8 /* GTXiLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GTXiLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61A0C4DB2061896300DF0169 /* GTXiLibCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXiLibCore.m; path = Classes/GTXiLibCore.m; sourceTree = SOURCE_ROOT; };
+		61A0C4DC2061896300DF0169 /* GTXiLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXiLib.h; path = Classes/GTXiLib.h; sourceTree = SOURCE_ROOT; };
+		61A0C4DD2061896300DF0169 /* GTXiLibCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXiLibCore.h; path = Classes/GTXiLibCore.h; sourceTree = SOURCE_ROOT; };
 		61ABAE8A204A0AA3006DBF0A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FrameworkFiles/Info.plist; sourceTree = SOURCE_ROOT; };
 		61ABAE8E204A0B02006DBF0A /* GTXAnalyticsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXAnalyticsUtils.h; path = Classes/GTXAnalyticsUtils.h; sourceTree = SOURCE_ROOT; };
 		61ABAE8F204A0B02006DBF0A /* GTXAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXAnalytics.h; path = Classes/GTXAnalytics.h; sourceTree = SOURCE_ROOT; };
@@ -110,7 +111,6 @@
 		61ABAEAA204A0B09006DBF0A /* GTXErrorReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXErrorReporter.m; path = Classes/GTXErrorReporter.m; sourceTree = SOURCE_ROOT; };
 		61ABAEAB204A0B09006DBF0A /* GTXToolKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXToolKit.h; path = Classes/GTXToolKit.h; sourceTree = SOURCE_ROOT; };
 		61ABAEAC204A0B0A006DBF0A /* GTXImageRGBAData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXImageRGBAData.m; path = Classes/GTXImageRGBAData.m; sourceTree = SOURCE_ROOT; };
-		61ABAEAD204A0B0A006DBF0A /* GTAxe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTAxe.h; path = Classes/GTAxe.h; sourceTree = SOURCE_ROOT; };
 		61ABAEAF204A0B0A006DBF0A /* GTXElementBlacklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXElementBlacklist.h; path = Classes/GTXElementBlacklist.h; sourceTree = SOURCE_ROOT; };
 		61B7F4A2204A15D30062DF65 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -120,7 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6115E78B204F5BA3003E32F9 /* GTAxe.framework in Frameworks */,
+				6115E78B204F5BA3003E32F9 /* GTXiLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +137,8 @@
 		613C3F37204A09E7007D44A8 = {
 			isa = PBXGroup;
 			children = (
-				613C3F43204A09E8007D44A8 /* GTAxe */,
-				61BC5526204E2736004D2FB9 /* GTAxeUnitTests */,
+				613C3F43204A09E8007D44A8 /* GTXiLib */,
+				61BC5526204E2736004D2FB9 /* GTXiUnitTests */,
 				613C3F42204A09E8007D44A8 /* Products */,
 				61B7F4A1204A15D30062DF65 /* Frameworks */,
 			);
@@ -147,27 +147,27 @@
 		613C3F42204A09E8007D44A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				613C3F41204A09E8007D44A8 /* GTAxe.framework */,
-				6115E786204F5BA2003E32F9 /* GTAxeUnitTests.xctest */,
+				613C3F41204A09E8007D44A8 /* GTXiLib.framework */,
+				6115E786204F5BA2003E32F9 /* GTXiUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		613C3F43204A09E8007D44A8 /* GTAxe */ = {
+		613C3F43204A09E8007D44A8 /* GTXiLib */ = {
 			isa = PBXGroup;
 			children = (
 				61ABAE8D204A0AF1006DBF0A /* Classes */,
 				61ABAE8A204A0AA3006DBF0A /* Info.plist */,
 			);
-			path = GTAxe;
+			path = GTXiLib;
 			sourceTree = "<group>";
 		};
 		61ABAE8D204A0AF1006DBF0A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				61ABAEAD204A0B0A006DBF0A /* GTAxe.h */,
-				610CA403204E04AB008BAAA1 /* GTXAxeCore.h */,
-				610CA404204E04AB008BAAA1 /* GTXAxeCore.m */,
+				61A0C4DC2061896300DF0169 /* GTXiLib.h */,
+				61A0C4DD2061896300DF0169 /* GTXiLibCore.h */,
+				61A0C4DB2061896300DF0169 /* GTXiLibCore.m */,
 				61ABAE93204A0B03006DBF0A /* GTXAccessibilityTree.h */,
 				61ABAE9A204A0B04006DBF0A /* GTXAccessibilityTree.m */,
 				61ABAE8F204A0B02006DBF0A /* GTXAnalytics.h */,
@@ -212,7 +212,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		61BC5526204E2736004D2FB9 /* GTAxeUnitTests */ = {
+		61BC5526204E2736004D2FB9 /* GTXiUnitTests */ = {
 			isa = PBXGroup;
 			children = (
 				6115E794204F5BC7003E32F9 /* GTXAccessibilityTreeTests.m */,
@@ -226,7 +226,7 @@
 				6115E792204F5BC6003E32F9 /* GTXTestSuiteTests.m */,
 				6115E791204F5BC6003E32F9 /* GTXToolKitTests.m */,
 			);
-			path = GTAxeUnitTests;
+			path = GTXiUnitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,12 +236,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				610CA405204E04AC008BAAA1 /* GTXAxeCore.h in Headers */,
 				61ABAEB5204A0B0B006DBF0A /* GTXAccessibilityTree.h in Headers */,
 				61ABAED1204A0B0B006DBF0A /* GTXElementBlacklist.h in Headers */,
 				61ABAECD204A0B0B006DBF0A /* GTXToolKit.h in Headers */,
 				61ABAEC8204A0B0B006DBF0A /* NSError+GTXAdditions.h in Headers */,
-				61ABAECF204A0B0B006DBF0A /* GTAxe.h in Headers */,
 				61ABAEC4204A0B0B006DBF0A /* GTXImageAndColorUtils.h in Headers */,
 				61ABAEB6204A0B0B006DBF0A /* GTXCommon.h in Headers */,
 				61ABAEBD204A0B0B006DBF0A /* GTXAssertions.h in Headers */,
@@ -252,6 +250,8 @@
 				61ABAEB2204A0B0B006DBF0A /* GTXErrorReporter.h in Headers */,
 				61ABAEC3204A0B0B006DBF0A /* GTXTestCase.h in Headers */,
 				61ABAEB1204A0B0B006DBF0A /* GTXAnalytics.h in Headers */,
+				61A0C4E02061896300DF0169 /* GTXiLibCore.h in Headers */,
+				61A0C4DF2061896300DF0169 /* GTXiLib.h in Headers */,
 				61ABAECA204A0B0B006DBF0A /* GTXChecksCollection.h in Headers */,
 				61ABAEC1204A0B0B006DBF0A /* GTXTestSuite.h in Headers */,
 				61ABAEB7204A0B0B006DBF0A /* GTXLogging.h in Headers */,
@@ -262,9 +262,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		6115E785204F5BA2003E32F9 /* GTAxeUnitTests */ = {
+		6115E785204F5BA2003E32F9 /* GTXiUnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6115E78E204F5BA3003E32F9 /* Build configuration list for PBXNativeTarget "GTAxeUnitTests" */;
+			buildConfigurationList = 6115E78E204F5BA3003E32F9 /* Build configuration list for PBXNativeTarget "GTXiUnitTests" */;
 			buildPhases = (
 				6115E782204F5BA2003E32F9 /* Sources */,
 				6115E783204F5BA2003E32F9 /* Frameworks */,
@@ -275,14 +275,14 @@
 			dependencies = (
 				6115E78D204F5BA3003E32F9 /* PBXTargetDependency */,
 			);
-			name = GTAxeUnitTests;
+			name = GTXiUnitTests;
 			productName = GTAxeUnitTests;
-			productReference = 6115E786204F5BA2003E32F9 /* GTAxeUnitTests.xctest */;
+			productReference = 6115E786204F5BA2003E32F9 /* GTXiUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		613C3F40204A09E7007D44A8 /* GTAxe */ = {
+		613C3F40204A09E7007D44A8 /* GTXiLib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 613C3F49204A09E8007D44A8 /* Build configuration list for PBXNativeTarget "GTAxe" */;
+			buildConfigurationList = 613C3F49204A09E8007D44A8 /* Build configuration list for PBXNativeTarget "GTXiLib" */;
 			buildPhases = (
 				613C3F3C204A09E7007D44A8 /* Sources */,
 				613C3F3D204A09E7007D44A8 /* Frameworks */,
@@ -293,9 +293,9 @@
 			);
 			dependencies = (
 			);
-			name = GTAxe;
+			name = GTXiLib;
 			productName = GTAxe;
-			productReference = 613C3F41204A09E8007D44A8 /* GTAxe.framework */;
+			productReference = 613C3F41204A09E8007D44A8 /* GTXiLib.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -317,7 +317,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 613C3F3B204A09E7007D44A8 /* Build configuration list for PBXProject "GTAxe" */;
+			buildConfigurationList = 613C3F3B204A09E7007D44A8 /* Build configuration list for PBXProject "GTXiLib" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -329,8 +329,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				613C3F40204A09E7007D44A8 /* GTAxe */,
-				6115E785204F5BA2003E32F9 /* GTAxeUnitTests */,
+				613C3F40204A09E7007D44A8 /* GTXiLib */,
+				6115E785204F5BA2003E32F9 /* GTXiUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -382,11 +382,11 @@
 				610CA3FE204DFC76008BAAA1 /* GTXPluginXCTestCase.m in Sources */,
 				61ABAEB8204A0B0B006DBF0A /* GTXAnalyticsUtils.m in Sources */,
 				61ABAEBF204A0B0B006DBF0A /* NSError+GTXAdditions.m in Sources */,
-				610CA406204E04AC008BAAA1 /* GTXAxeCore.m in Sources */,
 				61ABAEBC204A0B0B006DBF0A /* GTXAccessibilityTree.m in Sources */,
 				61ABAEC0204A0B0B006DBF0A /* GTXCheckBlock.m in Sources */,
 				61ABAEBB204A0B0B006DBF0A /* GTXTestCase.m in Sources */,
 				61ABAECE204A0B0B006DBF0A /* GTXImageRGBAData.m in Sources */,
+				61A0C4DE2061896300DF0169 /* GTXiLibCore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +395,7 @@
 /* Begin PBXTargetDependency section */
 		6115E78D204F5BA3003E32F9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 613C3F40204A09E7007D44A8 /* GTAxe */;
+			target = 613C3F40204A09E7007D44A8 /* GTXiLib */;
 			targetProxy = 6115E78C204F5BA3003E32F9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -547,7 +547,7 @@
 				INFOPLIST_FILE = FrameworkFiles/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.google.GTAxe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.google.GTXi;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -566,7 +566,7 @@
 				INFOPLIST_FILE = FrameworkFiles/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.google.GTAxe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.google.GTXi;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -576,7 +576,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6115E78E204F5BA3003E32F9 /* Build configuration list for PBXNativeTarget "GTAxeUnitTests" */ = {
+		6115E78E204F5BA3003E32F9 /* Build configuration list for PBXNativeTarget "GTXiUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6115E78F204F5BA3003E32F9 /* Debug */,
@@ -585,7 +585,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		613C3F3B204A09E7007D44A8 /* Build configuration list for PBXProject "GTAxe" */ = {
+		613C3F3B204A09E7007D44A8 /* Build configuration list for PBXProject "GTXiLib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				613C3F47204A09E8007D44A8 /* Debug */,
@@ -594,7 +594,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		613C3F49204A09E8007D44A8 /* Build configuration list for PBXNativeTarget "GTAxe" */ = {
+		613C3F49204A09E8007D44A8 /* Build configuration list for PBXNativeTarget "GTXiLib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				613C3F4A204A09E8007D44A8 /* Debug */,

@@ -15,7 +15,7 @@
 //
 
 #import "GTXTestBaseTest.h"
-#import "GTAxe.h"
+#import "GTXiLib.h"
 
 @interface GTXTestGtxWithDefaultChecks : GTXTestBaseTest
 @end
@@ -29,9 +29,9 @@
   [super setUp];
 
   // Install all the default checks on the current test class.
-  [GTAxe installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
-                     checks:[GTXChecksCollection allGTXChecks]
-          elementBlacklists:@[]];
+  [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
+                       checks:[GTXChecksCollection allGTXChecks]
+            elementBlacklists:@[]];
 }
 
 - (void)setUp {
@@ -43,7 +43,7 @@
   // Set up failure handler to simple detect if errors were found.
   _expectErrors = NO;
   _foundErrors = NO;
-  [GTAxe setFailureHandler:^(NSError * _Nonnull error) {
+  [GTXiLib setFailureHandler:^(NSError * _Nonnull error) {
     _foundErrors = YES;
   }];
 }

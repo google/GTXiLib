@@ -15,7 +15,7 @@
 //
 
 #import "GTXTestBaseTest.h"
-#import "GTAxe.h"
+#import "GTXiLib.h"
 
 /**
  A global boolean that is used to ensure that at least one test is run.
@@ -44,9 +44,9 @@ static BOOL gTeardownCalledAtleastOnce = NO;
   [super setUp];
   GTXTestSuite *suite = [GTXTestSuite suiteWithAllTestsFromAllClassesInheritedFromClass:
       [GTXTestSuperClassWithATestMethod class]];
-  [GTAxe installOnTestSuite:suite
-                     checks:@[alwaysFail]
-          elementBlacklists:@[]];
+  [GTXiLib installOnTestSuite:suite
+                       checks:@[alwaysFail]
+            elementBlacklists:@[]];
   gTeardownCalledAtleastOnce = NO;
 }
 

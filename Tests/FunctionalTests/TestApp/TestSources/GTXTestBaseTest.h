@@ -18,7 +18,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <XCTest/XCTest.h>
 
-#import "GTAxe.h"
+#import "GTXiLib.h"
 #import "GTXTestViewController.h"
 
 /**
@@ -37,7 +37,7 @@ id<GTXChecking> alwaysFail;
 id<GTXChecking> alwaysPass;
 
 /**
- Base test for all GTAxe functional/integration tests used to setup GTAxe and capture check
+ Base test for all GTXiLib functional/integration tests used to setup GTXiLib and capture check
  failures.
  */
 @interface GTXTestBaseTest : XCTestCase

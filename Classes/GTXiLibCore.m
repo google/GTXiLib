@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "GTXAxeCore.h"
+#import "GTXiLibCore.h"
 
 #import "GTXToolKit.h"
 #import "GTXAssertions.h"
@@ -45,7 +45,7 @@ NSString *const gtxTestInteractionDidEndNotification = @"gtxTestInteractionDidEn
 @end
 
 /**
- The GTXToolKit instance used to handle accessibility checking in GTAxe class.
+ The GTXToolKit instance used to handle accessibility checking in GTXiLib class.
  */
 static GTXToolKit *gToolkit;
 
@@ -55,29 +55,29 @@ static GTXToolKit *gToolkit;
 static NSMutableArray *gIntsallOptions;
 
 /**
- The pointer to current options being used by GTAxe.
+ The pointer to current options being used by GTXiLib.
  */
 static GTXInstallOptions *gCurrentOptions;
 
 /**
  The failure handler block.
  */
-static GTAxeFailureHandler gFailureHandler;
+static GTXiLibFailureHandler gFailureHandler;
 
 /**
- Boolean that indicates if GTAxe has detected an on-going interaction.
+ Boolean that indicates if GTXiLib has detected an on-going interaction.
  */
 static BOOL gIsInInteraction;
 
 /**
- Boolean that indicates if GTAxe has detected a test case tearDown.
+ Boolean that indicates if GTXiLib has detected a test case tearDown.
  */
 static BOOL gIsInTearDown;
 
 
 #pragma mark - Implementation
 
-@implementation GTAxe
+@implementation GTXiLib
 
 + (void)installOnTestSuite:(GTXTestSuite *)suite
                     checks:(NSArray<id<GTXChecking>> *)checks
@@ -122,11 +122,11 @@ static BOOL gIsInTearDown;
   });
 }
 
-+ (void)setFailureHandler:(GTAxeFailureHandler)handler {
++ (void)setFailureHandler:(GTXiLibFailureHandler)handler {
   gFailureHandler = handler;
 }
 
-+ (GTAxeFailureHandler)failureHandler {
++ (GTXiLibFailureHandler)failureHandler {
   return gFailureHandler ?: ^(NSError *error) {
     NSString *formattedError =
         [NSString stringWithFormat:@"\n\n%@\n\n",

@@ -15,7 +15,7 @@
 //
 
 #import "GTXTestBaseTest.h"
-#import "GTAxe.h"
+#import "GTXiLib.h"
 
 @interface GTXTestGtxWorksForPassingTests : GTXTestBaseTest
 @end
@@ -24,9 +24,9 @@
 
 + (void)setUp {
   [super setUp];
-  [GTAxe installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
-                     checks:@[alwaysPass]
-          elementBlacklists:@[]];
+  [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
+                       checks:@[alwaysPass]
+            elementBlacklists:@[]];
 }
 
 - (void)tearDown {

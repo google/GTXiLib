@@ -16,7 +16,7 @@
 
 #import "GTXPluginXCTestCase.h"
 
-#import "GTXAxeCore.h"
+#import "GTXiLibCore.h"
 #import "GTXAssertions.h"
 
 #import <objc/runtime.h>

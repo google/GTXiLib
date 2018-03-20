@@ -15,7 +15,7 @@
 //
 
 #import "GTXTestBaseTest.h"
-#import "GTAxe.h"
+#import "GTXiLib.h"
 
 static BOOL shouldDetectFailure = NO;
 
@@ -26,10 +26,10 @@ static BOOL shouldDetectFailure = NO;
 
 + (void)setUp {
   [super setUp];
-  [GTAxe installOnTestSuite:[GTXTestSuite suiteWithClass:self
-                                                andTests:@selector(testMiddle), nil]
-                     checks:@[alwaysFail]
-          elementBlacklists:@[]];
+  [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithClass:self
+                                                  andTests:@selector(testMiddle), nil]
+                       checks:@[alwaysFail]
+            elementBlacklists:@[]];
 }
 
 - (void)tearDown {

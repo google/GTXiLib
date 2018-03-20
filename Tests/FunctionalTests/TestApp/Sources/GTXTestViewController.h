@@ -87,7 +87,7 @@ FOUNDATION_EXTERN NSString *const kAddLowContrastBackground;
  */
 FOUNDATION_EXTERN NSString *const kAddHighContrastBackground;
 
-// The view controller for testing GTAxe's Accessibility Checker.
+// The view controller for testing GTXiLib's Accessibility Checker.
 @interface GTXTestViewController : UIViewController
 
 

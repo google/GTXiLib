@@ -20,7 +20,7 @@
 #import <CommonCrypto/CommonDigest.h>
 
 /**
- The endpoint that receives GTAxe usage data.
+ The endpoint that receives GTXiLib usage data.
  */
 static NSString *const kGTXTrackingEndPoint = @"https://ssl.google-analytics.com/collect";
 
@@ -29,7 +29,7 @@ static NSString *const kGTXTrackingEndPoint = @"https://ssl.google-analytics.com
 @implementation GTXAnalyticsUtils
 
 /**
- @return The clientID to be used by GTAxe analytics, this is a hash of App's bundle ID.
+ @return The clientID to be used by GTXiLib analytics, this is a hash of App's bundle ID.
  */
 + (NSString *)clientID {
   static NSString *clientID;

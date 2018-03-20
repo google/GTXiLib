@@ -29,7 +29,7 @@ static BOOL gEnabled = YES;
 static GTXAnalyticsHandlerBlock gHandler;
 
 /**
- The Analytics tracking ID that receives GTAxe usage data.
+ The Analytics tracking ID that receives GTXiLib usage data.
  */
 static NSString *const kGTXAnalyticsTrackingID = @"UA-113761703-1";
 
@@ -42,7 +42,7 @@ static NSString *const kGTXAnalyticsTrackingID = @"UA-113761703-1";
     GTX_ASSERT(gEnabled, @"Invoking default handler when analytics is enabled!");
     [GTXAnalyticsUtils sendEventHitWithTrackingID:kGTXAnalyticsTrackingID
                                          clientID:[GTXAnalyticsUtils clientID]
-                                         category:@"GTAxeLib"
+                                         category:@"GTXiLibLib"
                                            action:[self _NSStringFromAnalyticsEvent:event]
                                             value:@"1"];
   };

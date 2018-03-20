@@ -136,7 +136,7 @@
  *  Create an image with the given color and draws a rect filled with the given fill color.
  *
  *  @param backgroundColor Background color on the image.
- *  @param size            Image size.
+ *  @param imageSize       Image size.
  *  @param rectColor       Fill color for @c rect.
  *  @param rect            Rectangle to be filled with @c rectColor.
  *

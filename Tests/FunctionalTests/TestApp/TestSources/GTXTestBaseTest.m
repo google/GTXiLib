@@ -25,17 +25,17 @@ static NSInteger gFailureCount = 0;
 + (void)setUp {
   [super setUp];
 
-  checkFailsIfFailingClass = [GTAxe checkWithName:@"checkFailsIfFailingClass"
-                                            block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+  checkFailsIfFailingClass = [GTXiLib checkWithName:@"checkFailsIfFailingClass"
+                                              block:^BOOL(id element, GTXErrorRefType errorOrNil) {
     return ![element isKindOfClass:[GTXTestFailingClass class]];
   }];
 
-  alwaysFail = [GTAxe checkWithName:@"AlwaysFail"
-                              block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+  alwaysFail = [GTXiLib checkWithName:@"AlwaysFail"
+                                block:^BOOL(id element, GTXErrorRefType errorOrNil) {
     return NO;
   }];
-  alwaysPass = [GTAxe checkWithName:@"AlwaysPass"
-                              block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+  alwaysPass = [GTXiLib checkWithName:@"AlwaysPass"
+                                block:^BOOL(id element, GTXErrorRefType errorOrNil) {
     return YES;
   }];
 
@@ -51,7 +51,7 @@ static NSInteger gFailureCount = 0;
   }
 
   gFailureCount = 0;
-  [GTAxe setFailureHandler:^(NSError * error) {
+  [GTXiLib setFailureHandler:^(NSError * error) {
     gFailureCount += 1;
   }];
 }

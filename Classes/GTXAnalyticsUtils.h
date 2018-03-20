@@ -19,7 +19,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- Class that provides analytics utils for GTAxe analytics.
+ Class that provides analytics utils for GTXiLib analytics.
  */
 @interface GTXAnalyticsUtils : NSObject
 

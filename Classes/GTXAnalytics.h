@@ -23,16 +23,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- Enum of all possible analytics events handleed by GTAxe.
+ Enum of all possible analytics events handleed by GTXiLib.
  */
 typedef NS_ENUM(NSUInteger, GTXAnalyticsEvent) {
   /**
-   Enum for GTAxe checks being invoked.
+   Enum for GTXiLib checks being invoked.
    */
   GTXAnalyticsEventChecksPerformed,
 
   /**
-   Enum for GTAxe checks failure detection.
+   Enum for GTXiLib checks failure detection.
    */
   GTXAnalyticsEventChecksFailed,
 };
@@ -47,7 +47,7 @@ typedef void(^GTXAnalyticsHandlerBlock)(GTXAnalyticsEvent event);
 
 
 /**
- Class that handles all analytics in GTAxe.
+ Class that handles all analytics in GTXiLib.
  */
 @interface GTXAnalytics : NSObject
 

@@ -60,14 +60,14 @@ extern NSString *const gtxTestClassUserInfoKey;
 extern NSString *const gtxTestInvocationUserInfoKey;
 
 /**
- *  Block type for GTAxe failure handlers, this is invoked with the error detected.
+ *  Block type for GTXiLib failure handlers, this is invoked with the error detected.
  */
-typedef void(^GTAxeFailureHandler)(NSError *error);
+typedef void(^GTXiLibFailureHandler)(NSError *error);
 
 /**
  *  Primary class that allows for installing checks, creating checks and blacklists etc.
  */
-@interface GTAxe : NSObject
+@interface GTXiLib : NSObject
 
 /**
  Install checks on all test cases of a given test suite.
@@ -112,7 +112,7 @@ typedef void(^GTAxeFailureHandler)(NSError *error);
  The failure handler to be invoked when checks fail, by default if checks fail an Assertion is
  raised.
  */
-@property (class, nonatomic, strong) GTAxeFailureHandler failureHandler;
+@property (class, nonatomic, strong) GTXiLibFailureHandler failureHandler;
 
 @end
 

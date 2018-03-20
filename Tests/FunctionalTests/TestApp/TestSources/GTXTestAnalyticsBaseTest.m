@@ -25,9 +25,9 @@
 
 + (void)setUp {
   [super setUp];
-  [GTAxe installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
-                     checks:@[checkFailsIfFailingClass]
-          elementBlacklists:@[]];
+  [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
+                       checks:@[checkFailsIfFailingClass]
+            elementBlacklists:@[]];
   [GTXTestViewController addElementToTestArea:
       [[GTXTestFailingClass alloc] initWithFrame:CGRectMake(0, 0, 100, 100)]];
 }

@@ -22,7 +22,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- GTXToolKit can be used for custom implementation of a checking mechanism, @class GTAxe uses
+ GTXToolKit can be used for custom implementation of a checking mechanism, @class GTXiLib uses
  GTXToolKit for performing the checks.
  */
 @interface GTXToolKit : NSObject

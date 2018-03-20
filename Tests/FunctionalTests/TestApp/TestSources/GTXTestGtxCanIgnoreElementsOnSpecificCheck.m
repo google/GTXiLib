@@ -15,7 +15,7 @@
 //
 
 #import "GTXTestBaseTest.h"
-#import "GTAxe.h"
+#import "GTXiLib.h"
 
 @interface GTXTestGtxCanIgnoreElementsOnSpecificCheck : GTXTestBaseTest
 @end
@@ -25,15 +25,15 @@
 + (void)setUp {
   [super setUp];
   NSArray *blacklist =
-      @[[GTAxe blacklistForElementsOfClassNamed:NSStringFromClass([GTXTestFailingClass class])
-                                  forCheckNamed:checkFailsIfFailingClass.name]];
-  id<GTXChecking> secondFailingCheck = [GTAxe checkWithName:@"secondFailingCheck"
+      @[[GTXiLib blacklistForElementsOfClassNamed:NSStringFromClass([GTXTestFailingClass class])
+                                    forCheckNamed:checkFailsIfFailingClass.name]];
+  id<GTXChecking> secondFailingCheck = [GTXiLib checkWithName:@"secondFailingCheck"
                                             block:^BOOL(id element, GTXErrorRefType errorOrNil) {
     return ![element isKindOfClass:[GTXTestFailingClass class]];
   }];
-  [GTAxe installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
-                     checks:@[checkFailsIfFailingClass, secondFailingCheck]
-          elementBlacklists:blacklist];
+  [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
+                       checks:@[checkFailsIfFailingClass, secondFailingCheck]
+            elementBlacklists:blacklist];
   [GTXTestViewController addElementToTestArea:
       [[GTXTestFailingClass alloc] initWithFrame:CGRectMake(0, 0, 100, 100)]];
 }
