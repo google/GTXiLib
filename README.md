@@ -1,9 +1,14 @@
 ## What is GTXiLib?
-GTXiLib (spelled GTX eye lib) is library of APIs for iOS accessibility testing
-that can be easily embedded into any test framework or tool, for example it has
-XCTest integration and can be used with EarlGrey. GTXiLib works by installing
-"checks" on your existing test cases so that before test teardown the checks are
-evaluated on your app to look for accessibility issues such as missing labels.
+GTXiLib, Google Toolbox for Accessibility for the iOS platform or simply GTX-eye
+is framework for iOS accessibility testing which can also be embedded into any
+tool. GTXiLib has XCTest integration and can be used with any XCTest based
+frameworks such as EarlGrey.
+GTXiLib enhances the value of your tests by installing "accessibility checks"
+on them, your existing test cases can double as accessibility tests with
+no other code change on your part. GTXiLib is able to accomplish this by
+hooking into the test tear down process and invoking the registered
+accessibility checks (such as check for presence of accessibility label) on
+all elements on the screen.
 
 ## Getting Started
 
@@ -14,6 +19,7 @@ snippet of code to it.
 // Include the GTXiLib umbrella header.
 #import <GTXiLib/GTXiLib.h>
 
+// Note that that is +setUp not -setUp
 + (void)setUp {
   [super setUp];
 
