@@ -1,12 +1,13 @@
 ## What is GTXiLib?
 GTXiLib, Google Toolbox for Accessibility for the iOS platform or simply GTX-eye
-is a framework for iOS accessibility testing. GTXiLib has XCTest integration and can be used with any XCTest based
-frameworks such as [EarlGrey](https://github.com/google/EarlGrey). GTXiLib enhances the value of your tests by installing "accessibility checks"
-on them, your existing test cases can double as accessibility tests with
-no other code change on your part. GTXiLib is able to accomplish this by
-hooking into the test tear down process and invoking the registered
-accessibility checks (such as check for presence of accessibility label) on
-all elements on the screen.
+is a framework for iOS accessibility testing. GTXiLib has XCTest integration and
+can be used with any XCTest based frameworks such as
+[EarlGrey](https://github.com/google/EarlGrey). GTXiLib enhances the value of
+your tests by installing "accessibility checks" on them, your existing test
+cases can double as accessibility tests with no other code change on your part.
+GTXiLib is able to accomplish this by hooking into the test tear down process
+and invoking the registered accessibility checks (such as check for presence of
+accessibility label) on all elements on the screen.
 
 ## Getting Started
 
@@ -15,7 +16,7 @@ snippet of code to it.
 
 ```
 // Include the GTXiLib umbrella header.
-#import <GTXiLib/GTXiLib.h>
+
 
 // Note that that is +setUp not -setUp
 + (void)setUp {
@@ -23,19 +24,54 @@ snippet of code to it.
 
   // ... your other setup code (if any) comes here.
 
+  // Create an array of checks to be installed.
+  NSArray *checksToBeInstalled = @[
+      [GTXChecksCollection checkForAXLabelPresent]
+  ];
+
   // Install GTX on all tests in *this* test class.
   [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
-                       checks:[GTXChecksCollection allGTXChecks]
+                       checks:checksToBeInstalled
             elementBlacklists:@[]];
 }
 ```
 
 Once installed, GTX will run all registered accessibility checks before test
-case tearDown and fail the test if any accessibility checks fail. Note that code
-is being added to `+setUp` method not the instance method `-setUp` since GTX
-must only be installed once (for a given test run).
+case tearDown and fail the test if any accessibility checks fail. With the above
+snippet of code your tests will now begin to catch issues where you have added
+UI elements to your app but forgot to set accessibility labels on them.
 
-To Add GTXiLib to your project use the xcodeproj file in this project or
+In the above snippet we have only installed `checkForAXLabelPresent`, but you
+can also install multiple checks from GTXChecksCollection or include your own
+custom checks as well:
+
+```
+// Inside +setUp ...
+// Create a new check (for example that ensures that all AX label is not an image name)
+id<GTXChecking> myNewCheck =
+    [GTXCheckBlock GTXCheckWithName:@"AXlabel is not image name"
+                              block:^BOOL(id element, GTXErrorRefType errorPtr) {
+    // Ensure accessibilityLabel does not end with .png
+    return ![[element accessibilityLabel] hasSuffix:@".png"];
+  }];
+
+// Create an array of checks to be installed.
+NSArray *checksToBeInstalled = @[
+    [GTXChecksCollection checkForAXLabelPresent],
+    [GTXChecksCollection checkForAXTraitDontConflict],
+    myNewCheck,
+];
+
+// Install GTX on all tests in *this* test class.
+[GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
+                     checks:checksToBeInstalled
+          elementBlacklists:@[]];
+```
+
+Note that GTX is being added to `+setUp` method, not the instance method
+`-setUp` since GTX must only be installed once (for a given test run).
+
+To add GTXiLib to your project use the xcodeproj file in this project or
 [cocoapods](https://cocoapods.org/pods/GTXiLib).
 
 ## Incremental Accessibility
@@ -108,5 +144,16 @@ test’s `+(void) setUp` method:
 // Disable GTXiLib analytics.
 [GTXAnalytics setEnabled:NO];
 ```
+
+## Discuss
+
+Please join us on [ios-accessibility](https://groups.google.com/forum/#!forum/ios-accessibility)
+Google group to discuss all things accessibility and also to keep a tap on all
+updates to GTXiLib.
+
+## Contributors
+
+Please make sure you’ve followed the guidelines in
+[CONTRIBUTING.md](./CONTRIBUTING.md) before making any contributions.
 
 *Note: This is not an official Google product.*

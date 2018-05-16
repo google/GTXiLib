@@ -28,44 +28,44 @@ NSString * const kExpectedErrorDescription = @"Check \"Accessibility Label Not P
 
 - (void)testGtxCheckForAXLabelNotPunctuated {
   // Valid label.
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelNotPunctuated
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotPunctuated]
                    succeeds:YES
                 withElement:[self uiAccessibilityElementWithLabel:@"foo"]
            errorDescription:nil];
   // Empty label.
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelNotPunctuated
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotPunctuated]
                    succeeds:YES
                 withElement:[self uiAccessibilityElementWithLabel:@""]
            errorDescription:nil];
   // nil label.
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelNotPunctuated
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotPunctuated]
                    succeeds:YES
                 withElement:[self uiAccessibilityElementWithLabel:nil]
            errorDescription:nil];
   // Label ending in period.
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelNotPunctuated
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotPunctuated]
                    succeeds:NO
                 withElement:[self uiAccessibilityElementWithLabel:@"foo."]
            errorDescription:kExpectedErrorDescription];
   // Label ending in period with trailing space.
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelNotPunctuated
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotPunctuated]
                    succeeds:NO
                 withElement:[self uiAccessibilityElementWithLabel:@"foo. "]
            errorDescription:kExpectedErrorDescription];
   // Single character label ending in period.
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelNotPunctuated
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotPunctuated]
                    succeeds:NO
                 withElement:[self uiAccessibilityElementWithLabel:@"f."]
            errorDescription:kExpectedErrorDescription];
   // Single character label with just period.
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelNotPunctuated
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotPunctuated]
                    succeeds:NO
                 withElement:[self uiAccessibilityElementWithLabel:@"."]
            errorDescription:kExpectedErrorDescription];
   // UILabel with text ending in period must pass.
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
   label.text = @"foo.";
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelNotPunctuated
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotPunctuated]
                    succeeds:YES
                 withElement:label
            errorDescription:kExpectedErrorDescription];
@@ -73,13 +73,13 @@ NSString * const kExpectedErrorDescription = @"Check \"Accessibility Label Not P
 
 - (void)testGtxCheckForAXLabelNotPunctuatedWorksWithAttributedStrings {
   id accessibilityLabel = [[NSAttributedString alloc] initWithString:@"foo"];
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelNotPunctuated
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotPunctuated]
                    succeeds:YES
                 withElement:[self uiAccessibilityElementWithLabel:accessibilityLabel]
            errorDescription:nil];
 
   accessibilityLabel = [[NSAttributedString alloc] initWithString:@"foo."];
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelNotPunctuated
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotPunctuated]
                    succeeds:NO
                 withElement:[self uiAccessibilityElementWithLabel:accessibilityLabel]
            errorDescription:kExpectedErrorDescription];
@@ -87,13 +87,13 @@ NSString * const kExpectedErrorDescription = @"Check \"Accessibility Label Not P
 
 - (void)testGtxCheckForAXLabelNotPunctuatedWorksWithMutableStrings {
   id accessibilityLabel = [NSMutableString stringWithString:@"foo"];
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelNotPunctuated
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotPunctuated]
                    succeeds:YES
                 withElement:[self uiAccessibilityElementWithLabel:accessibilityLabel]
            errorDescription:nil];
 
   accessibilityLabel = [NSMutableString stringWithString:@"foo."];
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelNotPunctuated
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotPunctuated]
                    succeeds:NO
                 withElement:[self uiAccessibilityElementWithLabel:accessibilityLabel]
            errorDescription:kExpectedErrorDescription];
@@ -102,43 +102,43 @@ NSString * const kExpectedErrorDescription = @"Check \"Accessibility Label Not P
 - (void)testGtxCheckForAXLabelPresent {
   NSString * const expectedErrorDescription = @"Check \"Accessibility Label Present\" failed";
   // Valid label.
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelPresent
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelPresent]
                    succeeds:YES
                 withElement:[self uiAccessibilityElementWithLabel:@"foo"]
            errorDescription:nil];
   // Label with just space.
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelPresent
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelPresent]
                    succeeds:NO
                 withElement:[self uiAccessibilityElementWithLabel:@" "]
            errorDescription:expectedErrorDescription];
   // Empty string label.
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelPresent
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelPresent]
                    succeeds:NO
                 withElement:[self uiAccessibilityElementWithLabel:@""]
            errorDescription:expectedErrorDescription];
   // Element with no label.
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelPresent
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelPresent]
                    succeeds:NO
                 withElement:[self uiAccessibilityElementWithLabel:nil]
            errorDescription:expectedErrorDescription];
 }
 
 - (void)testGtxCheckForAXLabelPresentWorksForTextElementsWithNotText {
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelPresent
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelPresent]
                    succeeds:YES
                 withElement:[[UILabel alloc] initWithFrame:CGRectZero]
            errorDescription:nil];
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelPresent
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelPresent]
                    succeeds:YES
                 withElement:[[UITextField alloc] initWithFrame:CGRectZero]
            errorDescription:nil];
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelPresent
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelPresent]
                    succeeds:YES
                 withElement:[[UITextView alloc] initWithFrame:CGRectZero]
            errorDescription:nil];
   UIAccessibilityElement *textElement = [self uiAccessibilityElementWithLabel:@""];
   textElement.accessibilityTraits = UIAccessibilityTraitStaticText;
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelPresent
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelPresent]
                    succeeds:YES
                 withElement:textElement
            errorDescription:nil];
@@ -146,7 +146,7 @@ NSString * const kExpectedErrorDescription = @"Check \"Accessibility Label Not P
 
 - (void)testGtxCheckForAXLabelPresentWorksWithAttributedStrings {
   id accessibilityLabel = [[NSAttributedString alloc] initWithString:@"foo"];
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelPresent
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelPresent]
                    succeeds:YES
                 withElement:[self uiAccessibilityElementWithLabel:accessibilityLabel]
            errorDescription:nil];
@@ -154,7 +154,7 @@ NSString * const kExpectedErrorDescription = @"Check \"Accessibility Label Not P
 
 - (void)testGtxCheckForAXLabelPresentWorksWithMutableStrings {
   id accessibilityLabel = [NSMutableString stringWithString:@"foo"];
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityLabelPresent
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelPresent]
                    succeeds:YES
                 withElement:[self uiAccessibilityElementWithLabel:accessibilityLabel]
            errorDescription:nil];
@@ -164,23 +164,23 @@ NSString * const kExpectedErrorDescription = @"Check \"Accessibility Label Not P
   NSString * const expectedErrorDescription =
       @"Check \"Accessibility Traits Don't Conflict\" failed";
   // Check for a valid trait (in valid range, no conflict).
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityTraitsDontConflict
+  [self assertGtxCheck:[GTXChecksCollection checkForAXTraitDontConflict]
                    succeeds:YES
                 withElement:[self uiAccessibilityElementWithTraits:UIAccessibilityTraitButton]
            errorDescription:nil];
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityTraitsDontConflict
+  [self assertGtxCheck:[GTXChecksCollection checkForAXTraitDontConflict]
                    succeeds:YES
                 withElement:[self uiAccessibilityElementWithTraits:
                              (UIAccessibilityTraitLink | UIAccessibilityTraitAdjustable)]
            errorDescription:nil];
   // Check for conflict rule no.1 (conflict among button, link, search field, keyboard key).
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityTraitsDontConflict
+  [self assertGtxCheck:[GTXChecksCollection checkForAXTraitDontConflict]
                    succeeds:NO
                 withElement:[self uiAccessibilityElementWithTraits:
                              (UIAccessibilityTraitKeyboardKey | UIAccessibilityTraitSearchField)]
            errorDescription:expectedErrorDescription];
   // Check for conflict rule no.2 (conflict between button and adjustable (slider)).
-  [self assertGtxCheckNamed:kGTXCheckNameAccessibilityTraitsDontConflict
+  [self assertGtxCheck:[GTXChecksCollection checkForAXTraitDontConflict]
                    succeeds:NO
                 withElement:[self uiAccessibilityElementWithTraits:
                              (UIAccessibilityTraitAdjustable | UIAccessibilityTraitButton)]
@@ -215,19 +215,18 @@ NSString * const kExpectedErrorDescription = @"Check \"Accessibility Label Not P
 }
 
 /**
- *  Asserts that the named GTXCheck succeeds or fails with the specified element.
+ *  Asserts that the given GTXCheck succeeds or fails with the specified element.
  *
- *  @param name             The name of the check.
+ *  @param check            The check to be tested.
  *  @param expectedSuccess  A BOOL indicating if the check must succeed or not.
  *  @param element          The element on which to apply the check.
  *  @param descriptionOrNil An optional expected error description if the check is expected to fail
  *                          and the error description must also be verified.
  */
-- (void)assertGtxCheckNamed:(NSString *)name
+- (void)assertGtxCheck:(id<GTXChecking>)gtxCheck
                    succeeds:(BOOL)expectedSuccess
                 withElement:(id)element
            errorDescription:(nullable NSString *)descriptionOrNil {
-  id<GTXChecking> gtxCheck = [GTXChecksCollection GTXCheckWithName:name];
   NSError *error = nil;
   BOOL success = [gtxCheck check:element error:&error];
   XCTAssertEqual(success, expectedSuccess);
@@ -236,7 +235,8 @@ NSString * const kExpectedErrorDescription = @"Check \"Accessibility Label Not P
   } else {
     XCTAssertNotNil(error);
     XCTAssertTrue([[error description] containsString:descriptionOrNil],
-                  @"%@ was not present in %@", descriptionOrNil, [error description]);
+                  @"[Expected] was not present in [Actual]!\n Expected: %@\n Actual: %@",
+                  descriptionOrNil, [error description]);
   }
 }
 

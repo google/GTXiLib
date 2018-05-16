@@ -18,77 +18,70 @@
 
 #import "GTXChecking.h"
 
-FOUNDATION_EXTERN NSString *const kGTXCheckNameAccessibilityLabelPresent;
-FOUNDATION_EXTERN NSString *const kGTXCheckNameAccessibilityLabelNotPunctuated;
-FOUNDATION_EXTERN NSString *const kGTXCheckNameAccessibilityTraitsDontConflict;
-FOUNDATION_EXTERN NSString *const kGTXCheckNameMinimumTappableArea;
-FOUNDATION_EXTERN NSString *const kGTXCheckNameMinimumContrastRatio;
-
 /**
- *  An enumeration of various versions of GTXSystems supported by GTX.
- *
- *  Ideally we would like everyone to use one stable version but since several users are using GTX
- *  and adding new checks can require work on part of those users - new checks for example, may
- *  expose new accessibility issues in those apps that will need to be fixed to get all tests to
- *  pass. Versions allow for easy development and deployment of those checks. All the users are on
- *  "stable" version and all new checks are developed under "latest" version when ready, the
- *  checks are moved into the "stable" version so that everyone gets it. Users can easily test (and
- *  debug/fix) their apps with latest checks by switching to the "latest" version.
+ Enum of all versions supported by GTXiLib.
  */
-typedef NS_ENUM(NSUInteger, GTXSystemVersion) {
+typedef NS_ENUM(NSUInteger, GTXVersion) {
+  /**
+   Placeholder enum for the latest version of GTX.
+   */
+  GTXVersionLatest,
 
   /**
-   *  The default version of checker uses all the latest *stable* checks.
+   Placeholder enum for the prerelease version of GTX.
    */
-  GTXSystemVersionStable = 0,
+  GTXVersionPreRelease,
 
   /**
-   *  The version of the checker that uses *all* the latest checks.
+   Enum for Version 0 of GTX.
    */
-  GTXSystemVersionLatest,
-
-  /**
-   *  A placeholder for determining maximum count of the versions available.
-   */
-  GTXSystemVersionMax,
+  GTXVersion_0,
 };
 
 /**
- *  Organizes all GTX checks supported by GTXSystem.
+ *  Organizes all checks provided by GTX, developers can use these as a starting point
+ *  for implementing their own checks. These checks are based on recommendations found in
+ *  "Accessibility Programming Guide for iOS"
+    @link https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/iPhoneAccessibility/Introduction/Introduction.html
+ *  and on WCAG.
  */
 @interface GTXChecksCollection : NSObject
 
 /**
+ *  @return An array of all supported GTXChecks for the given @c version.
+ */
++ (NSArray<GTXChecking> *)allChecksForVersion:(GTXVersion)version;
+
+/**
  *  @return An array of all supported GTXChecks.
  */
-+ (NSArray *)allGTXChecks;
++ (NSArray<GTXChecking> *)allGTXChecks;
 
 /**
- *  @return An array of GTXChecks under the given version.
+ *  @return a check that verifies that accessibility label is present on all accessibility elements.
  */
-+ (NSArray *)checksWithVersion:(GTXSystemVersion)version;
++ (id<GTXChecking>)checkForAXLabelPresent;
 
 /**
- *  The GTX check instance that has the specified @c name, or @c nil if no such check exists.
- *
- *  @param name The name of the GTX check.
- *
- *  @return The GTX check instance that has the specified @c name.
+ *  @return a check that verifies that accessibility labels are not punctuated as recommended by
+ *  "Accessibility Programming Guide for iOS" (see class docs).
  */
-+ (id<GTXChecking>)GTXCheckWithName:(NSString *)name;
++ (id<GTXChecking>)checkForAXLabelNotPunctuated;
 
 /**
- *  Registers the provided check and makes it available to all @c GTXSystem objects.
- *
- *  @param check The check to be registered, must conform to @c GTXChecking protocol.
+ *  @return a check that verifies that accessibility traits dont conflict with each other as
+ *  recommended by "Accessibility Programming Guide for iOS" (see class docs).
  */
-+ (void)registerCheck:(id<GTXChecking>)check;
++ (id<GTXChecking>)checkForAXTraitDontConflict;
 
 /**
- *  Deregisters a previously registered check.
- *
- *  @param checkName The name of the check to be unregistered.
+ *  @return a check that verifies that tappable areas of all buttons are at least 48X48 points.
  */
-+ (void)deRegisterCheck:(NSString *)checkName;
++ (id<GTXChecking>)checkForMinimumTappableArea;
+
+/**
+ *  @return a check that verifies that contrast of all text based elements is at least 3.0.
+ */
++ (id<GTXChecking>)checkForSufficientContrastRatio;
 
 @end

@@ -173,7 +173,7 @@ static BOOL gIsInTearDown;
 }
 
 /**
- Executes the currently installed checks on the all elements of the accessibility tree under the
+ Executes the currently installed checks on all the elements of the accessibility tree under the
  given root elements. In case of failures, the failure handler is invoked.
 
  @param rootElements An array of root elements.

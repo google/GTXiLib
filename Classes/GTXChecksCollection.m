@@ -34,8 +34,7 @@ NSString *const kGTXCheckNameMinimumContrastRatio = @"Element has Minimum Contra
 #pragma mark - Globals
 
 /**
- *  The minimum size (width or height) for a given element to be accessible as per iOS Accessibility
- *  standards. For more info see go/ios-gtx-touch-target-ref.
+ *  The minimum size (width or height) for a given element to be easily accessible.
  */
 static const float kMinSizeForAccessibleElements = 48.0;
 
@@ -45,104 +44,29 @@ static const float kMinSizeForAccessibleElements = 48.0;
  */
 static const float kMinContrastRatioForAccessibleText = 3.0;
 
-/**
- *  A global array of dictionaries mapping default GTX check names to their instances.
- */
-NSArray *gGTXBuiltInChecks;
-
-/**
- *  A global dictionary mapping custom GTX check names to their instances.
- */
-NSMutableDictionary *gGTXCustomChecks;
-
 #pragma mark - Implementations
 
 @implementation GTXChecksCollection
 
-+ (NSArray *)gGTXDefaultChecks {
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    NSMutableArray *mutableBuiltInChecks = [[NSMutableArray alloc] init];
-    for (NSUInteger i = 0; i < GTXSystemVersionMax; i++) {
-      [mutableBuiltInChecks addObject:[[NSMutableDictionary alloc] init]];
-    }
-    gGTXBuiltInChecks = mutableBuiltInChecks;
-  });
-  return gGTXBuiltInChecks;
-}
-
-+ (NSMutableDictionary *)gGTXCustomChecks {
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    gGTXCustomChecks = [[NSMutableDictionary alloc] init];
-  });
-  return gGTXCustomChecks;
-}
-
-+ (NSArray *)checksWithVersion:(GTXSystemVersion)version {
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    // Register the default checks.
-    // GTXSystemVersionLatest will have *all* checks.
-    [self registerDefaultCheck:[self GTXCheckForAXLabelPresent]
-                    forVersion:GTXSystemVersionLatest];
-    [self registerDefaultCheck:[self GTXCheckForAXLabelNotPunctuated]
-                    forVersion:GTXSystemVersionLatest];
-    [self registerDefaultCheck:[self GTXCheckForAXTraitDontConflict]
-                    forVersion:GTXSystemVersionLatest];
-    [self registerDefaultCheck:[self GTXCheckForMinimumTappableArea]
-                    forVersion:GTXSystemVersionLatest];
-    [self registerDefaultCheck:[self GTXCheckForContrastRatio]
-                    forVersion:GTXSystemVersionLatest];
-
-    // GTXSystemVersionStable currently has the following checks.
-    [self registerDefaultCheck:[self GTXCheckForAXLabelPresent]
-                    forVersion:GTXSystemVersionStable];
-    [self registerDefaultCheck:[self GTXCheckForAXLabelNotPunctuated]
-                    forVersion:GTXSystemVersionStable];
-    [self registerDefaultCheck:[self GTXCheckForAXTraitDontConflict]
-                    forVersion:GTXSystemVersionStable];
-  });
-  NSArray *defaultChecks = [[self gGTXDefaultChecks][version] allValues];
-  NSArray *customChecks = [[self gGTXCustomChecks] allValues];
-  return [defaultChecks arrayByAddingObjectsFromArray:customChecks];
-}
-
-+ (NSArray *)allGTXChecks {
-  return [self checksWithVersion:GTXSystemVersionLatest];
-}
-
-+ (id<GTXChecking>)GTXCheckWithName:(NSString *)name {
-  for (id<GTXChecking> check in [self allGTXChecks]) {
-    if ([name isEqualToString:[check name]]) {
-      return check;
-    }
++ (NSArray<GTXChecking> *)allChecksForVersion:(GTXVersion)version {
+  switch (version) {
+    case GTXVersionLatest: return [self allGTXChecks];
+    case GTXVersionPreRelease: return [self allGTXChecks];
+    case GTXVersion_0: return [self allGTXChecks];
   }
-  return nil;
 }
 
-+ (void)registerDefaultCheck:(id<GTXChecking>)check forVersion:(GTXSystemVersion)version {
-  NSMutableDictionary *defaultChecks = [self gGTXDefaultChecks][version];
-  NSAssert(!defaultChecks[[check name]],
-           @"GtxCheck with name %@ already registered.", [check name]);
-  defaultChecks[[check name]] = check;
-}
-
-+ (void)registerCheck:(id<GTXChecking>)check {
-  NSAssert(![self gGTXCustomChecks][[check name]],
-           @"GtxCheck with name %@ already registered.", [check name]);
-  [self gGTXCustomChecks][[check name]] = check;
-}
-
-+ (void)deRegisterCheck:(NSString *)checkName {
-  NSAssert([self gGTXCustomChecks][checkName],
-           @"GtxCheck with name %@ was not registered.", checkName);
-  [[self gGTXCustomChecks] removeObjectForKey:checkName];
++ (NSArray<id<GTXChecking>> *)allGTXChecks {
+  return @[[self checkForAXLabelPresent],
+           [self checkForAXLabelNotPunctuated],
+           [self checkForAXTraitDontConflict],
+           [self checkForMinimumTappableArea],
+           [self checkForSufficientContrastRatio]];
 }
 
 #pragma mark - GTXChecks
 
-+ (id<GTXChecking>)GTXCheckForAXLabelPresent {
++ (id<GTXChecking>)checkForAXLabelPresent {
   id<GTXChecking> check = [GTXCheckBlock GTXCheckWithName:kGTXCheckNameAccessibilityLabelPresent
                                    block:^BOOL(id element, GTXErrorRefType errorOrNil) {
     if ([self gtx_isTextDisplayingElement:element]) {
@@ -174,7 +98,7 @@ NSMutableDictionary *gGTXCustomChecks;
   return check;
 }
 
-+ (id<GTXChecking>)GTXCheckForAXLabelNotPunctuated {
++ (id<GTXChecking>)checkForAXLabelNotPunctuated {
   id<GTXChecking> check =
       [GTXCheckBlock GTXCheckWithName:kGTXCheckNameAccessibilityLabelNotPunctuated
                                 block:^BOOL(id element, GTXErrorRefType errorOrNil) {
@@ -217,7 +141,7 @@ NSMutableDictionary *gGTXCustomChecks;
   return check;
 }
 
-+ (id<GTXChecking>)GTXCheckForAXTraitDontConflict {
++ (id<GTXChecking>)checkForAXTraitDontConflict {
   id<GTXChecking> check =
       [GTXCheckBlock GTXCheckWithName:kGTXCheckNameAccessibilityTraitsDontConflict
                                 block:^BOOL(id element, GTXErrorRefType errorOrNil) {
@@ -265,7 +189,7 @@ NSMutableDictionary *gGTXCustomChecks;
   return check;
 }
 
-+ (id<GTXChecking>)GTXCheckForMinimumTappableArea {
++ (id<GTXChecking>)checkForMinimumTappableArea {
   id<GTXChecking> check =
       [GTXCheckBlock GTXCheckWithName:kGTXCheckNameMinimumTappableArea
                                 block:^BOOL(id element, GTXErrorRefType errorOrNil) {
@@ -311,7 +235,7 @@ NSMutableDictionary *gGTXCustomChecks;
   return check;
 }
 
-+ (id<GTXChecking>)GTXCheckForContrastRatio {
++ (id<GTXChecking>)checkForSufficientContrastRatio {
   id<GTXChecking> check =
       [GTXCheckBlock GTXCheckWithName:kGTXCheckNameMinimumContrastRatio
                                 block:^BOOL(id element, GTXErrorRefType errorOrNil) {
@@ -336,7 +260,6 @@ NSMutableDictionary *gGTXCustomChecks;
   }];
   return check;
 }
-
 
 #pragma mark - Private
 
