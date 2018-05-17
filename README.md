@@ -16,7 +16,7 @@ snippet of code to it.
 
 ```
 // Include the GTXiLib umbrella header.
-
+#import <GTXiLib/GTXiLib.h>
 
 // Note that that is +setUp not -setUp
 + (void)setUp {
