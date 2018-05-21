@@ -129,6 +129,82 @@ please let us know by [filing a bug](https://github.com/google/GTXiLib/issues)
 or better [fix it](https://github.com/google/GTXiLib/blob/master/CONTRIBUTING.md)
 for everyone.
 
+## Integrating GTXiLib into custom test frameworks
+
+If you are test *framework* author you can use GTXToolKit class to integrate
+accessibility checking into your test framework. GTXiLib's own XCTest
+integration is also built using the APIs provided by GTXToolKit. Using
+GTXToolKit for performing accessibility checks on a given element involves:
+
+1. Creating a GTXToolKit object.
+2. Associating a set of checks with it.
+3. Use it on the element to be checked.
+
+```
+GTXToolKit *toolkit = [[GTXToolKit alloc] init];
+
+// Register one or more built in checks:
+[toolkit registerCheck:[GTXChecksCollection checkForAXLabelPresent]];
+[toolkit registerCheck:[GTXChecksCollection checkForAXLabelNotPunctuated]];
+
+// and/or add a couple of your own:
+id<GTXChecking> fooCustomCheck =
+    [GTXCheckBlock GTXCheckWithName:@"AXlabel is not image name"
+                              block:^BOOL(id element, GTXErrorRefType errorPtr) {
+    // Check logic comes here...
+    return YES;
+ }];
+[toolkit registerCheck:fooCustomCheck];
+
+// Use the toolkit on an element.
+NSError *error;
+BOOL success = [toolkit checkElement:someElement error:&error];
+if (!success) {
+  NSLog(@"Element FAILED accessibility checks! Error: %@",
+        [error localizedDescription]);
+} else {
+  NSLog(@"Element PASSED accessibility checks!");
+}
+```
+
+GTXToolKit objects can also be applied on a tree of elements by just providing
+the root element.
+
+```
+// Use the toolkit on a tree of elements by providing a root element.
+NSError *error;
+BOOL success = [toolkit checkAllElementsFromRootElements:@[rootElement]
+                                                   error:&error];
+if (!success) {
+  NSLog(@"One or more elements FAILED accessibility checks! Error: %@",
+        error);
+} else {
+  NSLog(@"All elements PASSED accessibility checks!");
+}
+```
+
+When using `checkAllElementsFromRootElements:`, you may want to ignore some
+elements from checks for various reasons, you can do that using GTXToolKit's
+`ignore` APIs.
+
+```
+- (void)ignoreElementsOfClassNamed:(NSString *)className;
+- (void)ignoreElementsOfClassNamed:(NSString *)className
+                     forCheckNamed:(NSString *)skipCheckName;
+```
+
+Also, note that `checkAllElementsFromRootElements:` requires an *array* of root
+elements, not a single element. The following snippet shows how to run the
+checks on all elements on the screen:
+
+```
+// Run the checks on all elements on the screen.
+[toolkit checkAllElementsFromRootElements:@[[UIApplication sharedApplication].keyWindow]
+                                    error:&error];
+```
+
+For full latest reference please refer [GTXToolKit.h](https://github.com/google/GTXiLib/blob/master/Classes/GTXToolKit.h) file.
+
 ## Analytics
 
 To prioritize and improve GTXiLib, the framework collects usage data and uploads
