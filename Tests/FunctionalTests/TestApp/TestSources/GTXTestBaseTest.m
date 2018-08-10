@@ -19,6 +19,9 @@
 #import "GTXTestViewController.h"
 
 static NSInteger gFailureCount = 0;
+id<GTXChecking> checkFailsIfFailingClass;
+id<GTXChecking> alwaysFail;
+id<GTXChecking> alwaysPass;
 
 @implementation GTXTestBaseTest
 

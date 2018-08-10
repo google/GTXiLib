@@ -24,9 +24,10 @@
 
 + (void)setUp {
   [super setUp];
+  NSString *className = NSStringFromClass([GTXTestFailingClass class]);
   NSArray *blacklist =
-      @[[GTXiLib blacklistForElementsOfClassNamed:NSStringFromClass([GTXTestFailingClass class])
-                                    forCheckNamed:checkFailsIfFailingClass.name]];
+      @[[GTXBlacklistFactory blacklistWithClassName:className
+                                             checkName:checkFailsIfFailingClass.name]];
   id<GTXChecking> secondFailingCheck = [GTXiLib checkWithName:@"secondFailingCheck"
                                             block:^BOOL(id element, GTXErrorRefType errorOrNil) {
     return ![element isKindOfClass:[GTXTestFailingClass class]];

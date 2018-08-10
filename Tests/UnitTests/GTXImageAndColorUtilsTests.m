@@ -129,7 +129,9 @@
   CGFloat contrastRatioInImage =
       [GTXImageAndColorUtils gtx_contrastRatioWithTextElementImage:imageWithRect
                                       textElementColorShiftedImage:imageWithShiftedColorRect];
-  XCTAssertEqualWithAccuracy(contrastRatioInImage, contrastRatioOfColors, kContrastRatioAccuracy);
+  XCTAssertEqualWithAccuracy(contrastRatioInImage,
+                             contrastRatioOfColors,
+                             kGTXContrastRatioAccuracy);
 }
 
 /**

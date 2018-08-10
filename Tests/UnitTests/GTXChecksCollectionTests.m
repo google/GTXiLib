@@ -160,6 +160,61 @@ NSString * const kExpectedErrorDescription = @"Check \"Accessibility Label Not P
            errorDescription:nil];
 }
 
+- (void)testGtxCheckForAXLabelNotRedundantWithTraits {
+  // Label is not redundant with traits.
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotRedundantWithTraits]
+              succeeds:YES
+           withElement:[self uiAccessibilityElementWithLabel:@"foo"
+                                                      traits:UIAccessibilityTraitButton]
+      errorDescription:nil];
+  // Label is redundant with traits (uppercase).
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotRedundantWithTraits]
+              succeeds:NO
+           withElement:[self uiAccessibilityElementWithLabel:@"FOO BUTTON"
+                                                      traits:UIAccessibilityTraitButton]
+      errorDescription:nil];
+  // Label is redundant with traits (lowercase).
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotRedundantWithTraits]
+              succeeds:NO
+           withElement:[self uiAccessibilityElementWithLabel:@"foo button"
+                                                      traits:UIAccessibilityTraitButton]
+      errorDescription:nil];
+  // Label is not redundant with traits (not suffix).
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotRedundantWithTraits]
+              succeeds:YES
+           withElement:[self uiAccessibilityElementWithLabel:@"button foo"
+                                                      traits:UIAccessibilityTraitButton]
+      errorDescription:nil];
+  // Empty label (not redundant).
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotRedundantWithTraits]
+              succeeds:YES
+           withElement:[self uiAccessibilityElementWithLabel:@""
+                                                      traits:UIAccessibilityTraitButton]
+      errorDescription:nil];
+  // Whitespace label (not redundant).
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotRedundantWithTraits]
+              succeeds:YES
+           withElement:[self uiAccessibilityElementWithLabel:@" "
+                                                      traits:UIAccessibilityTraitButton]
+      errorDescription:nil];
+  // No traits or violating label (not redundant).
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotRedundantWithTraits]
+              succeeds:YES
+           withElement:[self uiAccessibilityElementWithLabel:@"foo"]
+      errorDescription:nil];
+  // No traits (not redundant).
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotRedundantWithTraits]
+              succeeds:YES
+           withElement:[self uiAccessibilityElementWithLabel:@"foo button"]
+      errorDescription:nil];
+  // Wrong traits (not redundant).
+  [self assertGtxCheck:[GTXChecksCollection checkForAXLabelNotRedundantWithTraits]
+              succeeds:YES
+           withElement:[self uiAccessibilityElementWithLabel:@"foo button"
+                                                      traits:UIAccessibilityTraitStaticText]
+      errorDescription:nil];
+}
+
 - (void)testGtxCheckForAXTraitsConflict {
   NSString * const expectedErrorDescription =
       @"Check \"Accessibility Traits Don't Conflict\" failed";
@@ -215,6 +270,17 @@ NSString * const kExpectedErrorDescription = @"Check \"Accessibility Label Not P
 }
 
 /**
+ *  @return An accessibility element whose accessibility label is set to the specified @c label
+ *  and accessibility trait is set to the specified @c traits.
+ */
+- (UIAccessibilityElement *)uiAccessibilityElementWithLabel:(id)label
+                                                     traits:(UIAccessibilityTraits)traits {
+  UIAccessibilityElement *element = [self uiAccessibilityElementWithLabel:label];
+  element.accessibilityTraits = traits;
+  return element;
+}
+
+/**
  *  Asserts that the given GTXCheck succeeds or fails with the specified element.
  *
  *  @param check            The check to be tested.
@@ -234,9 +300,11 @@ NSString * const kExpectedErrorDescription = @"Check \"Accessibility Label Not P
     XCTAssertNil(error);
   } else {
     XCTAssertNotNil(error);
-    XCTAssertTrue([[error description] containsString:descriptionOrNil],
-                  @"[Expected] was not present in [Actual]!\n Expected: %@\n Actual: %@",
-                  descriptionOrNil, [error description]);
+    if (descriptionOrNil != nil) {
+      XCTAssertTrue([[error description] containsString:descriptionOrNil],
+                    @"[Expected] was not present in [Actual]!\n Expected: %@\n Actual: %@",
+                    descriptionOrNil, [error description]);
+    }
   }
 }
 

@@ -42,7 +42,8 @@ typedef NS_ENUM(NSUInteger, GTXVersion) {
  *  Organizes all checks provided by GTX, developers can use these as a starting point
  *  for implementing their own checks. These checks are based on recommendations found in
  *  "Accessibility Programming Guide for iOS"
-    @link https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/iPhoneAccessibility/Introduction/Introduction.html
+    @link
+ https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/iPhoneAccessibility/Introduction/Introduction.html // NOLINT
  *  and on WCAG.
  */
 @interface GTXChecksCollection : NSObject
@@ -50,12 +51,12 @@ typedef NS_ENUM(NSUInteger, GTXVersion) {
 /**
  *  @return An array of all supported GTXChecks for the given @c version.
  */
-+ (NSArray<GTXChecking> *)allChecksForVersion:(GTXVersion)version;
++ (NSArray<id<GTXChecking>> *)allChecksForVersion:(GTXVersion)version;
 
 /**
  *  @return An array of all supported GTXChecks.
  */
-+ (NSArray<GTXChecking> *)allGTXChecks;
++ (NSArray<id<GTXChecking>> *)allGTXChecks;
 
 /**
  *  @return a check that verifies that accessibility label is present on all accessibility elements.
@@ -67,6 +68,12 @@ typedef NS_ENUM(NSUInteger, GTXVersion) {
  *  "Accessibility Programming Guide for iOS" (see class docs).
  */
 + (id<GTXChecking>)checkForAXLabelNotPunctuated;
+
+/**
+ *  @return a check that verifies that accessibility labels do not end in strings that VoiceOver
+ *  announces via the element's accessibility traits.
+ */
++ (id<GTXChecking>)checkForAXLabelNotRedundantWithTraits;
 
 /**
  *  @return a check that verifies that accessibility traits dont conflict with each other as

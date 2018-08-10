@@ -16,12 +16,12 @@
 
 #import "GTXiLibCore.h"
 
-#import "GTXToolKit.h"
 #import "GTXAssertions.h"
 #import "GTXChecking.h"
 #import "GTXChecksCollection.h"
 #import "GTXLogging.h"
 #import "GTXPluginXCTestCase.h"
+#import "GTXToolKit.h"
 #import "NSError+GTXAdditions.h"
 
 #pragma mark - Global definitions.
@@ -81,7 +81,7 @@ static BOOL gIsInTearDown;
 
 + (void)installOnTestSuite:(GTXTestSuite *)suite
                     checks:(NSArray<id<GTXChecking>> *)checks
-         elementBlacklists:(NSArray<GTXElementBlacklist *> *)blacklists {
+         elementBlacklists:(NSArray<id<GTXBlacklisting>> *)blacklists {
   [GTXPluginXCTestCase installPlugin];
   if (!gIntsallOptions) {
     gIntsallOptions = [[NSMutableArray alloc] init];
@@ -98,6 +98,7 @@ static BOOL gIsInTearDown;
     NSAssert(intersection.tests.count == 0,
              @"Error! Attempting to install GTXChecks multiple times on the same test cases: %@",
              intersection);
+    (void)intersection; // Ensures 'intersection' is marked as used even if NSAssert is removed.
   }
   [gIntsallOptions addObject:options];
 
@@ -141,17 +142,6 @@ static BOOL gIsInTearDown;
 
 + (id<GTXChecking>)checkWithName:(NSString *)name block:(GTXCheckHandlerBlock)block {
   return [GTXToolKit checkWithName:name block:block];
-}
-
-+ (GTXElementBlacklist *)blacklistForElementsOfClassNamed:(NSString *)className {
-  return [[GTXElementBlacklist alloc] initWithElementClassName:className
-                                                     checkName:nil];
-}
-
-+ (GTXElementBlacklist *)blacklistForElementsOfClassNamed:(NSString *)className
-                                            forCheckNamed:(NSString *)skipCheckName {
-  return [[GTXElementBlacklist alloc] initWithElementClassName:className
-                                                     checkName:skipCheckName];
 }
 
 #pragma mark - Private
@@ -216,13 +206,8 @@ static BOOL gIsInTearDown;
       for (id<GTXChecking> check in gCurrentOptions.checks) {
         [gToolkit registerCheck:check];
       }
-      for (GTXElementBlacklist *blacklist in gCurrentOptions.elementBlacklist) {
-        if (blacklist.checkName) {
-          [gToolkit ignoreElementsOfClassNamed:blacklist.elementClassName
-                                 forCheckNamed:blacklist.checkName];
-        } else {
-          [gToolkit ignoreElementsOfClassNamed:blacklist.elementClassName];
-        }
+      for (id<GTXBlacklisting> blacklist in gCurrentOptions.elementBlacklist) {
+        [gToolkit registerBlacklist:blacklist];
       }
     }
   }

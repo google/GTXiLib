@@ -19,18 +19,25 @@
 
 #import "GTXToolKit.h"
 #import "GTXAnalytics.h"
+#import "GTXBlacklistFactory.h"
 #import "GTXBaseTestCase.h"
 
-@interface GTXTestElementClass1 : NSObject
+@interface GTXTestElementClass1 : UIAccessibilityElement
 @end
 
 @implementation GTXTestElementClass1
 @end
 
-@interface GTXTestElementClass2 : NSObject
+@interface GTXTestElementClass2 : UIAccessibilityElement
 @end
 
 @implementation GTXTestElementClass2
+@end
+
+@interface GTXTestElementClass3 : UIAccessibilityElement
+@end
+
+@implementation GTXTestElementClass3
 @end
 
 @interface GTXToolKitTests : GTXBaseTestCase
@@ -104,7 +111,7 @@
   XCTAssertTrue([toolkit checkAllElementsFromRootElements:@[root] error:&error]);
 }
 
-- (void)testIgnoreElementAPIIgnoresElementsFromChecks {
+- (void)testBlacklistAPICanSkipElementsFromChecks {
   GTXToolKit *toolkit = [[GTXToolKit alloc] init];
   NSObject *failingElement = [self newAccessibleElement];
   id<GTXChecking> check = [GTXToolKit checkWithName:@"Foo"
@@ -114,16 +121,22 @@
                                               }];
   [toolkit registerCheck:check];
   XCTAssertFalse([toolkit checkElement:failingElement error:nil]);
-  [toolkit ignoreElementsOfClassNamed:NSStringFromClass([failingElement class])];
+  [toolkit registerBlacklist:
+      [GTXBlacklistFactory blacklistWithClassName:NSStringFromClass([failingElement class])]];
   XCTAssertTrue([toolkit checkElement:failingElement error:nil]);
 }
 
-- (void)testIgnoreElementAPIIgnoresElementsFromSpecificChecks {
+- (void)testBlacklistAPICanSkipElementsFromSpecificChecks {
   GTXTestElementClass1 *check1FailingElement = [[GTXTestElementClass1 alloc] init];
   check1FailingElement.isAccessibilityElement = YES;
+  check1FailingElement.accessibilityIdentifier = @"check1FailingElement";
 
   GTXTestElementClass2 *allChecksFailingElement = [[GTXTestElementClass2 alloc] init];
   allChecksFailingElement.isAccessibilityElement = YES;
+
+  GTXTestElementClass3 *check3FailingElement = [[GTXTestElementClass3 alloc] init];
+  check3FailingElement.isAccessibilityElement = YES;
+  check3FailingElement.accessibilityIdentifier = @"check3FailingElement";
 
   NSString *check1Name = @"Check 1";
   NSString *check2Name = @"Check 2";
@@ -143,12 +156,26 @@
   [toolkit1 registerCheck:check2];
   XCTAssertFalse([toolkit1 checkElement:check1FailingElement error:nil]);
   XCTAssertFalse([toolkit1 checkElement:allChecksFailingElement error:nil]);
+  XCTAssertFalse([toolkit1 checkElement:check3FailingElement error:nil]);
 
-  [toolkit1 ignoreElementsOfClassNamed:NSStringFromClass([check1FailingElement class])];
+  [toolkit1 registerBlacklist:
+      [GTXBlacklistFactory blacklistWithAccessibilityIdentifier:@"check3FailingElement"
+                                                      checkName:check1Name]];
+  XCTAssertFalse([toolkit1 checkElement:check1FailingElement error:nil]);
+  XCTAssertFalse([toolkit1 checkElement:allChecksFailingElement error:nil]);
+  XCTAssertTrue([toolkit1 checkElement:check3FailingElement error:nil]);
+
+  [toolkit1 registerBlacklist:
+      [GTXBlacklistFactory blacklistWithClassName:NSStringFromClass([check1FailingElement class])]];
+  [toolkit1 registerBlacklist:
+      [GTXBlacklistFactory blacklistWithClassName:NSStringFromClass([check1FailingElement class])]];
   XCTAssertTrue([toolkit1 checkElement:check1FailingElement error:nil]);
   XCTAssertFalse([toolkit1 checkElement:allChecksFailingElement error:nil]);
+  XCTAssertTrue([toolkit1 checkElement:check3FailingElement error:nil]);
 
-  [toolkit1 ignoreElementsOfClassNamed:NSStringFromClass([allChecksFailingElement class])];
+  NSString *allChecksFailingElementClass = NSStringFromClass([allChecksFailingElement class]);
+  [toolkit1 registerBlacklist:
+      [GTXBlacklistFactory blacklistWithClassName:allChecksFailingElementClass]];
   XCTAssertTrue([toolkit1 checkElement:allChecksFailingElement error:nil]);
 }
 

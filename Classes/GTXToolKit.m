@@ -18,29 +18,22 @@
 
 #import "GTXAccessibilityTree.h"
 #import "GTXAnalytics.h"
+#import "GTXBlacklistBlock.h"
+#import "GTXBlacklistFactory.h"
 #import "NSError+GTXAdditions.h"
-
-/**
- A matcher block that determines if the given element must be ignored for the given check.
-
- @param element Element to be looked up if it needs to be ignored.
- @param checkName Name of the check for which element must be looked up.
- @return @c YES if element needs to be ignored for the given check @c NO other wise.
- */
-typedef BOOL(^GTXIgnoreElementMatcher)(id element, NSString *checkName);
 
 #pragma mark - Implementation
 
 @implementation GTXToolKit {
   NSMutableArray<id<GTXChecking>> *_checks;
-  NSMutableArray<GTXIgnoreElementMatcher> *_blackListMatchers;
+  NSMutableArray<id<GTXBlacklisting>> *_blacklists;
 }
 
 - (instancetype)init {
   self = [super init];
   if (self) {
     _checks = [[NSMutableArray alloc] init];
-    _blackListMatchers = [[NSMutableArray alloc] init];
+    _blacklists = [[NSMutableArray alloc] init];
   }
   return self;
 }
@@ -54,8 +47,13 @@ typedef BOOL(^GTXIgnoreElementMatcher)(id element, NSString *checkName);
   for (id<GTXChecking> existingCheck in _checks) {
     NSAssert(![[existingCheck name] isEqualToString:[check name]],
              @"Check named %@ already exists!", [check name]);
+    (void)existingCheck; // Ensures 'existingCheck' is marked as used even if NSAssert is removed.
   }
   [_checks addObject:check];
+}
+
+- (void)registerBlacklist:(id<GTXBlacklisting>)blacklist {
+  [_blacklists addObject:blacklist];
 }
 
 - (BOOL)checkElement:(id)element error:(GTXErrorRefType)errorOrNil {
@@ -125,29 +123,10 @@ typedef BOOL(^GTXIgnoreElementMatcher)(id element, NSString *checkName);
   return errors == nil;
 }
 
-- (void)ignoreElementsOfClassNamed:(NSString *)className {
-  Class classObject = NSClassFromString(className);
-  NSAssert(classObject, @"Class named %@ does not exist!", className);
-  GTXIgnoreElementMatcher matcher = ^BOOL(id element, NSString *checkName) {
-    return [element isKindOfClass:classObject];
-  };
-  [_blackListMatchers addObject:matcher];
-}
-
-- (void)ignoreElementsOfClassNamed:(NSString *)className forCheckNamed:(NSString *)skipCheckName {
-  NSParameterAssert(skipCheckName);
-  Class classObject = NSClassFromString(className);
-  NSAssert(classObject, @"Class named %@ does not exist!", className);
-  GTXIgnoreElementMatcher matcher = ^BOOL(id element, NSString *checkName) {
-    return [element isKindOfClass:classObject] && [checkName isEqualToString:skipCheckName];
-  };
-  [_blackListMatchers addObject:matcher];
-}
-
 #pragma mark - private
 
 /**
- Applies the registered checks on the given element while respecting ignored elements.
+ Applies the registered checks on the given element while respecting blacklisted elements.
 
  @param element element to be checked.
  @param checkAnalyticsEnabled Boolean that indicates if analytics events are to be invoked.
@@ -167,8 +146,8 @@ typedef BOOL(^GTXIgnoreElementMatcher)(id element, NSString *checkName);
   NSMutableArray *failedCheckErrors;
   for (id<GTXChecking> checker in _checks) {
     BOOL shouldSkipThisCheck = NO;
-    for (GTXIgnoreElementMatcher matcher in _blackListMatchers) {
-      if (matcher(element, [checker name])) {
+    for (id<GTXBlacklisting> blacklist in _blacklists) {
+      if ([blacklist shouldIgnoreElement:element forCheckNamed:[checker name]]) {
         shouldSkipThisCheck = YES;
         break;
       }
@@ -186,7 +165,8 @@ typedef BOOL(^GTXIgnoreElementMatcher)(id element, NSString *checkName);
                                    @"check implementation.", [checker name]];
         error = [NSError errorWithDomain:kGTXErrorDomain
                                     code:GTXCheckErrorCodeAccessibilityCheckFailed
-                                userInfo:@{ NSLocalizedDescriptionKey: errorDescription }];
+                                userInfo:@{ NSLocalizedDescriptionKey: errorDescription,
+                                            kGTXErrorFailingElementKey: element }];
       }
       if (!failedCheckErrors) {
         failedCheckErrors = [[NSMutableArray alloc] init];

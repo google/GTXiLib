@@ -28,10 +28,16 @@
 + (void)setUp {
   [super setUp];
 
+  NSString *notRedundantCheckName = [[GTXChecksCollection checkForAXLabelNotRedundantWithTraits]
+      name];
+  NSArray<id<GTXBlacklisting>> *blacklists = @[
+    [GTXBlacklistFactory blacklistWithAccessibilityIdentifier:kAddInaccessibleButton
+                                                    checkName:notRedundantCheckName]
+  ];
   // Install all the default checks on the current test class.
   [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
                        checks:[GTXChecksCollection allGTXChecks]
-            elementBlacklists:@[]];
+            elementBlacklists:blacklists];
 }
 
 - (void)setUp {

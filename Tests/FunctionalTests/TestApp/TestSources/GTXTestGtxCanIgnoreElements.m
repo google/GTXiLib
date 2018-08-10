@@ -15,6 +15,7 @@
 //
 
 #import "GTXTestBaseTest.h"
+#import "GTXBlacklistFactory.h"
 #import "GTXiLib.h"
 
 @interface GTXTestGtxCanIgnoreElements : GTXTestBaseTest
@@ -24,8 +25,9 @@
 
 + (void)setUp {
   [super setUp];
+  NSString *className = NSStringFromClass([GTXTestFailingClass class]);
   NSArray *blacklist =
-      @[[GTXiLib blacklistForElementsOfClassNamed:NSStringFromClass([GTXTestFailingClass class])]];
+      @[[GTXBlacklistFactory blacklistWithClassName:className]];
   [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
                        checks:@[checkFailsIfFailingClass]
             elementBlacklists:blacklist];

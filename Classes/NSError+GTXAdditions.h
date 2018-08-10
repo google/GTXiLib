@@ -58,6 +58,10 @@ typedef NS_ENUM(NSInteger, GTXCheckErrorCode) {
    */
   GTXCheckErrorCodeNotFocusableElement,
   /**
+   *  The test environment could not be set up before tests are run.
+   */
+  GTXCheckErrorCodeInvalidTestEnvironment,
+  /**
    *  An error code for all errors not related to the above.
    */
   GTXCheckErrorCodeGenericError,

@@ -18,6 +18,31 @@
 		6115E7A0204F5BC9003E32F9 /* GTXTestAccessibilityElements.m in Sources */ = {isa = PBXBuildFile; fileRef = 6115E798204F5BC8003E32F9 /* GTXTestAccessibilityElements.m */; };
 		6115E7A1204F5BC9003E32F9 /* GTXImageAndColorUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6115E799204F5BC8003E32F9 /* GTXImageAndColorUtilsTests.m */; };
 		6115E7A2204F5BC9003E32F9 /* GTXBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6115E79A204F5BC9003E32F9 /* GTXBaseTestCase.m */; };
+		61284DCB211E3FE400F8FF29 /* GTXTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DC3211E3FE100F8FF29 /* GTXTestViewController.m */; };
+		61284DCC211E3FE400F8FF29 /* GTXTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61284DC4211E3FE200F8FF29 /* GTXTestViewController.xib */; };
+		61284DCD211E3FE400F8FF29 /* GTXTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DC5211E3FE200F8FF29 /* GTXTestAppDelegate.m */; };
+		61284DCE211E3FE400F8FF29 /* GTXTestStepperButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DC6211E3FE200F8FF29 /* GTXTestStepperButton.m */; };
+		61284DCF211E3FE400F8FF29 /* GTXTestApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DCA211E3FE400F8FF29 /* GTXTestApp.m */; };
+		61284DD5211E42CF00F8FF29 /* GTXBlacklistBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DD2211E42CD00F8FF29 /* GTXBlacklistBlock.m */; };
+		61284DD6211E42CF00F8FF29 /* GTXBlacklistBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 61284DD3211E42CE00F8FF29 /* GTXBlacklistBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61284DD7211E42CF00F8FF29 /* GTXBlacklisting.h in Headers */ = {isa = PBXBuildFile; fileRef = 61284DD4211E42CE00F8FF29 /* GTXBlacklisting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61284DDA211E437800F8FF29 /* GTXTestEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DD8211E437700F8FF29 /* GTXTestEnvironment.m */; };
+		61284DDB211E437800F8FF29 /* GTXTestEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 61284DD9211E437800F8FF29 /* GTXTestEnvironment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61284DF9211E447E00F8FF29 /* GTXTestGtxWorksForPassingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DEA211E447800F8FF29 /* GTXTestGtxWorksForPassingTests.m */; };
+		61284DFA211E447E00F8FF29 /* GTXTestFailingClassFailCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DEB211E447900F8FF29 /* GTXTestFailingClassFailCheck.m */; };
+		61284DFB211E447E00F8FF29 /* GTXTestAnalyticsBaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DEC211E447900F8FF29 /* GTXTestAnalyticsBaseTest.m */; };
+		61284DFC211E447E00F8FF29 /* GTXTestGtxCanBlacklistTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DED211E447900F8FF29 /* GTXTestGtxCanBlacklistTestCases.m */; };
+		61284DFD211E447E00F8FF29 /* GTXTestGtxCanDetectFailuresInInheritedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DEE211E447A00F8FF29 /* GTXTestGtxCanDetectFailuresInInheritedTests.m */; };
+		61284DFE211E447E00F8FF29 /* GTXTestGtxCanIgnoreElements.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DEF211E447A00F8FF29 /* GTXTestGtxCanIgnoreElements.m */; };
+		61284DFF211E447E00F8FF29 /* GTXTestGtxWithDefaultChecks.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DF0211E447A00F8FF29 /* GTXTestGtxWithDefaultChecks.m */; };
+		61284E00211E447E00F8FF29 /* GTXTestBaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DF1211E447B00F8FF29 /* GTXTestBaseTest.m */; };
+		61284E01211E447E00F8FF29 /* GTXTestGtxCanWhitelistTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DF2211E447C00F8FF29 /* GTXTestGtxCanWhitelistTestCases.m */; };
+		61284E02211E447E00F8FF29 /* GTXTestAnalyticsIsTriggered.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DF3211E447C00F8FF29 /* GTXTestAnalyticsIsTriggered.m */; };
+		61284E03211E447E00F8FF29 /* GTXTestAnalyticsCanBeDisabled.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DF5211E447C00F8FF29 /* GTXTestAnalyticsCanBeDisabled.m */; };
+		61284E04211E447E00F8FF29 /* GTXTestGtxCanIgnoreElementsOnSpecificCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DF6211E447D00F8FF29 /* GTXTestGtxCanIgnoreElementsOnSpecificCheck.m */; };
+		61284E05211E447E00F8FF29 /* GTXTestGtxCanDetectFailures.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DF8211E447D00F8FF29 /* GTXTestGtxCanDetectFailures.m */; };
+		61284E0A211E45C600F8FF29 /* GTXBlacklistFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 61284E08211E45C500F8FF29 /* GTXBlacklistFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61284E0B211E45C600F8FF29 /* GTXBlacklistFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284E09211E45C600F8FF29 /* GTXBlacklistFactory.m */; };
 		61A0C4DE2061896300DF0169 /* GTXiLibCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A0C4DB2061896300DF0169 /* GTXiLibCore.m */; };
 		61A0C4DF2061896300DF0169 /* GTXiLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A0C4DC2061896300DF0169 /* GTXiLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61A0C4E02061896300DF0169 /* GTXiLibCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A0C4DD2061896300DF0169 /* GTXiLibCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,7 +56,6 @@
 		61ABAEB7204A0B0B006DBF0A /* GTXLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAE95204A0B03006DBF0A /* GTXLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61ABAEB8204A0B0B006DBF0A /* GTXAnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ABAE96204A0B03006DBF0A /* GTXAnalyticsUtils.m */; };
 		61ABAEB9204A0B0B006DBF0A /* GTXChecking.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAE97204A0B04006DBF0A /* GTXChecking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		61ABAEBA204A0B0B006DBF0A /* GTXElementBlacklist.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ABAE98204A0B04006DBF0A /* GTXElementBlacklist.m */; };
 		61ABAEBB204A0B0B006DBF0A /* GTXTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ABAE99204A0B04006DBF0A /* GTXTestCase.m */; };
 		61ABAEBC204A0B0B006DBF0A /* GTXAccessibilityTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ABAE9A204A0B04006DBF0A /* GTXAccessibilityTree.m */; };
 		61ABAEBD204A0B0B006DBF0A /* GTXAssertions.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAE9B204A0B05006DBF0A /* GTXAssertions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -50,7 +74,6 @@
 		61ABAECC204A0B0B006DBF0A /* GTXErrorReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ABAEAA204A0B09006DBF0A /* GTXErrorReporter.m */; };
 		61ABAECD204A0B0B006DBF0A /* GTXToolKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAEAB204A0B09006DBF0A /* GTXToolKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61ABAECE204A0B0B006DBF0A /* GTXImageRGBAData.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ABAEAC204A0B0A006DBF0A /* GTXImageRGBAData.m */; };
-		61ABAED1204A0B0B006DBF0A /* GTXElementBlacklist.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAEAF204A0B0A006DBF0A /* GTXElementBlacklist.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +83,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 613C3F40204A09E7007D44A8;
 			remoteInfo = GTAxe;
+		};
+		61284DE5211E442800F8FF29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 613C3F38204A09E7007D44A8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 61284DAC211E3F8300F8FF29;
+			remoteInfo = TestApp;
+		};
+		61284E06211E448F00F8FF29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 613C3F38204A09E7007D44A8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 613C3F40204A09E7007D44A8;
+			remoteInfo = GTXiLib;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -77,6 +114,39 @@
 		6115E798204F5BC8003E32F9 /* GTXTestAccessibilityElements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestAccessibilityElements.m; path = Tests/UnitTests/GTXTestAccessibilityElements.m; sourceTree = SOURCE_ROOT; };
 		6115E799204F5BC8003E32F9 /* GTXImageAndColorUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXImageAndColorUtilsTests.m; path = Tests/UnitTests/GTXImageAndColorUtilsTests.m; sourceTree = SOURCE_ROOT; };
 		6115E79A204F5BC9003E32F9 /* GTXBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXBaseTestCase.m; path = Tests/UnitTests/GTXBaseTestCase.m; sourceTree = SOURCE_ROOT; };
+		61284DAD211E3F8300F8FF29 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		61284DC3211E3FE100F8FF29 /* GTXTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestViewController.m; path = Tests/FunctionalTests/TestApp/Sources/GTXTestViewController.m; sourceTree = SOURCE_ROOT; };
+		61284DC4211E3FE200F8FF29 /* GTXTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GTXTestViewController.xib; path = Tests/FunctionalTests/TestApp/Sources/GTXTestViewController.xib; sourceTree = SOURCE_ROOT; };
+		61284DC5211E3FE200F8FF29 /* GTXTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestAppDelegate.m; path = Tests/FunctionalTests/TestApp/Sources/GTXTestAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		61284DC6211E3FE200F8FF29 /* GTXTestStepperButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestStepperButton.m; path = Tests/FunctionalTests/TestApp/Sources/GTXTestStepperButton.m; sourceTree = SOURCE_ROOT; };
+		61284DC7211E3FE300F8FF29 /* GTXTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXTestViewController.h; path = Tests/FunctionalTests/TestApp/Sources/GTXTestViewController.h; sourceTree = SOURCE_ROOT; };
+		61284DC8211E3FE300F8FF29 /* GTXTestStepperButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXTestStepperButton.h; path = Tests/FunctionalTests/TestApp/Sources/GTXTestStepperButton.h; sourceTree = SOURCE_ROOT; };
+		61284DC9211E3FE300F8FF29 /* GTXTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXTestAppDelegate.h; path = Tests/FunctionalTests/TestApp/Sources/GTXTestAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		61284DCA211E3FE400F8FF29 /* GTXTestApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestApp.m; path = Tests/FunctionalTests/TestApp/Sources/GTXTestApp.m; sourceTree = SOURCE_ROOT; };
+		61284DD0211E3FF400F8FF29 /* GTXTestApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GTXTestApp-Info.plist"; path = "Tests/FunctionalTests/TestApp/GTXTestApp-Info.plist"; sourceTree = SOURCE_ROOT; };
+		61284DD2211E42CD00F8FF29 /* GTXBlacklistBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXBlacklistBlock.m; path = Classes/GTXBlacklistBlock.m; sourceTree = SOURCE_ROOT; };
+		61284DD3211E42CE00F8FF29 /* GTXBlacklistBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXBlacklistBlock.h; path = Classes/GTXBlacklistBlock.h; sourceTree = SOURCE_ROOT; };
+		61284DD4211E42CE00F8FF29 /* GTXBlacklisting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXBlacklisting.h; path = Classes/GTXBlacklisting.h; sourceTree = SOURCE_ROOT; };
+		61284DD8211E437700F8FF29 /* GTXTestEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestEnvironment.m; path = Classes/GTXTestEnvironment.m; sourceTree = SOURCE_ROOT; };
+		61284DD9211E437800F8FF29 /* GTXTestEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXTestEnvironment.h; path = Classes/GTXTestEnvironment.h; sourceTree = SOURCE_ROOT; };
+		61284DE0211E442700F8FF29 /* FunctionalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunctionalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		61284DEA211E447800F8FF29 /* GTXTestGtxWorksForPassingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestGtxWorksForPassingTests.m; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestGtxWorksForPassingTests.m; sourceTree = SOURCE_ROOT; };
+		61284DEB211E447900F8FF29 /* GTXTestFailingClassFailCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestFailingClassFailCheck.m; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestFailingClassFailCheck.m; sourceTree = SOURCE_ROOT; };
+		61284DEC211E447900F8FF29 /* GTXTestAnalyticsBaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestAnalyticsBaseTest.m; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestAnalyticsBaseTest.m; sourceTree = SOURCE_ROOT; };
+		61284DED211E447900F8FF29 /* GTXTestGtxCanBlacklistTestCases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestGtxCanBlacklistTestCases.m; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestGtxCanBlacklistTestCases.m; sourceTree = SOURCE_ROOT; };
+		61284DEE211E447A00F8FF29 /* GTXTestGtxCanDetectFailuresInInheritedTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestGtxCanDetectFailuresInInheritedTests.m; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestGtxCanDetectFailuresInInheritedTests.m; sourceTree = SOURCE_ROOT; };
+		61284DEF211E447A00F8FF29 /* GTXTestGtxCanIgnoreElements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestGtxCanIgnoreElements.m; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestGtxCanIgnoreElements.m; sourceTree = SOURCE_ROOT; };
+		61284DF0211E447A00F8FF29 /* GTXTestGtxWithDefaultChecks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestGtxWithDefaultChecks.m; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestGtxWithDefaultChecks.m; sourceTree = SOURCE_ROOT; };
+		61284DF1211E447B00F8FF29 /* GTXTestBaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestBaseTest.m; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestBaseTest.m; sourceTree = SOURCE_ROOT; };
+		61284DF2211E447C00F8FF29 /* GTXTestGtxCanWhitelistTestCases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestGtxCanWhitelistTestCases.m; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestGtxCanWhitelistTestCases.m; sourceTree = SOURCE_ROOT; };
+		61284DF3211E447C00F8FF29 /* GTXTestAnalyticsIsTriggered.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestAnalyticsIsTriggered.m; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestAnalyticsIsTriggered.m; sourceTree = SOURCE_ROOT; };
+		61284DF4211E447C00F8FF29 /* GTXTestAnalyticsBaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXTestAnalyticsBaseTest.h; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestAnalyticsBaseTest.h; sourceTree = SOURCE_ROOT; };
+		61284DF5211E447C00F8FF29 /* GTXTestAnalyticsCanBeDisabled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestAnalyticsCanBeDisabled.m; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestAnalyticsCanBeDisabled.m; sourceTree = SOURCE_ROOT; };
+		61284DF6211E447D00F8FF29 /* GTXTestGtxCanIgnoreElementsOnSpecificCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestGtxCanIgnoreElementsOnSpecificCheck.m; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestGtxCanIgnoreElementsOnSpecificCheck.m; sourceTree = SOURCE_ROOT; };
+		61284DF7211E447D00F8FF29 /* GTXTestBaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXTestBaseTest.h; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestBaseTest.h; sourceTree = SOURCE_ROOT; };
+		61284DF8211E447D00F8FF29 /* GTXTestGtxCanDetectFailures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestGtxCanDetectFailures.m; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestGtxCanDetectFailures.m; sourceTree = SOURCE_ROOT; };
+		61284E08211E45C500F8FF29 /* GTXBlacklistFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXBlacklistFactory.h; path = Classes/GTXBlacklistFactory.h; sourceTree = SOURCE_ROOT; };
+		61284E09211E45C600F8FF29 /* GTXBlacklistFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXBlacklistFactory.m; path = Classes/GTXBlacklistFactory.m; sourceTree = SOURCE_ROOT; };
 		613C3F41204A09E8007D44A8 /* GTXiLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GTXiLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61A0C4DB2061896300DF0169 /* GTXiLibCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXiLibCore.m; path = Classes/GTXiLibCore.m; sourceTree = SOURCE_ROOT; };
 		61A0C4DC2061896300DF0169 /* GTXiLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXiLib.h; path = Classes/GTXiLib.h; sourceTree = SOURCE_ROOT; };
@@ -92,7 +162,6 @@
 		61ABAE95204A0B03006DBF0A /* GTXLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXLogging.h; path = Classes/GTXLogging.h; sourceTree = SOURCE_ROOT; };
 		61ABAE96204A0B03006DBF0A /* GTXAnalyticsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXAnalyticsUtils.m; path = Classes/GTXAnalyticsUtils.m; sourceTree = SOURCE_ROOT; };
 		61ABAE97204A0B04006DBF0A /* GTXChecking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXChecking.h; path = Classes/GTXChecking.h; sourceTree = SOURCE_ROOT; };
-		61ABAE98204A0B04006DBF0A /* GTXElementBlacklist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXElementBlacklist.m; path = Classes/GTXElementBlacklist.m; sourceTree = SOURCE_ROOT; };
 		61ABAE99204A0B04006DBF0A /* GTXTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestCase.m; path = Classes/GTXTestCase.m; sourceTree = SOURCE_ROOT; };
 		61ABAE9A204A0B04006DBF0A /* GTXAccessibilityTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXAccessibilityTree.m; path = Classes/GTXAccessibilityTree.m; sourceTree = SOURCE_ROOT; };
 		61ABAE9B204A0B05006DBF0A /* GTXAssertions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXAssertions.h; path = Classes/GTXAssertions.h; sourceTree = SOURCE_ROOT; };
@@ -111,7 +180,6 @@
 		61ABAEAA204A0B09006DBF0A /* GTXErrorReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXErrorReporter.m; path = Classes/GTXErrorReporter.m; sourceTree = SOURCE_ROOT; };
 		61ABAEAB204A0B09006DBF0A /* GTXToolKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXToolKit.h; path = Classes/GTXToolKit.h; sourceTree = SOURCE_ROOT; };
 		61ABAEAC204A0B0A006DBF0A /* GTXImageRGBAData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXImageRGBAData.m; path = Classes/GTXImageRGBAData.m; sourceTree = SOURCE_ROOT; };
-		61ABAEAF204A0B0A006DBF0A /* GTXElementBlacklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXElementBlacklist.h; path = Classes/GTXElementBlacklist.h; sourceTree = SOURCE_ROOT; };
 		61B7F4A2204A15D30062DF65 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
@@ -121,6 +189,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				6115E78B204F5BA3003E32F9 /* GTXiLib.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61284DAA211E3F8300F8FF29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61284DDD211E442700F8FF29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,11 +216,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		61284DAE211E3F8300F8FF29 /* TestApp */ = {
+			isa = PBXGroup;
+			children = (
+				61284DD0211E3FF400F8FF29 /* GTXTestApp-Info.plist */,
+				61284DCA211E3FE400F8FF29 /* GTXTestApp.m */,
+				61284DC9211E3FE300F8FF29 /* GTXTestAppDelegate.h */,
+				61284DC5211E3FE200F8FF29 /* GTXTestAppDelegate.m */,
+				61284DC8211E3FE300F8FF29 /* GTXTestStepperButton.h */,
+				61284DC6211E3FE200F8FF29 /* GTXTestStepperButton.m */,
+				61284DC7211E3FE300F8FF29 /* GTXTestViewController.h */,
+				61284DC3211E3FE100F8FF29 /* GTXTestViewController.m */,
+				61284DC4211E3FE200F8FF29 /* GTXTestViewController.xib */,
+			);
+			path = TestApp;
+			sourceTree = "<group>";
+		};
+		61284DE1211E442700F8FF29 /* FunctionalTests */ = {
+			isa = PBXGroup;
+			children = (
+				61284DF4211E447C00F8FF29 /* GTXTestAnalyticsBaseTest.h */,
+				61284DEC211E447900F8FF29 /* GTXTestAnalyticsBaseTest.m */,
+				61284DF5211E447C00F8FF29 /* GTXTestAnalyticsCanBeDisabled.m */,
+				61284DF3211E447C00F8FF29 /* GTXTestAnalyticsIsTriggered.m */,
+				61284DF7211E447D00F8FF29 /* GTXTestBaseTest.h */,
+				61284DF1211E447B00F8FF29 /* GTXTestBaseTest.m */,
+				61284DEB211E447900F8FF29 /* GTXTestFailingClassFailCheck.m */,
+				61284DED211E447900F8FF29 /* GTXTestGtxCanBlacklistTestCases.m */,
+				61284DF8211E447D00F8FF29 /* GTXTestGtxCanDetectFailures.m */,
+				61284DEE211E447A00F8FF29 /* GTXTestGtxCanDetectFailuresInInheritedTests.m */,
+				61284DEF211E447A00F8FF29 /* GTXTestGtxCanIgnoreElements.m */,
+				61284DF6211E447D00F8FF29 /* GTXTestGtxCanIgnoreElementsOnSpecificCheck.m */,
+				61284DF2211E447C00F8FF29 /* GTXTestGtxCanWhitelistTestCases.m */,
+				61284DF0211E447A00F8FF29 /* GTXTestGtxWithDefaultChecks.m */,
+				61284DEA211E447800F8FF29 /* GTXTestGtxWorksForPassingTests.m */,
+			);
+			path = FunctionalTests;
+			sourceTree = "<group>";
+		};
 		613C3F37204A09E7007D44A8 = {
 			isa = PBXGroup;
 			children = (
 				613C3F43204A09E8007D44A8 /* GTXiLib */,
 				61BC5526204E2736004D2FB9 /* GTXiUnitTests */,
+				61284DAE211E3F8300F8FF29 /* TestApp */,
+				61284DE1211E442700F8FF29 /* FunctionalTests */,
 				613C3F42204A09E8007D44A8 /* Products */,
 				61B7F4A1204A15D30062DF65 /* Frameworks */,
 			);
@@ -149,6 +271,8 @@
 			children = (
 				613C3F41204A09E8007D44A8 /* GTXiLib.framework */,
 				6115E786204F5BA2003E32F9 /* GTXiUnitTests.xctest */,
+				61284DAD211E3F8300F8FF29 /* TestApp.app */,
+				61284DE0211E442700F8FF29 /* FunctionalTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +292,8 @@
 				61A0C4DC2061896300DF0169 /* GTXiLib.h */,
 				61A0C4DD2061896300DF0169 /* GTXiLibCore.h */,
 				61A0C4DB2061896300DF0169 /* GTXiLibCore.m */,
+				61284E08211E45C500F8FF29 /* GTXBlacklistFactory.h */,
+				61284E09211E45C600F8FF29 /* GTXBlacklistFactory.m */,
 				61ABAE93204A0B03006DBF0A /* GTXAccessibilityTree.h */,
 				61ABAE9A204A0B04006DBF0A /* GTXAccessibilityTree.m */,
 				61ABAE8F204A0B02006DBF0A /* GTXAnalytics.h */,
@@ -175,6 +301,9 @@
 				61ABAE8E204A0B02006DBF0A /* GTXAnalyticsUtils.h */,
 				61ABAE96204A0B03006DBF0A /* GTXAnalyticsUtils.m */,
 				61ABAE9B204A0B05006DBF0A /* GTXAssertions.h */,
+				61284DD3211E42CE00F8FF29 /* GTXBlacklistBlock.h */,
+				61284DD2211E42CD00F8FF29 /* GTXBlacklistBlock.m */,
+				61284DD4211E42CE00F8FF29 /* GTXBlacklisting.h */,
 				61ABAEA9204A0B09006DBF0A /* GTXCheckBlock.h */,
 				61ABAE9E204A0B06006DBF0A /* GTXCheckBlock.m */,
 				610CA3FB204DFC76008BAAA1 /* GTXPluginXCTestCase.h */,
@@ -183,8 +312,6 @@
 				61ABAEA8204A0B08006DBF0A /* GTXChecksCollection.h */,
 				61ABAEA4204A0B07006DBF0A /* GTXChecksCollection.m */,
 				61ABAE94204A0B03006DBF0A /* GTXCommon.h */,
-				61ABAEAF204A0B0A006DBF0A /* GTXElementBlacklist.h */,
-				61ABAE98204A0B04006DBF0A /* GTXElementBlacklist.m */,
 				61ABAE90204A0B02006DBF0A /* GTXErrorReporter.h */,
 				61ABAEAA204A0B09006DBF0A /* GTXErrorReporter.m */,
 				61ABAEA2204A0B06006DBF0A /* GTXImageAndColorUtils.h */,
@@ -192,6 +319,8 @@
 				61ABAE9C204A0B05006DBF0A /* GTXImageRGBAData.h */,
 				61ABAEAC204A0B0A006DBF0A /* GTXImageRGBAData.m */,
 				61ABAE95204A0B03006DBF0A /* GTXLogging.h */,
+				61284DD9211E437800F8FF29 /* GTXTestEnvironment.h */,
+				61284DD8211E437700F8FF29 /* GTXTestEnvironment.m */,
 				61ABAEA1204A0B06006DBF0A /* GTXTestCase.h */,
 				61ABAE99204A0B04006DBF0A /* GTXTestCase.m */,
 				61ABAE9F204A0B06006DBF0A /* GTXTestSuite.h */,
@@ -236,8 +365,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61284DDB211E437800F8FF29 /* GTXTestEnvironment.h in Headers */,
 				61ABAEB5204A0B0B006DBF0A /* GTXAccessibilityTree.h in Headers */,
-				61ABAED1204A0B0B006DBF0A /* GTXElementBlacklist.h in Headers */,
 				61ABAECD204A0B0B006DBF0A /* GTXToolKit.h in Headers */,
 				61ABAEC8204A0B0B006DBF0A /* NSError+GTXAdditions.h in Headers */,
 				61ABAEC4204A0B0B006DBF0A /* GTXImageAndColorUtils.h in Headers */,
@@ -245,11 +374,14 @@
 				61ABAEBD204A0B0B006DBF0A /* GTXAssertions.h in Headers */,
 				610CA3FD204DFC76008BAAA1 /* GTXPluginXCTestCase.h in Headers */,
 				61ABAECB204A0B0B006DBF0A /* GTXCheckBlock.h in Headers */,
+				61284DD6211E42CF00F8FF29 /* GTXBlacklistBlock.h in Headers */,
 				61ABAEB9204A0B0B006DBF0A /* GTXChecking.h in Headers */,
+				61284E0A211E45C600F8FF29 /* GTXBlacklistFactory.h in Headers */,
 				61ABAEBE204A0B0B006DBF0A /* GTXImageRGBAData.h in Headers */,
 				61ABAEB2204A0B0B006DBF0A /* GTXErrorReporter.h in Headers */,
 				61ABAEC3204A0B0B006DBF0A /* GTXTestCase.h in Headers */,
 				61ABAEB1204A0B0B006DBF0A /* GTXAnalytics.h in Headers */,
+				61284DD7211E42CF00F8FF29 /* GTXBlacklisting.h in Headers */,
 				61A0C4E02061896300DF0169 /* GTXiLibCore.h in Headers */,
 				61A0C4DF2061896300DF0169 /* GTXiLib.h in Headers */,
 				61ABAECA204A0B0B006DBF0A /* GTXChecksCollection.h in Headers */,
@@ -278,6 +410,42 @@
 			name = GTXiUnitTests;
 			productName = GTAxeUnitTests;
 			productReference = 6115E786204F5BA2003E32F9 /* GTXiUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		61284DAC211E3F8300F8FF29 /* TestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 61284DC2211E3F8600F8FF29 /* Build configuration list for PBXNativeTarget "TestApp" */;
+			buildPhases = (
+				61284DA9211E3F8300F8FF29 /* Sources */,
+				61284DAA211E3F8300F8FF29 /* Frameworks */,
+				61284DAB211E3F8300F8FF29 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestApp;
+			productName = TestApp;
+			productReference = 61284DAD211E3F8300F8FF29 /* TestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		61284DDF211E442700F8FF29 /* FunctionalTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 61284DE7211E442800F8FF29 /* Build configuration list for PBXNativeTarget "FunctionalTests" */;
+			buildPhases = (
+				61284DDC211E442700F8FF29 /* Sources */,
+				61284DDD211E442700F8FF29 /* Frameworks */,
+				61284DDE211E442700F8FF29 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				61284E07211E448F00F8FF29 /* PBXTargetDependency */,
+				61284DE6211E442800F8FF29 /* PBXTargetDependency */,
+			);
+			name = FunctionalTests;
+			productName = FunctionalTests;
+			productReference = 61284DE0211E442700F8FF29 /* FunctionalTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		613C3F40204A09E7007D44A8 /* GTXiLib */ = {
@@ -311,6 +479,15 @@
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
 					};
+					61284DAC211E3F8300F8FF29 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+					};
+					61284DDF211E442700F8FF29 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 61284DAC211E3F8300F8FF29;
+					};
 					613C3F40204A09E7007D44A8 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
@@ -323,6 +500,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 613C3F37204A09E7007D44A8;
 			productRefGroup = 613C3F42204A09E8007D44A8 /* Products */;
@@ -331,12 +509,29 @@
 			targets = (
 				613C3F40204A09E7007D44A8 /* GTXiLib */,
 				6115E785204F5BA2003E32F9 /* GTXiUnitTests */,
+				61284DAC211E3F8300F8FF29 /* TestApp */,
+				61284DDF211E442700F8FF29 /* FunctionalTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6115E784204F5BA2003E32F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61284DAB211E3F8300F8FF29 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61284DCC211E3FE400F8FF29 /* GTXTestViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61284DDE211E442700F8FF29 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -368,6 +563,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		61284DA9211E3F8300F8FF29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61284DCD211E3FE400F8FF29 /* GTXTestAppDelegate.m in Sources */,
+				61284DCE211E3FE400F8FF29 /* GTXTestStepperButton.m in Sources */,
+				61284DCB211E3FE400F8FF29 /* GTXTestViewController.m in Sources */,
+				61284DCF211E3FE400F8FF29 /* GTXTestApp.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61284DDC211E442700F8FF29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61284E05211E447E00F8FF29 /* GTXTestGtxCanDetectFailures.m in Sources */,
+				61284DFD211E447E00F8FF29 /* GTXTestGtxCanDetectFailuresInInheritedTests.m in Sources */,
+				61284DFC211E447E00F8FF29 /* GTXTestGtxCanBlacklistTestCases.m in Sources */,
+				61284E00211E447E00F8FF29 /* GTXTestBaseTest.m in Sources */,
+				61284DFA211E447E00F8FF29 /* GTXTestFailingClassFailCheck.m in Sources */,
+				61284E02211E447E00F8FF29 /* GTXTestAnalyticsIsTriggered.m in Sources */,
+				61284DFF211E447E00F8FF29 /* GTXTestGtxWithDefaultChecks.m in Sources */,
+				61284DFE211E447E00F8FF29 /* GTXTestGtxCanIgnoreElements.m in Sources */,
+				61284DF9211E447E00F8FF29 /* GTXTestGtxWorksForPassingTests.m in Sources */,
+				61284DFB211E447E00F8FF29 /* GTXTestAnalyticsBaseTest.m in Sources */,
+				61284E04211E447E00F8FF29 /* GTXTestGtxCanIgnoreElementsOnSpecificCheck.m in Sources */,
+				61284E03211E447E00F8FF29 /* GTXTestAnalyticsCanBeDisabled.m in Sources */,
+				61284E01211E447E00F8FF29 /* GTXTestGtxCanWhitelistTestCases.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		613C3F3C204A09E7007D44A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -376,11 +602,13 @@
 				61ABAECC204A0B0B006DBF0A /* GTXErrorReporter.m in Sources */,
 				61ABAEB4204A0B0B006DBF0A /* GTXTestSuite.m in Sources */,
 				61ABAEB3204A0B0B006DBF0A /* GTXImageAndColorUtils.m in Sources */,
+				61284E0B211E45C600F8FF29 /* GTXBlacklistFactory.m in Sources */,
 				61ABAEC2204A0B0B006DBF0A /* GTXToolKit.m in Sources */,
 				61ABAEC9204A0B0B006DBF0A /* GTXAnalytics.m in Sources */,
-				61ABAEBA204A0B0B006DBF0A /* GTXElementBlacklist.m in Sources */,
 				610CA3FE204DFC76008BAAA1 /* GTXPluginXCTestCase.m in Sources */,
+				61284DDA211E437800F8FF29 /* GTXTestEnvironment.m in Sources */,
 				61ABAEB8204A0B0B006DBF0A /* GTXAnalyticsUtils.m in Sources */,
+				61284DD5211E42CF00F8FF29 /* GTXBlacklistBlock.m in Sources */,
 				61ABAEBF204A0B0B006DBF0A /* NSError+GTXAdditions.m in Sources */,
 				61ABAEBC204A0B0B006DBF0A /* GTXAccessibilityTree.m in Sources */,
 				61ABAEC0204A0B0B006DBF0A /* GTXCheckBlock.m in Sources */,
@@ -397,6 +625,16 @@
 			isa = PBXTargetDependency;
 			target = 613C3F40204A09E7007D44A8 /* GTXiLib */;
 			targetProxy = 6115E78C204F5BA3003E32F9 /* PBXContainerItemProxy */;
+		};
+		61284DE6211E442800F8FF29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 61284DAC211E3F8300F8FF29 /* TestApp */;
+			targetProxy = 61284DE5211E442800F8FF29 /* PBXContainerItemProxy */;
+		};
+		61284E07211E448F00F8FF29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 613C3F40204A09E7007D44A8 /* GTXiLib */;
+			targetProxy = 61284E06211E448F00F8FF29 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -422,6 +660,76 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.google.GTAxeUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		61284DC0211E3F8600F8FF29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/FunctionalTests/TestApp/GTXTestApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.gtx.dev.TestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		61284DC1211E3F8600F8FF29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/FunctionalTests/TestApp/GTXTestApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.gtx.dev.TestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		61284DE8211E442800F8FF29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Tests/FunctionalTests/TestApp/GTXTestApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.gtx.dev.FunctionalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestApp.app/TestApp";
+			};
+			name = Debug;
+		};
+		61284DE9211E442800F8FF29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Tests/FunctionalTests/TestApp/GTXTestApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.google.gtx.dev.FunctionalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestApp.app/TestApp";
 			};
 			name = Release;
 		};
@@ -581,6 +889,24 @@
 			buildConfigurations = (
 				6115E78F204F5BA3003E32F9 /* Debug */,
 				6115E790204F5BA3003E32F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		61284DC2211E3F8600F8FF29 /* Build configuration list for PBXNativeTarget "TestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				61284DC0211E3F8600F8FF29 /* Debug */,
+				61284DC1211E3F8600F8FF29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		61284DE7211E442800F8FF29 /* Build configuration list for PBXNativeTarget "FunctionalTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				61284DE8211E442800F8FF29 /* Debug */,
+				61284DE9211E442800F8FF29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

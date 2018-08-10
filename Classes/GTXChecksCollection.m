@@ -26,6 +26,8 @@
 NSString *const kGTXCheckNameAccessibilityLabelPresent = @"Accessibility Label Present";
 NSString *const kGTXCheckNameAccessibilityLabelNotPunctuated =
     @"Accessibility Label Not Punctuated";
+NSString *const kGTXCheckNameAccessibilityLabelIsNotRedundantWithTraits =
+    @"Accessibility Label is Not Redundant with Traits";
 NSString *const kGTXCheckNameAccessibilityTraitsDontConflict =
     @"Accessibility Traits Don't Conflict";
 NSString *const kGTXCheckNameMinimumTappableArea = @"Element has Minimum Tappable Area";
@@ -34,21 +36,23 @@ NSString *const kGTXCheckNameMinimumContrastRatio = @"Element has Minimum Contra
 #pragma mark - Globals
 
 /**
- *  The minimum size (width or height) for a given element to be easily accessible.
+ *  The minimum size (width or height) for a given element to be easily accessible. Based on
+ *  Material design guidelines:
+ *  https://material.io/design/layout/spacing-methods.html#touch-click-targets
  */
-static const float kMinSizeForAccessibleElements = 48.0;
+static const float kGTXMinSizeForAccessibleElements = 48.0;
 
 /**
  *  The minimum contrast ratio for any given text to be considered accessible. Note that smaller
  *  text has even stricter requirement of 4.5:1.
  */
-static const float kMinContrastRatioForAccessibleText = 3.0;
+static const float kGTXMinContrastRatioForAccessibleText = 3.0;
 
 #pragma mark - Implementations
 
 @implementation GTXChecksCollection
 
-+ (NSArray<GTXChecking> *)allChecksForVersion:(GTXVersion)version {
++ (NSArray<id<GTXChecking>> *)allChecksForVersion:(GTXVersion)version {
   switch (version) {
     case GTXVersionLatest: return [self allGTXChecks];
     case GTXVersionPreRelease: return [self allGTXChecks];
@@ -59,6 +63,7 @@ static const float kMinContrastRatioForAccessibleText = 3.0;
 + (NSArray<id<GTXChecking>> *)allGTXChecks {
   return @[[self checkForAXLabelPresent],
            [self checkForAXLabelNotPunctuated],
+           [self checkForAXLabelNotRedundantWithTraits],
            [self checkForAXTraitDontConflict],
            [self checkForMinimumTappableArea],
            [self checkForSufficientContrastRatio]];
@@ -141,6 +146,66 @@ static const float kMinContrastRatioForAccessibleText = 3.0;
   return check;
 }
 
+// @todo Include all UIAccessibilityTraits that announce themselves (image, search
+// field, etc.), and find a more robust way to determine if the label is redundant. Currently, the
+// suffix is compared to a single string, which causes false positives when that string occurs
+// elsewhere in the label or synonyms are used. Additionally, the hardcoded string only works in
+// English. This method also needs to be updated for i18n.
++ (id<GTXChecking>)checkForAXLabelNotRedundantWithTraits {
+  id<GTXChecking> check =
+    [GTXCheckBlock GTXCheckWithName:kGTXCheckNameAccessibilityLabelIsNotRedundantWithTraits
+                              block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+    UIAccessibilityTraits elementAXTraits = [element accessibilityTraits];
+    NSString *elementAXLabel = [element accessibilityLabel];
+    NSDictionary<NSNumber *, NSString *> const *redundantLabelsDictionary =
+        [self traitsToRedundantLabelsDictionary];
+    NSMutableArray<NSString *> *redundantTextList = [[NSMutableArray alloc] init];
+    NSMutableArray<NSString *> *redundantTraitNameList = [[NSMutableArray alloc] init];
+    for (NSNumber *testTrait in redundantLabelsDictionary) {
+      NSString* redundantText = [redundantLabelsDictionary objectForKey:testTrait];
+      UIAccessibilityTraits testUITrait = [testTrait unsignedLongLongValue];
+      if ((BOOL)(elementAXTraits & testUITrait)) {
+        if ([GTXChecksCollection caseInsensitive:elementAXLabel hasSuffix:redundantText]) {
+          NSError *error;
+          NSString *stringValue = [self stringValueOfUIAccessibilityTraits:testUITrait
+                                                                     error:&error];
+          if (error) {
+            if (errorOrNil) {
+              *errorOrNil = error;
+            }
+            return NO;
+          }
+
+          [redundantTextList addObject:redundantText];
+          [redundantTraitNameList addObject:stringValue];
+        }
+      }
+    }
+    if ([redundantTraitNameList count] > 0) {
+      NSString* stringOfRedundantTextList = [redundantTextList componentsJoinedByString:@", "];
+      NSString* stringOfRedundantTraitNameList =
+          [redundantTraitNameList componentsJoinedByString:@", "];
+      NSString *description = [NSString stringWithFormat:@"Suggest removing '%@' from the "
+                                                         @"accessibility label '%@'. The element "
+                                                         @"already contains the accessibility "
+                                                         @"trait(s) %@. VoiceOver announces those "
+                                                         @"traits to the user, so putting "
+                                                         @"redundant words in the label causes "
+                                                         @"VoiceOver to repeat them.",
+                                                         stringOfRedundantTextList,
+                                                         elementAXLabel,
+                                                         stringOfRedundantTraitNameList];
+      [NSError gtx_logOrSetGTXCheckFailedError:errorOrNil
+              element:element
+                 name:kGTXCheckNameAccessibilityLabelIsNotRedundantWithTraits
+          description:description];
+      return NO;
+    }
+    return YES;
+  }];
+  return check;
+}
+
 + (id<GTXChecking>)checkForAXTraitDontConflict {
   id<GTXChecking> check =
       [GTXCheckBlock GTXCheckWithName:kGTXCheckNameAccessibilityTraitsDontConflict
@@ -200,8 +265,8 @@ static const float kMinContrastRatioForAccessibleText = 3.0;
     }
     if ([element respondsToSelector:@selector(accessibilityFrame)]) {
       CGRect frame = [element accessibilityFrame];
-      BOOL hasSmallWidth = CGRectGetWidth(frame) < kMinSizeForAccessibleElements;
-      BOOL hasSmallHeight = CGRectGetHeight(frame) < kMinSizeForAccessibleElements;
+      BOOL hasSmallWidth = CGRectGetWidth(frame) < kGTXMinSizeForAccessibleElements;
+      BOOL hasSmallHeight = CGRectGetHeight(frame) < kGTXMinSizeForAccessibleElements;
       if (hasSmallWidth || hasSmallHeight) {
         NSString *dimensionsToBeFixed;
         // Append a suggestion to the error description.
@@ -219,9 +284,9 @@ static const float kMinContrastRatioForAccessibleText = 3.0;
             [NSString stringWithFormat:@"Suggest increasing element's %@ to at least %d for "
                                        @"a suggested tappable area of at least %dX%d",
                                        dimensionsToBeFixed,
-                                       (int)kMinSizeForAccessibleElements,
-                                       (int)kMinSizeForAccessibleElements,
-                                       (int)kMinSizeForAccessibleElements];
+                                       (int)kGTXMinSizeForAccessibleElements,
+                                       (int)kGTXMinSizeForAccessibleElements,
+                                       (int)kGTXMinSizeForAccessibleElements];
 
         [NSError gtx_logOrSetGTXCheckFailedError:errorOrNil
                                          element:element
@@ -244,13 +309,13 @@ static const float kMinContrastRatioForAccessibleText = 3.0;
     }
     CGFloat ratio = [GTXImageAndColorUtils contrastRatioOfUILabel:element];
     BOOL hasSufficientContrast =
-        (ratio >= kMinContrastRatioForAccessibleText - kContrastRatioAccuracy);
+        (ratio >= kGTXMinContrastRatioForAccessibleText - kGTXContrastRatioAccuracy);
     if (!hasSufficientContrast) {
       NSString *description =
           [NSString stringWithFormat:@"Suggest increasing this element's contrast ratio to at "
                                      "least "
                                      @"%.5f the actual ratio was computed as %.5f",
-                                     (float)kMinContrastRatioForAccessibleText, (float)ratio];
+                                     (float)kGTXMinContrastRatioForAccessibleText, (float)ratio];
       [NSError gtx_logOrSetGTXCheckFailedError:errorOrNil
                                        element:element
                                           name:kGTXCheckNameMinimumContrastRatio
@@ -386,6 +451,17 @@ static const float kMinContrastRatioForAccessibleText = 3.0;
 }
 
 /**
+ *  @return The UIAccessibilityTraits to redundant NSString accessibility label mapping dictionary
+ *          as type NSDictionary<NSNumber *, NSString *> const *.
+ */
++ (NSDictionary<NSNumber *, NSString *> const *)traitsToRedundantLabelsDictionary {
+  return @{
+    @(UIAccessibilityTraitButton):
+      @"button",
+  };
+}
+
+/**
  *  @return @c YES if @c element is tappable (for ex button) @c NO otherwise.
  */
 + (BOOL)gtx_isTappableNonLinkElement:(id)element {
@@ -417,6 +493,14 @@ static const float kMinContrastRatioForAccessibleText = 3.0;
           [element isKindOfClass:[UITextView class]] ||
           [element isKindOfClass:[UITextField class]] ||
           hasTextTrait);
+}
+
+/**
+ *  @return @c YES if the last characters of @c string equals @c suffix. Comparison is done case
+ *  insensitively.
+ */
++ (BOOL)caseInsensitive:(NSString*)string hasSuffix:(NSString*)suffix {
+  return [[string lowercaseString] hasSuffix:suffix];
 }
 
 @end

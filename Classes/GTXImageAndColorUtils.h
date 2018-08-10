@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 
-extern const CGFloat kContrastRatioAccuracy;
+extern const CGFloat kGTXContrastRatioAccuracy;
 
 /**
  *  Collection of accessibility related utils that use colors and/or images.

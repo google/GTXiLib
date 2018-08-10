@@ -24,17 +24,17 @@
 /**
  Check that fails if the element is of Class @c GTXTestFailingClass.
  */
-id<GTXChecking> checkFailsIfFailingClass;
+extern id<GTXChecking> checkFailsIfFailingClass;
 
 /**
  Check that always passes.
  */
-id<GTXChecking> alwaysFail;
+extern id<GTXChecking> alwaysFail;
 
 /**
  Check that always fails.
  */
-id<GTXChecking> alwaysPass;
+extern id<GTXChecking> alwaysPass;
 
 /**
  Base test for all GTXiLib functional/integration tests used to setup GTXiLib and capture check

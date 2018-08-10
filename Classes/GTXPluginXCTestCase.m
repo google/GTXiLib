@@ -16,8 +16,9 @@
 
 #import "GTXPluginXCTestCase.h"
 
-#import "GTXiLibCore.h"
 #import "GTXAssertions.h"
+#import "GTXiLibCore.h"
+#import "GTXTestEnvironment.h"
 
 #import <objc/runtime.h>
 
@@ -44,6 +45,7 @@ Class gXCTestCaseClass;
     [self gtx_swizzleInstanceMethod:@selector(invokeTest)
                          withMethod:@selector(gtx_invokeTest)
                             inClass:gXCTestCaseClass];
+    [GTXTestEnvironment setupEnvironment];
   });
 }
 
@@ -81,6 +83,7 @@ Class gXCTestCaseClass;
                                  typeEncoding);
   NSAssert(success, @"Failed to add %@ from %@ to %@",
                     NSStringFromSelector(methodSelector), srcClass, destClass);
+  (void)success; // Ensures 'success' is marked as used even if NSAssert is removed.
 }
 
 /**

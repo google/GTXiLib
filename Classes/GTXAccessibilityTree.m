@@ -23,7 +23,7 @@
  * UITextEffectsWindow which reports 9223372036854775807 possibly due to internal type conversions
  * with -1, we use this bounds value to detect that case..
  */
-const NSInteger kAccessibilityChildrenUpperBound = 50000;
+static const NSInteger kAccessibilityChildrenUpperBound = 50000;
 
 @implementation GTXAccessibilityTree {
   // A queue of elements to be visited.
@@ -89,6 +89,10 @@ const NSInteger kAccessibilityChildrenUpperBound = 50000;
                  accessibilityElementsSet,
                  @([nextInQueue accessibilityElementCount]),
                  accessibilityElementsFromIndicesSet);
+
+        // Ensure accessibilityElements* are marked as used even if NSAssert is removed.
+        (void)accessibilityElementsSet;
+        (void)accessibilityElementsFromIndicesSet;
       } else {
         // Set accessibilityElements to whichever is non nil or leave it as is.
         axElements = axElementsFromIndices ? axElementsFromIndices : axElements;

@@ -59,7 +59,7 @@ NSString *const kGTXErrorCheckNameKey = @"kGTXErrorCheckNameKey";
       [NSString stringWithFormat:@"Check \"%@\" failed, %@",
                                  name, description];
   NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : fullDescription,
-                              kGTXErrorFailingElementKey: [element description],
+                              kGTXErrorFailingElementKey: element,
                               kGTXErrorCheckNameKey: name };
   NSError *error = [NSError errorWithDomain:kGTXErrorDomain
                                        code:GTXCheckErrorCodeAccessibilityCheckFailed

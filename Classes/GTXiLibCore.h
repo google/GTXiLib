@@ -16,10 +16,10 @@
 
 #import "GTXAnalytics.h"
 #import "GTXAccessibilityTree.h"
+#import "GTXBlacklisting.h"
 #import "GTXCheckBlock.h"
 #import "GTXChecksCollection.h"
 #import "GTXCommon.h"
-#import "GTXElementBlacklist.h"
 #import "GTXErrorReporter.h"
 #import "GTXTestSuite.h"
 #import "NSError+GTXAdditions.h"
@@ -78,7 +78,7 @@ typedef void(^GTXiLibFailureHandler)(NSError *error);
  */
 + (void)installOnTestSuite:(GTXTestSuite *)suite
                     checks:(NSArray<id<GTXChecking>> *)checks
-         elementBlacklists:(NSArray<GTXElementBlacklist *> *)blacklists;
+         elementBlacklists:(NSArray<id<GTXBlacklisting>> *)blacklists;
 
 /**
  Creates a check with the given name and block.
@@ -89,24 +89,6 @@ typedef void(^GTXiLibFailureHandler)(NSError *error);
  @return The newly created check.
  */
 + (id<GTXChecking>)checkWithName:(NSString *)name block:(GTXCheckHandlerBlock)block;
-
-/**
- Creates a blacklist matcher that skips elements of the given class from all checks.
-
- @param className The class name of the element.
- @return The newly created blacklist matcher.
- */
-+ (GTXElementBlacklist *)blacklistForElementsOfClassNamed:(NSString *)className;
-
-/**
- Creates a blacklist matcher that skips elements of the given class from the given check.
-
- @param className The class name of the element.
- @param skipCheckName The name of the check from which to skip the elements.
- @return The newly created blacklist matcher.
- */
-+ (GTXElementBlacklist *)blacklistForElementsOfClassNamed:(NSString *)className
-                                            forCheckNamed:(NSString *)skipCheckName;
 
 /**
  The failure handler to be invoked when checks fail, by default if checks fail an Assertion is

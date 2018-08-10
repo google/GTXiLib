@@ -16,8 +16,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "GTXChecking.h"
+#import "GTXBlacklistBlock.h"
+#import "GTXBlacklisting.h"
 #import "GTXCheckBlock.h"
+#import "GTXChecking.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -45,9 +47,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)registerCheck:(id<GTXChecking>)check;
 
+/**
+ Registers the given blacklist to be executed on all elements this instance is used on. Registered
+ checks are not performed on blacklisted elements.
+
+ @param blacklist The blacklist to be registered.
+ */
+- (void)registerBlacklist:(id<GTXBlacklisting>)blacklist;
+
 
 /**
- Applies the registered checks on the given element while respecting ignored elements.
+ Applies the registered checks on the given element while respecting blacklisted elements.
 
  @param element element to be checked.
  @param errorOrNil Error object to be filled with error info on check failures.
@@ -58,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Applies the registered checks on all elements in the accessibility tree under the given root
- elements while respecting ignored elements.
+ elements while respecting blacklisted elements.
 
  @param rootElements An array of root elements whose accessibility trees are to be checked.
  @param errorOrNil Error object to be filled with error info on check failures.
@@ -66,21 +76,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)checkAllElementsFromRootElements:(NSArray *)rootElements
                                    error:(GTXErrorRefType)errorOrNil;
-
-/**
- Configures this instance to skip elements of the given class name from all checks.
-
- @param className The name of the class to be ignored.
- */
-- (void)ignoreElementsOfClassNamed:(NSString *)className;
-
-/**
- Configures this instance to skip elements of the given class name from a specific check.
-
- @param className The name of the class to be ignored.
- @param skipCheckName The name of the check for which this element is to be ignored.
- */
-- (void)ignoreElementsOfClassNamed:(NSString *)className forCheckNamed:(NSString *)skipCheckName;
 
 @end
 

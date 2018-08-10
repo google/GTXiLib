@@ -21,7 +21,7 @@
 /**
  *  Accuracy of the contrast ratios provided by the APIs in this class.
  */
-const CGFloat kContrastRatioAccuracy = 0.05f;
+const CGFloat kGTXContrastRatioAccuracy = 0.05f;
 
 @implementation GTXImageAndColorUtils
 

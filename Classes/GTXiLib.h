@@ -33,7 +33,7 @@ FOUNDATION_EXPORT const unsigned char GTXiLibVersionString[];
 #import <GTXiLib/GTXCheckBlock.h>
 #import <GTXiLib/GTXChecksCollection.h>
 #import <GTXiLib/GTXCommon.h>
-#import <GTXiLib/GTXElementBlacklist.h>
+#import <GTXiLib/GTXBlacklistFactory.h>
 #import <GTXiLib/GTXErrorReporter.h>
 #import <GTXiLib/GTXImageRGBAData.h>
 #import <GTXiLib/GTXImageAndColorUtils.h>

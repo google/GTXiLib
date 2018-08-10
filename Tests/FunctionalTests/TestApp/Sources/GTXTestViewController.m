@@ -76,7 +76,8 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
   actionsToHandlers = [[NSMutableDictionary alloc] init];
   [self.navigationController setNavigationBarHidden:YES animated:NO];
 
-  [self axetest_addActionNamed:kAddNoLabelElementActionName handler:^(GTXTestViewController *sSelf) {
+  [self axetest_addActionNamed:kAddNoLabelElementActionName
+                       handler:^(GTXTestViewController *sSelf) {
     [sSelf axetest_addElementWithLabel:@""];
   }];
   [self axetest_addActionNamed:kAddPunctuatedLabelElementActionName
@@ -152,6 +153,7 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
   CGRect buttonFrame = newButton.frame;
   buttonFrame.size.height = kMinimumElementSize;
   newButton.frame = buttonFrame;
+  newButton.accessibilityIdentifier = name;
 
   CGSize contentSize = self.actionsContainerView.contentSize;
   buttonFrame.origin.y = contentSize.height + kMargin;
