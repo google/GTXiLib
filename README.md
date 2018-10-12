@@ -14,7 +14,7 @@ accessibility label) on all elements on the screen.
 To install GTXiLib on all the tests of a specific test class add the following
 snippet of code to it.
 
-```
+```objective-c
 // Include the GTXiLib umbrella header.
 #import <GTXiLib/GTXiLib.h>
 
@@ -45,7 +45,7 @@ In the above snippet we have only installed `checkForAXLabelPresent`, but you
 can also install multiple checks from GTXChecksCollection or include your own
 custom checks as well:
 
-```
+```objective-c
 // Inside +setUp ...
 // Create a new check (for example that ensures that all AX label is not an image name)
 id<GTXChecking> myNewCheck =
@@ -140,7 +140,7 @@ GTXToolKit for performing accessibility checks on a given element involves:
 2. Associating a set of checks with it.
 3. Use it on the element to be checked.
 
-```
+```objective-c
 GTXToolKit *toolkit = [[GTXToolKit alloc] init];
 
 // Register one or more built in checks:
@@ -170,7 +170,7 @@ if (!success) {
 GTXToolKit objects can also be applied on a tree of elements by just providing
 the root element.
 
-```
+```objective-c
 // Use the toolkit on a tree of elements by providing a root element.
 NSError *error;
 BOOL success = [toolkit checkAllElementsFromRootElements:@[rootElement]
@@ -187,7 +187,7 @@ When using `checkAllElementsFromRootElements:`, you may want to ignore some
 elements from checks for various reasons, you can do that using GTXToolKit's
 `ignore` APIs.
 
-```
+```objective-c
 - (void)ignoreElementsOfClassNamed:(NSString *)className;
 - (void)ignoreElementsOfClassNamed:(NSString *)className
                      forCheckNamed:(NSString *)skipCheckName;
@@ -197,7 +197,7 @@ Also, note that `checkAllElementsFromRootElements:` requires an *array* of root
 elements, not a single element. The following snippet shows how to run the
 checks on all elements on the screen:
 
-```
+```objective-c
 // Run the checks on all elements on the screen.
 [toolkit checkAllElementsFromRootElements:@[[UIApplication sharedApplication].keyWindow]
                                     error:&error];
@@ -216,7 +216,7 @@ file which contains the implementation details. If they wish, users can choose
 to opt out by disabling the Analytics by adding the following code snippet in
 test’s `+(void) setUp` method:
 
-```
+```objective-c
 // Disable GTXiLib analytics.
 [GTXAnalytics setEnabled:NO];
 ```
