@@ -36,11 +36,11 @@ NSString *const kGTXCheckNameMinimumContrastRatio = @"Element has Minimum Contra
 #pragma mark - Globals
 
 /**
- *  The minimum size (width or height) for a given element to be easily accessible. Based on
- *  Material design guidelines:
- *  https://material.io/design/layout/spacing-methods.html#touch-click-targets
+ *  The minimum size (width or height) for a given element to be easily accessible.
+ *  Based on Apple's Human Interface Guidelines:
+ *  https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/adaptivity-and-layout/
  */
-static const float kGTXMinSizeForAccessibleElements = 48.0;
+static const float kGTXMinSizeForAccessibleElements = 44.0;
 
 /**
  *  The minimum contrast ratio for any given text to be considered accessible. Note that smaller
