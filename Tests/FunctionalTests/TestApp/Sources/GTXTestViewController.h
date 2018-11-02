@@ -58,29 +58,34 @@ FOUNDATION_EXTERN NSString *const kAddAccessibleButtonInContainer;
 FOUNDATION_EXTERN NSString *const kAddTinyTappableElement;
 
 /**
- *  Name of the action that adds an element with very high contrast.
+ *  Name of the action that adds a label with very high contrast.
  */
 FOUNDATION_EXTERN NSString *const kAddVeryHighContrastLabel;
 
 /**
- *  Name of the action that adds an element with very low contrast.
+ *  Name of the action that adds a label with very low contrast.
  */
 FOUNDATION_EXTERN NSString *const kAddVeryLowContrastLabel;
 
 /**
- *  Name of the action that adds an element with barely high contrast.
+ *  Name of the action that adds a label with barely high contrast.
  */
 FOUNDATION_EXTERN NSString *const kAddBarelyHighContrastLabel;
 
 /**
- *  Name of the action that adds an element with barely low contrast.
+ *  Name of the action that adds a label with barely low contrast.
  */
 FOUNDATION_EXTERN NSString *const kAddBarelyLowContrastLabel;
 
 /**
- *  Name of the action that adds a low contrast background.
+ *  Name of the action that adds a text view with low contrast.
  */
-FOUNDATION_EXTERN NSString *const kAddLowContrastBackground;
+FOUNDATION_EXTERN NSString *const kAddLowContrastTextView;
+
+/**
+ *  Name of the action that adds a standard text view.
+ */
+FOUNDATION_EXTERN NSString *const kAddStandardUIKitTextView;
 
 /**
  *  Name of the action that adds a high contrast background.

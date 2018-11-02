@@ -45,7 +45,7 @@ static BOOL gTeardownCalledAtleastOnce = NO;
   GTXTestSuite *suite = [GTXTestSuite suiteWithAllTestsFromAllClassesInheritedFromClass:
       [GTXTestSuperClassWithATestMethod class]];
   [GTXiLib installOnTestSuite:suite
-                       checks:@[alwaysFail]
+                       checks:@[gAlwaysFail]
             elementBlacklists:@[]];
   gTeardownCalledAtleastOnce = NO;
 }

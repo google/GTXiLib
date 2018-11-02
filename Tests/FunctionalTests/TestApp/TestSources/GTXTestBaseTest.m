@@ -19,26 +19,26 @@
 #import "GTXTestViewController.h"
 
 static NSInteger gFailureCount = 0;
-id<GTXChecking> checkFailsIfFailingClass;
-id<GTXChecking> alwaysFail;
-id<GTXChecking> alwaysPass;
+id<GTXChecking> gCheckFailsIfFailingClass;
+id<GTXChecking> gAlwaysFail;
+id<GTXChecking> gAlwaysPass;
 
 @implementation GTXTestBaseTest
 
 + (void)setUp {
   [super setUp];
 
-  checkFailsIfFailingClass = [GTXiLib checkWithName:@"checkFailsIfFailingClass"
-                                              block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+  gCheckFailsIfFailingClass = [GTXiLib checkWithName:@"gCheckFailsIfFailingClass"
+                                               block:^BOOL(id element, GTXErrorRefType errorOrNil) {
     return ![element isKindOfClass:[GTXTestFailingClass class]];
   }];
 
-  alwaysFail = [GTXiLib checkWithName:@"AlwaysFail"
-                                block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+  gAlwaysFail = [GTXiLib checkWithName:@"gAlwaysFail"
+                                 block:^BOOL(id element, GTXErrorRefType errorOrNil) {
     return NO;
   }];
-  alwaysPass = [GTXiLib checkWithName:@"AlwaysPass"
-                                block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+  gAlwaysPass = [GTXiLib checkWithName:@"gAlwaysPass"
+                                 block:^BOOL(id element, GTXErrorRefType errorOrNil) {
     return YES;
   }];
 

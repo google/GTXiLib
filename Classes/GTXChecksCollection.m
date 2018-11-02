@@ -31,7 +31,9 @@ NSString *const kGTXCheckNameAccessibilityLabelIsNotRedundantWithTraits =
 NSString *const kGTXCheckNameAccessibilityTraitsDontConflict =
     @"Accessibility Traits Don't Conflict";
 NSString *const kGTXCheckNameMinimumTappableArea = @"Element has Minimum Tappable Area";
-NSString *const kGTXCheckNameMinimumContrastRatio = @"Element has Minimum Contrast Ratio";
+NSString *const kGTXCheckNameLabelMinimumContrastRatio = @"Label has Minimum Contrast Ratio";
+NSString *const kGTXCheckNameTextViewMinimumContrastRatio = @"TextView has Minimum Contrast Ratio";
+
 
 #pragma mark - Globals
 
@@ -166,6 +168,13 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
       UIAccessibilityTraits testUITrait = [testTrait unsignedLongLongValue];
       if ((BOOL)(elementAXTraits & testUITrait)) {
         if ([GTXChecksCollection caseInsensitive:elementAXLabel hasSuffix:redundantText]) {
+          if ([element isKindOfClass:[UIButton class]] &&
+              [GTXChecksCollection caseInsensitive:((UIButton *)element).titleLabel.text
+                                         hasSuffix:redundantText]) {
+            // This is a button whose title itself has the word "button", we must ignore this
+            // kind of elements.
+            continue;
+          }
           NSError *error;
           NSString *stringValue = [self stringValueOfUIAccessibilityTraits:testUITrait
                                                                      error:&error];
@@ -302,10 +311,12 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
 
 + (id<GTXChecking>)checkForSufficientContrastRatio {
   id<GTXChecking> check =
-      [GTXCheckBlock GTXCheckWithName:kGTXCheckNameMinimumContrastRatio
+  [GTXCheckBlock GTXCheckWithName:kGTXCheckNameLabelMinimumContrastRatio
                                 block:^BOOL(id element, GTXErrorRefType errorOrNil) {
     if (![element isKindOfClass:[UILabel class]]) {
       return YES;
+    } else if ([[(UILabel *)element text] length] == 0) {
+      return  YES;
     }
     CGFloat ratio = [GTXImageAndColorUtils contrastRatioOfUILabel:element];
     BOOL hasSufficientContrast =
@@ -318,7 +329,35 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
                                      (float)kGTXMinContrastRatioForAccessibleText, (float)ratio];
       [NSError gtx_logOrSetGTXCheckFailedError:errorOrNil
                                        element:element
-                                          name:kGTXCheckNameMinimumContrastRatio
+                                          name:kGTXCheckNameLabelMinimumContrastRatio
+                                   description:description];
+    }
+    return hasSufficientContrast;
+  }];
+  return check;
+}
+
++ (id<GTXChecking>)checkForSufficientTextViewContrastRatio {
+  id<GTXChecking> check =
+  [GTXCheckBlock GTXCheckWithName:kGTXCheckNameTextViewMinimumContrastRatio
+                            block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+    if (![element isKindOfClass:[UITextView class]]) {
+      return YES;
+    } else if ([[(UITextView *)element text] length] == 0) {
+      return  YES;
+    }
+    CGFloat ratio = [GTXImageAndColorUtils contrastRatioOfUILabel:element];
+    BOOL hasSufficientContrast =
+      (ratio >= kGTXMinContrastRatioForAccessibleText - kGTXContrastRatioAccuracy);
+    if (!hasSufficientContrast) {
+      NSString *description =
+      [NSString stringWithFormat:@"Suggest increasing this element's contrast ratio to at "
+                                 "least "
+                                 @"%.5f the actual ratio was computed as %.5f",
+                                 (float)kGTXMinContrastRatioForAccessibleText, (float)ratio];
+      [NSError gtx_logOrSetGTXCheckFailedError:errorOrNil
+                                       element:element
+                                          name:kGTXCheckNameTextViewMinimumContrastRatio
                                    description:description];
     }
     return hasSufficientContrast;

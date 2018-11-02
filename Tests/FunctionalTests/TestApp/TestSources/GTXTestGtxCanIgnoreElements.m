@@ -29,7 +29,7 @@
   NSArray *blacklist =
       @[[GTXBlacklistFactory blacklistWithClassName:className]];
   [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
-                       checks:@[checkFailsIfFailingClass]
+                       checks:@[gCheckFailsIfFailingClass]
             elementBlacklists:blacklist];
   [GTXTestViewController addElementToTestArea:
       [[GTXTestFailingClass alloc] initWithFrame:CGRectMake(0, 0, 100, 100)]];

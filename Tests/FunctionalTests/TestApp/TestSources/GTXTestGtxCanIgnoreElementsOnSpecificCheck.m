@@ -27,13 +27,13 @@
   NSString *className = NSStringFromClass([GTXTestFailingClass class]);
   NSArray *blacklist =
       @[[GTXBlacklistFactory blacklistWithClassName:className
-                                             checkName:checkFailsIfFailingClass.name]];
+                                             checkName:gCheckFailsIfFailingClass.name]];
   id<GTXChecking> secondFailingCheck = [GTXiLib checkWithName:@"secondFailingCheck"
                                             block:^BOOL(id element, GTXErrorRefType errorOrNil) {
     return ![element isKindOfClass:[GTXTestFailingClass class]];
   }];
   [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
-                       checks:@[checkFailsIfFailingClass, secondFailingCheck]
+                       checks:@[gCheckFailsIfFailingClass, secondFailingCheck]
             elementBlacklists:blacklist];
   [GTXTestViewController addElementToTestArea:
       [[GTXTestFailingClass alloc] initWithFrame:CGRectMake(0, 0, 100, 100)]];

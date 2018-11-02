@@ -61,4 +61,16 @@ extern const CGFloat kGTXContrastRatioAccuracy;
  */
 + (CGFloat)contrastRatioOfUILabel:(UILabel *)label;
 
+/**
+ *  Computes contrast ratio of the given text view to its background.
+ *  This method analyses the text view's text color in the context of its view
+    hierarchy in order to compute the contrast ratio, because
+ *  of which the text view must already be in a window before this method can be used.
+ *
+ *  @param view The text view whose contrast ratio is to be computed.
+ *
+ *  @return The contrast ratio (proportional to 1.0) of the text view.
+ */
++ (CGFloat)contrastRatioOfUITextView:(UITextView *)view;
+
 @end

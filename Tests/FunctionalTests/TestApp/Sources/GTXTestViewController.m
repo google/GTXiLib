@@ -30,6 +30,8 @@ NSString *const kAddVeryHighContrastLabel = @"Add very high contrast label";
 NSString *const kAddVeryLowContrastLabel = @"Add very low contrast label";
 NSString *const kAddBarelyHighContrastLabel = @"Add barely High contrast label";
 NSString *const kAddBarelyLowContrastLabel = @"Add barely Low contrast label";
+NSString *const kAddLowContrastTextView = @"Add low contrast text view";
+NSString *const kAddStandardUIKitTextView = @"Add standard UIKit text view";
 NSString *const kAddLowContrastBackground = @"Add Low contrast background";
 NSString *const kAddHighContrastBackground = @"Add High contrast backgorund";
 
@@ -140,6 +142,18 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
                               backgroundColor:[UIColor clearColor]];
     [sSelf.testArea setBackgroundColor:kAlmostRedButDarker];
   }];
+  [self axetest_addActionNamed:kAddStandardUIKitTextView
+                       handler:^(GTXTestViewController *sSelf) {
+    // Add a standard contrast text view: black text on white background.
+    [sSelf axetest_addTextViewWithForgroundColor:nil
+                                 backgroundColor:nil];
+  }];
+  [self axetest_addActionNamed:kAddLowContrastTextView handler:^(GTXTestViewController *sSelf) {
+    // Add a low contrast text view: black text on very dark grey background.
+    UIColor *veryDarkGreyColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
+    [sSelf axetest_addTextViewWithForgroundColor:[UIColor blackColor]
+                                 backgroundColor:veryDarkGreyColor];
+  }];
 }
 
 - (void)axetest_addActionNamed:(NSString *)name handler:(ActionHandler)handler {
@@ -232,6 +246,21 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
   label.backgroundColor = backgroundColor;
   [label sizeToFit];
   [self.testArea addSubview:label];
+}
+
+- (void)axetest_addTextViewWithForgroundColor:(UIColor *)foregroundColor
+                              backgroundColor:(UIColor *)backgroundColor {
+  UITextView *view = [[UITextView alloc] initWithFrame:CGRectMake(kMargin, kMargin, 0, 0)];
+  view.font = [UIFont systemFontOfSize:60.0];
+  view.text = @"Hello";
+  if (![foregroundColor isEqual:nil]) {
+    view.textColor = foregroundColor;
+  }
+  if (![backgroundColor isEqual:nil]) {
+    view.backgroundColor = backgroundColor;
+  }
+  [view sizeToFit];
+  [self.testArea addSubview:view];
 }
 
 - (IBAction)userTappedClearFields:(UIButton *)sender {

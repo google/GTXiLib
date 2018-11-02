@@ -87,8 +87,13 @@ typedef NS_ENUM(NSUInteger, GTXVersion) {
 + (id<GTXChecking>)checkForMinimumTappableArea;
 
 /**
- *  @return a check that verifies that contrast of all text based elements is at least 3.0.
+ *  @return a check that verifies that contrast of all UILabel elements is at least 3.0.
  */
 + (id<GTXChecking>)checkForSufficientContrastRatio;
+
+/**
+ *  @return a check that verifies that contrast of all UITextView elements is at least 3.0.
+ */
++ (id<GTXChecking>)checkForSufficientTextViewContrastRatio;
 
 @end

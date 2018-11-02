@@ -25,7 +25,7 @@
 + (void)setUp {
   [super setUp];
   [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
-                       checks:@[alwaysFail]
+                       checks:@[gAlwaysFail]
             elementBlacklists:@[]];
 }
 

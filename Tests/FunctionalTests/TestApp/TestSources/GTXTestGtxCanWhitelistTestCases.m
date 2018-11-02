@@ -28,7 +28,7 @@ static BOOL shouldDetectFailure = NO;
   [super setUp];
   [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithClass:self
                                                   andTests:@selector(testMiddle), nil]
-                       checks:@[alwaysFail]
+                       checks:@[gAlwaysFail]
             elementBlacklists:@[]];
 }
 

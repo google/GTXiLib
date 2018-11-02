@@ -56,12 +56,42 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
 }
 
 + (CGFloat)contrastRatioOfUILabel:(UILabel *)label {
-  NSAssert(label.window, @"Label %@ must be part of view hierarchy to use this method, see API "
-                         @"docs for more info.", label);
-  // Create a block that can take snapshot of the given label.
-  UIImage *(^takeSnapshot)(void) = ^{
-    CGRect labelBounds = [label.window convertRect:label.bounds fromView:label];
-    UIWindow *window = label.window;
+  NSAssert(label.window, @"Label %@ must be part of view hierarchy to use this method, see API"
+                         @" docs for more info.", label);
+
+  // Take snapshot of the label as it exists.
+  UIImage *before = [self gtx_takeSnapshot:label];
+
+  // Update the text color and take another snapshot.
+  UIColor *prevColor = label.textColor;
+  label.textColor = [self gtx_shiftedColorWithColor:prevColor];
+  UIImage *after = [self gtx_takeSnapshot:label];
+  label.textColor = prevColor;
+
+  return [self gtx_contrastRatioWithTextElementImage:before textElementColorShiftedImage:after];
+}
+
++ (CGFloat)contrastRatioOfUITextView:(UITextView *)view {
+  NSAssert(view.window, @"View %@ must be part of view hierarchy to use this method, see API"
+           @" docs for more info.", view);
+
+  // Take snapshot of the text view as it exists.
+  UIImage *before = [self gtx_takeSnapshot:view];
+
+  // Update the text color and take another snapshot.
+  UIColor *prevColor = view.textColor;
+  view.textColor = [self gtx_shiftedColorWithColor:prevColor];
+  UIImage *after = [self gtx_takeSnapshot:view];
+  view.textColor = prevColor;
+
+  return [self gtx_contrastRatioWithTextElementImage:before textElementColorShiftedImage:after];
+}
+
+#pragma mark - Utils
+
++ (UIImage *)gtx_takeSnapshot:(UIView *)element {
+    CGRect labelBounds = [element.window convertRect:element.bounds fromView:element];
+    UIWindow *window = element.window;
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
       UIGraphicsBeginImageContextWithOptions(labelBounds.size,
                                              NO, [UIScreen mainScreen].scale);
@@ -76,21 +106,7 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
-  };
-
-  // Take snapshot of the label as it exists.
-  UIImage *before = takeSnapshot();
-
-  // Update the text color and take another snapshot.
-  UIColor *prevColor = label.textColor;
-  label.textColor = [self gtx_shiftedColorWithColor:prevColor];
-  UIImage *after = takeSnapshot();
-  label.textColor = prevColor;
-
-  return [self gtx_contrastRatioWithTextElementImage:before textElementColorShiftedImage:after];
 }
-
-#pragma mark - Utils
 
 /**
  *  Computes the contrast ratio for the text in the given image. This method also requires image of

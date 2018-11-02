@@ -34,9 +34,11 @@
     [GTXBlacklistFactory blacklistWithAccessibilityIdentifier:kAddInaccessibleButton
                                                     checkName:notRedundantCheckName]
   ];
+  NSMutableArray *checks = [NSMutableArray arrayWithArray:[GTXChecksCollection allGTXChecks]];
+  [checks addObject:[GTXChecksCollection checkForSufficientTextViewContrastRatio]];
   // Install all the default checks on the current test class.
   [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
-                       checks:[GTXChecksCollection allGTXChecks]
+                       checks:checks
             elementBlacklists:blacklists];
 }
 
@@ -91,23 +93,33 @@
   _expectErrors = YES;
 }
 
-- (void)testLowContrastElementsCauseErrors {
+- (void)testLowContrastLabelsCauseErrors {
   [self _performTestActionNamed:kAddVeryLowContrastLabel];
   _expectErrors = YES;
 }
 
-- (void)testBarelyContrastElementsCauseErrors {
+- (void)testBarelyContrastLabelsCauseErrors {
   [self _performTestActionNamed:kAddBarelyLowContrastLabel];
   _expectErrors = YES;
 }
 
-- (void)testHighContrastElementsDoesNotCauseFailures {
+- (void)testHighContrastLabelsDoesNotCauseFailures {
   [self _performTestActionNamed:kAddVeryHighContrastLabel];
   _expectErrors = NO;
 }
 
-- (void)testBarelyHighContrastElementsDoesNotCauseFailures {
+- (void)testBarelyHighContrastLabelsDoesNotCauseFailures {
   [self _performTestActionNamed:kAddBarelyHighContrastLabel];
+  _expectErrors = NO;
+}
+
+- (void)testLowContrastTextViewCausesErrors {
+  [self _performTestActionNamed:kAddLowContrastTextView];
+  _expectErrors = YES;
+}
+
+- (void)testStandardContrastTextViewDoesNotCauseFailures {
+  [self _performTestActionNamed:kAddStandardUIKitTextView];
   _expectErrors = NO;
 }
 
