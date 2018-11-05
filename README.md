@@ -3,11 +3,11 @@
 ## What is GTXiLib?
 GTXiLib, Google Toolbox for Accessibility for the iOS platform or simply GTX-eye
 is a framework for iOS accessibility testing. GTXiLib has XCTest integration and
-can be used with any XCTest based frameworks such as
+can be used with any XCTest-based frameworks such as
 [EarlGrey](https://github.com/google/EarlGrey). GTXiLib enhances the value of
-your tests by installing "accessibility checks" on them, your existing test
+your tests by installing "accessibility checks" on them; your existing test
 cases can double as accessibility tests with no other code change on your part.
-GTXiLib is able to accomplish this by hooking into the test tear down process
+GTXiLib is able to accomplish this by hooking into the test tear-down process
 and invoking the registered accessibility checks (such as check for presence of
 accessibility label) on all elements on the screen.
 
@@ -78,12 +78,12 @@ To add GTXiLib to your project use the xcodeproj file in this project or
 ## Incremental Accessibility
 
 GTXiLib APIs support a practical solution for improving accessibility of large
-projects which may not have included accessibility from the get go - incremental
+projects which may not have included accessibility from the get-go -- incremental
 accessibility. Adding GTXiLib to a project that is already halfway through
-development may leads to several test failures and fixing them at once can be
+development may lead to several test failures and fixing them at once can be
 time consuming and tedious. To solve this problem incrementally:
 
-+ Use above snippet to add GTXiLib to all test cases but fix errors in a small
++ Use the above snippet to add GTXiLib to all test cases but fix errors in a small
   subset of them.
   + Blacklist elements that you don't control using GTXiLib's blacklist APIs.
 + Then use `GTXTestSuite's` `suiteWithClass:andTests:` method to
@@ -93,7 +93,7 @@ time consuming and tedious. To solve this problem incrementally:
 Once the code is checked into your repo GTXiLib will catch any new failures in
 those tests. From this point:
 
-+ Every new test being added must be added it to the suite.
++ Every new test being added must be added to the suite.
 + Based on team priorities keep moving existing tests into the suite until all
   methods are in the suite.
 
@@ -110,7 +110,7 @@ accessibility checking to any test case added.
 
 GTXiLib has APIs that allow for creation of your own accessibility checks (in fact
 it does not have to be related to accessibility, for example i18n layout checks
-or even memory usage checks). To create new checks use `GTXiLib's`
+or even memory usage checks). To create new checks use GTXiLib's
 `checkWithName:block:` API and provide a unique name and block that evaluates
 the check and returns YES/NO for success/failure. Add the newly created check
 to the array of checks being passed on to GTXiLib via the install API call.
@@ -123,7 +123,7 @@ away in which case you have the following options at your disposal:
 
 + Temporarily blacklist the test case by using
   `suiteWithAllTestsInClass:exceptTests:`.
-+ Temporarily blacklist the offending element using element blacklist APIs
++ Temporarily blacklist the offending element using element blacklist APIs.
 
 But if you believe GTXiLib has caught a bug that is not an accessibility issue
 please let us know by [filing a bug](https://github.com/google/GTXiLib/issues)
@@ -224,8 +224,8 @@ test’s `+(void) setUp` method:
 
 ## Discuss
 
-Please join us on [ios-accessibility](https://groups.google.com/forum/#!forum/ios-accessibility)
-Google group to discuss all things accessibility and also to keep a tap on all
+Please join us on the [ios-accessibility](https://groups.google.com/forum/#!forum/ios-accessibility)
+Google group to discuss all things accessibility and also to keep a tab on all
 updates to GTXiLib.
 
 ## Contributors
