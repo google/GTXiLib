@@ -38,9 +38,9 @@ NSString *const kGTXCheckNameTextViewMinimumContrastRatio = @"TextView has Minim
 #pragma mark - Globals
 
 /**
- *  The minimum size (width or height) for a given element to be easily accessible.
- *  Based on Apple's Human Interface Guidelines:
- *  https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/adaptivity-and-layout/
+ *  The minimum size (width or height) for a given element to be easily accessible. Please read
+ *  Material design guidelines for more on touch targets:
+ *  https://material.io/design/layout/spacing-methods.html#touch-click-targets
  */
 static const float kGTXMinSizeForAccessibleElements = 44.0;
 

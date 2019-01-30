@@ -39,6 +39,7 @@ FOUNDATION_EXPORT const unsigned char GTXiLibVersionString[];
 #import <GTXiLib/GTXImageAndColorUtils.h>
 #import <GTXiLib/GTXLogging.h>
 #import <GTXiLib/GTXPluginXCTestCase.h>
+#import <GTXiLib/GTXTestEnvironment.h>
 #import <GTXiLib/GTXToolKit.h>
 #import <GTXiLib/GTXTestSuite.h>
 #import <GTXiLib/NSError+GTXAdditions.h>
