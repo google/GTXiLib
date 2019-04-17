@@ -125,6 +125,8 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
   // Luminace of image is computed using Reinhard’s method:
   // Luminace of image = Geometric Mean of luminance of individual pixels.
   CGFloat textLogAverage = 0;
+  CGFloat textLogDark = CGFLOAT_MAX;
+  CGFloat textLogLite = CGFLOAT_MIN;
   NSInteger textPixelCount = 0;
   CGFloat backgroundLogAverage = 0;
   NSInteger backgroundPixelCount = 0;
@@ -163,6 +165,12 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
         // This pixel has changed from before: it is part of the text.
         textLogAverage += logLuminance;
         textPixelCount += 1;
+        if (textLogDark > logLuminance) {
+          textLogDark = logLuminance;
+        }
+        if (textLogLite < logLuminance) {
+          textLogLite = logLuminance;
+        }
       } else {
         // This pixel has *not* changed from before: it is part of the text background.
         backgroundLogAverage += logLuminance;
@@ -173,9 +181,15 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
 
   // Compute the geometric mean and scale the result back.
   CGFloat textLuminance = 1.0f;
+  CGFloat textLuminanceDark = 1.0f;
+  CGFloat textLuminanceLite = 1.0f;
   if (textPixelCount != 0) {
     textLuminance =
         (CGFloat)(exp(textLogAverage / textPixelCount) - luminanceOffset) / luminanceScale;
+    textLuminanceDark =
+        (CGFloat)(exp(textLogDark) - luminanceOffset) / luminanceScale;
+    textLuminanceLite =
+        (CGFloat)(exp(textLogLite) - luminanceOffset) / luminanceScale;
   }
   CGFloat backgroundLuminance = 1.0;
   if (backgroundPixelCount != 0) {
@@ -183,8 +197,14 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
         (CGFloat)(exp(backgroundLogAverage / backgroundPixelCount) - luminanceOffset) /
                   luminanceScale;
   }
-  return [self contrastRatioWithLuminaceOfFirstColor:textLuminance
-                           andLuminanceOfSecondColor:backgroundLuminance];
+  CGFloat averageLuminanceRatio = [self contrastRatioWithLuminaceOfFirstColor:textLuminance
+                                                    andLuminanceOfSecondColor:backgroundLuminance];
+  CGFloat darkLuminanceRatio = [self contrastRatioWithLuminaceOfFirstColor:textLuminanceDark
+                                                 andLuminanceOfSecondColor:backgroundLuminance];
+  CGFloat liteLuminanceRatio = [self contrastRatioWithLuminaceOfFirstColor:textLuminanceLite
+                                                 andLuminanceOfSecondColor:backgroundLuminance];
+
+  return MAX(MAX(averageLuminanceRatio, darkLuminanceRatio), liteLuminanceRatio);
 }
 
 /**
