@@ -55,7 +55,8 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
   return (brighterColorLuminance + 0.05f) / (darkerColorLuminance + 0.05f);
 }
 
-+ (CGFloat)contrastRatioOfUILabel:(UILabel *)label {
+
++ (CGFloat)contrastRatioOfUILabel:(UILabel *)label useMostContrastingPixel:(BOOL)useMostContrastingPixel {
   NSAssert(label.window, @"Label %@ must be part of view hierarchy to use this method, see API"
                          @" docs for more info.", label);
 
@@ -68,10 +69,12 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
   UIImage *after = [self gtx_takeSnapshot:label];
   label.textColor = prevColor;
 
-  return [self gtx_contrastRatioWithTextElementImage:before textElementColorShiftedImage:after];
+  return [self gtx_contrastRatioWithTextElementImage:before
+                        textElementColorShiftedImage:after
+                             useMostContrastingPixel:useMostContrastingPixel];
 }
 
-+ (CGFloat)contrastRatioOfUITextView:(UITextView *)view {
++ (CGFloat)contrastRatioOfUITextView:(UITextView *)view useMostContrastingPixel:(BOOL)useMostContrastingPixel {
   NSAssert(view.window, @"View %@ must be part of view hierarchy to use this method, see API"
            @" docs for more info.", view);
 
@@ -84,7 +87,9 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
   UIImage *after = [self gtx_takeSnapshot:view];
   view.textColor = prevColor;
 
-  return [self gtx_contrastRatioWithTextElementImage:before textElementColorShiftedImage:after];
+  return [self gtx_contrastRatioWithTextElementImage:before
+                        textElementColorShiftedImage:after
+                             useMostContrastingPixel:useMostContrastingPixel];
 }
 
 #pragma mark - Utils
@@ -117,14 +122,18 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
  *
  *  @param original     The original image of the text element.
  *  @param colorShifted Image of the text element with color of the text shifted (changed).
+ *  @param useMostContrastingPixel Determine if this check is using the most contrasting pixel
  *
  *  @return The contrast ratio (proportional to 1.0) of the label.
  */
 + (CGFloat)gtx_contrastRatioWithTextElementImage:(UIImage *)original
-                    textElementColorShiftedImage:(UIImage *)colorShifted {
+                    textElementColorShiftedImage:(UIImage *)colorShifted
+                       useMostContrastingPixel:(BOOL)useMostContrastingPixel {
   // Luminace of image is computed using Reinhard’s method:
   // Luminace of image = Geometric Mean of luminance of individual pixels.
   CGFloat textLogAverage = 0;
+  CGFloat textLogDark = CGFLOAT_MAX;
+  CGFloat textLogLite = CGFLOAT_MIN;
   NSInteger textPixelCount = 0;
   CGFloat backgroundLogAverage = 0;
   NSInteger backgroundPixelCount = 0;
@@ -163,6 +172,14 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
         // This pixel has changed from before: it is part of the text.
         textLogAverage += logLuminance;
         textPixelCount += 1;
+        if (useMostContrastingPixel) {
+          if (textLogDark > logLuminance) {
+            textLogDark = logLuminance;
+          }
+          if (textLogLite < logLuminance) {
+            textLogLite = logLuminance;
+          }
+        }
       } else {
         // This pixel has *not* changed from before: it is part of the text background.
         backgroundLogAverage += logLuminance;
@@ -173,9 +190,17 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
 
   // Compute the geometric mean and scale the result back.
   CGFloat textLuminance = 1.0f;
+  CGFloat textLuminanceDark = 1.0f;
+  CGFloat textLuminanceLite = 1.0f;
   if (textPixelCount != 0) {
     textLuminance =
         (CGFloat)(exp(textLogAverage / textPixelCount) - luminanceOffset) / luminanceScale;
+    if (useMostContrastingPixel) {
+      textLuminanceDark =
+          (CGFloat)(exp(textLogDark) - luminanceOffset) / luminanceScale;
+      textLuminanceLite =
+          (CGFloat)(exp(textLogLite) - luminanceOffset) / luminanceScale;
+    }
   }
   CGFloat backgroundLuminance = 1.0;
   if (backgroundPixelCount != 0) {
@@ -183,8 +208,24 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
         (CGFloat)(exp(backgroundLogAverage / backgroundPixelCount) - luminanceOffset) /
                   luminanceScale;
   }
-  return [self contrastRatioWithLuminaceOfFirstColor:textLuminance
-                           andLuminanceOfSecondColor:backgroundLuminance];
+  CGFloat averageLuminanceRatio = [self contrastRatioWithLuminaceOfFirstColor:textLuminance
+                                                    andLuminanceOfSecondColor:backgroundLuminance];
+  if (!useMostContrastingPixel) {
+    return averageLuminanceRatio;
+  }
+
+  CGFloat darkLuminanceRatio = [self contrastRatioWithLuminaceOfFirstColor:textLuminanceDark
+                                                 andLuminanceOfSecondColor:backgroundLuminance];
+  CGFloat liteLuminanceRatio = [self contrastRatioWithLuminaceOfFirstColor:textLuminanceLite
+                                                 andLuminanceOfSecondColor:backgroundLuminance];
+  return MAX(MAX(averageLuminanceRatio, darkLuminanceRatio), liteLuminanceRatio);
+}
+
++ (CGFloat)gtx_contrastRatioWithTextElementImage:(UIImage *)original
+                    textElementColorShiftedImage:(UIImage *)colorShifted {
+  return [self gtx_contrastRatioWithTextElementImage:original
+                        textElementColorShiftedImage:colorShifted
+                             useMostContrastingPixel:NO];
 }
 
 /**
