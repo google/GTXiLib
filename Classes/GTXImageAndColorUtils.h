@@ -56,10 +56,11 @@ extern const CGFloat kGTXContrastRatioAccuracy;
  *  of which the label must already be in a window before this method can be used.
  *
  *  @param label The label whose contrast ratio is to be computed.
+ *  @param useMostContrastingPixel Determine if this check is using the most contrasting pixel
  *
  *  @return The contrast ratio (proportional to 1.0) of the label.
  */
-+ (CGFloat)contrastRatioOfUILabel:(UILabel *)label;
++ (CGFloat)contrastRatioOfUILabel:(UILabel *)label useMostContrastingPixel:(BOOL)useMostContrastingPixel;
 
 /**
  *  Computes contrast ratio of the given text view to its background.
@@ -68,9 +69,10 @@ extern const CGFloat kGTXContrastRatioAccuracy;
  *  of which the text view must already be in a window before this method can be used.
  *
  *  @param view The text view whose contrast ratio is to be computed.
+ *  @param useMostContrastingPixel Determine if this check is using the most contrasting pixel
  *
  *  @return The contrast ratio (proportional to 1.0) of the text view.
  */
-+ (CGFloat)contrastRatioOfUITextView:(UITextView *)view;
++ (CGFloat)contrastRatioOfUITextView:(UITextView *)view useMostContrastingPixel:(BOOL)useMostContrastingPixel;
 
 @end

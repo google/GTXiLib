@@ -32,7 +32,9 @@ NSString *const kGTXCheckNameAccessibilityTraitsDontConflict =
     @"Accessibility Traits Don't Conflict";
 NSString *const kGTXCheckNameMinimumTappableArea = @"Element has Minimum Tappable Area";
 NSString *const kGTXCheckNameLabelMinimumContrastRatio = @"Label has Minimum Contrast Ratio";
+NSString *const kGTXCheckNameLabelMinimumContrastRatioWithMostContrastingPixel = @"Label has Minimum Contrast Ratio Comparing The Most Contrasting Pixel";
 NSString *const kGTXCheckNameTextViewMinimumContrastRatio = @"TextView has Minimum Contrast Ratio";
+NSString *const kGTXCheckNameTextViewMinimumContrastRatioWithMostContrastingPixel = @"TextView has Minimum Contrast Ratio Comparing The Most Contrasting Pixel";
 
 
 #pragma mark - Globals
@@ -310,15 +312,25 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
 }
 
 + (id<GTXChecking>)checkForSufficientContrastRatio {
+  return [self checkForSufficientContrastRatioWithMostContrastingPixel:NO];
+}
+
++ (id<GTXChecking>)checkForSufficientContrastRatioWithMostContrastingPixel {
+  return [self checkForSufficientContrastRatioWithMostContrastingPixel:YES];
+}
+
++ (id<GTXChecking>)checkForSufficientContrastRatioWithMostContrastingPixel:(BOOL)useMostContrastingPixel {
+  NSString *checkName = useMostContrastingPixel ? kGTXCheckNameLabelMinimumContrastRatioWithMostContrastingPixel : kGTXCheckNameLabelMinimumContrastRatio;
   id<GTXChecking> check =
-  [GTXCheckBlock GTXCheckWithName:kGTXCheckNameLabelMinimumContrastRatio
-                                block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+  [GTXCheckBlock GTXCheckWithName:checkName
+                            block:^BOOL(id element, GTXErrorRefType errorOrNil) {
     if (![element isKindOfClass:[UILabel class]]) {
       return YES;
     } else if ([[(UILabel *)element text] length] == 0) {
       return  YES;
     }
-    CGFloat ratio = [GTXImageAndColorUtils contrastRatioOfUILabel:element];
+    CGFloat ratio = [GTXImageAndColorUtils contrastRatioOfUILabel:element
+                                          useMostContrastingPixel:useMostContrastingPixel];
     BOOL hasSufficientContrast =
         (ratio >= kGTXMinContrastRatioForAccessibleText - kGTXContrastRatioAccuracy);
     if (!hasSufficientContrast) {
@@ -329,7 +341,7 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
                                      (float)kGTXMinContrastRatioForAccessibleText, (float)ratio];
       [NSError gtx_logOrSetGTXCheckFailedError:errorOrNil
                                        element:element
-                                          name:kGTXCheckNameLabelMinimumContrastRatio
+                                          name:checkName
                                    description:description];
     }
     return hasSufficientContrast;
@@ -338,15 +350,25 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
 }
 
 + (id<GTXChecking>)checkForSufficientTextViewContrastRatio {
+  return [self checkForSufficientTextViewContrastRatioWithMostContrastingPixel:NO];
+}
+
++ (id<GTXChecking>)checkForSufficientTextViewContrastRatioWithMostContrastingPixel {
+  return [self checkForSufficientTextViewContrastRatioWithMostContrastingPixel:YES];
+}
+
++ (id<GTXChecking>)checkForSufficientTextViewContrastRatioWithMostContrastingPixel:(BOOL)useMostContrastingPixel {
+  NSString *checkName = useMostContrastingPixel ? kGTXCheckNameTextViewMinimumContrastRatioWithMostContrastingPixel : kGTXCheckNameTextViewMinimumContrastRatio;
   id<GTXChecking> check =
-  [GTXCheckBlock GTXCheckWithName:kGTXCheckNameTextViewMinimumContrastRatio
+  [GTXCheckBlock GTXCheckWithName:checkName
                             block:^BOOL(id element, GTXErrorRefType errorOrNil) {
     if (![element isKindOfClass:[UITextView class]]) {
       return YES;
     } else if ([[(UITextView *)element text] length] == 0) {
       return  YES;
     }
-    CGFloat ratio = [GTXImageAndColorUtils contrastRatioOfUILabel:element];
+    CGFloat ratio = [GTXImageAndColorUtils contrastRatioOfUITextView:element
+                                             useMostContrastingPixel:useMostContrastingPixel];
     BOOL hasSufficientContrast =
       (ratio >= kGTXMinContrastRatioForAccessibleText - kGTXContrastRatioAccuracy);
     if (!hasSufficientContrast) {
@@ -357,7 +379,7 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
                                  (float)kGTXMinContrastRatioForAccessibleText, (float)ratio];
       [NSError gtx_logOrSetGTXCheckFailedError:errorOrNil
                                        element:element
-                                          name:kGTXCheckNameTextViewMinimumContrastRatio
+                                          name:checkName
                                    description:description];
     }
     return hasSufficientContrast;

@@ -92,8 +92,20 @@ typedef NS_ENUM(NSUInteger, GTXVersion) {
 + (id<GTXChecking>)checkForSufficientContrastRatio;
 
 /**
+ *  @return a check that verifies that contrast of all UILabel elements using the most contrasting
+ *  pixel is at least 3.0.
+ */
++ (id<GTXChecking>)checkForSufficientContrastRatioWithMostContrastingPixel;
+
+/**
  *  @return a check that verifies that contrast of all UITextView elements is at least 3.0.
  */
 + (id<GTXChecking>)checkForSufficientTextViewContrastRatio;
+
+/**
+ *  @return a check that verifies that contrast of all UITextView elements using the most contrasting
+ *  pixel is at least 3.0.
+ */
++ (id<GTXChecking>)checkForSufficientTextViewContrastRatioWithMostContrastingPixel;
 
 @end
