@@ -200,11 +200,13 @@ static BOOL gIsInTearDown;
   if (gCurrentOptions != currentTestCaseOptions) {
     gCurrentOptions = currentTestCaseOptions;
     if (gCurrentOptions) {
-      gToolkit = [[GTXToolKit alloc] init];
-      NSAssert(gCurrentOptions.checks && gCurrentOptions.checks.count > 0,
-               @"At least one check must be installed!");
-      for (id<GTXChecking> check in gCurrentOptions.checks) {
-        [gToolkit registerCheck:check];
+      if (gCurrentOptions.checks.count > 0) {
+        gToolkit = [GTXToolKit toolkitWithNoChecks];
+        for (id<GTXChecking> check in gCurrentOptions.checks) {
+          [gToolkit registerCheck:check];
+        }
+      } else {
+        gToolkit = [GTXToolKit defaultToolkit];
       }
       for (id<GTXBlacklisting> blacklist in gCurrentOptions.elementBlacklist) {
         [gToolkit registerBlacklist:blacklist];

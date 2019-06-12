@@ -29,6 +29,25 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface GTXToolKit : NSObject
 
+/**
+ Instead if init, use +defaultToolkit, +toolkitWithNoChecks or +toolkitWithAllDefaultChecks.
+ */
+- (instancetype)init NS_UNAVAILABLE;
+
+/**
+ @return A new toolkit object a single default check.
+ */
++ (instancetype)defaultToolkit;
+
+/**
+ @return A new empty toolkit object.
+ */
++ (instancetype)toolkitWithNoChecks;
+
+/**
+ @return A new toolkit object with all default checks.
+ */
++ (instancetype)toolkitWithAllDefaultChecks;
 
 /**
  Creates a check.
@@ -38,7 +57,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return A newly created check.
  */
 + (id<GTXChecking>)checkWithName:(NSString *)name block:(GTXCheckHandlerBlock)block;
-
 
 /**
  Registers the given check to be executed on all elements this instance is used on.
@@ -55,7 +73,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)registerBlacklist:(id<GTXBlacklisting>)blacklist;
 
-
 /**
  Applies the registered checks on the given element while respecting blacklisted elements.
 
@@ -64,7 +81,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return @c YES if all checks passed @c NO otherwise.
  */
 - (BOOL)checkElement:(id)element error:(GTXErrorRefType)errorOrNil;
-
 
 /**
  Applies the registered checks on all elements in the accessibility tree under the given root

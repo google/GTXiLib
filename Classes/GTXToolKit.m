@@ -20,7 +20,16 @@
 #import "GTXAnalytics.h"
 #import "GTXBlacklistBlock.h"
 #import "GTXBlacklistFactory.h"
+#import "GTXChecksCollection.h"
 #import "NSError+GTXAdditions.h"
+
+#pragma mark - Extension
+
+@interface GTXToolKit ()
+
+- (instancetype)initDefault NS_DESIGNATED_INITIALIZER;
+
+@end
 
 #pragma mark - Implementation
 
@@ -29,7 +38,26 @@
   NSMutableArray<id<GTXBlacklisting>> *_blacklists;
 }
 
-- (instancetype)init {
++ (instancetype)defaultToolkit {
+  GTXToolKit *toolkit = [[GTXToolKit alloc] initDefault];
+  [toolkit registerCheck:GTXChecksCollection.checkForAXLabelPresent];
+  return toolkit;
+}
+
++ (instancetype)toolkitWithNoChecks {
+  GTXToolKit *toolkit = [[GTXToolKit alloc] initDefault];
+  return toolkit;
+}
+
++ (instancetype)toolkitWithAllDefaultChecks {
+  GTXToolKit *toolkit = [[GTXToolKit alloc] initDefault];
+  for (id<GTXChecking> check in GTXChecksCollection.allGTXChecks) {
+    [toolkit registerCheck:check];
+  }
+  return toolkit;
+}
+
+- (instancetype)initDefault {
   self = [super init];
   if (self) {
     _checks = [[NSMutableArray alloc] init];

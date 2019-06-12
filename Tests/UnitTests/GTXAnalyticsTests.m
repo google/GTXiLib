@@ -44,7 +44,7 @@
 }
 
 - (void)testCheckElementReportsAnalyticsCorrectly {
-  GTXToolKit *toolkit = [[GTXToolKit alloc] init];
+  GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
   __block NSInteger successEventsCount = 0;
   __block NSInteger failureEventsCount = 0;
   [GTXAnalytics setHandler:^(GTXAnalyticsEvent event) {
@@ -84,7 +84,7 @@
 }
 
 - (void)testCheckElementsFromRootElementsReportsAnalyticsCorrectly {
-  GTXToolKit *toolkit = [[GTXToolKit alloc] init];
+  GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
   __block NSInteger successEventsCount = 0;
   __block NSInteger failureEventsCount = 0;
   [GTXAnalytics setHandler:^(GTXAnalyticsEvent event) {
@@ -128,7 +128,7 @@
 }
 
 - (void)testAnalyticsCanBeDisabled {
-  GTXToolKit *toolkit = [[GTXToolKit alloc] init];
+  GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
   __block NSInteger successEventsCount = 0;
   __block NSInteger failureEventsCount = 0;
   [GTXAnalytics setHandler:^(GTXAnalyticsEvent event) {

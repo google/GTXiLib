@@ -34,8 +34,7 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
       return (CGFloat)pow((component + 0.055f) / 1.055f, 2.4f);
     }
   };
-  return (0.2126f * adjustedComponent(red) +
-          0.0722f * adjustedComponent(blue) +
+  return (0.2126f * adjustedComponent(red) + 0.0722f * adjustedComponent(blue) +
           0.7152f * adjustedComponent(green));
 }
 
@@ -56,8 +55,10 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
 }
 
 + (CGFloat)contrastRatioOfUILabel:(UILabel *)label {
-  NSAssert(label.window, @"Label %@ must be part of view hierarchy to use this method, see API"
-                         @" docs for more info.", label);
+  NSAssert(label.window,
+           @"Label %@ must be part of view hierarchy to use this method, see API"
+           @" docs for more info.",
+           label);
 
   // Take snapshot of the label as it exists.
   UIImage *before = [self gtx_takeSnapshot:label];
@@ -72,8 +73,10 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
 }
 
 + (CGFloat)contrastRatioOfUITextView:(UITextView *)view {
-  NSAssert(view.window, @"View %@ must be part of view hierarchy to use this method, see API"
-           @" docs for more info.", view);
+  NSAssert(view.window,
+           @"View %@ must be part of view hierarchy to use this method, see API"
+           @" docs for more info.",
+           view);
 
   // Take snapshot of the text view as it exists.
   UIImage *before = [self gtx_takeSnapshot:view];
@@ -90,22 +93,20 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
 #pragma mark - Utils
 
 + (UIImage *)gtx_takeSnapshot:(UIView *)element {
-    CGRect labelBounds = [element.window convertRect:element.bounds fromView:element];
-    UIWindow *window = element.window;
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
-      UIGraphicsBeginImageContextWithOptions(labelBounds.size,
-                                             NO, [UIScreen mainScreen].scale);
-    } else {
-      UIGraphicsBeginImageContext(labelBounds.size);
-    }
-    CGRect screenRect = CGRectZero;
-    screenRect.origin = CGPointMake(-labelBounds.origin.x,
-                                    -labelBounds.origin.y);
-    screenRect.size = window.bounds.size;
-    [window drawViewHierarchyInRect:screenRect afterScreenUpdates:YES];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
+  CGRect labelBounds = [element.window convertRect:element.bounds fromView:element];
+  UIWindow *window = element.window;
+  if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+    UIGraphicsBeginImageContextWithOptions(labelBounds.size, NO, [UIScreen mainScreen].scale);
+  } else {
+    UIGraphicsBeginImageContext(labelBounds.size);
+  }
+  CGRect screenRect = CGRectZero;
+  screenRect.origin = CGPointMake(-labelBounds.origin.x, -labelBounds.origin.y);
+  screenRect.size = window.bounds.size;
+  [window drawViewHierarchyInRect:screenRect afterScreenUpdates:YES];
+  UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  return image;
 }
 
 /**
@@ -122,8 +123,8 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
  */
 + (CGFloat)gtx_contrastRatioWithTextElementImage:(UIImage *)original
                     textElementColorShiftedImage:(UIImage *)colorShifted {
-  // Luminace of image is computed using Reinhard’s method:
-  // Luminace of image = Geometric Mean of luminance of individual pixels.
+  // Luminance of image is computed using Reinhard’s method:
+  // Luminance of image = Geometric Mean of luminance of individual pixels.
   CGFloat textLogAverage = 0;
   NSInteger textPixelCount = 0;
   CGFloat backgroundLogAverage = 0;
@@ -136,10 +137,10 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
   // compute e to the power of the average. Also, since luminances are in the range of 0 to 1 the
   // logarithms will lie in the range negative infinity to 0 which will still cause inaccuracies
   // when we sum them, to avoid this we first offset all luminances by 1.0 and scale them by
-  // e (~2.7182) causing their logarithms to fall in the range of 0 to 1 instead leading to better
-  // accuracy of the geometric mean.
+  // e - 1 (~1.7182) causing their logarithms to fall in the range of 0 to 1 instead leading to
+  // better accuracy of the geometric mean.
   const CGFloat luminanceOffset = 1.0f;
-  const CGFloat luminanceScale = (CGFloat)M_E;
+  const CGFloat luminanceScale = (CGFloat)M_E - luminanceOffset;
   for (NSUInteger column = 0; column < beforeData.width; column++) {
     for (NSUInteger row = 0; row < beforeData.height; row++) {
       unsigned char *beforeOffset =
@@ -157,8 +158,9 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
       }
 
       CGFloat logLuminance =
-          (CGFloat)log(luminanceOffset +
-                       luminanceScale * [self luminanceWithRed:red blue:blue green:green]);
+          (CGFloat)log(luminanceOffset + luminanceScale * [self luminanceWithRed:red
+                                                                            blue:blue
+                                                                           green:green]);
       if (beforeOffset[0] != afterOffset[0]) {
         // This pixel has changed from before: it is part of the text.
         textLogAverage += logLuminance;
@@ -181,7 +183,7 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
   if (backgroundPixelCount != 0) {
     backgroundLuminance =
         (CGFloat)(exp(backgroundLogAverage / backgroundPixelCount) - luminanceOffset) /
-                  luminanceScale;
+        luminanceScale;
   }
   return [self contrastRatioWithLuminaceOfFirstColor:textLuminance
                            andLuminanceOfSecondColor:backgroundLuminance];

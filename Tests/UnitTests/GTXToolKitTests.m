@@ -45,8 +45,14 @@
 
 @implementation GTXToolKitTests
 
+- (void)testToolkitCreationMethods {
+  XCTAssertNotNil([GTXToolKit defaultToolkit]);
+  XCTAssertNotNil([GTXToolKit toolkitWithNoChecks]);
+  XCTAssertNotNil([GTXToolKit toolkitWithAllDefaultChecks]);
+}
+
 - (void)testRegisterCheckRaisesExceptionForDuplicateCheckNames {
-  GTXToolKit *toolkit = [[GTXToolKit alloc] init];
+  GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
   NSString *checkName = @"foo";
   [toolkit registerCheck:[GTXToolKit checkWithName:checkName block:noOpCheckBlock]];
   XCTAssertThrows([toolkit registerCheck:[GTXToolKit checkWithName:checkName
@@ -54,7 +60,7 @@
 }
 
 - (void)testCheckElementReportsFailures {
-  GTXToolKit *toolkit = [[GTXToolKit alloc] init];
+  GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
   NSObject *failingElement = [self newAccessibleElement];
   NSObject *passingElement = [self newAccessibleElement];
   id<GTXChecking> check = [GTXToolKit checkWithName:@"Foo"
@@ -71,7 +77,7 @@
 }
 
 - (void)testCheckElementsFromRootElementsReportsFailures {
-  GTXToolKit *toolkit = [[GTXToolKit alloc] init];
+  GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
   NSObject *root = [self newInAccessibleElement];
   NSObject *child1 = [self newAccessibleElement];
   NSObject *child2 = [self newInAccessibleElement];
@@ -92,7 +98,7 @@
 }
 
 - (void)testCheckElementsFromRootElementsSkipsHiddenAXElements {
-  GTXToolKit *toolkit = [[GTXToolKit alloc] init];
+  GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
   NSObject *root = [self newAccessibleElement];
   // Since root is an accessibile element its children are hidden.
   NSObject *child1 = [self newAccessibleElement];
@@ -112,7 +118,7 @@
 }
 
 - (void)testBlacklistAPICanSkipElementsFromChecks {
-  GTXToolKit *toolkit = [[GTXToolKit alloc] init];
+  GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
   NSObject *failingElement = [self newAccessibleElement];
   id<GTXChecking> check = [GTXToolKit checkWithName:@"Foo"
                                               block:^BOOL(id _Nonnull element,
@@ -151,7 +157,7 @@
                                                  return element != allChecksFailingElement;
                                                }];
 
-  GTXToolKit *toolkit1 = [[GTXToolKit alloc] init];
+  GTXToolKit *toolkit1 = [GTXToolKit toolkitWithNoChecks];
   [toolkit1 registerCheck:check1];
   [toolkit1 registerCheck:check2];
   XCTAssertFalse([toolkit1 checkElement:check1FailingElement error:nil]);
