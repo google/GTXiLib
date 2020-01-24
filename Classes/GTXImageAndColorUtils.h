@@ -55,11 +55,15 @@ extern const CGFloat kGTXContrastRatioAccuracy;
  *  text color in the context of its view hierarchy in order to compute the contrast ratio, because
  *  of which the label must already be in a window before this method can be used.
  *
- *  @param label The label whose contrast ratio is to be computed.
+ *  @param label                 The label whose contrast ratio is to be computed.
+ *  @param outAvgTextColor       An optional pointer to be set to the computed text color.
+ *  @param outAvgBackgroundColor An optional pointer to be set to the computed background color.
  *
  *  @return The contrast ratio (proportional to 1.0) of the label.
  */
-+ (CGFloat)contrastRatioOfUILabel:(UILabel *)label;
++ (CGFloat)contrastRatioOfUILabel:(UILabel *)label
+                  outAvgTextColor:(UIColor **)outAvgTextColor
+            outAvgBackgroundColor:(UIColor **)outAvgBackgroundColor;
 
 /**
  *  Computes contrast ratio of the given text view to its background.
@@ -67,10 +71,14 @@ extern const CGFloat kGTXContrastRatioAccuracy;
     hierarchy in order to compute the contrast ratio, because
  *  of which the text view must already be in a window before this method can be used.
  *
- *  @param view The text view whose contrast ratio is to be computed.
+ *  @param view                  The text view whose contrast ratio is to be computed.
+ *  @param outAvgTextColor       An optional pointer to be set to the computed text color.
+ *  @param outAvgBackgroundColor An optional pointer to be set to the computed background color.
  *
  *  @return The contrast ratio (proportional to 1.0) of the text view.
  */
-+ (CGFloat)contrastRatioOfUITextView:(UITextView *)view;
++ (CGFloat)contrastRatioOfUITextView:(UITextView *)view
+                     outAvgTextColor:(UIColor **)outAvgTextColor
+               outAvgBackgroundColor:(UIColor **)outAvgBackgroundColor;
 
 @end

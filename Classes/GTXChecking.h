@@ -16,14 +16,17 @@
 
 #import <UIKit/UIKit.h>
 
+#import "GTXArtifactImplementing.h"
 #import "GTXCommon.h"
+#import "GTXReport.h"
+#import "GTXSnapshotContainer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  Protocol for performing accessibility checks.
  */
-@protocol GTXChecking<NSObject>
+@protocol GTXChecking <NSObject>
 
 /**
  *  Performs the check on the given @c element.
@@ -41,6 +44,26 @@ NS_ASSUME_NONNULL_BEGIN
  *          uniquely identify the check.
  */
 - (NSString *)name;
+
+@optional
+
+/**
+ *  @return An array of classes whose snapshots are required by this check for performing the check
+ *          verification.
+ */
+- (NSArray<Class<GTXArtifactImplementing>> *)requiredArtifactClasses;
+
+/**
+ *  Performs the check on the given snapshot.
+ *
+ *  @param      snapshots The target snapshot on which this check needs to be performed.
+ *  @param[out] report    The report to be populated with issues detected by the check.
+ *
+ *  @return @c YES if the check succeeded (no issues were detected and report is unchanged), else @c
+ *          NO.
+ */
+- (BOOL)performCheckOnSnapshot:(GTXSnapshotContainer *)snapshots
+          addingErrorsToReport:(GTXReport *)report;
 
 @end
 

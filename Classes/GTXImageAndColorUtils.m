@@ -54,7 +54,9 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
   return (brighterColorLuminance + 0.05f) / (darkerColorLuminance + 0.05f);
 }
 
-+ (CGFloat)contrastRatioOfUILabel:(UILabel *)label {
++ (CGFloat)contrastRatioOfUILabel:(UILabel *)label
+                  outAvgTextColor:(UIColor **)outAvgTextColor
+            outAvgBackgroundColor:(UIColor **)outAvgBackgroundColor {
   NSAssert(label.window,
            @"Label %@ must be part of view hierarchy to use this method, see API"
            @" docs for more info.",
@@ -69,10 +71,15 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
   UIImage *after = [self gtx_takeSnapshot:label];
   label.textColor = prevColor;
 
-  return [self gtx_contrastRatioWithTextElementImage:before textElementColorShiftedImage:after];
+  return [self gtx_contrastRatioWithTextElementImage:before
+                        textElementColorShiftedImage:after
+                                     outAvgTextColor:outAvgTextColor
+                               outAvgBackgroundColor:outAvgBackgroundColor];
 }
 
-+ (CGFloat)contrastRatioOfUITextView:(UITextView *)view {
++ (CGFloat)contrastRatioOfUITextView:(UITextView *)view
+                     outAvgTextColor:(UIColor **)outAvgTextColor
+               outAvgBackgroundColor:(UIColor **)outAvgBackgroundColor {
   NSAssert(view.window,
            @"View %@ must be part of view hierarchy to use this method, see API"
            @" docs for more info.",
@@ -87,7 +94,10 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
   UIImage *after = [self gtx_takeSnapshot:view];
   view.textColor = prevColor;
 
-  return [self gtx_contrastRatioWithTextElementImage:before textElementColorShiftedImage:after];
+  return [self gtx_contrastRatioWithTextElementImage:before
+                        textElementColorShiftedImage:after
+                                     outAvgTextColor:outAvgTextColor
+                               outAvgBackgroundColor:outAvgBackgroundColor];
 }
 
 #pragma mark - Utils
@@ -100,13 +110,35 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
   } else {
     UIGraphicsBeginImageContext(labelBounds.size);
   }
-  CGRect screenRect = CGRectZero;
-  screenRect.origin = CGPointMake(-labelBounds.origin.x, -labelBounds.origin.y);
-  screenRect.size = window.bounds.size;
-  [window drawViewHierarchyInRect:screenRect afterScreenUpdates:YES];
+  CGContextRef context = UIGraphicsGetCurrentContext();
+  CGContextTranslateCTM(context, -labelBounds.origin.x, -labelBounds.origin.y);
+  [GTXImageAndColorUtils gtx_renderViewHierarchy:window inContext:context];
   UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
   return image;
+}
+
+/**
+ *  Renders the view hierarchy of @c view to @c context, appropriately translating subviews to
+ *  render in the correct position. The view hierarchy must be rendered manually because
+ *  @c drawViewHierarchy:afterScreenUpdates: with @c YES for @c afterScreenUpdates causes VoiceOver
+ *  to reset focus to the first element of the view hierarchy. However, passing @c NO causes the
+ *  screenshot to not use any recent changes, such as changing the text color to identify foreground
+ *  color. Manually rendering the view hierarchy avoids both of these problems.
+ *
+ *  @param view The root of the view hierarchy to render.
+ *  @param context The graphics context to which to render.
+ */
++ (void)gtx_renderViewHierarchy:(UIView *)view inContext:(CGContextRef)context {
+  CGFloat xOffset = CGRectGetMinX(view.frame) - CGRectGetMinX(view.bounds);
+  CGFloat yOffset = CGRectGetMinY(view.frame) - CGRectGetMinY(view.bounds);
+  CGContextSaveGState(context);
+  CGContextTranslateCTM(context, xOffset, yOffset);
+  [view.layer renderInContext:context];
+  for (UIView *subview in view.subviews) {
+    [GTXImageAndColorUtils gtx_renderViewHierarchy:subview inContext:context];
+  }
+  CGContextRestoreGState(context);
 }
 
 /**
@@ -122,7 +154,9 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
  *  @return The contrast ratio (proportional to 1.0) of the label.
  */
 + (CGFloat)gtx_contrastRatioWithTextElementImage:(UIImage *)original
-                    textElementColorShiftedImage:(UIImage *)colorShifted {
+                    textElementColorShiftedImage:(UIImage *)colorShifted
+                                 outAvgTextColor:(UIColor **)outAvgTextColor
+                           outAvgBackgroundColor:(UIColor **)outAvgBackgroundColor {
   // Luminance of image is computed using Reinhard’s method:
   // Luminance of image = Geometric Mean of luminance of individual pixels.
   CGFloat textLogAverage = 0;
@@ -131,6 +165,10 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
   NSInteger backgroundPixelCount = 0;
   GTXImageRGBAData *beforeData = [[GTXImageRGBAData alloc] initWithUIImage:original];
   GTXImageRGBAData *afterData = [[GTXImageRGBAData alloc] initWithUIImage:colorShifted];
+  struct {
+    CGFloat totalRed, totalBlue, totalGreen;
+    NSInteger count;
+  } textColor = {0}, backgroundColor = {0};
 
   // Geometric mean of n numbers is the nth root of the product of the numbers however to avoid
   // issues with floating point accuracies we first compute the average of the logarithms and then
@@ -165,10 +203,18 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
         // This pixel has changed from before: it is part of the text.
         textLogAverage += logLuminance;
         textPixelCount += 1;
+        textColor.totalRed += red;
+        textColor.totalGreen += green;
+        textColor.totalBlue += blue;
+        textColor.count += 1;
       } else {
         // This pixel has *not* changed from before: it is part of the text background.
         backgroundLogAverage += logLuminance;
         backgroundPixelCount += 1;
+        backgroundColor.totalRed += red;
+        backgroundColor.totalGreen += green;
+        backgroundColor.totalBlue += blue;
+        backgroundColor.count += 1;
       }
     }
   }
@@ -184,6 +230,19 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
     backgroundLuminance =
         (CGFloat)(exp(backgroundLogAverage / backgroundPixelCount) - luminanceOffset) /
         luminanceScale;
+  }
+  if (outAvgTextColor) {
+    *outAvgTextColor = [UIColor colorWithRed:textColor.totalRed / (CGFloat)textColor.count
+                                       green:textColor.totalGreen / (CGFloat)textColor.count
+                                        blue:textColor.totalBlue / (CGFloat)textColor.count
+                                       alpha:1];
+  }
+  if (outAvgBackgroundColor) {
+    *outAvgBackgroundColor =
+        [UIColor colorWithRed:backgroundColor.totalRed / (CGFloat)backgroundColor.count
+                        green:backgroundColor.totalGreen / (CGFloat)backgroundColor.count
+                         blue:backgroundColor.totalBlue / (CGFloat)backgroundColor.count
+                        alpha:1];
   }
   return [self contrastRatioWithLuminaceOfFirstColor:textLuminance
                            andLuminanceOfSecondColor:backgroundLuminance];

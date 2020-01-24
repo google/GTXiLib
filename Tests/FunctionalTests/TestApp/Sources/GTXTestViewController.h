@@ -78,6 +78,21 @@ FOUNDATION_EXTERN NSString *const kAddBarelyHighContrastLabel;
 FOUNDATION_EXTERN NSString *const kAddBarelyLowContrastLabel;
 
 /**
+ *  Name of the action that adds a label with zero contrast.
+ */
+FOUNDATION_EXTERN NSString *const kAddNoContrastLabel;
+
+/**
+ *  Name of the action that adds a label with transparency that still has high contrast.
+ */
+FOUNDATION_EXTERN NSString *const kAddTransparentHighContrastLabel;
+
+/**
+ *  Name of the action that adds a label with low contrast because of its transparency.
+ */
+FOUNDATION_EXTERN NSString *const kAddTransparentLowContrastLabel;
+
+/**
  *  Name of the action that adds a text view with low contrast.
  */
 FOUNDATION_EXTERN NSString *const kAddLowContrastTextView;

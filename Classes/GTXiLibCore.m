@@ -105,19 +105,19 @@ static BOOL gIsInTearDown;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_testCaseDidBegin:)
+                                             selector:@selector(gtx_testCaseDidBegin:)
                                                  name:gtxTestCaseDidBeginNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_testCaseDidTearDown:)
+                                             selector:@selector(gtx_testCaseDidTearDown:)
                                                  name:gtxTestCaseDidEndNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_testInteractionDidBegin:)
+                                             selector:@selector(gtx_testInteractionDidBegin:)
                                                  name:gtxTestInteractionDidBeginNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_testInteractionDidFinish:)
+                                             selector:@selector(gtx_testInteractionDidFinish:)
                                                  name:gtxTestInteractionDidEndNotification
                                                object:nil];
   });
@@ -153,7 +153,7 @@ static BOOL gIsInTearDown;
  @param element The element on which the checks need to be executed.
  @return @c NO if any of the checks failed, @c YES otherwise.
  */
-+ (BOOL)_checkElement:(id)element {
++ (BOOL)gtx_checkElement:(id)element {
   NSError *error;
   BOOL success = [gToolkit checkElement:element error:&error];
   if (error) {
@@ -169,7 +169,7 @@ static BOOL gIsInTearDown;
  @param rootElements An array of root elements.
  @return @c NO if any of the checks failed, @c YES otherwise.
  */
-+ (BOOL)_checkAllElementsFromRootElements:(NSArray *)rootElements {
++ (BOOL)gtx_checkAllElementsFromRootElements:(NSArray *)rootElements {
   NSError *error;
   BOOL success = [gToolkit checkAllElementsFromRootElements:rootElements error:&error];
   if (error) {
@@ -183,7 +183,7 @@ static BOOL gIsInTearDown;
 
  @param notification The notification that was posted.
  */
-+ (void)_testCaseDidBegin:(NSNotification *)notification {
++ (void)gtx_testCaseDidBegin:(NSNotification *)notification {
   // check if new test class has started
   gIsInTearDown = NO;
   Class currentTestClass = notification.userInfo[gtxTestClassUserInfoKey];
@@ -220,7 +220,7 @@ static BOOL gIsInTearDown;
 
  @param notification The notification that was posted.
  */
-+ (void)_testCaseDidTearDown:(NSNotification *)notification {
++ (void)gtx_testCaseDidTearDown:(NSNotification *)notification {
   if (gIsInTearDown) {
     return;
   }
@@ -230,7 +230,7 @@ static BOOL gIsInTearDown;
     // Run all the checks.
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     if (window) {
-      [self _checkAllElementsFromRootElements:@[window]];
+      [self gtx_checkAllElementsFromRootElements:@[ window ]];
     }
   }
 }
@@ -240,9 +240,11 @@ static BOOL gIsInTearDown;
 
  @param notification The notification that was posted.
  */
-+ (void)_testInteractionDidBegin:(NSNotification *)notification {
++ (void)gtx_testInteractionDidBegin:(NSNotification *)notification {
   if (!gIsInInteraction) {
-    [self _checkAllElementsFromRootElements:@[[UIApplication sharedApplication].keyWindow.window]];
+    [self gtx_checkAllElementsFromRootElements:@[
+      [UIApplication sharedApplication].keyWindow.window
+    ]];
   }
   gIsInInteraction = YES;
 }
@@ -252,7 +254,7 @@ static BOOL gIsInTearDown;
 
  @param notification The notification that was posted.
  */
-+ (void)_testInteractionDidFinish:(NSNotification *)notification {
++ (void)gtx_testInteractionDidFinish:(NSNotification *)notification {
   gIsInInteraction = NO;
 }
 @end

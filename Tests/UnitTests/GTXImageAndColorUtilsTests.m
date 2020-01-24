@@ -18,11 +18,16 @@
 #import <XCTest/XCTest.h>
 
 #import "GTXImageAndColorUtils.h"
+#import "UIColor+GTXAdditions.h"
+
+static const CGFloat kTestColorAccuracy = 0.01f;  // Expect colors to be accurate to 1%
 
 @interface GTXImageAndColorUtils (ExposedForTesting)
 + (UIColor *)gtx_shiftedColorWithColor:(UIColor *)color;
 + (CGFloat)gtx_contrastRatioWithTextElementImage:(UIImage *)original
-                    textElementColorShiftedImage:(UIImage *)colorShifted;
+                    textElementColorShiftedImage:(UIImage *)colorShifted
+                                 outAvgTextColor:(UIColor **)outAvgTextColor
+                           outAvgBackgroundColor:(UIColor **)outAvgBackgroundColor;
 @end
 
 @interface GTXImageAndColorUtilsTests : XCTestCase
@@ -90,6 +95,14 @@
                                                            ofColor:[UIColor purpleColor]];
 }
 
+- (void)testColorDescriptionWorksAsExpected {
+  XCTAssertTrue([[[UIColor redColor] gtx_description] containsString:@" #FF0000 "]);
+  XCTAssertTrue([[[UIColor greenColor] gtx_description] containsString:@" #00FF00 "]);
+  XCTAssertTrue([[[UIColor blueColor] gtx_description] containsString:@" #0000FF "]);
+  XCTAssertTrue([[[UIColor blackColor] gtx_description] containsString:@" #000000 "]);
+  XCTAssertTrue([[[UIColor whiteColor] gtx_description] containsString:@" #FFFFFF "]);
+}
+
 #pragma mark - Private
 
 /**
@@ -126,12 +139,17 @@
   CGFloat contrastRatioOfColors =
       [GTXImageAndColorUtils contrastRatioWithLuminaceOfFirstColor:luminanceOfFirstColor
                                          andLuminanceOfSecondColor:luminanceOfSecondColor];
+  UIColor *actualTextColor, *actualBackgroundColor;
   CGFloat contrastRatioInImage =
       [GTXImageAndColorUtils gtx_contrastRatioWithTextElementImage:imageWithRect
-                                      textElementColorShiftedImage:imageWithShiftedColorRect];
+                                      textElementColorShiftedImage:imageWithShiftedColorRect
+                                                   outAvgTextColor:&actualTextColor
+                                             outAvgBackgroundColor:&actualBackgroundColor];
   XCTAssertEqualWithAccuracy(contrastRatioInImage,
                              contrastRatioOfColors,
                              kGTXContrastRatioAccuracy);
+  [self gtxtest_assertColor:actualTextColor isSameAsColor:rectColor];
+  [self gtxtest_assertColor:actualBackgroundColor isSameAsColor:backgroundColor];
 }
 
 /**
@@ -163,10 +181,18 @@
   CGFloat secondRed, secondGreen, secondBlue;
   [first getRed:&firstRed green:&firstGreen blue:&firstBlue alpha:NULL];
   [second getRed:&secondRed green:&secondGreen blue:&secondBlue alpha:NULL];
-  const CGFloat accuracy = 0.001f;
-  XCTAssertNotEqualWithAccuracy(firstRed, secondRed, accuracy);
-  XCTAssertNotEqualWithAccuracy(firstBlue, secondBlue, accuracy);
-  XCTAssertNotEqualWithAccuracy(firstGreen, secondGreen, accuracy);
+  XCTAssertNotEqualWithAccuracy(firstRed, secondRed, kTestColorAccuracy);
+  XCTAssertNotEqualWithAccuracy(firstBlue, secondBlue, kTestColorAccuracy);
+  XCTAssertNotEqualWithAccuracy(firstGreen, secondGreen, kTestColorAccuracy);
 }
 
+- (void)gtxtest_assertColor:(UIColor *)first isSameAsColor:(UIColor *)second {
+  CGFloat firstRed, firstGreen, firstBlue;
+  CGFloat secondRed, secondGreen, secondBlue;
+  [first getRed:&firstRed green:&firstGreen blue:&firstBlue alpha:NULL];
+  [second getRed:&secondRed green:&secondGreen blue:&secondBlue alpha:NULL];
+  XCTAssertEqualWithAccuracy(firstRed, secondRed, kTestColorAccuracy);
+  XCTAssertEqualWithAccuracy(firstBlue, secondBlue, kTestColorAccuracy);
+  XCTAssertEqualWithAccuracy(firstGreen, secondGreen, kTestColorAccuracy);
+}
 @end

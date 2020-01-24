@@ -45,7 +45,7 @@
 
 @implementation GTXTestSuiteWithOneTest
 
-- (void)dummyMethodWithWordtest {
+- (void)gtxtest_dummyMethodWithWordtest {
   // nothing to do
 }
 
@@ -61,7 +61,7 @@
   // nothing to test
 }
 
-- (void)dummyMethodWithWordtest {
+- (void)gtxtest_dummyMethodWithWordtest {
   // nothing to do
 }
 
@@ -69,7 +69,7 @@
   // nothing to test
 }
 
-- (void)secondDummyMethodWithWordtest {
+- (void)gtxtest_secondDummyMethodWithWordtest {
   // nothing to do
 }
 

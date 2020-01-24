@@ -43,7 +43,7 @@ static NSString *const kGTXAnalyticsTrackingID = @"UA-113761703-1";
     [GTXAnalyticsUtils sendEventHitWithTrackingID:kGTXAnalyticsTrackingID
                                          clientID:[GTXAnalyticsUtils clientID]
                                          category:@"GTXiLibLib"
-                                           action:[self _NSStringFromAnalyticsEvent:event]
+                                           action:[self gtx_NSStringFromAnalyticsEvent:event]
                                             value:@"1"];
   };
 }
@@ -79,7 +79,7 @@ static NSString *const kGTXAnalyticsTrackingID = @"UA-113761703-1";
  @param event The event whose string value is needed.
  @return String value for the given GTXAnalyticsEvent.
  */
-+ (NSString *)_NSStringFromAnalyticsEvent:(GTXAnalyticsEvent)event {
++ (NSString *)gtx_NSStringFromAnalyticsEvent:(GTXAnalyticsEvent)event {
   switch (event) {
     case GTXAnalyticsEventChecksPerformed: return @"checkRan";
     case GTXAnalyticsEventChecksFailed: return @"checkFailed";

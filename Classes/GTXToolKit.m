@@ -151,7 +151,7 @@
   return errors == nil;
 }
 
-#pragma mark - private
+#pragma mark - Private
 
 /**
  Applies the registered checks on the given element while respecting blacklisted elements.
@@ -168,6 +168,11 @@
   if ([element respondsToSelector:@selector(isAccessibilityElement)] &&
       ![element isAccessibilityElement]) {
     // Currently all checks are only applicable to accessibility elements.
+    return YES;
+  }
+  if ([element respondsToSelector:@selector(window)] && [element window] == nil) {
+    // Elements without a window are not actually part of the view hierarchy and should not be
+    // checked.
     return YES;
   }
 
@@ -213,8 +218,8 @@
   }
 
   // We have some failures, construct an error description from all the failures and error.
-  NSString *errorDescription = [self _errorDescriptionForElement:element
-                                                  gtxCheckErrors:failedCheckErrors];
+  NSString *errorDescription = [self gtx_errorDescriptionForElement:element
+                                                     gtxCheckErrors:failedCheckErrors];
   NSError *error = nil;
   [NSError gtx_logOrSetError:&error
                  description:errorDescription
@@ -235,7 +240,7 @@
  @param errors An array of errors that the element has.
  @return The created error description.
  */
-- (NSString *)_errorDescriptionForElement:(id)element gtxCheckErrors:(NSArray *)errors {
+- (NSString *)gtx_errorDescriptionForElement:(id)element gtxCheckErrors:(NSArray *)errors {
   NSMutableString *localizedDescription =
   [NSMutableString stringWithFormat:@"%d accessibility error(s) were found in %@:\n",
    (int)[errors count],

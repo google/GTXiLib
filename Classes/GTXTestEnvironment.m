@@ -68,9 +68,9 @@ static NSString *const kXCAXClientClassName = @"XCAXClient_iOS";
   __block BOOL setupSuccessful = YES;
   dispatch_once(&onceToken, ^{
 #if TARGET_OS_SIMULATOR
-    setupSuccessful = [self _enableAccessibilityForSimulatorWithError:errorOrNil];
+    setupSuccessful = [self gtx_enableAccessibilityForSimulatorWithError:errorOrNil];
 #else
-    setupSuccessful = [self _enableAccessibilityOnDeviceWithError:errorOrNil];
+    setupSuccessful = [self gtx_enableAccessibilityOnDeviceWithError:errorOrNil];
 #endif
   });
   return setupSuccessful;
@@ -87,7 +87,7 @@ static NSString *const kXCAXClientClassName = @"XCAXClient_iOS";
  *  @param[out] errorOrNil A pointer to an error object to return information on failure, or nil.
  *  @return YES if accessibility was enabled, NO if there was an error.
  */
-+ (BOOL)_enableAccessibilityForSimulatorWithError:(GTXErrorRefType)errorOrNil {
++ (BOOL)gtx_enableAccessibilityForSimulatorWithError:(GTXErrorRefType)errorOrNil {
   // Set the preferences that turn on Accessibility.
   BOOL setSuccessful = YES;
   setSuccessful =
@@ -155,16 +155,14 @@ static NSString *const kXCAXClientClassName = @"XCAXClient_iOS";
       return;
     }
   });
-  [server setAccessibilityPreferenceAsMobile:key
-                                       value:value
-                                notification:name];
+  [server setAccessibilityPreferenceAsMobile:key value:value notification:name];
   return setupSuccessful;
 }
 
 /**
  *  Enables accessibility to allow using accessibility properties on devices.
  */
-+ (BOOL)_enableAccessibilityOnDeviceWithError:(GTXErrorRefType)errorOrNil {
++ (BOOL)gtx_enableAccessibilityOnDeviceWithError:(GTXErrorRefType)errorOrNil {
   Class XCAXClientClass = NSClassFromString(kXCAXClientClassName);
   if (XCAXClientClass == nil) {
     NSString *description = [NSString stringWithFormat:@"%@ class not found", kXCAXClientClassName];

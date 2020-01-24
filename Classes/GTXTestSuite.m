@@ -54,7 +54,7 @@
   // Create a suite with all the tests in applicableClasses set.
   GTXTestSuite *suite = [[GTXTestSuite alloc] init];
   for (Class currentClass in applicableClasses) {
-    for (NSString *methodName in [self _testMethodsInAllBaseClassesFromClass:currentClass]) {
+    for (NSString *methodName in [self gtx_testMethodsInAllBaseClassesFromClass:currentClass]) {
       [suite->mutableTests addObject:
           [[GTXTestCase alloc] initWithTestClass:currentClass
                                         selector:NSSelectorFromString(methodName)]];
@@ -67,7 +67,7 @@
 
 + (instancetype)suiteWithAllTestsInClass:(Class)testClass {
   GTXTestSuite *newSuite = [[GTXTestSuite alloc] init];
-  for (NSString *methodName in [self _testMethodsInClass:testClass]) {
+  for (NSString *methodName in [self gtx_testMethodsInClass:testClass]) {
     GTXTestCase *testCase =
         [[GTXTestCase alloc] initWithTestClass:testClass
                                       selector:NSSelectorFromString(methodName)];
@@ -164,11 +164,11 @@
 /**
  @return An array of all test methods in the given class and all of its super classes.
  */
-+ (NSArray *)_testMethodsInAllBaseClassesFromClass:(Class)inClass {
++ (NSArray *)gtx_testMethodsInAllBaseClassesFromClass:(Class)inClass {
   Class currentClass = inClass;
   NSMutableSet *testMethods = [[NSMutableSet alloc] init];
   while (currentClass) {
-    [testMethods addObjectsFromArray:[self _testMethodsInClass:currentClass]];
+    [testMethods addObjectsFromArray:[self gtx_testMethodsInClass:currentClass]];
     currentClass = [currentClass superclass];
   }
   return [testMethods allObjects];
@@ -178,7 +178,7 @@
  @return An array of all test methods only in the given class (methods defined in its super classes
          are omitted).
  */
-+ (NSArray *)_testMethodsInClass:(Class)inClass {
++ (NSArray *)gtx_testMethodsInClass:(Class)inClass {
   NSMutableSet *testMethods = [[NSMutableSet alloc] init];
   unsigned int allMethodsCount = 0;
   Method *allMethods = class_copyMethodList(inClass, &allMethodsCount);

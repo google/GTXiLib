@@ -19,12 +19,7 @@
 @implementation GTXTestStepperButton
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-  [self increment];
-}
-
-- (void)increment {
-  _stepCount += 1;
-  [self setNeedsDisplay];
+  [self gtxtest_increment];
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -40,8 +35,15 @@
 }
 
 - (BOOL)accessibilityActivate {
-  [self increment];
+  [self gtxtest_increment];
   return YES;
+}
+
+#pragma mark - Private
+
+- (void)gtxtest_increment {
+  _stepCount += 1;
+  [self setNeedsDisplay];
 }
 
 @end

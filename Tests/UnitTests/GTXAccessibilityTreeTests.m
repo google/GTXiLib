@@ -33,101 +33,98 @@
 }
 
 - (void)testGTXAccessibilityTreeWorksWithSingleElement {
-  id element = [self newUIElementWithAccessibility:YES];
-  [self assertGTXAccessibilityTreeWithRootElements:@[element]
-                                            yields:@[element]];
+  id element = [self gtxtest_newUIElementWithAccessibility:YES];
+  [self gtxtest_assertGTXAccessibilityTreeWithRootElements:@[ element ] yields:@[ element ]];
 }
 
 - (void)testGTXAccessibilityTreeWorksWithMultipleElementsAtSameLevel {
-  id element1 = [self newUIElementWithAccessibility:YES];
-  id element2 = [self newUIElementWithAccessibility:YES];
-  NSArray *elements = @[element1, element2];
-  [self assertGTXAccessibilityTreeWithRootElements:elements
-                                            yields:elements];
+  id element1 = [self gtxtest_newUIElementWithAccessibility:YES];
+  id element2 = [self gtxtest_newUIElementWithAccessibility:YES];
+  NSArray *elements = @[ element1, element2 ];
+  [self gtxtest_assertGTXAccessibilityTreeWithRootElements:elements yields:elements];
 }
 
 - (void)testGTXAccessibilityTreeWorksWithAOneLevelTree {
-  id element1 = [self newUIElementWithAccessibility:NO];
-  id element2 = [self newUIElementWithAccessibility:NO];
-  id element3 = [self newUIElementWithAccessibility:NO];
+  id element1 = [self gtxtest_newUIElementWithAccessibility:NO];
+  id element2 = [self gtxtest_newUIElementWithAccessibility:NO];
+  id element3 = [self gtxtest_newUIElementWithAccessibility:NO];
   [(UIView *)element1 addSubview:element2];
   [(UIView *)element1 addSubview:element3];
 
-  NSArray *elements = @[element1, element2, element3];
-  [self assertGTXAccessibilityTreeWithRootElements:@[element1]
-                                            yields:elements];
+  NSArray *elements = @[ element1, element2, element3 ];
+  [self gtxtest_assertGTXAccessibilityTreeWithRootElements:@[ element1 ] yields:elements];
 }
 
 - (void)testGTXAccessibilityTreeSkipsChildrenOfAccessibilityElements {
-  UIView *root = [self newTestElementWithChildren];
+  UIView *root = [self gtxtest_newTestElementWithChildren];
   UIView *subTreeView = root.subviews[0];
   [subTreeView setIsAccessibilityElement:YES];
 
-  NSArray *actualElements = [self accessibilityElementsInTree:root];
+  NSArray *actualElements = [self gtxtest_accessibilityElementsInTree:root];
   XCTAssertFalse([actualElements containsObject:subTreeView.subviews[0]]);
   XCTAssertFalse([actualElements containsObject:subTreeView.subviews[1]]);
 
   [root setIsAccessibilityElement:YES];
   // Enumeration should now contain just the root element.
-  actualElements = [self accessibilityElementsInTree:root];
+  actualElements = [self gtxtest_accessibilityElementsInTree:root];
   XCTAssertTrue([actualElements containsObject:root]);
   XCTAssertEqual([actualElements count], (NSUInteger)1);
 }
 
 - (void)testGTXAccessibilityTreeSkipsHiddenElements {
-  UIView *root = [self newTestElementWithChildren];
+  UIView *root = [self gtxtest_newTestElementWithChildren];
   [root setHidden:YES];
 
   // Enumeration should be empty.
-  NSArray *actualElements = [self accessibilityElementsInTree:root];
+  NSArray *actualElements = [self gtxtest_accessibilityElementsInTree:root];
   XCTAssertEqual([actualElements count], (NSUInteger)0);
 }
 
 - (void)testGTXAccessibilityTreeSkipsAccessibilityHiddenElements {
-  UIView *root = [self newTestElementWithChildren];
+  UIView *root = [self gtxtest_newTestElementWithChildren];
   [root setAccessibilityElementsHidden:YES];
 
   // Enumeration should be empty.
-  NSArray *actualElements = [self accessibilityElementsInTree:root];
+  NSArray *actualElements = [self gtxtest_accessibilityElementsInTree:root];
   XCTAssertEqual([actualElements count], (NSUInteger)0);
 }
 
 - (void)testGTXAccessibilityTreeSkipsEmptyFrameElements {
-  UIView *root = [self newTestElementWithChildren];
+  UIView *root = [self gtxtest_newTestElementWithChildren];
 
   // Enumeration should be empty for zero width.
   root.accessibilityFrame = CGRectMake(0, 0, 0, 1);
   root.frame = CGRectMake(0, 0, 0, 1);
-  NSArray *actualElements = [self accessibilityElementsInTree:root];
+  NSArray *actualElements = [self gtxtest_accessibilityElementsInTree:root];
   XCTAssertEqual([actualElements count], (NSUInteger)0);
 
   // Enumeration should be empty for zero height.
   root.accessibilityFrame = CGRectMake(0, 0, 1, 0);
   root.frame = CGRectMake(0, 0, 1, 0);
-  actualElements = [self accessibilityElementsInTree:root];
+  actualElements = [self gtxtest_accessibilityElementsInTree:root];
   XCTAssertEqual([actualElements count], (NSUInteger)0);
 
   // Enumeration should be empty for zero rect.
   root.accessibilityFrame = CGRectZero;
   root.frame = CGRectZero;
-  actualElements = [self accessibilityElementsInTree:root];
+  actualElements = [self gtxtest_accessibilityElementsInTree:root];
   XCTAssertEqual([actualElements count], (NSUInteger)0);
 }
 
 - (void)testGTXAccessibilityTreeNotNonEmptyFrameElements {
-  UIView *root = [self newTestElementWithChildren];
+  UIView *root = [self gtxtest_newTestElementWithChildren];
 
   // Enumeration should not be empty if frame is non-empty.
   CGRect nonZeroRect = CGRectMake(0, 0, 1, 1);
   root.accessibilityFrame = CGRectZero;
   root.frame = nonZeroRect;
-  NSArray *actualElements = [self accessibilityElementsInTree:root];
+  NSArray *actualElements = [self gtxtest_accessibilityElementsInTree:root];
   XCTAssertNotEqual([actualElements count], (NSUInteger)0);
 
   // Enumeration should not be empty if accessibilityFrame is non-empty.
   root.accessibilityFrame = nonZeroRect;
   root.frame = CGRectZero;
-  actualElements = [self accessibilityElementsInTree:root];
+  actualElements = [self gtxtest_accessibilityElementsInTree:root];
   XCTAssertNotEqual([actualElements count], (NSUInteger)0);
 }
 
@@ -135,74 +132,72 @@
   // Accessibility element which provide same elements via element.accessibilityElements and
   // element.accessibilityElementAtIndex: are considered consistent.
   GTXTestAccessibilityElementFull *root = [[GTXTestAccessibilityElementFull alloc] init];
-  id element1 = [self newUIElementWithAccessibility:YES];
-  id element2 = [self newUIElementWithAccessibility:YES];
+  id element1 = [self gtxtest_newUIElementWithAccessibility:YES];
+  id element2 = [self gtxtest_newUIElementWithAccessibility:YES];
 
-  root.accessibilityElementsOveride = @[element1, element2];
-  root.accessibilityElementsAtIndexOveride = @[element2, element1];
+  root.accessibilityElementsOveride = @[ element1, element2 ];
+  root.accessibilityElementsAtIndexOveride = @[ element2, element1 ];
   root.isAccessibilityElementOveride = NO;
-  [self assertGTXAccessibilityTreeWithRootElements:@[root]
-                                            yields:@[root, element1, element2]];
+  [self gtxtest_assertGTXAccessibilityTreeWithRootElements:@[ root ]
+                                                    yields:@[ root, element1, element2 ]];
 }
 
 - (void)testGTXAccessibilityTreeSkipsChildrenOfHiddenElements {
-  UIView *root = [self newTestElementWithChildren];
+  UIView *root = [self gtxtest_newTestElementWithChildren];
   UIView *subTreeView = root.subviews[0];
   [subTreeView setHidden:YES];
 
-  NSArray *actualElements = [self accessibilityElementsInTree:root];
+  NSArray *actualElements = [self gtxtest_accessibilityElementsInTree:root];
   XCTAssertFalse([actualElements containsObject:subTreeView.subviews[0]]);
   XCTAssertFalse([actualElements containsObject:subTreeView.subviews[1]]);
 }
 
 - (void)testGTXAccessibilityTreeFailsForInConsistentTrees {
   GTXTestAccessibilityElementFull *root = [[GTXTestAccessibilityElementFull alloc] init];
-  root.accessibilityElementsOveride = @[[self newUIElementWithAccessibility:YES]];
-  root.accessibilityElementsAtIndexOveride = @[[self newUIElementWithAccessibility:YES]];
+  root.accessibilityElementsOveride = @[ [self gtxtest_newUIElementWithAccessibility:YES] ];
+  root.accessibilityElementsAtIndexOveride = @[ [self gtxtest_newUIElementWithAccessibility:YES] ];
   root.isAccessibilityElementOveride = NO;
 
-  XCTAssertThrows([[[GTXAccessibilityTree alloc] initWithRootElements:@[root]] nextObject]);
+  XCTAssertThrows([[[GTXAccessibilityTree alloc] initWithRootElements:@[ root ]] nextObject]);
 }
 
 - (void)testGTXAccessibilityTreeWorksForConsistentTrees {
   // Accessibility element which provide same elements via element.accessibilityElements and
   // element.accessibilityElementAtIndex: are considered consistent.
   GTXTestAccessibilityElementFull *root = [[GTXTestAccessibilityElementFull alloc] init];
-  id element1 = [self newUIElementWithAccessibility:YES];
-  id element2 = [self newUIElementWithAccessibility:YES];
+  id element1 = [self gtxtest_newUIElementWithAccessibility:YES];
+  id element2 = [self gtxtest_newUIElementWithAccessibility:YES];
 
-  root.accessibilityElementsOveride = @[element1, element2];
-  root.accessibilityElementsAtIndexOveride = @[element2, element1];
+  root.accessibilityElementsOveride = @[ element1, element2 ];
+  root.accessibilityElementsAtIndexOveride = @[ element2, element1 ];
   root.isAccessibilityElementOveride = NO;
-  [self assertGTXAccessibilityTreeWithRootElements:@[root]
-                                            yields:@[root, element1, element2]];
+  [self gtxtest_assertGTXAccessibilityTreeWithRootElements:@[ root ]
+                                                    yields:@[ root, element1, element2 ]];
 }
 
 - (void)testGTXAccessibilityTreeWorksWithAccessibilityElements {
   GTXTestAccessibilityElementA *root = [[GTXTestAccessibilityElementA alloc] init];
   root.isAccessibilityElementOveride = NO;
-  id element = [self newUIElementWithAccessibility:YES];
-  root.accessibilityElementsOveride = @[element];
-  NSArray *elements = @[root, element];
-  [self assertGTXAccessibilityTreeWithRootElements:@[root]
-                                            yields:elements];
+  id element = [self gtxtest_newUIElementWithAccessibility:YES];
+  root.accessibilityElementsOveride = @[ element ];
+  NSArray *elements = @[ root, element ];
+  [self gtxtest_assertGTXAccessibilityTreeWithRootElements:@[ root ] yields:elements];
 }
 
 - (void)testGTXAccessibilityTreeWorksWithAccessibilityElementsAtIndex {
   GTXTestAccessibilityElementB *root = [[GTXTestAccessibilityElementB alloc] init];
   root.isAccessibilityElementOveride = NO;
-  id element1 = [self newUIElementWithAccessibility:YES];
-  id element2 = [self newUIElementWithAccessibility:YES];
-  root.accessibilityElementsAtIndexOveride = @[element1, element2];
-  NSArray *elements = @[root, element1, element2];
-  [self assertGTXAccessibilityTreeWithRootElements:@[root]
-                                            yields:elements];
+  id element1 = [self gtxtest_newUIElementWithAccessibility:YES];
+  id element2 = [self gtxtest_newUIElementWithAccessibility:YES];
+  root.accessibilityElementsAtIndexOveride = @[ element1, element2 ];
+  NSArray *elements = @[ root, element1, element2 ];
+  [self gtxtest_assertGTXAccessibilityTreeWithRootElements:@[ root ] yields:elements];
 }
 
 #pragma mark - Private
 
-- (void)assertGTXAccessibilityTreeWithRootElements:(NSArray *)rootElements
-                                            yields:(NSArray *)expectedElements {
+- (void)gtxtest_assertGTXAccessibilityTreeWithRootElements:(NSArray *)rootElements
+                                                    yields:(NSArray *)expectedElements {
   NSMutableArray *actualElemets = [[NSMutableArray alloc] init];
   for (id element in [[GTXAccessibilityTree alloc] initWithRootElements:rootElements]) {
     [actualElemets addObject:element];
@@ -210,30 +205,30 @@
   XCTAssertEqualObjects(expectedElements, actualElemets);
 }
 
-- (id)newTestElementWithChildren {
-  UIView *leftSubTreeRoot = [self newUIElementWithAccessibility:NO];
-  [leftSubTreeRoot addSubview:[self newUIElementWithAccessibility:NO]];
-  [leftSubTreeRoot addSubview:[self newUIElementWithAccessibility:NO]];
+- (id)gtxtest_newTestElementWithChildren {
+  UIView *leftSubTreeRoot = [self gtxtest_newUIElementWithAccessibility:NO];
+  [leftSubTreeRoot addSubview:[self gtxtest_newUIElementWithAccessibility:NO]];
+  [leftSubTreeRoot addSubview:[self gtxtest_newUIElementWithAccessibility:NO]];
 
-  UIView *rightSubTreeRoot = [self newUIElementWithAccessibility:NO];
-  [rightSubTreeRoot addSubview:[self newUIElementWithAccessibility:NO]];
-  [rightSubTreeRoot addSubview:[self newUIElementWithAccessibility:NO]];
+  UIView *rightSubTreeRoot = [self gtxtest_newUIElementWithAccessibility:NO];
+  [rightSubTreeRoot addSubview:[self gtxtest_newUIElementWithAccessibility:NO]];
+  [rightSubTreeRoot addSubview:[self gtxtest_newUIElementWithAccessibility:NO]];
 
-  UIView *root = [self newUIElementWithAccessibility:NO];
+  UIView *root = [self gtxtest_newUIElementWithAccessibility:NO];
   [root addSubview:leftSubTreeRoot];
   [root addSubview:rightSubTreeRoot];
   return root;
 }
 
-- (id)newUIElementWithAccessibility:(BOOL)isAccessibilityElement {
+- (id)gtxtest_newUIElementWithAccessibility:(BOOL)isAccessibilityElement {
   UIView *element = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
   [element setIsAccessibilityElement:isAccessibilityElement];
   return element;
 }
 
-- (NSArray *)accessibilityElementsInTree:(id)root {
+- (NSArray *)gtxtest_accessibilityElementsInTree:(id)root {
   NSMutableArray *accessibilityElementsArray = [[NSMutableArray alloc] init];
-  for (id element in [[GTXAccessibilityTree alloc] initWithRootElements:@[root]]) {
+  for (id element in [[GTXAccessibilityTree alloc] initWithRootElements:@[ root ]]) {
     [accessibilityElementsArray addObject:element];
   }
   return accessibilityElementsArray;

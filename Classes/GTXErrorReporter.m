@@ -173,8 +173,9 @@
   AddKeyValue(@"AXID", [element accessibilityIdentifier]);
   NSString *stringValue = [element accessibilityLabel];
   AddKeyValue(@"AXLabel", stringValue ? [NSString stringWithFormat:@"\"%@\"", stringValue] : nil);
-  stringValue = [NSString stringWithFormat:@"(UIAccessibilityTrait)%@",
-      [self stringValueOfUIAccessibilityTraits:[element accessibilityTraits]]];
+  stringValue = [NSString
+      stringWithFormat:@"(UIAccessibilityTrait)%@",
+                       [self gtx_stringValueOfUIAccessibilityTraits:[element accessibilityTraits]]];
   AddKeyValue(@"AXTraits", stringValue);
   AddKeyValue(@"AXFrame", NSStringFromCGRect([element accessibilityFrame]));
   stringValue = [element accessibilityHint];
@@ -186,7 +187,7 @@
  *  @return The UIAccessibilityTraits to NSString mapping dictionary as type
  *          NSDictionary<NSNumber *, NSString *> *.
  */
-+ (NSDictionary<NSNumber *, NSString *> const *)traitsToStringDictionary {
++ (NSDictionary<NSNumber *, NSString *> const *)gtx_traitsToStringDictionary {
   // Each element below is an valid accessibility traits entity.
   return @{@(UIAccessibilityTraitNone): @"None",
            @(UIAccessibilityTraitButton): @"Button",
@@ -211,13 +212,13 @@
 /**
  *  @return The NSString value of the specified accessibility traits.
  */
-+ (NSString *)stringValueOfUIAccessibilityTraits:(UIAccessibilityTraits)traits {
++ (NSString *)gtx_stringValueOfUIAccessibilityTraits:(UIAccessibilityTraits)traits {
   if (traits == UIAccessibilityTraitNone) {
     return @"None";
   }
 
   NSMutableArray *traitsStrings = [NSMutableArray new];
-  const NSDictionary<NSNumber *, NSString *> *traitsToString = [self traitsToStringDictionary];
+  const NSDictionary<NSNumber *, NSString *> *traitsToString = [self gtx_traitsToStringDictionary];
   for (NSNumber *trait in traitsToString.allKeys) {
     if (traits & [trait unsignedLongLongValue]) {
       [traitsStrings addObject:traitsToString[trait]];

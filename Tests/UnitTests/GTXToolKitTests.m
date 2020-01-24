@@ -185,4 +185,32 @@
   XCTAssertTrue([toolkit1 checkElement:allChecksFailingElement error:nil]);
 }
 
+- (void)testElementsWithNilWindowAreIgnored {
+  UIView *viewWithoutWindow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+  viewWithoutWindow.isAccessibilityElement = YES;
+  GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
+  id<GTXChecking> failingCheck =
+      [GTXToolKit checkWithName:@"Failing Check"
+                          block:^BOOL(id _Nonnull element, GTXErrorRefType errorOrNil) {
+                            return NO;
+                          }];
+  [toolkit registerCheck:failingCheck];
+  XCTAssertTrue([toolkit checkElement:viewWithoutWindow error:nil]);
+}
+
+- (void)testElementsWithNonNilWindowAreChecked {
+  UIView *viewWithWindow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+  viewWithWindow.isAccessibilityElement = YES;
+  UIWindow *window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+  [window addSubview:viewWithWindow];
+  GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
+  id<GTXChecking> failingCheck =
+      [GTXToolKit checkWithName:@"Failing Check"
+                          block:^BOOL(id _Nonnull element, GTXErrorRefType errorOrNil) {
+                            return NO;
+                          }];
+  [toolkit registerCheck:failingCheck];
+  XCTAssertFalse([toolkit checkElement:viewWithWindow error:nil]);
+}
+
 @end

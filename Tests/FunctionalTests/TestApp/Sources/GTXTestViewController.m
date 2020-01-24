@@ -30,6 +30,9 @@ NSString *const kAddVeryHighContrastLabel = @"Add very high contrast label";
 NSString *const kAddVeryLowContrastLabel = @"Add very low contrast label";
 NSString *const kAddBarelyHighContrastLabel = @"Add barely High contrast label";
 NSString *const kAddBarelyLowContrastLabel = @"Add barely Low contrast label";
+NSString *const kAddNoContrastLabel = @"Add no contrast label";
+NSString *const kAddTransparentHighContrastLabel = @"Add transparent high contrast label";
+NSString *const kAddTransparentLowContrastLabel = @"Add transparent low contrast label";
 NSString *const kAddLowContrastTextView = @"Add low contrast text view";
 NSString *const kAddStandardUIKitTextView = @"Add standard UIKit text view";
 NSString *const kAddLowContrastBackground = @"Add Low contrast background";
@@ -78,89 +81,116 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
   actionsToHandlers = [[NSMutableDictionary alloc] init];
   [self.navigationController setNavigationBarHidden:YES animated:NO];
 
-  [self axetest_addActionNamed:kAddNoLabelElementActionName
+  [self gtxtest_addActionNamed:kAddNoLabelElementActionName
                        handler:^(GTXTestViewController *sSelf) {
-    [sSelf axetest_addElementWithLabel:@""];
-  }];
-  [self axetest_addActionNamed:kAddPunctuatedLabelElementActionName
+                         [sSelf gtxtest_addElementWithLabel:@""];
+                       }];
+  [self gtxtest_addActionNamed:kAddPunctuatedLabelElementActionName
                        handler:^(GTXTestViewController *sSelf) {
-    [sSelf axetest_addElementWithLabel:@"Foo."];
-  }];
-  [self axetest_addActionNamed:kAddConcatenatedLabelElementActionName
+                         [sSelf gtxtest_addElementWithLabel:@"Foo."];
+                       }];
+  [self gtxtest_addActionNamed:kAddConcatenatedLabelElementActionName
                        handler:^(GTXTestViewController *sSelf) {
-    // Add an element with concatenated labels: foo and bar.
-    [sSelf axetest_addElementWithLabel:@"foo,bar."];
-  }];
-  [self axetest_addActionNamed:kShowKeyboardActionName handler:^(GTXTestViewController *sSelf) {
-    [sSelf axetest_addShowKeyboard];
-  }];
-  [self axetest_addActionNamed:kHideKeyboardActionName handler:^(GTXTestViewController *sSelf) {
-    [sSelf.testArea.subviews[0] resignFirstResponder];
-  }];
-  [self axetest_addActionNamed:kAddInaccessibleButton handler:^(GTXTestViewController *sSelf) {
-    [sSelf axetest_addInAccessibleButton];
-  }];
-  [self axetest_addActionNamed:kAddAccessibleButtonInContainer
+                         // Add an element with concatenated labels: foo and bar.
+                         [sSelf gtxtest_addElementWithLabel:@"foo,bar."];
+                       }];
+  [self gtxtest_addActionNamed:kShowKeyboardActionName
                        handler:^(GTXTestViewController *sSelf) {
-    [sSelf axetest_addInAccessibleButtonInSubview];
-  }];
-  [self axetest_addActionNamed:kAddTinyTappableElement handler:^(GTXTestViewController *sSelf) {
-    [sSelf axetest_addTinyTappableElement];
-  }];
-  [self axetest_addActionNamed:kAddVeryHighContrastLabel handler:^(GTXTestViewController *sSelf) {
-    // Add a high contrast label: black text on white background.
-    [sSelf axetest_addLabelWithForgroundColor:[UIColor blackColor]
-                              backgroundColor:[UIColor whiteColor]];
-  }];
-  [self axetest_addActionNamed:kAddVeryLowContrastLabel handler:^(GTXTestViewController *sSelf) {
-    // Add a low contrast label: black text on very dark grey background.
-    UIColor *veryDarkGreyColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
-    [sSelf axetest_addLabelWithForgroundColor:[UIColor blackColor]
-                              backgroundColor:veryDarkGreyColor];
-  }];
+                         [sSelf gtxtest_addShowKeyboard];
+                       }];
+  [self gtxtest_addActionNamed:kHideKeyboardActionName
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf.testArea.subviews[0] resignFirstResponder];
+                       }];
+  [self gtxtest_addActionNamed:kAddInaccessibleButton
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_addInaccessibleButton];
+                       }];
+  [self gtxtest_addActionNamed:kAddAccessibleButtonInContainer
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_addInaccessibleButtonInSubview];
+                       }];
+  [self gtxtest_addActionNamed:kAddTinyTappableElement
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_addTinyTappableElement];
+                       }];
+  [self gtxtest_addActionNamed:kAddVeryHighContrastLabel
+                       handler:^(GTXTestViewController *sSelf) {
+                         // Add a high contrast label: black text on white background.
+                         [sSelf gtxtest_addLabelWithForgroundColor:[UIColor blackColor]
+                                                   backgroundColor:[UIColor whiteColor]];
+                       }];
+  [self gtxtest_addActionNamed:kAddVeryLowContrastLabel
+                       handler:^(GTXTestViewController *sSelf) {
+                         // Add a low contrast label: black text on very dark grey background.
+                         UIColor *veryDarkGreyColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
+                         [sSelf gtxtest_addLabelWithForgroundColor:[UIColor blackColor]
+                                                   backgroundColor:veryDarkGreyColor];
+                       }];
 
   UIColor *kAlmostRed = [UIColor colorWithRed:kAlmostRedColorValue green:0 blue:0 alpha:1];
   UIColor *kAlmostRedButDarker =
       [UIColor colorWithRed:kAlmostRedColorValue - 0.1f green:0 blue:0 alpha:1];
-  [self axetest_addActionNamed:kAddBarelyLowContrastLabel handler:^(GTXTestViewController *sSelf) {
-    [sSelf axetest_addLabelWithForgroundColor:[UIColor redColor]
-                              backgroundColor:kAlmostRed];
-  }];
-  [self axetest_addActionNamed:kAddBarelyHighContrastLabel handler:^(GTXTestViewController *sSelf) {
-    [sSelf axetest_addLabelWithForgroundColor:[UIColor redColor]
-                              backgroundColor:kAlmostRedButDarker];
-  }];
-  [self axetest_addActionNamed:kAddLowContrastBackground handler:^(GTXTestViewController *sSelf) {
-    // Add a low contrast background with respect to text added on top of it.
-    [sSelf axetest_addLabelWithForgroundColor:[UIColor redColor]
-                              backgroundColor:[UIColor clearColor]];
-    [sSelf.testArea setBackgroundColor:kAlmostRed];
-  }];
-  [self axetest_addActionNamed:kAddHighContrastBackground handler:^(GTXTestViewController *sSelf) {
-    // Add a high contrast background with respect to text added on top of it.
-    [sSelf axetest_addLabelWithForgroundColor:[UIColor redColor]
-                              backgroundColor:[UIColor clearColor]];
-    [sSelf.testArea setBackgroundColor:kAlmostRedButDarker];
-  }];
-  [self axetest_addActionNamed:kAddStandardUIKitTextView
+  [self gtxtest_addActionNamed:kAddBarelyLowContrastLabel
                        handler:^(GTXTestViewController *sSelf) {
-    // Add a standard contrast text view: black text on white background.
-    [sSelf axetest_addTextViewWithForgroundColor:nil
-                                 backgroundColor:nil];
-  }];
-  [self axetest_addActionNamed:kAddLowContrastTextView handler:^(GTXTestViewController *sSelf) {
-    // Add a low contrast text view: black text on very dark grey background.
-    UIColor *veryDarkGreyColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
-    [sSelf axetest_addTextViewWithForgroundColor:[UIColor blackColor]
-                                 backgroundColor:veryDarkGreyColor];
-  }];
+                         [sSelf gtxtest_addLabelWithForgroundColor:[UIColor redColor]
+                                                   backgroundColor:kAlmostRed];
+                       }];
+  [self gtxtest_addActionNamed:kAddBarelyHighContrastLabel
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_addLabelWithForgroundColor:[UIColor redColor]
+                                                   backgroundColor:kAlmostRedButDarker];
+                       }];
+  [self gtxtest_addActionNamed:kAddNoContrastLabel
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_addLabelWithForgroundColor:[UIColor redColor]
+                                                   backgroundColor:[UIColor redColor]];
+                       }];
+  [self gtxtest_addActionNamed:kAddTransparentHighContrastLabel
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_addLabelWithForgroundColor:[UIColor colorWithWhite:1.0
+                                                                                     alpha:0.5]
+                                                   backgroundColor:[UIColor blackColor]];
+                       }];
+  [self gtxtest_addActionNamed:kAddTransparentLowContrastLabel
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_addLabelWithForgroundColor:[UIColor colorWithWhite:0.0
+                                                                                     alpha:0.5]
+                                                   backgroundColor:[UIColor redColor]];
+                       }];
+  [self gtxtest_addActionNamed:kAddLowContrastBackground
+                       handler:^(GTXTestViewController *sSelf) {
+                         // Add a low contrast background with respect to text added on top of it.
+                         [sSelf gtxtest_addLabelWithForgroundColor:[UIColor redColor]
+                                                   backgroundColor:[UIColor clearColor]];
+                         [sSelf.testArea setBackgroundColor:kAlmostRed];
+                       }];
+  [self gtxtest_addActionNamed:kAddHighContrastBackground
+                       handler:^(GTXTestViewController *sSelf) {
+                         // Add a high contrast background with respect to text added on top of it.
+                         [sSelf gtxtest_addLabelWithForgroundColor:[UIColor redColor]
+                                                   backgroundColor:[UIColor clearColor]];
+                         [sSelf.testArea setBackgroundColor:kAlmostRedButDarker];
+                       }];
+  [self gtxtest_addActionNamed:kAddStandardUIKitTextView
+                       handler:^(GTXTestViewController *sSelf) {
+                         // Add a standard contrast text view: black text on white background.
+                         [sSelf gtxtest_addTextViewWithForgroundColor:nil backgroundColor:nil];
+                       }];
+  [self gtxtest_addActionNamed:kAddLowContrastTextView
+                       handler:^(GTXTestViewController *sSelf) {
+                         // Add a low contrast text view: black text on very dark grey background.
+                         UIColor *veryDarkGreyColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
+                         [sSelf gtxtest_addTextViewWithForgroundColor:[UIColor blackColor]
+                                                      backgroundColor:veryDarkGreyColor];
+                       }];
 }
 
-- (void)axetest_addActionNamed:(NSString *)name handler:(ActionHandler)handler {
+- (void)gtxtest_addActionNamed:(NSString *)name handler:(ActionHandler)handler {
   UIButton *newButton = [[UIButton alloc] initWithFrame:CGRectZero];
   [newButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
   [newButton addTarget:self
-                action:@selector(userTappedActionButton:)
+                action:@selector(gtxtest_userTappedActionButton:)
       forControlEvents:UIControlEventTouchUpInside];
   [newButton setTitle:name forState:UIControlStateNormal];
   [newButton sizeToFit];
@@ -187,11 +217,11 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
   handler(controller);
 }
 
-- (void)userTappedActionButton:(UIButton *)sender {
+- (void)gtxtest_userTappedActionButton:(UIButton *)sender {
   [[self class] performTestActionNamed:sender.titleLabel.text];
 }
 
-- (void)axetest_addElementWithLabel:(NSString *)label {
+- (void)gtxtest_addElementWithLabel:(NSString *)label {
   UIView *newElement = [[UIView alloc] initWithFrame:CGRectMake(kMargin, kMargin,
                                                                 kMinimumElementSize,
                                                                 kMinimumElementSize)];
@@ -201,7 +231,7 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
   [self.testArea addSubview:newElement];
 }
 
-- (void)axetest_addShowKeyboard {
+- (void)gtxtest_addShowKeyboard {
   UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(kMargin, kMargin,
                                                                       kMinimumElementSize * 2,
                                                                       kMinimumElementSize)];
@@ -210,34 +240,34 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
   [textView becomeFirstResponder];
 }
 
-- (void)axetest_addInAccessibleButton {
+- (void)gtxtest_addInaccessibleButton {
   GTXTestStepperButton *stepperButton =
       [[GTXTestStepperButton alloc] initWithFrame:CGRectMake(kMargin, kMargin,
                                                              kMinimumElementSize,
                                                              kMinimumElementSize)];
-  stepperButton.accessibilityIdentifier = @"inAccessibleButton";
+  stepperButton.accessibilityIdentifier = @"inaccessibleButton";
   [self.testArea addSubview:stepperButton];
 }
 
-- (void)axetest_addInAccessibleButtonInSubview {
+- (void)gtxtest_addInaccessibleButtonInSubview {
   CGRect frame = CGRectMake(kMargin, kMargin, kMinimumElementSize, kMinimumElementSize);
   GTXTestStepperButton *stepperButton = [[GTXTestStepperButton alloc] initWithFrame:frame];
   stepperButton.isAccessibilityElement = YES;
   stepperButton.accessibilityLabel = @"test button";
-  UIView *inAccessibleContainer = [[UIView alloc] initWithFrame:frame];
-  inAccessibleContainer.accessibilityIdentifier = @"inAccessibleContainerID";
-  [inAccessibleContainer addSubview:stepperButton];
-  [self.testArea addSubview:inAccessibleContainer];
+  UIView *inaccessibleContainer = [[UIView alloc] initWithFrame:frame];
+  inaccessibleContainer.accessibilityIdentifier = @"inaccessibleContainerID";
+  [inaccessibleContainer addSubview:stepperButton];
+  [self.testArea addSubview:inaccessibleContainer];
 }
 
-- (void)axetest_addTinyTappableElement {
+- (void)gtxtest_addTinyTappableElement {
   UIButton *tinyButton = [[UIButton alloc] initWithFrame:CGRectMake(kMargin, kMargin, 10, 10)];
   tinyButton.accessibilityLabel = @"tiny button";
   [tinyButton setTitle:@"*" forState:UIControlStateNormal];
   [self.testArea addSubview:tinyButton];
 }
 
-- (void)axetest_addLabelWithForgroundColor:(UIColor *)foregroundColor
+- (void)gtxtest_addLabelWithForgroundColor:(UIColor *)foregroundColor
                            backgroundColor:(UIColor *)backgroundColor {
   UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kMargin, kMargin, 0, 0)];
   label.font = [UIFont systemFontOfSize:60.0];
@@ -248,7 +278,7 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
   [self.testArea addSubview:label];
 }
 
-- (void)axetest_addTextViewWithForgroundColor:(UIColor *)foregroundColor
+- (void)gtxtest_addTextViewWithForgroundColor:(UIColor *)foregroundColor
                               backgroundColor:(UIColor *)backgroundColor {
   UITextView *view = [[UITextView alloc] initWithFrame:CGRectMake(kMargin, kMargin, 0, 0)];
   view.font = [UIFont systemFontOfSize:60.0];
@@ -263,15 +293,15 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
   [self.testArea addSubview:view];
 }
 
-- (IBAction)userTappedClearFields:(UIButton *)sender {
-  [self axetest_clearAllFields];
+- (IBAction)gtxtest_userTappedClearFields:(UIButton *)sender {
+  [self gtxtest_clearAllFields];
 }
 
-- (IBAction)userTappedScrollToTop:(UIButton *)sender {
+- (IBAction)gtxtest_userTappedScrollToTop:(UIButton *)sender {
   [self.actionsContainerView setContentOffset:CGPointZero animated:YES];
 }
 
-- (void)axetest_clearAllFields {
+- (void)gtxtest_clearAllFields {
   // Clear the container
   for (UIView *subview in self.testArea.subviews) {
     [subview removeFromSuperview];
@@ -285,7 +315,7 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
 
 + (void)clearTestArea {
   NSAssert(viewController, @"View controller has not loaded yet.");
-  [viewController axetest_clearAllFields];
+  [viewController gtxtest_clearAllFields];
 }
 
 @end

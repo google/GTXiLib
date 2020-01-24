@@ -46,7 +46,7 @@
   [super setUp];
 
   [GTXTestViewController clearTestArea];
-  [self _waitForAppEvents:0.5];
+  [self gtxtest_waitForAppEvents:0.5];
 
   // Set up failure handler to simple detect if errors were found.
   _expectErrors = NO;
@@ -63,80 +63,95 @@
 }
 
 - (void)testNoLableElementsCauseFailures {
-  [self _performTestActionNamed:kAddNoLabelElementActionName];
+  [self gtxtest_performTestActionNamed:kAddNoLabelElementActionName];
   _expectErrors = YES;
 }
 
-- (void)testPunctuatedLablesCauseFailures {
-  [self _performTestActionNamed:kAddPunctuatedLabelElementActionName];
+- (void)testPunctuatedLabelsCauseFailures {
+  [self gtxtest_performTestActionNamed:kAddPunctuatedLabelElementActionName];
   _expectErrors = YES;
 }
 
 - (void)testDefaultKeyboardDoesNotCauseFailures {
-  [self _performTestActionNamed:kShowKeyboardActionName];
-  [self _waitForAppEvents:1.0];
+  [self gtxtest_performTestActionNamed:kShowKeyboardActionName];
+  [self gtxtest_waitForAppEvents:1.0];
   _expectErrors = NO;
 }
 
 - (void)testButtonsMarkedInaccessibleAreSkippedByDefault {
-  [self _performTestActionNamed:kAddInaccessibleButton];
+  [self gtxtest_performTestActionNamed:kAddInaccessibleButton];
   _expectErrors = NO;
 }
 
 - (void)testAccessibleButtonsInsideContainersDoesNotCauseFailures {
-  [self _performTestActionNamed:kAddAccessibleButtonInContainer];
+  [self gtxtest_performTestActionNamed:kAddAccessibleButtonInContainer];
   _expectErrors = NO;
 }
 
 - (void)testTinyTappableAreasCauseErrors {
-  [self _performTestActionNamed:kAddTinyTappableElement];
+  [self gtxtest_performTestActionNamed:kAddTinyTappableElement];
   _expectErrors = YES;
 }
 
 - (void)testLowContrastLabelsCauseErrors {
-  [self _performTestActionNamed:kAddVeryLowContrastLabel];
+  [self gtxtest_performTestActionNamed:kAddVeryLowContrastLabel];
   _expectErrors = YES;
 }
 
 - (void)testBarelyContrastLabelsCauseErrors {
-  [self _performTestActionNamed:kAddBarelyLowContrastLabel];
+  [self gtxtest_performTestActionNamed:kAddBarelyLowContrastLabel];
   _expectErrors = YES;
 }
 
 - (void)testHighContrastLabelsDoesNotCauseFailures {
-  [self _performTestActionNamed:kAddVeryHighContrastLabel];
+  [self gtxtest_performTestActionNamed:kAddVeryHighContrastLabel];
   _expectErrors = NO;
 }
 
 - (void)testBarelyHighContrastLabelsDoesNotCauseFailures {
-  [self _performTestActionNamed:kAddBarelyHighContrastLabel];
+  [self gtxtest_performTestActionNamed:kAddBarelyHighContrastLabel];
   _expectErrors = NO;
 }
 
+- (void)testNoContrastLabelsCauseErrors {
+  [self gtxtest_performTestActionNamed:kAddNoContrastLabel];
+  _expectErrors = YES;
+}
+
+- (void)testTransparentHighContrastLabelDoesNotCauseFailures {
+  [self gtxtest_performTestActionNamed:kAddTransparentHighContrastLabel];
+  _expectErrors = NO;
+}
+
+- (void)testTransparentLowContrastLabelsCauseError {
+  [self gtxtest_performTestActionNamed:kAddTransparentLowContrastLabel];
+  _expectErrors = YES;
+}
+
 - (void)testLowContrastTextViewCausesErrors {
-  [self _performTestActionNamed:kAddLowContrastTextView];
+  [self gtxtest_performTestActionNamed:kAddLowContrastTextView];
   _expectErrors = YES;
 }
 
 - (void)testStandardContrastTextViewDoesNotCauseFailures {
-  [self _performTestActionNamed:kAddStandardUIKitTextView];
+  [self gtxtest_performTestActionNamed:kAddStandardUIKitTextView];
   _expectErrors = NO;
 }
 
-#pragma mark - private
+#pragma mark - Private
 
 /**
  Performs the provided test action on the test app and waits for its completion.
  */
-- (void)_performTestActionNamed:(NSString *)testAction {
+- (void)gtxtest_performTestActionNamed:(NSString *)testAction {
   [GTXTestViewController performTestActionNamed:testAction];
-  [self _waitForAppEvents:0.5];
+  [self gtxtest_waitForAppEvents:0.5];
 }
 
 /**
  Waits given time interval for any app events to be processed.
  */
-- (void)_waitForAppEvents:(NSTimeInterval)seconds {
+- (void)gtxtest_waitForAppEvents:(NSTimeInterval)seconds {
   NSTimeInterval start = CACurrentMediaTime();
   while (CACurrentMediaTime() - start < seconds) {
     CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.01, false);
