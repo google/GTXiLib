@@ -43,6 +43,23 @@
 		61284E05211E447E00F8FF29 /* GTXTestGtxCanDetectFailures.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284DF8211E447D00F8FF29 /* GTXTestGtxCanDetectFailures.m */; };
 		61284E0A211E45C600F8FF29 /* GTXBlacklistFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 61284E08211E45C500F8FF29 /* GTXBlacklistFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61284E0B211E45C600F8FF29 /* GTXBlacklistFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 61284E09211E45C600F8FF29 /* GTXBlacklistFactory.m */; };
+		6133087023FF2F39003F8D41 /* GTXArtifactCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133086B23FF2F39003F8D41 /* GTXArtifactCollector.m */; };
+		6133087123FF2F39003F8D41 /* GTXArtifactProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 6133086C23FF2F39003F8D41 /* GTXArtifactProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6133087223FF2F39003F8D41 /* GTXArtifactProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133086D23FF2F39003F8D41 /* GTXArtifactProcessor.m */; };
+		6133087323FF2F39003F8D41 /* GTXArtifactCollector.h in Headers */ = {isa = PBXBuildFile; fileRef = 6133086E23FF2F39003F8D41 /* GTXArtifactCollector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6133087423FF2F39003F8D41 /* GTXArtifactImplementing.h in Headers */ = {isa = PBXBuildFile; fileRef = 6133086F23FF2F39003F8D41 /* GTXArtifactImplementing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6133088123FF2F53003F8D41 /* UIColor+GTXAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133087523FF2F53003F8D41 /* UIColor+GTXAdditions.m */; };
+		6133088223FF2F53003F8D41 /* UIColor+GTXAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6133087623FF2F53003F8D41 /* UIColor+GTXAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6133088323FF2F53003F8D41 /* GTXError.h in Headers */ = {isa = PBXBuildFile; fileRef = 6133087723FF2F53003F8D41 /* GTXError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6133088423FF2F53003F8D41 /* GTXSnapshotContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133087823FF2F53003F8D41 /* GTXSnapshotContainer.m */; };
+		6133088523FF2F53003F8D41 /* GTXSnapshotBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133087923FF2F53003F8D41 /* GTXSnapshotBuffer.m */; };
+		6133088623FF2F53003F8D41 /* GTXError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133087A23FF2F53003F8D41 /* GTXError.m */; };
+		6133088723FF2F53003F8D41 /* GTXElementBlacklist.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133087B23FF2F53003F8D41 /* GTXElementBlacklist.m */; };
+		6133088823FF2F53003F8D41 /* GTXReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133087C23FF2F53003F8D41 /* GTXReport.m */; };
+		6133088923FF2F53003F8D41 /* GTXSnapshotBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6133087D23FF2F53003F8D41 /* GTXSnapshotBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6133088A23FF2F53003F8D41 /* GTXElementBlacklist.h in Headers */ = {isa = PBXBuildFile; fileRef = 6133087E23FF2F53003F8D41 /* GTXElementBlacklist.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6133088B23FF2F53003F8D41 /* GTXSnapshotContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6133087F23FF2F53003F8D41 /* GTXSnapshotContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6133088C23FF2F53003F8D41 /* GTXReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 6133088023FF2F53003F8D41 /* GTXReport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61A0C4DE2061896300DF0169 /* GTXiLibCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A0C4DB2061896300DF0169 /* GTXiLibCore.m */; };
 		61A0C4DF2061896300DF0169 /* GTXiLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A0C4DC2061896300DF0169 /* GTXiLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61A0C4E02061896300DF0169 /* GTXiLibCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A0C4DD2061896300DF0169 /* GTXiLibCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -147,6 +164,23 @@
 		61284DF8211E447D00F8FF29 /* GTXTestGtxCanDetectFailures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestGtxCanDetectFailures.m; path = Tests/FunctionalTests/TestApp/TestSources/GTXTestGtxCanDetectFailures.m; sourceTree = SOURCE_ROOT; };
 		61284E08211E45C500F8FF29 /* GTXBlacklistFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXBlacklistFactory.h; path = Classes/GTXBlacklistFactory.h; sourceTree = SOURCE_ROOT; };
 		61284E09211E45C600F8FF29 /* GTXBlacklistFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXBlacklistFactory.m; path = Classes/GTXBlacklistFactory.m; sourceTree = SOURCE_ROOT; };
+		6133086B23FF2F39003F8D41 /* GTXArtifactCollector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXArtifactCollector.m; path = Classes/GTXArtifactCollector.m; sourceTree = SOURCE_ROOT; };
+		6133086C23FF2F39003F8D41 /* GTXArtifactProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXArtifactProcessor.h; path = Classes/GTXArtifactProcessor.h; sourceTree = SOURCE_ROOT; };
+		6133086D23FF2F39003F8D41 /* GTXArtifactProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXArtifactProcessor.m; path = Classes/GTXArtifactProcessor.m; sourceTree = SOURCE_ROOT; };
+		6133086E23FF2F39003F8D41 /* GTXArtifactCollector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXArtifactCollector.h; path = Classes/GTXArtifactCollector.h; sourceTree = SOURCE_ROOT; };
+		6133086F23FF2F39003F8D41 /* GTXArtifactImplementing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXArtifactImplementing.h; path = Classes/GTXArtifactImplementing.h; sourceTree = SOURCE_ROOT; };
+		6133087523FF2F53003F8D41 /* UIColor+GTXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+GTXAdditions.m"; path = "Classes/UIColor+GTXAdditions.m"; sourceTree = SOURCE_ROOT; };
+		6133087623FF2F53003F8D41 /* UIColor+GTXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+GTXAdditions.h"; path = "Classes/UIColor+GTXAdditions.h"; sourceTree = SOURCE_ROOT; };
+		6133087723FF2F53003F8D41 /* GTXError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXError.h; path = Classes/GTXError.h; sourceTree = SOURCE_ROOT; };
+		6133087823FF2F53003F8D41 /* GTXSnapshotContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXSnapshotContainer.m; path = Classes/GTXSnapshotContainer.m; sourceTree = SOURCE_ROOT; };
+		6133087923FF2F53003F8D41 /* GTXSnapshotBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXSnapshotBuffer.m; path = Classes/GTXSnapshotBuffer.m; sourceTree = SOURCE_ROOT; };
+		6133087A23FF2F53003F8D41 /* GTXError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXError.m; path = Classes/GTXError.m; sourceTree = SOURCE_ROOT; };
+		6133087B23FF2F53003F8D41 /* GTXElementBlacklist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXElementBlacklist.m; path = Classes/GTXElementBlacklist.m; sourceTree = SOURCE_ROOT; };
+		6133087C23FF2F53003F8D41 /* GTXReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXReport.m; path = Classes/GTXReport.m; sourceTree = SOURCE_ROOT; };
+		6133087D23FF2F53003F8D41 /* GTXSnapshotBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXSnapshotBuffer.h; path = Classes/GTXSnapshotBuffer.h; sourceTree = SOURCE_ROOT; };
+		6133087E23FF2F53003F8D41 /* GTXElementBlacklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXElementBlacklist.h; path = Classes/GTXElementBlacklist.h; sourceTree = SOURCE_ROOT; };
+		6133087F23FF2F53003F8D41 /* GTXSnapshotContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXSnapshotContainer.h; path = Classes/GTXSnapshotContainer.h; sourceTree = SOURCE_ROOT; };
+		6133088023FF2F53003F8D41 /* GTXReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXReport.h; path = Classes/GTXReport.h; sourceTree = SOURCE_ROOT; };
 		613C3F41204A09E8007D44A8 /* GTXiLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GTXiLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61A0C4DB2061896300DF0169 /* GTXiLibCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXiLibCore.m; path = Classes/GTXiLibCore.m; sourceTree = SOURCE_ROOT; };
 		61A0C4DC2061896300DF0169 /* GTXiLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXiLib.h; path = Classes/GTXiLib.h; sourceTree = SOURCE_ROOT; };
@@ -289,6 +323,23 @@
 		61ABAE8D204A0AF1006DBF0A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6133087E23FF2F53003F8D41 /* GTXElementBlacklist.h */,
+				6133087B23FF2F53003F8D41 /* GTXElementBlacklist.m */,
+				6133087723FF2F53003F8D41 /* GTXError.h */,
+				6133087A23FF2F53003F8D41 /* GTXError.m */,
+				6133088023FF2F53003F8D41 /* GTXReport.h */,
+				6133087C23FF2F53003F8D41 /* GTXReport.m */,
+				6133087D23FF2F53003F8D41 /* GTXSnapshotBuffer.h */,
+				6133087923FF2F53003F8D41 /* GTXSnapshotBuffer.m */,
+				6133087F23FF2F53003F8D41 /* GTXSnapshotContainer.h */,
+				6133087823FF2F53003F8D41 /* GTXSnapshotContainer.m */,
+				6133087623FF2F53003F8D41 /* UIColor+GTXAdditions.h */,
+				6133087523FF2F53003F8D41 /* UIColor+GTXAdditions.m */,
+				6133086E23FF2F39003F8D41 /* GTXArtifactCollector.h */,
+				6133086B23FF2F39003F8D41 /* GTXArtifactCollector.m */,
+				6133086F23FF2F39003F8D41 /* GTXArtifactImplementing.h */,
+				6133086C23FF2F39003F8D41 /* GTXArtifactProcessor.h */,
+				6133086D23FF2F39003F8D41 /* GTXArtifactProcessor.m */,
 				61A0C4DC2061896300DF0169 /* GTXiLib.h */,
 				61A0C4DD2061896300DF0169 /* GTXiLibCore.h */,
 				61A0C4DB2061896300DF0169 /* GTXiLibCore.m */,
@@ -366,20 +417,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				61284DDB211E437800F8FF29 /* GTXTestEnvironment.h in Headers */,
+				6133087423FF2F39003F8D41 /* GTXArtifactImplementing.h in Headers */,
 				61ABAEB5204A0B0B006DBF0A /* GTXAccessibilityTree.h in Headers */,
 				61ABAECD204A0B0B006DBF0A /* GTXToolKit.h in Headers */,
 				61ABAEC8204A0B0B006DBF0A /* NSError+GTXAdditions.h in Headers */,
+				6133088323FF2F53003F8D41 /* GTXError.h in Headers */,
 				61ABAEC4204A0B0B006DBF0A /* GTXImageAndColorUtils.h in Headers */,
 				61ABAEB6204A0B0B006DBF0A /* GTXCommon.h in Headers */,
 				61ABAEBD204A0B0B006DBF0A /* GTXAssertions.h in Headers */,
 				610CA3FD204DFC76008BAAA1 /* GTXPluginXCTestCase.h in Headers */,
 				61ABAECB204A0B0B006DBF0A /* GTXCheckBlock.h in Headers */,
+				6133088A23FF2F53003F8D41 /* GTXElementBlacklist.h in Headers */,
 				61284DD6211E42CF00F8FF29 /* GTXBlacklistBlock.h in Headers */,
+				6133088223FF2F53003F8D41 /* UIColor+GTXAdditions.h in Headers */,
 				61ABAEB9204A0B0B006DBF0A /* GTXChecking.h in Headers */,
 				61284E0A211E45C600F8FF29 /* GTXBlacklistFactory.h in Headers */,
+				6133088C23FF2F53003F8D41 /* GTXReport.h in Headers */,
+				6133088923FF2F53003F8D41 /* GTXSnapshotBuffer.h in Headers */,
 				61ABAEBE204A0B0B006DBF0A /* GTXImageRGBAData.h in Headers */,
+				6133087123FF2F39003F8D41 /* GTXArtifactProcessor.h in Headers */,
 				61ABAEB2204A0B0B006DBF0A /* GTXErrorReporter.h in Headers */,
 				61ABAEC3204A0B0B006DBF0A /* GTXTestCase.h in Headers */,
+				6133088B23FF2F53003F8D41 /* GTXSnapshotContainer.h in Headers */,
 				61ABAEB1204A0B0B006DBF0A /* GTXAnalytics.h in Headers */,
 				61284DD7211E42CF00F8FF29 /* GTXBlacklisting.h in Headers */,
 				61A0C4E02061896300DF0169 /* GTXiLibCore.h in Headers */,
@@ -388,6 +447,7 @@
 				61ABAEC1204A0B0B006DBF0A /* GTXTestSuite.h in Headers */,
 				61ABAEB7204A0B0B006DBF0A /* GTXLogging.h in Headers */,
 				61ABAEB0204A0B0B006DBF0A /* GTXAnalyticsUtils.h in Headers */,
+				6133087323FF2F39003F8D41 /* GTXArtifactCollector.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,19 +662,27 @@
 				61ABAECC204A0B0B006DBF0A /* GTXErrorReporter.m in Sources */,
 				61ABAEB4204A0B0B006DBF0A /* GTXTestSuite.m in Sources */,
 				61ABAEB3204A0B0B006DBF0A /* GTXImageAndColorUtils.m in Sources */,
+				6133087223FF2F39003F8D41 /* GTXArtifactProcessor.m in Sources */,
 				61284E0B211E45C600F8FF29 /* GTXBlacklistFactory.m in Sources */,
 				61ABAEC2204A0B0B006DBF0A /* GTXToolKit.m in Sources */,
+				6133088123FF2F53003F8D41 /* UIColor+GTXAdditions.m in Sources */,
 				61ABAEC9204A0B0B006DBF0A /* GTXAnalytics.m in Sources */,
 				610CA3FE204DFC76008BAAA1 /* GTXPluginXCTestCase.m in Sources */,
 				61284DDA211E437800F8FF29 /* GTXTestEnvironment.m in Sources */,
 				61ABAEB8204A0B0B006DBF0A /* GTXAnalyticsUtils.m in Sources */,
+				6133088623FF2F53003F8D41 /* GTXError.m in Sources */,
 				61284DD5211E42CF00F8FF29 /* GTXBlacklistBlock.m in Sources */,
+				6133088723FF2F53003F8D41 /* GTXElementBlacklist.m in Sources */,
 				61ABAEBF204A0B0B006DBF0A /* NSError+GTXAdditions.m in Sources */,
 				61ABAEBC204A0B0B006DBF0A /* GTXAccessibilityTree.m in Sources */,
+				6133088523FF2F53003F8D41 /* GTXSnapshotBuffer.m in Sources */,
+				6133088423FF2F53003F8D41 /* GTXSnapshotContainer.m in Sources */,
 				61ABAEC0204A0B0B006DBF0A /* GTXCheckBlock.m in Sources */,
 				61ABAEBB204A0B0B006DBF0A /* GTXTestCase.m in Sources */,
+				6133087023FF2F39003F8D41 /* GTXArtifactCollector.m in Sources */,
 				61ABAECE204A0B0B006DBF0A /* GTXImageRGBAData.m in Sources */,
 				61A0C4DE2061896300DF0169 /* GTXiLibCore.m in Sources */,
+				6133088823FF2F53003F8D41 /* GTXReport.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

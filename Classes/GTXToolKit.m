@@ -21,6 +21,7 @@
 #import "GTXBlacklistBlock.h"
 #import "GTXBlacklistFactory.h"
 #import "GTXChecksCollection.h"
+#import "GTXLogging.h"
 #import "NSError+GTXAdditions.h"
 
 #pragma mark - Extension
@@ -75,7 +76,7 @@
   for (id<GTXChecking> existingCheck in _checks) {
     NSAssert(![[existingCheck name] isEqualToString:[check name]],
              @"Check named %@ already exists!", [check name]);
-    (void)existingCheck; // Ensures 'existingCheck' is marked as used even if NSAssert is removed.
+    (void)existingCheck;  // Ensures 'existingCheck' is marked as used even if NSAssert is removed.
   }
   [_checks addObject:check];
 }
@@ -85,70 +86,61 @@
 }
 
 - (BOOL)checkElement:(id)element error:(GTXErrorRefType)errorOrNil {
-  return [self _checkElement:element analyticsEnabled:YES error:errorOrNil];
+  return [self gtx_checkElement:element
+               analyticsEnabled:YES
+           outWasElementChecked:NULL
+                          error:errorOrNil];
 }
 
-- (BOOL)checkAllElementsFromRootElements:(NSArray *)rootElements
-                                   error:(GTXErrorRefType)errorOrNil {
+- (BOOL)checkAllElementsFromRootElements:(NSArray *)rootElements error:(GTXErrorRefType)errorOrNil {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    GTX_LOG(@"-checkAllElementsFromRootElements:error: has been deprecated, please use "
+            @"-resultFromCheckingAllElementsFromRootElements: instead");
+  });
+  GTXResult *result = [self resultFromCheckingAllElementsFromRootElements:rootElements];
+  if (errorOrNil) {
+    *errorOrNil = [result aggregatedError];
+  }
+  return [result allChecksPassed];
+}
+
+- (GTXResult *)resultFromCheckingAllElementsFromRootElements:(NSArray *)rootElements {
   GTXAccessibilityTree *tree = [[GTXAccessibilityTree alloc] initWithRootElements:rootElements];
   NSMutableArray *errors;
+  NSInteger elementsScanned = 0;
   // Check each element and collect all failures into the errors array.
   for (id element in tree) {
     NSError *error;
-    if (![self _checkElement:element analyticsEnabled:NO error:&error]) {
+    BOOL wasElementChecked;
+    if (![self gtx_checkElement:element
+                analyticsEnabled:NO
+            outWasElementChecked:&wasElementChecked
+                           error:&error]) {
       if (!error) {
         NSString *genericErrorDescription =
-        @"One or more Gtx checks failed, error description was not provided by the check.";
+            @"One or more Gtx checks failed, error description was not provided by the check.";
         error = [NSError errorWithDomain:kGTXErrorDomain
                                     code:GTXCheckErrorCodeGenericError
-                                userInfo:@{ kGTXErrorFailingElementKey : element,
-                                            NSLocalizedDescriptionKey : genericErrorDescription }];
+                                userInfo:@{
+                                  kGTXErrorFailingElementKey : element,
+                                  NSLocalizedDescriptionKey : genericErrorDescription
+                                }];
       }
       if (!errors) {
         errors = [[NSMutableArray alloc] init];
       }
       [errors addObject:error];
     }
-  }
-
-  [GTXAnalytics invokeAnalyticsEvent:(errors ?
-                                      GTXAnalyticsEventChecksFailed :
-                                      GTXAnalyticsEventChecksPerformed)];
-  if (errors) {
-    // Combine the error descriptions from all the errors into the following format ('.' is an
-    // indent):
-    // . . Element: <element description>
-    // . . . . Error: <error description>
-    // . . . . Error: <error description>
-    // . . Element: <element description>
-    // . . . . Error: <error description>
-    // . . . . Error: <error description>
-
-    NSMutableString *errorString =
-    [[NSMutableString alloc] initWithString:@"One or more elements FAILED the accessibility "
-                                            @"checks:\n"];
-    for (NSError *error in errors) {
-      id element = [[error userInfo] objectForKey:kGTXErrorFailingElementKey];
-      if (element) {
-        // Add element description with an indent.
-        [errorString appendFormat:@"  %@\n", element];
-        for (NSError *underlyingError in
-             // Add element's error description with twice the indent.
-             [[error userInfo] objectForKey:kGTXErrorUnderlyingErrorsKey]) {
-          [errorString appendFormat:@"    + %@\n", [underlyingError localizedDescription]];
-        }
-      }
-    }
-    NSError *error;
-    [NSError gtx_logOrSetError:&error
-                   description:errorString
-                          code:GTXCheckErrorCodeGenericError
-                      userInfo:@{ kGTXErrorUnderlyingErrorsKey : errors }];
-    if (errorOrNil) {
-      *errorOrNil = error;
+    if (wasElementChecked) {
+      elementsScanned += 1;
     }
   }
-  return errors == nil;
+
+  [GTXAnalytics invokeAnalyticsEvent:(errors ? GTXAnalyticsEventChecksFailed
+                                             : GTXAnalyticsEventChecksPerformed)];
+
+  return [[GTXResult alloc] initWithErrorsFound:errors elementsScanned:elementsScanned];
 }
 
 #pragma mark - Private
@@ -158,13 +150,19 @@
 
  @param element element to be checked.
  @param checkAnalyticsEnabled Boolean that indicates if analytics events are to be invoked.
+ @param[out] outWasElementChecked Optional reference to a boolean that will be set to @c YES if
+ element was checked, @c NO otherwise.
  @param errorOrNil Error object to be filled with error info on check failures.
  @return @c YES if all checks passed @c NO otherwise.
  */
-- (BOOL)_checkElement:(id)element
-     analyticsEnabled:(BOOL)checkAnalyticsEnabled
-                error:(GTXErrorRefType)errorOrNil {
+- (BOOL)gtx_checkElement:(id)element
+        analyticsEnabled:(BOOL)checkAnalyticsEnabled
+    outWasElementChecked:(nullable BOOL *)outWasElementChecked
+                   error:(GTXErrorRefType)errorOrNil {
   NSParameterAssert(element);
+  if (outWasElementChecked) {
+    *outWasElementChecked = NO;
+  }
   if ([element respondsToSelector:@selector(isAccessibilityElement)] &&
       ![element isAccessibilityElement]) {
     // Currently all checks are only applicable to accessibility elements.
@@ -194,23 +192,28 @@
       if (!error) {
         // Check failed but an error description was not provided, generate a generic description.
         NSString *errorDescription =
-        [NSString stringWithFormat:@"Check \"%@\" failed, no description was provided by the "
-                                   @"check implementation.", [checker name]];
+            [NSString stringWithFormat:@"Check \"%@\" failed, no description was provided by the "
+                                       @"check implementation.",
+                                       [checker name]];
         error = [NSError errorWithDomain:kGTXErrorDomain
                                     code:GTXCheckErrorCodeAccessibilityCheckFailed
-                                userInfo:@{ NSLocalizedDescriptionKey: errorDescription,
-                                            kGTXErrorFailingElementKey: element }];
+                                userInfo:@{
+                                  NSLocalizedDescriptionKey : errorDescription,
+                                  kGTXErrorFailingElementKey : element
+                                }];
       }
       if (!failedCheckErrors) {
         failedCheckErrors = [[NSMutableArray alloc] init];
       }
       [failedCheckErrors addObject:error];
     }
+    if (outWasElementChecked) {
+      *outWasElementChecked = YES;
+    }
   }
   if (checkAnalyticsEnabled) {
-    [GTXAnalytics invokeAnalyticsEvent:(failedCheckErrors ?
-                                        GTXAnalyticsEventChecksFailed :
-                                        GTXAnalyticsEventChecksPerformed)];
+    [GTXAnalytics invokeAnalyticsEvent:(failedCheckErrors ? GTXAnalyticsEventChecksFailed
+                                                          : GTXAnalyticsEventChecksPerformed)];
   }
   if (!failedCheckErrors) {
     // All checks passed.
@@ -224,8 +227,10 @@
   [NSError gtx_logOrSetError:&error
                  description:errorDescription
                         code:GTXCheckErrorCodeAccessibilityCheckFailed
-                    userInfo:@{ kGTXErrorFailingElementKey : element,
-                                kGTXErrorUnderlyingErrorsKey : failedCheckErrors}];
+                    userInfo:@{
+                      kGTXErrorFailingElementKey : element,
+                      kGTXErrorUnderlyingErrorsKey : failedCheckErrors
+                    }];
 
   if (errorOrNil) {
     *errorOrNil = error;
@@ -242,17 +247,14 @@
  */
 - (NSString *)gtx_errorDescriptionForElement:(id)element gtxCheckErrors:(NSArray *)errors {
   NSMutableString *localizedDescription =
-  [NSMutableString stringWithFormat:@"%d accessibility error(s) were found in %@:\n",
-   (int)[errors count],
-   element];
+      [NSMutableString stringWithFormat:@"%d accessibility error(s) were found in %@:\n",
+                                        (int)[errors count], element];
   for (NSUInteger index = 0; index < [errors count]; index++) {
-    [localizedDescription appendString:
-     [NSString stringWithFormat:@"%d. %@\n",
-      (int)(index + 1),
-      [errors[index] localizedDescription]]];
+    [localizedDescription
+        appendString:[NSString stringWithFormat:@"%d. %@\n", (int)(index + 1),
+                                                [errors[index] localizedDescription]]];
   }
   return localizedDescription;
 }
 
 @end
-

@@ -17,9 +17,9 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-#import "GTXToolKit.h"
 #import "GTXAnalytics.h"
 #import "GTXBlacklistFactory.h"
+#import "GTXToolKit.h"
 #import "GTXBaseTestCase.h"
 
 @interface GTXTestElementClass1 : UIAccessibilityElement
@@ -63,11 +63,11 @@
   GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
   NSObject *failingElement = [self newAccessibleElement];
   NSObject *passingElement = [self newAccessibleElement];
-  id<GTXChecking> check = [GTXToolKit checkWithName:@"Foo"
-                                              block:^BOOL(id _Nonnull element,
-                                                          GTXErrorRefType errorOrNil) {
-                                                return element == passingElement;
-                                              }];
+  id<GTXChecking> check =
+      [GTXToolKit checkWithName:@"Foo"
+                          block:^BOOL(id _Nonnull element, GTXErrorRefType errorOrNil) {
+                            return element == passingElement;
+                          }];
   [toolkit registerCheck:check];
   NSError *error;
   XCTAssertTrue([toolkit checkElement:passingElement error:nil]);
@@ -78,23 +78,49 @@
 
 - (void)testCheckElementsFromRootElementsReportsFailures {
   GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
-  NSObject *root = [self newInAccessibleElement];
+  NSObject *root = [self newInaccessibleElement];
   NSObject *child1 = [self newAccessibleElement];
-  NSObject *child2 = [self newInAccessibleElement];
-  id<GTXChecking> checkFailIfChild1 = [GTXToolKit checkWithName:@"Foo"
-                                                           block:^BOOL(id _Nonnull element,
-                                                                       GTXErrorRefType errorOrNil) {
-                                                             return element != child1;
-                                                           }];
-  [self createTreeFromPreOrderTraversal:@[root,
-                                                  child1, child2, [NSNull null],
-                                                  ]];
+  NSObject *child2 = [self newInaccessibleElement];
+  id<GTXChecking> checkFailIfChild1 =
+      [GTXToolKit checkWithName:@"Foo"
+                          block:^BOOL(id _Nonnull element, GTXErrorRefType errorOrNil) {
+                            return element != child1;
+                          }];
+  [self createTreeFromPreOrderTraversal:@[
+    root,
+    child1,
+    child2,
+    [NSNull null],
+  ]];
   [toolkit registerCheck:checkFailIfChild1];
   NSError *error;
-  XCTAssertFalse([toolkit checkAllElementsFromRootElements:@[root] error:nil]);
-  XCTAssertFalse([toolkit checkAllElementsFromRootElements:@[root] error:&error]);
-  XCTAssertTrue([toolkit checkAllElementsFromRootElements:@[child2] error:nil]);
-  XCTAssertTrue([toolkit checkAllElementsFromRootElements:@[child2] error:&error]);
+  XCTAssertFalse([toolkit checkAllElementsFromRootElements:@[ root ] error:nil]);
+  XCTAssertFalse([toolkit checkAllElementsFromRootElements:@[ root ] error:&error]);
+  XCTAssertTrue([toolkit checkAllElementsFromRootElements:@[ child2 ] error:nil]);
+  XCTAssertTrue([toolkit checkAllElementsFromRootElements:@[ child2 ] error:&error]);
+}
+
+- (void)testResultFromCheckingAllElementsFromRootElementsReportsFailures {
+  GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
+  NSObject *root = [self newInaccessibleElement];
+  NSObject *child1 = [self newAccessibleElement];
+  NSObject *child2 = [self newInaccessibleElement];
+  id<GTXChecking> checkFailIfChild1 =
+      [GTXToolKit checkWithName:@"Foo"
+                          block:^BOOL(id _Nonnull element, GTXErrorRefType errorOrNil) {
+                            return element != child1;
+                          }];
+  [self createTreeFromPreOrderTraversal:@[
+    root,
+    child1,
+    child2,
+    [NSNull null],
+  ]];
+  [toolkit registerCheck:checkFailIfChild1];
+  XCTAssertFalse(
+      [[toolkit resultFromCheckingAllElementsFromRootElements:@[ root ]] allChecksPassed]);
+  XCTAssertTrue(
+      [[toolkit resultFromCheckingAllElementsFromRootElements:@[ child2 ]] allChecksPassed]);
 }
 
 - (void)testCheckElementsFromRootElementsSkipsHiddenAXElements {
@@ -102,33 +128,58 @@
   NSObject *root = [self newAccessibleElement];
   // Since root is an accessibile element its children are hidden.
   NSObject *child1 = [self newAccessibleElement];
-  NSObject *child2 = [self newInAccessibleElement];
-  id<GTXChecking> checkFailIfChild1 = [GTXToolKit checkWithName:@"Foo"
-                                                          block:^BOOL(id _Nonnull element,
-                                                                      GTXErrorRefType errorOrNil) {
-                                                            return element != child1;
-                                                          }];
-  [self createTreeFromPreOrderTraversal:@[root,
-                                                  child1, child2, [NSNull null],
-                                                  ]];
+  NSObject *child2 = [self newInaccessibleElement];
+  id<GTXChecking> checkFailIfChild1 =
+      [GTXToolKit checkWithName:@"Foo"
+                          block:^BOOL(id _Nonnull element, GTXErrorRefType errorOrNil) {
+                            return element != child1;
+                          }];
+  [self createTreeFromPreOrderTraversal:@[
+    root,
+    child1,
+    child2,
+    [NSNull null],
+  ]];
   [toolkit registerCheck:checkFailIfChild1];
   NSError *error;
-  XCTAssertTrue([toolkit checkAllElementsFromRootElements:@[root] error:nil]);
-  XCTAssertTrue([toolkit checkAllElementsFromRootElements:@[root] error:&error]);
+  XCTAssertTrue([toolkit checkAllElementsFromRootElements:@[ root ] error:nil]);
+  XCTAssertTrue([toolkit checkAllElementsFromRootElements:@[ root ] error:&error]);
+}
+
+- (void)testResultFromCheckingAllElementsFromRootElementsSkipsHiddenAXElements {
+  GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
+  NSObject *root = [self newAccessibleElement];
+  // Since root is an accessibile element its children are hidden.
+  NSObject *child1 = [self newAccessibleElement];
+  NSObject *child2 = [self newInaccessibleElement];
+  id<GTXChecking> checkFailIfChild1 =
+      [GTXToolKit checkWithName:@"Foo"
+                          block:^BOOL(id _Nonnull element, GTXErrorRefType errorOrNil) {
+                            return element != child1;
+                          }];
+  [self createTreeFromPreOrderTraversal:@[
+    root,
+    child1,
+    child2,
+    [NSNull null],
+  ]];
+  [toolkit registerCheck:checkFailIfChild1];
+  XCTAssertTrue(
+      [[toolkit resultFromCheckingAllElementsFromRootElements:@[ root ]] allChecksPassed]);
 }
 
 - (void)testBlacklistAPICanSkipElementsFromChecks {
   GTXToolKit *toolkit = [GTXToolKit toolkitWithNoChecks];
   NSObject *failingElement = [self newAccessibleElement];
-  id<GTXChecking> check = [GTXToolKit checkWithName:@"Foo"
-                                              block:^BOOL(id _Nonnull element,
-                                                          GTXErrorRefType errorOrNil) {
-                                                return NO;
-                                              }];
+  id<GTXChecking> check =
+      [GTXToolKit checkWithName:@"Foo"
+                          block:^BOOL(id _Nonnull element, GTXErrorRefType errorOrNil) {
+                            return NO;
+                          }];
   [toolkit registerCheck:check];
   XCTAssertFalse([toolkit checkElement:failingElement error:nil]);
-  [toolkit registerBlacklist:
-      [GTXBlacklistFactory blacklistWithClassName:NSStringFromClass([failingElement class])]];
+  [toolkit registerBlacklist:[GTXBlacklistFactory
+                                 blacklistWithClassName:NSStringFromClass([failingElement class])]];
   XCTAssertTrue([toolkit checkElement:failingElement error:nil]);
 }
 
@@ -146,16 +197,16 @@
 
   NSString *check1Name = @"Check 1";
   NSString *check2Name = @"Check 2";
-  id<GTXChecking> check1 = [GTXToolKit checkWithName:check1Name
-                                               block:^BOOL(id _Nonnull element,
-                                                           GTXErrorRefType errorOrNil) {
-                                                 return NO;
-                                               }];
-  id<GTXChecking> check2 = [GTXToolKit checkWithName:check2Name
-                                               block:^BOOL(id _Nonnull element,
-                                                           GTXErrorRefType errorOrNil) {
-                                                 return element != allChecksFailingElement;
-                                               }];
+  id<GTXChecking> check1 =
+      [GTXToolKit checkWithName:check1Name
+                          block:^BOOL(id _Nonnull element, GTXErrorRefType errorOrNil) {
+                            return NO;
+                          }];
+  id<GTXChecking> check2 =
+      [GTXToolKit checkWithName:check2Name
+                          block:^BOOL(id _Nonnull element, GTXErrorRefType errorOrNil) {
+                            return element != allChecksFailingElement;
+                          }];
 
   GTXToolKit *toolkit1 = [GTXToolKit toolkitWithNoChecks];
   [toolkit1 registerCheck:check1];
@@ -164,24 +215,26 @@
   XCTAssertFalse([toolkit1 checkElement:allChecksFailingElement error:nil]);
   XCTAssertFalse([toolkit1 checkElement:check3FailingElement error:nil]);
 
-  [toolkit1 registerBlacklist:
-      [GTXBlacklistFactory blacklistWithAccessibilityIdentifier:@"check3FailingElement"
-                                                      checkName:check1Name]];
+  [toolkit1 registerBlacklist:[GTXBlacklistFactory
+                                  blacklistWithAccessibilityIdentifier:@"check3FailingElement"
+                                                             checkName:check1Name]];
   XCTAssertFalse([toolkit1 checkElement:check1FailingElement error:nil]);
   XCTAssertFalse([toolkit1 checkElement:allChecksFailingElement error:nil]);
   XCTAssertTrue([toolkit1 checkElement:check3FailingElement error:nil]);
 
-  [toolkit1 registerBlacklist:
-      [GTXBlacklistFactory blacklistWithClassName:NSStringFromClass([check1FailingElement class])]];
-  [toolkit1 registerBlacklist:
-      [GTXBlacklistFactory blacklistWithClassName:NSStringFromClass([check1FailingElement class])]];
+  [toolkit1 registerBlacklist:[GTXBlacklistFactory
+                                  blacklistWithClassName:NSStringFromClass(
+                                                             [check1FailingElement class])]];
+  [toolkit1 registerBlacklist:[GTXBlacklistFactory
+                                  blacklistWithClassName:NSStringFromClass(
+                                                             [check1FailingElement class])]];
   XCTAssertTrue([toolkit1 checkElement:check1FailingElement error:nil]);
   XCTAssertFalse([toolkit1 checkElement:allChecksFailingElement error:nil]);
   XCTAssertTrue([toolkit1 checkElement:check3FailingElement error:nil]);
 
   NSString *allChecksFailingElementClass = NSStringFromClass([allChecksFailingElement class]);
-  [toolkit1 registerBlacklist:
-      [GTXBlacklistFactory blacklistWithClassName:allChecksFailingElementClass]];
+  [toolkit1
+      registerBlacklist:[GTXBlacklistFactory blacklistWithClassName:allChecksFailingElementClass]];
   XCTAssertTrue([toolkit1 checkElement:allChecksFailingElement error:nil]);
 }
 

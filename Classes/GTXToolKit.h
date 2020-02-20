@@ -20,6 +20,7 @@
 #import "GTXBlacklisting.h"
 #import "GTXCheckBlock.h"
 #import "GTXChecking.h"
+#import "GTXResult.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -83,6 +84,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)checkElement:(id)element error:(GTXErrorRefType)errorOrNil;
 
 /**
+ @deprecated Use -resultFromCheckingAllElementsFromRootElements: instead.
+
  Applies the registered checks on all elements in the accessibility tree under the given root
  elements while respecting blacklisted elements.
 
@@ -90,8 +93,16 @@ NS_ASSUME_NONNULL_BEGIN
  @param errorOrNil Error object to be filled with error info on check failures.
  @return @c YES if all checks passed on all elements @c NO otherwise.
  */
-- (BOOL)checkAllElementsFromRootElements:(NSArray *)rootElements
-                                   error:(GTXErrorRefType)errorOrNil;
+- (BOOL)checkAllElementsFromRootElements:(NSArray *)rootElements error:(GTXErrorRefType)errorOrNil;
+
+/**
+ Applies the registered checks on all elements in the accessibility tree under the given root
+ elements while respecting blacklisted elements.
+
+ @param rootElements An array of root elements whose accessibility trees are to be checked.
+ @return A @c GTXResult object encpsulating the results.
+ */
+- (GTXResult *)resultFromCheckingAllElementsFromRootElements:(NSArray *)rootElements;
 
 @end
 

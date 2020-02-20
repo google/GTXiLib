@@ -24,8 +24,7 @@ extern GTXCheckHandlerBlock noOpCheckBlock;
 @interface GTXBaseTestCase : XCTestCase
 
 - (NSObject *)newAccessibleElement;
-- (NSObject *)newInAccessibleElement;
+- (NSObject *)newInaccessibleElement;
 - (void)createTreeFromPreOrderTraversal:(NSArray *)preOrderTraversal;
 
 @end
-

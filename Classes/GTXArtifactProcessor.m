@@ -87,6 +87,8 @@
 
 - (void)gtx_assertCallerIsCommandQueue {
   void *context = dispatch_queue_get_specific(_commandQueue, _queueKey);
+  (void)context;  // Marking context as used when below assert is removed due to compiler
+                  // optimizations.
   GTX_ASSERT(context == _queueContext, @"This method can only be executed from command queue.");
 }
 

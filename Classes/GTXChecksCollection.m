@@ -572,15 +572,13 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
 
 /**
  *  Determines if @c frame satisfies minimum touch target guidelines, and if it doesn't, adds an
- * error description to @c array.
+ *  error description to @c array.
  *
  *  @param frame The frame of an interactable element. This can be its frame, accessibilityFrame, or
  *  some other bounding box.
  *  @param propertyName The name of the element's property being checked. This is included in the
  *  description.
  *  @param array The array to which to add the error description, if it exists.
- *  @return A string describing the error, or @c nil if @c frame satisfies minimum touch target
- *  guidelines.
  */
 + (void)gtx_errorDescriptionForMinimumTappableArea:(CGRect)frame
                                       propertyName:(NSString *)propertyName

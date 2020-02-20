@@ -31,7 +31,7 @@ GTXCheckHandlerBlock noOpCheckBlock = ^BOOL(id _Nonnull element, GTXErrorRefType
   return element;
 }
 
-- (NSObject *)newInAccessibleElement {
+- (NSObject *)newInaccessibleElement {
   NSObject *element = [[NSObject alloc] init];
   element.isAccessibilityElement = NO;
   return element;

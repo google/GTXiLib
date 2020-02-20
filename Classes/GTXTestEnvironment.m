@@ -51,13 +51,18 @@
 /**
  *  Path to accessibility utils framework on the simulator.
  */
-static NSString *const kPathToAXUtils =
+static NSString *const kGTXPathToAXUtils =
     @"/System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities";
 
 /**
- * Class name of the private class: XCAXClient_iOS class.
+ * Path to accessibility dylib on the device.
  */
-static NSString *const kXCAXClientClassName = @"XCAXClient_iOS";
+static NSString *const kGTXPathToAXDyLib = @"/usr/lib/libAccessibility.dylib";
+
+/**
+ * Name of the method that can enable accessibility.
+ */
+static char *const kGTXAXSetterMethodName = "_AXSSetAutomationEnabled";
 
 #pragma mark - Implementations
 
@@ -123,7 +128,7 @@ static NSString *const kXCAXClientClassName = @"XCAXClient_iOS";
   static AXBackBoardServer *server;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    char const *const localPath = [kPathToAXUtils fileSystemRepresentation];
+    char const *const localPath = [kGTXPathToAXUtils fileSystemRepresentation];
     void *handle = dlopen(localPath, RTLD_LOCAL);
     if (!handle) {
       NSString *description =
@@ -163,57 +168,32 @@ static NSString *const kXCAXClientClassName = @"XCAXClient_iOS";
  *  Enables accessibility to allow using accessibility properties on devices.
  */
 + (BOOL)gtx_enableAccessibilityOnDeviceWithError:(GTXErrorRefType)errorOrNil {
-  Class XCAXClientClass = NSClassFromString(kXCAXClientClassName);
-  if (XCAXClientClass == nil) {
-    NSString *description = [NSString stringWithFormat:@"%@ class not found", kXCAXClientClassName];
-    [NSError gtx_logOrSetError:errorOrNil
-                   description:description
-                          code:GTXCheckErrorCodeInvalidTestEnvironment
-                      userInfo:nil];
-    return NO;
-  }
-  id XCAXClient = [XCAXClientClass sharedClient];
-  if (XCAXClient == nil) {
-    NSString *description =
-        [NSString stringWithFormat:@"%@ sharedClient doesn't exist", kXCAXClientClassName];
-    [NSError gtx_logOrSetError:errorOrNil
-                   description:description
-                          code:GTXCheckErrorCodeInvalidTestEnvironment
-                      userInfo:nil];
-    return NO;
-  }
-  // The method may not be available on versions older than iOS 9.1
-  if ([XCAXClient respondsToSelector:@selector(loadAccessibility:)]) {
-    typedef void (*MethodType)(id, SEL, void*);
-    SEL selector = @selector(loadAccessibility:);
-    static void *unused = 0;
-    MethodType method = (MethodType)[XCAXClient methodForSelector:selector];
-    method(XCAXClient, selector, &unused);
+  GTX_LOG(@"Enabling accessibility to access UI accessibility properties.");
+  char const *const libAccessibilityPath = [kGTXPathToAXDyLib fileSystemRepresentation];
+  void *handle = dlopen(libAccessibilityPath, RTLD_LOCAL);
+
+  if (handle) {
+    void (*AXSetterMethod)(BOOL) = dlsym(handle, kGTXAXSetterMethodName);
+    if (AXSetterMethod) {
+      AXSetterMethod(YES);
+      return YES;
+    } else {
+      NSString *description = [NSString
+          stringWithFormat:@"Pointer to %s method must not be NULL", kGTXAXSetterMethodName];
+      [NSError gtx_logOrSetError:errorOrNil
+                     description:description
+                            code:GTXCheckErrorCodeInvalidTestEnvironment
+                        userInfo:nil];
+    }
   } else {
+    NSString *description =
+        [NSString stringWithFormat:@"dlopen couldn't open libAccessibility.dylib at path %s",
+                                   libAccessibilityPath];
     [NSError gtx_logOrSetError:errorOrNil
-                   description:@"Could not enable accessibility! iOS version must be >= 9.1"
+                   description:description
                           code:GTXCheckErrorCodeInvalidTestEnvironment
                       userInfo:nil];
-    return NO;
   }
-  return YES;
-}
-
-#pragma mark - unused methods
-
-/**
- *  Unused method only used for selector name.
- */
-- (id)sharedClient {
-  NSAssert(NO, @"This method must not be invoked directly, its only used for exposing selector");
-  return nil;
-}
-
-/**
- *  Unused method only used for selector name.
- */
-- (BOOL)loadAccessibility:(void **)unused {
-  NSAssert(NO, @"This method must not be invoked directly, its only used for exposing selector");
   return NO;
 }
 

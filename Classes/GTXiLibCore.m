@@ -35,9 +35,9 @@ NSString *const gtxTestInteractionDidEndNotification = @"gtxTestInteractionDidEn
 
 @interface GTXInstallOptions : NSObject
 
-@property (nonatomic, strong) NSArray *checks;
-@property (nonatomic, strong) NSArray *elementBlacklist;
-@property (nonatomic, strong) GTXTestSuite *suite;
+@property(nonatomic, strong) NSArray *checks;
+@property(nonatomic, strong) NSArray *elementBlacklist;
+@property(nonatomic, strong) GTXTestSuite *suite;
 
 @end
 
@@ -74,7 +74,6 @@ static BOOL gIsInInteraction;
  */
 static BOOL gIsInTearDown;
 
-
 #pragma mark - Implementation
 
 @implementation GTXiLib
@@ -98,7 +97,7 @@ static BOOL gIsInTearDown;
     NSAssert(intersection.tests.count == 0,
              @"Error! Attempting to install GTXChecks multiple times on the same test cases: %@",
              intersection);
-    (void)intersection; // Ensures 'intersection' is marked as used even if NSAssert is removed.
+    (void)intersection;  // Ensures 'intersection' is marked as used even if NSAssert is removed.
   }
   [gIntsallOptions addObject:options];
 
@@ -130,8 +129,7 @@ static BOOL gIsInTearDown;
 + (GTXiLibFailureHandler)failureHandler {
   return gFailureHandler ?: ^(NSError *error) {
     NSString *formattedError =
-        [NSString stringWithFormat:@"\n\n%@\n\n",
-                                   error.localizedDescription];
+        [NSString stringWithFormat:@"\n\n%@\n\n", error.localizedDescription];
     [[NSAssertionHandler currentHandler] handleFailureInMethod:_cmd
                                                         object:self
                                                           file:@(__FILE__)
@@ -170,10 +168,10 @@ static BOOL gIsInTearDown;
  @return @c NO if any of the checks failed, @c YES otherwise.
  */
 + (BOOL)gtx_checkAllElementsFromRootElements:(NSArray *)rootElements {
-  NSError *error;
-  BOOL success = [gToolkit checkAllElementsFromRootElements:rootElements error:&error];
-  if (error) {
-    self.failureHandler(error);
+  GTXResult *result = [gToolkit resultFromCheckingAllElementsFromRootElements:rootElements];
+  BOOL success = [result allChecksPassed];
+  if (!success) {
+    self.failureHandler([result aggregatedError]);
   }
   return success;
 }
@@ -191,8 +189,7 @@ static BOOL gIsInTearDown;
       ((NSInvocation *)notification.userInfo[gtxTestInvocationUserInfoKey]).selector;
   GTXInstallOptions *currentTestCaseOptions = nil;
   for (GTXInstallOptions *options in gIntsallOptions) {
-    if ([options.suite hasTestCaseWithClass:currentTestClass
-                                 testMethod:currentTestSelector]) {
+    if ([options.suite hasTestCaseWithClass:currentTestClass testMethod:currentTestSelector]) {
       currentTestCaseOptions = options;
       break;
     }
