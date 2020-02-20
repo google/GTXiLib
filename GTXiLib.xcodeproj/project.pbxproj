@@ -54,12 +54,12 @@
 		6133088423FF2F53003F8D41 /* GTXSnapshotContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133087823FF2F53003F8D41 /* GTXSnapshotContainer.m */; };
 		6133088523FF2F53003F8D41 /* GTXSnapshotBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133087923FF2F53003F8D41 /* GTXSnapshotBuffer.m */; };
 		6133088623FF2F53003F8D41 /* GTXError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133087A23FF2F53003F8D41 /* GTXError.m */; };
-		6133088723FF2F53003F8D41 /* GTXElementBlacklist.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133087B23FF2F53003F8D41 /* GTXElementBlacklist.m */; };
 		6133088823FF2F53003F8D41 /* GTXReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133087C23FF2F53003F8D41 /* GTXReport.m */; };
 		6133088923FF2F53003F8D41 /* GTXSnapshotBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6133087D23FF2F53003F8D41 /* GTXSnapshotBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6133088A23FF2F53003F8D41 /* GTXElementBlacklist.h in Headers */ = {isa = PBXBuildFile; fileRef = 6133087E23FF2F53003F8D41 /* GTXElementBlacklist.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6133088B23FF2F53003F8D41 /* GTXSnapshotContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6133087F23FF2F53003F8D41 /* GTXSnapshotContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6133088C23FF2F53003F8D41 /* GTXReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 6133088023FF2F53003F8D41 /* GTXReport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		618E065F23FF412800BDD929 /* GTXResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 618E065D23FF412800BDD929 /* GTXResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		618E066023FF412800BDD929 /* GTXResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 618E065E23FF412800BDD929 /* GTXResult.m */; };
 		61A0C4DE2061896300DF0169 /* GTXiLibCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A0C4DB2061896300DF0169 /* GTXiLibCore.m */; };
 		61A0C4DF2061896300DF0169 /* GTXiLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A0C4DC2061896300DF0169 /* GTXiLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61A0C4E02061896300DF0169 /* GTXiLibCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A0C4DD2061896300DF0169 /* GTXiLibCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -175,13 +175,13 @@
 		6133087823FF2F53003F8D41 /* GTXSnapshotContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXSnapshotContainer.m; path = Classes/GTXSnapshotContainer.m; sourceTree = SOURCE_ROOT; };
 		6133087923FF2F53003F8D41 /* GTXSnapshotBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXSnapshotBuffer.m; path = Classes/GTXSnapshotBuffer.m; sourceTree = SOURCE_ROOT; };
 		6133087A23FF2F53003F8D41 /* GTXError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXError.m; path = Classes/GTXError.m; sourceTree = SOURCE_ROOT; };
-		6133087B23FF2F53003F8D41 /* GTXElementBlacklist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXElementBlacklist.m; path = Classes/GTXElementBlacklist.m; sourceTree = SOURCE_ROOT; };
 		6133087C23FF2F53003F8D41 /* GTXReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXReport.m; path = Classes/GTXReport.m; sourceTree = SOURCE_ROOT; };
 		6133087D23FF2F53003F8D41 /* GTXSnapshotBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXSnapshotBuffer.h; path = Classes/GTXSnapshotBuffer.h; sourceTree = SOURCE_ROOT; };
-		6133087E23FF2F53003F8D41 /* GTXElementBlacklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXElementBlacklist.h; path = Classes/GTXElementBlacklist.h; sourceTree = SOURCE_ROOT; };
 		6133087F23FF2F53003F8D41 /* GTXSnapshotContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXSnapshotContainer.h; path = Classes/GTXSnapshotContainer.h; sourceTree = SOURCE_ROOT; };
 		6133088023FF2F53003F8D41 /* GTXReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXReport.h; path = Classes/GTXReport.h; sourceTree = SOURCE_ROOT; };
 		613C3F41204A09E8007D44A8 /* GTXiLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GTXiLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		618E065D23FF412800BDD929 /* GTXResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXResult.h; path = Classes/GTXResult.h; sourceTree = SOURCE_ROOT; };
+		618E065E23FF412800BDD929 /* GTXResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXResult.m; path = Classes/GTXResult.m; sourceTree = SOURCE_ROOT; };
 		61A0C4DB2061896300DF0169 /* GTXiLibCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXiLibCore.m; path = Classes/GTXiLibCore.m; sourceTree = SOURCE_ROOT; };
 		61A0C4DC2061896300DF0169 /* GTXiLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXiLib.h; path = Classes/GTXiLib.h; sourceTree = SOURCE_ROOT; };
 		61A0C4DD2061896300DF0169 /* GTXiLibCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXiLibCore.h; path = Classes/GTXiLibCore.h; sourceTree = SOURCE_ROOT; };
@@ -323,8 +323,8 @@
 		61ABAE8D204A0AF1006DBF0A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				6133087E23FF2F53003F8D41 /* GTXElementBlacklist.h */,
-				6133087B23FF2F53003F8D41 /* GTXElementBlacklist.m */,
+				618E065D23FF412800BDD929 /* GTXResult.h */,
+				618E065E23FF412800BDD929 /* GTXResult.m */,
 				6133087723FF2F53003F8D41 /* GTXError.h */,
 				6133087A23FF2F53003F8D41 /* GTXError.m */,
 				6133088023FF2F53003F8D41 /* GTXReport.h */,
@@ -427,7 +427,6 @@
 				61ABAEBD204A0B0B006DBF0A /* GTXAssertions.h in Headers */,
 				610CA3FD204DFC76008BAAA1 /* GTXPluginXCTestCase.h in Headers */,
 				61ABAECB204A0B0B006DBF0A /* GTXCheckBlock.h in Headers */,
-				6133088A23FF2F53003F8D41 /* GTXElementBlacklist.h in Headers */,
 				61284DD6211E42CF00F8FF29 /* GTXBlacklistBlock.h in Headers */,
 				6133088223FF2F53003F8D41 /* UIColor+GTXAdditions.h in Headers */,
 				61ABAEB9204A0B0B006DBF0A /* GTXChecking.h in Headers */,
@@ -436,6 +435,7 @@
 				6133088923FF2F53003F8D41 /* GTXSnapshotBuffer.h in Headers */,
 				61ABAEBE204A0B0B006DBF0A /* GTXImageRGBAData.h in Headers */,
 				6133087123FF2F39003F8D41 /* GTXArtifactProcessor.h in Headers */,
+				618E065F23FF412800BDD929 /* GTXResult.h in Headers */,
 				61ABAEB2204A0B0B006DBF0A /* GTXErrorReporter.h in Headers */,
 				61ABAEC3204A0B0B006DBF0A /* GTXTestCase.h in Headers */,
 				6133088B23FF2F53003F8D41 /* GTXSnapshotContainer.h in Headers */,
@@ -663,6 +663,7 @@
 				61ABAEB4204A0B0B006DBF0A /* GTXTestSuite.m in Sources */,
 				61ABAEB3204A0B0B006DBF0A /* GTXImageAndColorUtils.m in Sources */,
 				6133087223FF2F39003F8D41 /* GTXArtifactProcessor.m in Sources */,
+				618E066023FF412800BDD929 /* GTXResult.m in Sources */,
 				61284E0B211E45C600F8FF29 /* GTXBlacklistFactory.m in Sources */,
 				61ABAEC2204A0B0B006DBF0A /* GTXToolKit.m in Sources */,
 				6133088123FF2F53003F8D41 /* UIColor+GTXAdditions.m in Sources */,
@@ -672,7 +673,6 @@
 				61ABAEB8204A0B0B006DBF0A /* GTXAnalyticsUtils.m in Sources */,
 				6133088623FF2F53003F8D41 /* GTXError.m in Sources */,
 				61284DD5211E42CF00F8FF29 /* GTXBlacklistBlock.m in Sources */,
-				6133088723FF2F53003F8D41 /* GTXElementBlacklist.m in Sources */,
 				61ABAEBF204A0B0B006DBF0A /* NSError+GTXAdditions.m in Sources */,
 				61ABAEBC204A0B0B006DBF0A /* GTXAccessibilityTree.m in Sources */,
 				6133088523FF2F53003F8D41 /* GTXSnapshotBuffer.m in Sources */,
