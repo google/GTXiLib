@@ -283,7 +283,7 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
     // Since UIAccessibilityElement instances don't really have a frame independent of their
     // accessibility frame, ignoring elements with frames that are not UIView subclasses solves
     // this.
-    if ([element respondsToSelector:@selector(frame)] && [element isKindOfClass:[UIView class]]) {
+    else if ([element respondsToSelector:@selector(frame)] && [element isKindOfClass:[UIView class]]) {
       [GTXChecksCollection gtx_errorDescriptionForMinimumTappableArea:[element frame]
                                                          propertyName:@"frame"
                                                            addToArray:errorDescriptions];
