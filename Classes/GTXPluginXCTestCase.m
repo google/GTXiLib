@@ -17,8 +17,9 @@
 #import "GTXPluginXCTestCase.h"
 
 #import "GTXAssertions.h"
-#import "GTXiLibCore.h"
+#import "GTXSwizzler.h"
 #import "GTXTestEnvironment.h"
+#import "GTXiLibCore.h"
 
 #import <objc/runtime.h>
 
@@ -26,7 +27,7 @@
  Reference to XCTestCase class which will be dynamically set when needed, this allows for tests as
  well as apps (which dont link to XCTest) use GTX.
  */
-Class gXCTestCaseClass;
+static Class gXCTestCaseClass;
 
 @implementation GTXPluginXCTestCase
 
@@ -36,15 +37,13 @@ Class gXCTestCaseClass;
     gXCTestCaseClass = NSClassFromString(@"XCTestCase");
     NSAssert(gXCTestCaseClass, @"XCTestCase class was not found, either XCTest framework is not "
                                @"being linked or not loaded yet.");
-    [self gtx_addInstanceMethod:@selector(gtx_tearDown)
-                      fromClass:self
-                        toClass:gXCTestCaseClass];
-    [self gtx_addInstanceMethod:@selector(gtx_invokeTest)
-                      fromClass:self
-                        toClass:gXCTestCaseClass];
-    [self gtx_swizzleInstanceMethod:@selector(invokeTest)
-                         withMethod:@selector(gtx_invokeTest)
-                            inClass:gXCTestCaseClass];
+    [GTXSwizzler addInstanceMethod:@selector(gtx_tearDown) fromClass:self toClass:gXCTestCaseClass];
+    [GTXSwizzler addInstanceMethod:@selector(gtx_invokeTest)
+                         fromClass:self
+                           toClass:gXCTestCaseClass];
+    [GTXSwizzler swizzleInstanceMethod:@selector(invokeTest)
+                            withMethod:@selector(gtx_invokeTest)
+                               inClass:gXCTestCaseClass];
     [GTXTestEnvironment setupEnvironment];
   });
 }
@@ -62,56 +61,6 @@ Class gXCTestCaseClass;
 }
 
 #pragma mark - Private
-
-/**
- Adds the given method from the given source to the given destination class.
-
- @param methodSelector selector of the method to be added.
- @param srcClass Source class from where to get the method implementation
- @param destClass destination class where the method implementation is to be added.
- */
-+ (void)gtx_addInstanceMethod:(SEL)methodSelector
-                    fromClass:(Class)srcClass
-                      toClass:(Class)destClass {
-  Method instanceMethod = class_getInstanceMethod(srcClass, methodSelector);
-  const char *typeEncoding = method_getTypeEncoding(instanceMethod);
-  NSAssert(typeEncoding, @"Failed to get method type encoding.");
-
-  BOOL success = class_addMethod(destClass,
-                                 methodSelector,
-                                 method_getImplementation(instanceMethod),
-                                 typeEncoding);
-  NSAssert(success, @"Failed to add %@ from %@ to %@",
-                    NSStringFromSelector(methodSelector), srcClass, destClass);
-  (void)success; // Ensures 'success' is marked as used even if NSAssert is removed.
-}
-
-/**
- Swizzles the given methods in the given class.
-
- @param methodSelector1 Selector for the original method.
- @param methodSelector2 Selector for the method to be swizzled with.
- @param clazz Target class to be swizzled in.
- */
-+ (void)gtx_swizzleInstanceMethod:(SEL)methodSelector1
-                       withMethod:(SEL)methodSelector2
-                          inClass:(Class)clazz {
-  Method method1 = class_getInstanceMethod(clazz, methodSelector1);
-  Method method2 = class_getInstanceMethod(clazz, methodSelector2);
-  // Only swizzle if both methods are found
-  if (method1 && method2) {
-    IMP imp1 = method_getImplementation(method1);
-    IMP imp2 = method_getImplementation(method2);
-
-    if (class_addMethod(clazz, methodSelector1, imp2, method_getTypeEncoding(method2))) {
-      class_replaceMethod(clazz, methodSelector2, imp1, method_getTypeEncoding(method1));
-    } else {
-      method_exchangeImplementations(method1, method2);
-    }
-  } else {
-    GTX_ASSERT(NO, @"Cannot swizzle %@", NSStringFromSelector(methodSelector1));
-  }
-}
 
 /**
  @return Closest superclass to @c clazz that has -tearDown method.
@@ -139,9 +88,9 @@ Class gXCTestCaseClass;
     IMP gtxTearDownIMP = [baseClass instanceMethodForSelector:@selector(gtx_tearDown)];
     class_addMethod(clazz, @selector(gtx_tearDown), gtxTearDownIMP, desc->types);
   }
-  [self gtx_swizzleInstanceMethod:@selector(tearDown)
-                       withMethod:@selector(gtx_tearDown)
-                          inClass:clazz];
+  [GTXSwizzler swizzleInstanceMethod:@selector(tearDown)
+                          withMethod:@selector(gtx_tearDown)
+                             inClass:clazz];
 }
 
 /**
@@ -149,9 +98,9 @@ Class gXCTestCaseClass;
  */
 + (void)gtx_unWireTeardownInClass:(Class)clazz {
   // Swizzle again to restore tearDown/gtx_tearDown to their original IMPs.
-  [self gtx_swizzleInstanceMethod:@selector(tearDown)
-                       withMethod:@selector(gtx_tearDown)
-                          inClass:clazz];
+  [GTXSwizzler swizzleInstanceMethod:@selector(tearDown)
+                          withMethod:@selector(gtx_tearDown)
+                             inClass:clazz];
 }
 
 #pragma mark - Swizzled methods

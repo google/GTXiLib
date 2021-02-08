@@ -16,10 +16,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "GTXArtifactImplementing.h"
 #import "GTXCommon.h"
 #import "GTXReport.h"
-#import "GTXSnapshotContainer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -48,22 +46,13 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 /**
- *  @return An array of classes whose snapshots are required by this check for performing the check
- *          verification.
+ *  Indicates if the check requires that the element have a window before it can be checked. If this
+ * method is not implemented the check is assumed to be able to run without a window. Note that the
+ * restriction does not apply to UIAccessibilityElements as they do not have a window property.
+ *  @return @c YES if the check requires that elements to be checked be in hierarchy for the check
+ *  to be performed, @c NO otherwise.
  */
-- (NSArray<Class<GTXArtifactImplementing>> *)requiredArtifactClasses;
-
-/**
- *  Performs the check on the given snapshot.
- *
- *  @param      snapshots The target snapshot on which this check needs to be performed.
- *  @param[out] report    The report to be populated with issues detected by the check.
- *
- *  @return @c YES if the check succeeded (no issues were detected and report is unchanged), else @c
- *          NO.
- */
-- (BOOL)performCheckOnSnapshot:(GTXSnapshotContainer *)snapshots
-          addingErrorsToReport:(GTXReport *)report;
+- (BOOL)requiresWindowBeforeChecking;
 
 @end
 

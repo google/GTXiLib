@@ -19,12 +19,12 @@
 #import "GTXCommon.h"
 
 /**
- *  A class for setting up enviornment (devices, simulators) etc that GTX runs on.
+ *  A class for setting up environment (devices, simulators) etc that GTX runs on.
  */
 @interface GTXTestEnvironment : NSObject
 
 /**
- *  Sets up the enviornment for use by GTX.
+ *  Sets up the environment for use by GTX.
  *
  *  @param[out] errorOrNil A pointer to an NSError object to populate if there is an error, or nil
  *                         if errors are not being handled.
@@ -33,7 +33,7 @@
  */
 + (BOOL)setupEnvironmentWithError:(GTXErrorRefType)errorOrNil;
 /**
- *  Sets up the enviornment for use by GTX. If the environment cannot be setup, then an exception
+ *  Sets up the environment for use by GTX. If the environment cannot be setup, then an exception
  *  is raised.
  */
 + (void)setupEnvironment;

@@ -20,7 +20,7 @@
 #import <UIKit/UIKit.h>
 
 //! Project version number for GTXiLib.
-FOUNDATION_EXPORT double GTXiLibVersionNumber;
+FOUNDATION_EXPORT double gGTXiLibVersionNumber;
 
 //! Project version string for GTXiLib.
 FOUNDATION_EXPORT const unsigned char GTXiLibVersionString[];
@@ -29,18 +29,18 @@ FOUNDATION_EXPORT const unsigned char GTXiLibVersionString[];
 #import <GTXiLib/GTXAnalytics.h>
 #import <GTXiLib/GTXAnalyticsUtils.h>
 #import <GTXiLib/GTXAssertions.h>
-#import <GTXiLib/GTXiLibCore.h>
 #import <GTXiLib/GTXCheckBlock.h>
 #import <GTXiLib/GTXChecksCollection.h>
 #import <GTXiLib/GTXCommon.h>
-#import <GTXiLib/GTXBlacklistFactory.h>
 #import <GTXiLib/GTXErrorReporter.h>
-#import <GTXiLib/GTXImageRGBAData.h>
+#import <GTXiLib/GTXExcludeListFactory.h>
 #import <GTXiLib/GTXImageAndColorUtils.h>
+#import <GTXiLib/GTXImageRGBAData.h>
 #import <GTXiLib/GTXLogging.h>
 #import <GTXiLib/GTXPluginXCTestCase.h>
 #import <GTXiLib/GTXTestEnvironment.h>
-#import <GTXiLib/GTXToolKit.h>
 #import <GTXiLib/GTXTestSuite.h>
+#import <GTXiLib/GTXToolKit.h>
+#import <GTXiLib/GTXiLibCore.h>
 #import <GTXiLib/NSError+GTXAdditions.h>
 #import <GTXiLib/UIColor+GTXAdditions.h>

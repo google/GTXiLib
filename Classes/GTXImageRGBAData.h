@@ -29,7 +29,7 @@
 /**
  *  Pointer to rgba data (in that order) of the provided image in row major order.
  */
-@property(nonatomic, readonly) unsigned char *rgba;
+@property(nonatomic, readonly) unsigned char *rgba NS_RETURNS_INNER_POINTER;
 
 /**
  *  Width of the image as available in the rgba data.

@@ -81,4 +81,28 @@ extern const CGFloat kGTXContrastRatioAccuracy;
                      outAvgTextColor:(UIColor **)outAvgTextColor
                outAvgBackgroundColor:(UIColor **)outAvgBackgroundColor;
 
+/**
+ *  Renders the view hierarchy of @c view to @c context, appropriately translating subviews to
+ *  render in the correct position. The view hierarchy must be rendered manually because
+ *  @c drawViewHierarchy:afterScreenUpdates: with @c YES for @c afterScreenUpdates causes VoiceOver
+ *  to reset focus to the first element of the view hierarchy. However, passing @c NO causes the
+ *  screenshot to not use any recent changes, such as changing the text color to identify foreground
+ *  color. Manually rendering the view hierarchy avoids both of these problems.
+ *
+ *  @param view The root of the view hierarchy to render.
+ *  @param context The graphics context to which to render.
+ */
++ (void)renderViewHierarchy:(UIView *)view inContext:(CGContextRef)context;
+
+/**
+ * Renders the views in @c views to a single image, with the first element in back and the last
+ * element in front. The size of the image is equal to the greatest width and greatest height of the
+ * bounds in @c views. May not be the bounds of the largest view. For example, one view may have a
+ * larger width and another has a larger height.
+ *
+ * @param views The views to render. Fails with an assertion if @c views is empty.
+ * @return An image of all the views in @c views.
+ */
++ (UIImage *)imageByCompositingViews:(NSArray<UIView *> *)views;
+
 @end

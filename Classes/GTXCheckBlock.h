@@ -22,36 +22,52 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- *  Block that performs a single accessibility check on the given element.
+ * Block that performs a single accessibility check on the given element.
  *
- *  @param      element    The target element on which GTX check is to be performed.
- *  @param[out] errorOrNil The error set on failure. The error returned can be @c nil, signifying
- *                         that the check succeeded.
+ * @param      element    The target element on which GTX check is to be performed.
+ * @param[out] errorOrNil The error set on failure. The error returned can be @c nil, signifying
+ *                        that the check succeeded.
  *
- *  @return @c YES if the check performed succeeded without any errors, else @c NO.
+ * @return @c YES if the check performed succeeded without any errors, else @c NO.
  */
 typedef BOOL (^GTXCheckHandlerBlock)(id element, GTXErrorRefType errorOrNil);
 
 /**
- *  A block based interface for creating accessiblity checks.
+ * A block based interface for creating accessiblity checks.
  */
 @interface GTXCheckBlock : NSObject<GTXChecking>
 
 /**
- *  GTXCheckBlock::init is disabled, instead use GTXCheckBlock::GTXCheckWithName:block: method
- *  to create GTXChecks.
+ * GTXCheckBlock::init is disabled, instead use GTXCheckBlock::GTXCheckWithName:block: method
+ * to create GTXChecks.
  */
 - (instancetype)init __attribute__((unavailable("Use GTXCheckWithName:block: instead.")));
 
 /**
- *  Creates an GTXCheck with the given @c name and @c block that performs the check.
+ * Creates an GTXCheck with the given @c name and @c block that performs the check. Note that this
+ * check is equivalent to check created using GTXCheckWithName:requiresWindow:block: where
+ * requiresWindow is @c YES.
  *
- *  @param name  The name of the check.
- *  @param block A block that performs the check.
+ * @param name  The name of the check.
+ * @param block A block that performs the check.
  *
- *  @return An GTXCheck object.
+ * @return An GTXCheck object.
  */
 + (id<GTXChecking>)GTXCheckWithName:(NSString *)name block:(GTXCheckHandlerBlock)block;
+
+/**
+ * Creates an GTXCheck with the given @c name and @c block that performs the check.
+ *
+ * @param name           The name of the check.
+ * @param requiresWindow A boolean that indicates if element must have a window before running the
+ * check.
+ * @param block          A block that performs the check.
+ *
+ * @return An GTXCheck object.
+ */
++ (id<GTXChecking>)GTXCheckWithName:(NSString *)name
+                     requiresWindow:(BOOL)requiresWindow
+                              block:(GTXCheckHandlerBlock)block;
 
 @end
 

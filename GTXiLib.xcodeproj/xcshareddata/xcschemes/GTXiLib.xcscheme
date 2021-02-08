@@ -20,6 +20,62 @@
                ReferencedContainer = "container:GTXiLib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "61284DDF211E442700F8FF29"
+               BuildableName = "FunctionalTests.xctest"
+               BlueprintName = "FunctionalTests"
+               ReferencedContainer = "container:GTXiLib.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "616FE01025BF4E8600CCCAD5"
+               BuildableName = "GTXOOPFunctionalTests.xctest"
+               BlueprintName = "GTXOOPFunctionalTests"
+               ReferencedContainer = "container:GTXiLib.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "616FDFA325BF4CFE00CCCAD5"
+               BuildableName = "GTXOOPIntegrationTests.xctest"
+               BlueprintName = "GTXOOPIntegrationTests"
+               ReferencedContainer = "container:GTXiLib.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "616FE02525BF4E9A00CCCAD5"
+               BuildableName = "GTXOOPUnitTests.xctest"
+               BlueprintName = "GTXOOPUnitTests"
+               ReferencedContainer = "container:GTXiLib.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -27,6 +83,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "613C3F40204A09E7007D44A8"
+            BuildableName = "GTXiLib.framework"
+            BlueprintName = "GTXiLib"
+            ReferencedContainer = "container:GTXiLib.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -38,18 +103,47 @@
                ReferencedContainer = "container:GTXiLib.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "61284DDF211E442700F8FF29"
+               BuildableName = "FunctionalTests.xctest"
+               BlueprintName = "FunctionalTests"
+               ReferencedContainer = "container:GTXiLib.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "616FE01025BF4E8600CCCAD5"
+               BuildableName = "GTXOOPFunctionalTests.xctest"
+               BlueprintName = "GTXOOPFunctionalTests"
+               ReferencedContainer = "container:GTXiLib.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "616FDFA325BF4CFE00CCCAD5"
+               BuildableName = "GTXOOPIntegrationTests.xctest"
+               BlueprintName = "GTXOOPIntegrationTests"
+               ReferencedContainer = "container:GTXiLib.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "616FE02525BF4E9A00CCCAD5"
+               BuildableName = "GTXOOPUnitTests.xctest"
+               BlueprintName = "GTXOOPUnitTests"
+               ReferencedContainer = "container:GTXiLib.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "613C3F40204A09E7007D44A8"
-            BuildableName = "GTXiLib.framework"
-            BlueprintName = "GTXiLib"
-            ReferencedContainer = "container:GTXiLib.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -70,8 +164,6 @@
             ReferencedContainer = "container:GTXiLib.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

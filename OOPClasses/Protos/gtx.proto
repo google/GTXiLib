@@ -1,0 +1,135 @@
+// gtx.proto
+// Definitions for protobufs used by GTXiLib.
+
+syntax = "proto3";
+
+package gtxilib.oopclasses.protos;
+
+// Definition for Point data in 2D space.
+// Next index: 3
+message Point {
+  optional float x = 1;
+  optional float y = 2;
+}
+
+// Definition for 2D size data.
+// Next index: 3
+message Size {
+  optional float width = 1;
+  optional float height = 2;
+}
+
+// Definition for 2D rectangle data.
+// Next index: 3
+message Rect {
+  optional Point origin = 1;
+  optional Size size = 2;
+}
+
+// Protobuf equivalent for XCTest's XCUIElementType. Note that these enums are
+// named after
+// https://developer.apple.com/documentation/xctest/xcuielementtype?language=objc
+// Note: the enums are wrapped in messages to avoid name some collisions (for
+// ex: TAB_BAR).
+message ElementType {
+  enum ElementTypeEnum {
+    // Note that ANY is also the default element type for objects whose type was
+    // unknown/unspecified. For example when element is deserialized and type
+    // field was missing, the ElementType enum value will be ANY(=0).
+    ANY = 0;
+    OTHER = 1;
+    APPLICATION = 2;
+    GROUP = 3;
+    WINDOW = 4;
+    SHEET = 5;
+    DRAWER = 6;
+    ALERT = 7;
+    DIALOG = 8;
+    BUTTON = 9;
+    RADIO_BUTTON = 10;
+    RADIO_GROUP = 11;
+    CHECK_BOX = 12;
+    DISCLOSURE_TRIANGLE = 13;
+    POP_UP_BUTTON = 14;
+    COMBO_BOX = 15;
+    MENU_BUTTON = 16;
+    TOOLBAR_BUTTON = 17;
+    POPOVER = 18;
+    KEYBOARD = 19;
+    KEY = 20;
+    NAVIGATION_BAR = 21;
+    TAB_BAR = 22;
+    TAB_GROUP = 23;
+    TOOLBAR = 24;
+    STATUS_BAR = 25;
+    TABLE = 26;
+    TABLE_ROW = 27;
+    TABLE_COLUMN = 28;
+    OUTLINE = 29;
+    OUTLINE_ROW = 30;
+    BROWSER = 31;
+    COLLECTION_VIEW = 32;
+    SLIDER = 33;
+    PAGE_INDICATOR = 34;
+    PROGRESS_INDICATOR = 35;
+    ACTIVITY_INDICATOR = 36;
+    SEGMENTED_CONTROL = 37;
+    PICKER = 38;
+    PICKER_WHEEL = 39;
+    SWITCH = 40;
+    TOGGLE = 41;
+    LINK = 42;
+    IMAGE = 43;
+    ICON = 44;
+    SEARCH_FIELD = 45;
+    SCROLL_VIEW = 46;
+    SCROLL_BAR = 47;
+    STATIC_TEXT = 48;
+    TEXT_FIELD = 49;
+    SECURE_TEXT_FIELD = 50;
+    DATE_PICKER = 51;
+    TEXT_VIEW = 52;
+    MENU = 53;
+    MENU_ITEM = 54;
+    MENU_BAR = 55;
+    MENU_BAR_ITEM = 56;
+    MAP = 57;
+    WEB_VIEW = 58;
+    INCREMENT_ARROW = 59;
+    DECREMENT_ARROW = 60;
+    TIMELINE = 61;
+    RATING_INDICATOR = 62;
+    VALUE_INDICATOR = 63;
+    SPLIT_GROUP = 64;
+    SPLITTER = 65;
+    RELEVANCE_INDICATOR = 66;
+    COLOR_WELL = 67;
+    HELP_TAG = 68;
+    MATTE = 69;
+    DOCK_ITEM = 70;
+    RULER = 71;
+    RULER_MARKER = 72;
+    GRID = 73;
+    LEVEL_INDICATOR = 74;
+    CELL = 75;
+    LAYOUT_AREA = 76;
+    LAYOUT_ITEM = 77;
+    HANDLE = 78;
+    STEPPER = 79;
+    TAB = 80;
+    TOUCH_BAR = 81;
+    STATUS_ITEM = 82;
+  }
+}
+
+// Definition for UI element data. Note that the properties are intentionally
+// named to differ from UIAccessibility properties of NSObject to avoid
+// conflicts when proto is used in Objective-C.
+// Next index: 6
+message UIElement {
+  optional bool is_ax_element = 1;
+  optional uint64 ax_traits = 2;
+  optional string ax_label = 3;
+  optional Rect ax_frame = 4;
+  optional ElementType.ElementTypeEnum ax_element_type = 5;
+}

@@ -14,13 +14,13 @@
 // limitations under the License.
 //
 
-#import "GTXAnalytics.h"
 #import "GTXAccessibilityTree.h"
-#import "GTXBlacklisting.h"
+#import "GTXAnalytics.h"
 #import "GTXCheckBlock.h"
 #import "GTXChecksCollection.h"
 #import "GTXCommon.h"
 #import "GTXErrorReporter.h"
+#import "GTXExcludeListing.h"
 #import "GTXTestSuite.h"
 #import "NSError+GTXAdditions.h"
 
@@ -65,7 +65,7 @@ extern NSString *const gtxTestInvocationUserInfoKey;
 typedef void(^GTXiLibFailureHandler)(NSError *error);
 
 /**
- *  Primary class that allows for installing checks, creating checks and blacklists etc.
+ *  Primary class that allows for installing checks, creating checks and excludeLists etc.
  */
 @interface GTXiLib : NSObject
 
@@ -74,11 +74,11 @@ typedef void(^GTXiLibFailureHandler)(NSError *error);
 
  @param suite Suite of all test cases where checks are to be installed.
  @param checks Array of checks to be installed.
- @param blacklists Array of element blacklists to be skipped from checks.
+ @param excludeLists Array of element excludeLists to be skipped from checks.
  */
 + (void)installOnTestSuite:(GTXTestSuite *)suite
                     checks:(NSArray<id<GTXChecking>> *)checks
-         elementBlacklists:(NSArray<id<GTXBlacklisting>> *)blacklists;
+       elementExcludeLists:(NSArray<id<GTXExcludeListing>> *)excludeLists;
 
 /**
  Creates a check with the given name and block.

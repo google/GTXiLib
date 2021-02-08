@@ -33,7 +33,7 @@ snippet of code to it.
   // Install GTX on all tests in *this* test class.
   [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
                        checks:checksToBeInstalled
-            elementBlacklists:@[]];
+          elementExcludeLists:@[]];
 }
 ```
 
@@ -66,7 +66,7 @@ NSArray *checksToBeInstalled = @[
 // Install GTX on all tests in *this* test class.
 [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
                      checks:checksToBeInstalled
-          elementBlacklists:@[]];
+        elementExcludeLists:@[]];
 ```
 
 Note that GTX is being added to `+setUp` method, not the instance method
@@ -85,7 +85,7 @@ time consuming and tedious. To solve this problem incrementally:
 
 + Use the above snippet to add GTXiLib to all test cases but fix errors in a small
   subset of them.
-  + Blacklist elements that you don't control using GTXiLib's blacklist APIs.
+  + Exclude elements that you don't control using GTXiLib's excludeList APIs.
 + Then use `GTXTestSuite's` `suiteWithClass:andTests:` method to
   create a test suite with only the tests cases that have been fixed and add
   GTXiLib only to that suite.
@@ -121,9 +121,9 @@ When GTXiLib fails it has most likely found an accessibility bug and you must fi
 it. But due to various team priorities it may not be possible to do so right
 away in which case you have the following options at your disposal:
 
-+ Temporarily blacklist the test case by using
++ Temporarily exclude the test case by using
   `suiteWithAllTestsInClass:exceptTests:`.
-+ Temporarily blacklist the offending element using element blacklist APIs.
++ Temporarily exclude the offending element using element excludeList APIs.
 
 But if you believe GTXiLib has caught a bug that is not an accessibility issue
 please let us know by [filing a bug](https://github.com/google/GTXiLib/issues)

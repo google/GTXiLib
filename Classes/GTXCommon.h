@@ -19,6 +19,6 @@
 /**
  *  Defines a double pointer to NSError with nullability attributes to allow both the pointer and
  *  the NSError object being pointed to be @c nil.
- *  @todo Update __nullable to _Nullable when FoM moves to Xcode 7.0+.
+ *  @TODO Update __nullable to _Nullable when FoM moves to Xcode 7.0+.
  */
 typedef NSError *__nullable __strong *__nullable GTXErrorRefType;

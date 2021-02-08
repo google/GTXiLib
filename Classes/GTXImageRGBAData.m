@@ -24,10 +24,13 @@
     _rgba = [GTXImageRGBAData RGBADataFromImage:image
                                        outWidth:&_width
                                       outheight:&_height
-                               outbytesPerPixel:&_bytesPerPixel
                                  outbytesPerRow:&_bytesPerRow];
   }
   return self;
+}
+
+- (NSUInteger)bytesPerPixel {
+  return 4;
 }
 
 /**
@@ -36,7 +39,6 @@
  *  @param image The image whose RGBA data is to be extracted.
  *  @param[out] outWidth Populated with the image width, if provided.
  *  @param[out] outHeight Populated with the image height, if provided.
- *  @param[out] outBytesPerPixel Populated with the byte count per pixel, if provided.
  *  @param[out] outBytesPerRow Populated with the byte count per row, if provided.
  *
  *  @return pointer to RGBA data for the given image.
@@ -44,7 +46,6 @@
 + (unsigned char *)RGBADataFromImage:(UIImage *)image
                             outWidth:(NSUInteger *)outWidth
                            outheight:(NSUInteger *)outHeight
-                    outbytesPerPixel:(NSUInteger *)outBytesPerPixel
                       outbytesPerRow:(NSUInteger *)outBytesPerRow {
   // Extract the image dimentions.
   CGImageRef imageRef = [image CGImage];
@@ -73,9 +74,6 @@
   }
   if (outHeight) {
     *outHeight = height;
-  }
-  if (outBytesPerPixel) {
-    *outBytesPerPixel = bytesPerPixel;
   }
   if (outBytesPerRow) {
     *outBytesPerRow = bytesPerRow;

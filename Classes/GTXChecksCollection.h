@@ -51,12 +51,25 @@ typedef NS_ENUM(NSUInteger, GTXVersion) {
 /**
  *  @return An array of all supported GTXChecks for the given @c version.
  */
-+ (NSArray<id<GTXChecking>> *)allChecksForVersion:(GTXVersion)version;
++ (NSArray<id<GTXChecking>> *)allGTXChecksForVersion:(GTXVersion)version;
 
 /**
  *  @return An array of all supported GTXChecks.
  */
 + (NSArray<id<GTXChecking>> *)allGTXChecks;
+
+/**
+ * Returns an array of all supported GTXChecks for @c version except those with names in
+ * @c excludedCheckNames. Crashes with an assertion if an element in @c excludedCheckNames does not
+ * have a corresponding check.
+ *
+ * @param version The version of the GTX check suite to use.
+ * @param excludedCheckNames The names of the checks to exclude from the returned array.
+ * @return All GTXChecks for @c version, except checks whose names are found in
+ * @c excludedCheckNames.
+ */
++ (NSArray<id<GTXChecking>> *)allGTXChecksForVersion:(GTXVersion)version
+                            excludingChecksWithNames:(NSSet<NSString *> *)excludedCheckNames;
 
 /**
  *  @return a check that verifies that accessibility label is present on all accessibility elements.
@@ -95,5 +108,12 @@ typedef NS_ENUM(NSUInteger, GTXVersion) {
  *  @return a check that verifies that contrast of all UITextView elements is at least 3.0.
  */
 + (id<GTXChecking>)checkForSufficientTextViewContrastRatio;
+
+/**
+ *  @return a check that verifies that a text displaying element automatically scales font size with
+ *  Dynamic Type. Text displaying elements include UILabel, UITextView, and UITextField, and custom
+ *  views that implement @c adjustsFontForContentSizeCategory and @c font.
+ */
++ (id<GTXChecking>)checkForSupportsDynamicType;
 
 @end

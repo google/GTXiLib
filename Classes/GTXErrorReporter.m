@@ -63,7 +63,7 @@
 }
 
 + (NSString *)hierarchyDescriptionOfRootElements:(NSArray *)rootElements {
-  NSMutableArray *descriptions = [NSMutableArray new];
+  NSMutableArray *descriptions = [[NSMutableArray alloc] init];
   for (id rootElement in rootElements) {
     [self gtx_getRecursiveHierarchyDescriptionOfRootElement:rootElement
                                                      indent:nil
@@ -86,9 +86,9 @@
                                                    indent:(NSString *)indent
                                            outDescription:(NSMutableArray *)description {
   indent = indent ? indent : @"";
-  NSMutableSet *axChildren = [NSMutableSet new];
-  NSMutableSet *subviews = [NSMutableSet new];
-  NSMutableSet *both = [NSMutableSet new];
+  NSMutableSet<id> *axChildren = [[NSMutableSet alloc] init];
+  NSMutableSet<id> *subviews = [[NSMutableSet alloc] init];
+  NSMutableSet<id> *both = [[NSMutableSet alloc] init];
   // Get all a11y children.
   NSArray *elements = [element accessibilityElements];
   NSInteger count = [element accessibilityElementCount];
@@ -155,7 +155,7 @@
  *  @return The description of the given element prepended with the indent.
  */
 + (NSString *)gtx_hierarchyDescriptionOfSingleElement:(id)element indent:(NSString *)indent {
-  NSMutableArray *descriptions = [NSMutableArray new];
+  NSMutableArray<NSString *> *descriptions = [[NSMutableArray alloc] init];
   [descriptions addObject:[NSString stringWithFormat:@"%@<%@:%p",
                                                      indent,
                                                      NSStringFromClass([element class]),
@@ -217,7 +217,7 @@
     return @"None";
   }
 
-  NSMutableArray *traitsStrings = [NSMutableArray new];
+  NSMutableArray<NSString *> *traitsStrings = [[NSMutableArray alloc] init];
   const NSDictionary<NSNumber *, NSString *> *traitsToString = [self gtx_traitsToStringDictionary];
   for (NSNumber *trait in traitsToString.allKeys) {
     if (traits & [trait unsignedLongLongValue]) {

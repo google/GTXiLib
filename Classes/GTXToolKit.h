@@ -16,10 +16,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "GTXBlacklistBlock.h"
-#import "GTXBlacklisting.h"
 #import "GTXCheckBlock.h"
 #import "GTXChecking.h"
+#import "GTXExcludeListBlock.h"
+#import "GTXExcludeListing.h"
 #import "GTXResult.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -51,13 +51,31 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)toolkitWithAllDefaultChecks;
 
 /**
- Creates a check.
+ Creates an accessibility check, note that this check can only be executed on elements that have a
+ window (or are UIAccessibilityElements).
 
  @param name Name of the check.
  @param block Block that performs the check, returns NO on failure.
+
  @return A newly created check.
  */
 + (id<GTXChecking>)checkWithName:(NSString *)name block:(GTXCheckHandlerBlock)block;
+
+/**
+ Creates an element check. @note that this check will be executed on any element even if it is not
+ in the view hierarchy and/or does not have a window if @c requiresWindow is @c NO.
+
+ @param name           Name of the check.
+ @param requiresWindow A boolean that indicates if element must have a window before running the
+ check. For example to create checks that can be executed in unit testing environment set this value
+ to NO.
+ @param block          Block that performs the check, returns NO on failure.
+
+ @return A newly created check.
+ */
++ (id<GTXChecking>)checkWithName:(NSString *)name
+                  requiresWindow:(BOOL)requiresWindow
+                           block:(GTXCheckHandlerBlock)block;
 
 /**
  Registers the given check to be executed on all elements this instance is used on.
@@ -67,15 +85,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)registerCheck:(id<GTXChecking>)check;
 
 /**
- Registers the given blacklist to be executed on all elements this instance is used on. Registered
- checks are not performed on blacklisted elements.
+ Registers the given excludeList to be executed on all elements this instance is used on. Registered
+ checks are not performed on excluded elements.
 
- @param blacklist The blacklist to be registered.
+ @param excludeList The excludeList to be registered.
  */
-- (void)registerBlacklist:(id<GTXBlacklisting>)blacklist;
+- (void)registerExcludeList:(id<GTXExcludeListing>)excludeList;
 
 /**
- Applies the registered checks on the given element while respecting blacklisted elements.
+ Applies the registered checks on the given element while respecting excluded elements.
 
  @param element element to be checked.
  @param errorOrNil Error object to be filled with error info on check failures.
@@ -87,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
  @deprecated Use -resultFromCheckingAllElementsFromRootElements: instead.
 
  Applies the registered checks on all elements in the accessibility tree under the given root
- elements while respecting blacklisted elements.
+ elements while respecting excluded elements.
 
  @param rootElements An array of root elements whose accessibility trees are to be checked.
  @param errorOrNil Error object to be filled with error info on check failures.
@@ -97,7 +115,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Applies the registered checks on all elements in the accessibility tree under the given root
- elements while respecting blacklisted elements.
+ elements while respecting excluded elements.
 
  @param rootElements An array of root elements whose accessibility trees are to be checked.
  @return A @c GTXResult object encpsulating the results.

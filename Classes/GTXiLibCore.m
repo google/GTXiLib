@@ -22,9 +22,13 @@
 #import "GTXLogging.h"
 #import "GTXPluginXCTestCase.h"
 #import "GTXToolKit.h"
+#import "GTXXCUIApplicationProxy.h"
 #import "NSError+GTXAdditions.h"
 
 #pragma mark - Global definitions.
+
+double gGTXiLibVersionNumber = 4.0;
+const unsigned char GTXiLibVersionString[] = "4.0";
 
 NSString *const gtxTestCaseDidBeginNotification = @"gtxTestCaseDidBeginNotification";
 NSString *const gtxTestCaseDidEndNotification = @"gtxTestCaseDidEndNotification";
@@ -36,7 +40,7 @@ NSString *const gtxTestInteractionDidEndNotification = @"gtxTestInteractionDidEn
 @interface GTXInstallOptions : NSObject
 
 @property(nonatomic, strong) NSArray *checks;
-@property(nonatomic, strong) NSArray *elementBlacklist;
+@property(nonatomic, strong) NSArray *elementExcludeList;
 @property(nonatomic, strong) GTXTestSuite *suite;
 
 @end
@@ -80,7 +84,7 @@ static BOOL gIsInTearDown;
 
 + (void)installOnTestSuite:(GTXTestSuite *)suite
                     checks:(NSArray<id<GTXChecking>> *)checks
-         elementBlacklists:(NSArray<id<GTXBlacklisting>> *)blacklists {
+       elementExcludeLists:(NSArray<id<GTXExcludeListing>> *)excludeLists {
   [GTXPluginXCTestCase installPlugin];
   if (!gIntsallOptions) {
     gIntsallOptions = [[NSMutableArray alloc] init];
@@ -88,7 +92,7 @@ static BOOL gIsInTearDown;
 
   GTXInstallOptions *options = [[GTXInstallOptions alloc] init];
   options.checks = checks;
-  options.elementBlacklist = blacklists;
+  options.elementExcludeList = excludeLists;
   options.suite = suite;
 
   // Assert that this suite has no test cases also specified in other install calls.
@@ -143,6 +147,22 @@ static BOOL gIsInTearDown;
 }
 
 #pragma mark - Private
+
+/**
+ @return Array of root elements on the screen or @c nil if no application/window was found.
+ */
++ (NSArray<NSObject *> *)gtx_onScreenRootElements {
+  if (GTXXCUIApplicationProxy.lastKnownApplicationProxy) {
+    // GTX is running from Out-of-process.
+    return [GTXXCUIApplicationProxy.lastKnownApplicationProxy gtx_onScreenAccessibilityElements];
+  } else {
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
+    if (window) {
+      return @[ window ];
+    }
+  }
+  return nil;
+}
 
 /**
  Executes the currently installed checks on the given element. In case of failures, the failure
@@ -205,8 +225,8 @@ static BOOL gIsInTearDown;
       } else {
         gToolkit = [GTXToolKit defaultToolkit];
       }
-      for (id<GTXBlacklisting> blacklist in gCurrentOptions.elementBlacklist) {
-        [gToolkit registerBlacklist:blacklist];
+      for (id<GTXExcludeListing> excludeList in gCurrentOptions.elementExcludeList) {
+        [gToolkit registerExcludeList:excludeList];
       }
     }
   }
@@ -225,9 +245,9 @@ static BOOL gIsInTearDown;
 
   if (gCurrentOptions) {
     // Run all the checks.
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    if (window) {
-      [self gtx_checkAllElementsFromRootElements:@[ window ]];
+    NSArray<id> *rootElements = [self gtx_onScreenRootElements];
+    if (rootElements) {
+      [self gtx_checkAllElementsFromRootElements:rootElements];
     }
   }
 }
@@ -239,9 +259,10 @@ static BOOL gIsInTearDown;
  */
 + (void)gtx_testInteractionDidBegin:(NSNotification *)notification {
   if (!gIsInInteraction) {
-    [self gtx_checkAllElementsFromRootElements:@[
-      [UIApplication sharedApplication].keyWindow.window
-    ]];
+    NSArray<id> *rootElements = [self gtx_onScreenRootElements];
+    if (rootElements) {
+      [self gtx_checkAllElementsFromRootElements:rootElements];
+    }
   }
   gIsInInteraction = YES;
 }

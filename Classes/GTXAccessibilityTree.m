@@ -25,6 +25,19 @@
  */
 static const NSInteger kAccessibilityChildrenUpperBound = 50000;
 
+/**
+ * The class name for @c UIPickerTableView elements. Must be accessed via @c NSClassFromString
+ * because it is a private class.
+ */
+static NSString *const kUIPickerTableViewClassName = @"UIPickerTableView";
+
+/**
+ * The class name for accessibility children of @c UIPickerTableView elements. Must be accessed via
+ * @c NSClassFromString because it is a private class.
+ */
+static NSString *const kUIPickerTableViewAccessibilityElementClassName =
+    @"UITableViewCellAccessibilityElement";
+
 @implementation GTXAccessibilityTree {
   // A queue of elements to be visited.
   NSMutableArray *_queue;
@@ -62,7 +75,6 @@ static const NSInteger kAccessibilityChildrenUpperBound = 50000;
   if (!nextInQueue) {
     return nil;
   }
-
   [_visitedElements addObject:nextInQueue];
   if ([nextInQueue respondsToSelector:@selector(isAccessibilityElement)]) {
     if (![nextInQueue isAccessibilityElement]) {
@@ -199,7 +211,33 @@ static const NSInteger kAccessibilityChildrenUpperBound = 50000;
     isHiddenDueToFrame = frame.size.width == 0 || frame.size.height == 0;
   }
   return (isHidden || isAccessibilityHidden ||
-          (isHiddenDueToFrame && isHiddenDueToAccessibilityFrame));
+          (isHiddenDueToFrame && isHiddenDueToAccessibilityFrame) ||
+          [self gtx_isElementOffscreenPickerViewElement:element]);
+}
+
+/**
+ * Determines if the element represents an accessibility element in a @c UIPickerTableView, and the
+ * element is offscreen.
+ *
+ * @param element The accessibility element to check.
+ * @return @c YES if the element is an offscreen accessibility element whose container is a
+ *  @c UIPickerTableView, @c NO otherwise.
+ */
+- (BOOL)gtx_isElementOffscreenPickerViewElement:(id)element {
+  if (![element respondsToSelector:@selector(accessibilityFrame)] ||
+      ![element respondsToSelector:@selector(accessibilityContainer)]) {
+    return NO;
+  }
+  id accessibilityContainer = [element accessibilityContainer];
+  if ([accessibilityContainer isKindOfClass:NSClassFromString(kUIPickerTableViewClassName)] &&
+      [element isKindOfClass:NSClassFromString(kUIPickerTableViewAccessibilityElementClassName)]) {
+    CGRect containerAccessibilityFrame = [accessibilityContainer accessibilityFrame];
+    CGRect childAccessibilityFrame = [element accessibilityFrame];
+    if (!CGRectIntersectsRect(childAccessibilityFrame, containerAccessibilityFrame)) {
+      return YES;
+    }
+  }
+  return NO;
 }
 
 @end

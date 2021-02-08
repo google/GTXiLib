@@ -21,14 +21,22 @@
 @implementation GTXCheckBlock {
   NSString *_name;
   GTXCheckHandlerBlock _block;
+  BOOL _requiresWindow;
 }
 
 + (id<GTXChecking>)GTXCheckWithName:(NSString *)name
+                     requiresWindow:(BOOL)requiresWindow
                               block:(GTXCheckHandlerBlock)block {
-  return [[GTXCheckBlock alloc] initWithName:name block:block];
+  return [[GTXCheckBlock alloc] initWithName:name requiresWindow:requiresWindow block:block];
+}
+
++ (id<GTXChecking>)GTXCheckWithName:(NSString *)name block:(GTXCheckHandlerBlock)block {
+  // NOTE: requiresWindow is YES to ensure backward compatibility.
+  return [self GTXCheckWithName:name requiresWindow:YES block:block];
 }
 
 - (instancetype)initWithName:(NSString *)name
+              requiresWindow:(BOOL)requiresWindow
                        block:(GTXCheckHandlerBlock)block {
   NSParameterAssert(name);
   NSParameterAssert(block);
@@ -37,6 +45,7 @@
   if (self) {
     _name = [name copy];
     _block = [block copy];
+    _requiresWindow = requiresWindow;
   }
   return self;
 }
@@ -53,6 +62,10 @@
 
 - (NSString *)name {
   return _name;
+}
+
+- (BOOL)requiresWindowBeforeChecking {
+  return _requiresWindow;
 }
 
 @end
