@@ -10,8 +10,8 @@ Pod::Spec.new do |s|
   s.author       = "j-sid"
   s.platform     = :ios
   s.source       = { :git => "https://github.com/google/GTXiLib.git", :tag => "4.1.0" }
-  s.source_files = "Classes/**/*.{h,m,swift}"
+  s.source_files = "{Classes,OOPClasses}/**/*.{h,m,swift,mm,cc}"
   s.ios.deployment_target = '9.0'
   s.libraries = 'c++'
-  s.dependency 'Protobuf'
+  s.dependency 'Protobuf-C++'
 end
