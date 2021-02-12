@@ -73,7 +73,9 @@ Note that GTX is being added to `+setUp` method, not the instance method
 `-setUp` since GTX must only be installed once (for a given test run).
 
 To add GTXiLib to your project use the xcodeproj file in this project or
-[cocoapods](https://cocoapods.org/pods/GTXiLib).
+[cocoapods](https://cocoapods.org/pods/GTXiLib). Note that when linking directly
+using the xcodeproj file you must also link to the [C++ protobuf library](https://github.com/protocolbuffers/protobuf/tree/master/src) and reference
+headers under "GTXiLib > Build Settings > Header Search Paths".
 
 ## Incremental Accessibility
 
