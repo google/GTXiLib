@@ -224,6 +224,83 @@
 			remoteGlobalIDString = 613C3F40204A09E7007D44A8;
 			remoteInfo = GTXiLib;
 		};
+		DD82F21425D6FDD200A38562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD82F20325D6FDD200A38562 /* protobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 560D7B652C5C4A18B1331906;
+			remoteInfo = gmock;
+		};
+		DD82F21625D6FDD200A38562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD82F20325D6FDD200A38562 /* protobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3C5CE77D3F6B4E18B75B9920;
+			remoteInfo = gmock_main;
+		};
+		DD82F21825D6FDD200A38562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD82F20325D6FDD200A38562 /* protobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2D4E369D2DCF41C68133EA8E;
+			remoteInfo = libprotobuf;
+		};
+		DD82F21A25D6FDD200A38562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD82F20325D6FDD200A38562 /* protobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CE0A483951754BA4B4678207;
+			remoteInfo = "libprotobuf-lite";
+		};
+		DD82F21C25D6FDD200A38562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD82F20325D6FDD200A38562 /* protobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DF725B14E7A747FC9EBF7EC3;
+			remoteInfo = libprotoc;
+		};
+		DD82F21E25D6FDD200A38562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD82F20325D6FDD200A38562 /* protobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 49B0FE8C812348D89DC2EB7B;
+			remoteInfo = "lite-arena-test";
+		};
+		DD82F22025D6FDD200A38562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD82F20325D6FDD200A38562 /* protobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4328FED6AEC8430A9DA48A0D;
+			remoteInfo = "lite-test";
+		};
+		DD82F22225D6FDD200A38562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD82F20325D6FDD200A38562 /* protobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 746B71F66A0E46108533029F;
+			remoteInfo = protoc;
+		};
+		DD82F22425D6FDD200A38562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD82F20325D6FDD200A38562 /* protobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0C203A8DF26E4ED4A1B3737A;
+			remoteInfo = test_plugin;
+		};
+		DD82F22625D6FDD200A38562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD82F20325D6FDD200A38562 /* protobuf.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EC5724BF53B14B1BBD3038A3;
+			remoteInfo = tests;
+		};
+		DD82F24C25D6FE4C00A38562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD82F20325D6FDD200A38562 /* protobuf.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1F474627435748C9B99BD345;
+			remoteInfo = libprotobuf;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -404,6 +481,7 @@
 		61B7F4A2204A15D30062DF65 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		61CC44AE25C0CAE600CF632A /* GTXUITestBaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXUITestBaseTest.h; path = Tests/Common/OOPTestLib/GTXUITestBaseTest.h; sourceTree = SOURCE_ROOT; };
 		61CC44AF25C0CAE600CF632A /* GTXUITestBaseTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GTXUITestBaseTest.mm; path = Tests/Common/OOPTestLib/GTXUITestBaseTest.mm; sourceTree = SOURCE_ROOT; };
+		DD82F20325D6FDD200A38562 /* protobuf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = protobuf.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -467,6 +545,7 @@
 		613C3F37204A09E7007D44A8 = {
 			isa = PBXGroup;
 			children = (
+				DD82F20325D6FDD200A38562 /* protobuf.xcodeproj */,
 				613C3F43204A09E8007D44A8 /* GTXiLib */,
 				613C3F42204A09E8007D44A8 /* Products */,
 				61B7F4A1204A15D30062DF65 /* Frameworks */,
@@ -783,6 +862,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DD82F20425D6FDD200A38562 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD82F21525D6FDD200A38562 /* libgmock.a */,
+				DD82F21725D6FDD200A38562 /* libgmock_main.a */,
+				DD82F21925D6FDD200A38562 /* libprotobufd.a */,
+				DD82F21B25D6FDD200A38562 /* libprotobuf-lited.a */,
+				DD82F21D25D6FDD200A38562 /* libprotocd.a */,
+				DD82F21F25D6FDD200A38562 /* lite-arena-test */,
+				DD82F22125D6FDD200A38562 /* lite-test */,
+				DD82F22325D6FDD200A38562 /* protoc */,
+				DD82F22525D6FDD200A38562 /* test_plugin */,
+				DD82F22725D6FDD200A38562 /* tests */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -919,6 +1015,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				DD82F24D25D6FE4C00A38562 /* PBXTargetDependency */,
 			);
 			name = GTXiLib;
 			productName = GTAxe;
@@ -1033,6 +1130,12 @@
 			mainGroup = 613C3F37204A09E7007D44A8;
 			productRefGroup = 613C3F42204A09E8007D44A8 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = DD82F20425D6FDD200A38562 /* Products */;
+					ProjectRef = DD82F20325D6FDD200A38562 /* protobuf.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				613C3F40204A09E7007D44A8 /* GTXiLib */,
@@ -1045,6 +1148,79 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		DD82F21525D6FDD200A38562 /* libgmock.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libgmock.a;
+			remoteRef = DD82F21425D6FDD200A38562 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD82F21725D6FDD200A38562 /* libgmock_main.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libgmock_main.a;
+			remoteRef = DD82F21625D6FDD200A38562 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD82F21925D6FDD200A38562 /* libprotobufd.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libprotobufd.a;
+			remoteRef = DD82F21825D6FDD200A38562 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD82F21B25D6FDD200A38562 /* libprotobuf-lited.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libprotobuf-lited.a";
+			remoteRef = DD82F21A25D6FDD200A38562 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD82F21D25D6FDD200A38562 /* libprotocd.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libprotocd.a;
+			remoteRef = DD82F21C25D6FDD200A38562 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD82F21F25D6FDD200A38562 /* lite-arena-test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = "lite-arena-test";
+			remoteRef = DD82F21E25D6FDD200A38562 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD82F22125D6FDD200A38562 /* lite-test */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = "lite-test";
+			remoteRef = DD82F22025D6FDD200A38562 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD82F22325D6FDD200A38562 /* protoc */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = protoc;
+			remoteRef = DD82F22225D6FDD200A38562 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD82F22525D6FDD200A38562 /* test_plugin */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = test_plugin;
+			remoteRef = DD82F22425D6FDD200A38562 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD82F22725D6FDD200A38562 /* tests */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = tests;
+			remoteRef = DD82F22625D6FDD200A38562 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6115E784204F5BA2003E32F9 /* Resources */ = {
@@ -1289,6 +1465,11 @@
 			target = 613C3F40204A09E7007D44A8 /* GTXiLib */;
 			targetProxy = 616FE02C25BF4E9A00CCCAD5 /* PBXContainerItemProxy */;
 		};
+		DD82F24D25D6FE4C00A38562 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libprotobuf;
+			targetProxy = DD82F24C25D6FE4C00A38562 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -1440,6 +1621,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/protobuf/src";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1492,6 +1674,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/protobuf/src";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -1513,6 +1696,7 @@
 				INFOPLIST_FILE = FrameworkFiles/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "-lprotobufd";
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.google.GTXi;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1532,6 +1716,7 @@
 				INFOPLIST_FILE = FrameworkFiles/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "-lprotobuf";
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.google.GTXi;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
