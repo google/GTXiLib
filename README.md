@@ -77,6 +77,16 @@ To add GTXiLib to your project use the xcodeproj file in this project or
 using the xcodeproj file you must also link to the [C++ protobuf library](https://github.com/protocolbuffers/protobuf/tree/master/src) and reference
 headers under "GTXiLib > Build Settings > Header Search Paths".
 
+## CocoaPods and Swift
+GTXiLib supports Swift projects. The installation instructions are almost the same as for Objective-C projects. Your `Podfile` should look like
+```
+use_modular_headers!
+target "NameOfYourProject" do
+  pod "GTXiLib"
+end
+```
+with an optional version specifier for "GTXiLib". Note the `use_modular_headers!` line and the **lack** of `use_frameworks!`. As of [CocoaPods 1.5.0](https://blog.cocoapods.org/CocoaPods-1.5.0/), `use_frameworks!` is no longer required for Swift projects. `use_frameworks!` makes `Protobuf-C++`, which is a dependency of `GTXiLib`, fail to import properly. Thus, you cannot use `use_frameworks!`, which means you must use `use_modular_headers!`. You may also specify `:modular_headers => true` on a per-pod basis. Then, add `import GTXiLib` to your Swift files, and you can use GTXiLib APIs.
+
 ## Incremental Accessibility
 
 GTXiLib APIs support a practical solution for improving accessibility of large
