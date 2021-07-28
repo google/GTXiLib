@@ -15,6 +15,7 @@
 //
 
 #import "GTXAnalyticsUtils.h"
+#import "GTXAssertions.h"
 #import "GTXLogging.h"
 
 #import <CommonCrypto/CommonDigest.h>
@@ -28,30 +29,37 @@ static NSString *const kGTXTrackingEndPoint = @"https://ssl.google-analytics.com
 
 @implementation GTXAnalyticsUtils
 
-/**
- @return The clientID to be used by GTXiLib analytics, this is a hash of App's bundle ID.
- */
++ (NSString *)clientIDForBundleID:(NSString *)bundleID {
+  // Get SHA256 value of the given string.
+  unsigned char sha256Value[CC_SHA256_DIGEST_LENGTH];
+  const char *stringCPtr = [bundleID UTF8String];
+  CC_SHA256(stringCPtr, (CC_LONG)strlen(stringCPtr), sha256Value);
+
+  // Parse SHA256 value into individual hex values. Note that Google Analytics client ID must be
+  // 128bits long, but SHA256 is 256 bits and there is no standard way to compress hashes, in our
+  // case we use bitwise XOR of the two 128 bit hashes inside the 256 bit hash to produce a 128bit
+  // hash.
+  NSMutableString *stringWithHexValues = [[NSMutableString alloc] init];
+  const NSInteger kClientIDSize = 16;
+  GTX_ASSERT(kClientIDSize * 2 == CC_SHA256_DIGEST_LENGTH,
+             @"CC_SHA256_DIGEST_LENGTH must be 32 it was %d", (int)CC_SHA256_DIGEST_LENGTH);
+  for (int i = 0; i < kClientIDSize; i++) {
+    [stringWithHexValues appendFormat:@"%02x", sha256Value[i] ^ sha256Value[kClientIDSize + i]];
+  }
+  return stringWithHexValues;
+}
+
 + (NSString *)clientID {
   static NSString *clientID;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    NSString *bundleIDMD5 = [[NSBundle mainBundle] bundleIdentifier];
-    if (!bundleIDMD5) {
+    NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
+    if (!bundleID) {
       // If bundle ID is not available we use a placeholder.
-      bundleIDMD5 = @"<Missing Bundle ID>";
+      bundleID = @"<Missing Bundle ID>";
     }
 
-    // Get MD5 value of the given string.
-    unsigned char md5Value[CC_MD5_DIGEST_LENGTH];
-    const char *stringCPtr = [bundleIDMD5 UTF8String];
-    CC_MD5(stringCPtr, (CC_LONG)strlen(stringCPtr), md5Value);
-
-    // Parse MD5 value into individual hex values.
-    NSMutableString *stringWithHexMd5Values = [[NSMutableString alloc] init];
-    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
-      [stringWithHexMd5Values appendFormat:@"%02x", md5Value[i]];
-    }
-    clientID = [stringWithHexMd5Values copy];
+    clientID = [self clientIDForBundleID:bundleID];
   });
 
   return clientID;

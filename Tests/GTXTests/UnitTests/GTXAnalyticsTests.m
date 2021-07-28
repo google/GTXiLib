@@ -18,6 +18,7 @@
 #import <XCTest/XCTest.h>
 
 #import "GTXAnalytics.h"
+#import "GTXAnalyticsUtils.h"
 #import "GTXToolKit.h"
 #import "GTXBaseTestCase.h"
 
@@ -41,6 +42,12 @@
   GTXAnalytics.handler = prevAnalyticsHandler;
 
   [super tearDown];
+}
+
+- (void)testClientIDIsAccurate {
+  NSString *expectedClientID = @"90940a64d60ad6c98c3fb6c6307e1d36";
+  XCTAssertEqualObjects(expectedClientID,
+                        [GTXAnalyticsUtils clientIDForBundleID:@"com.google.gtx.test"]);
 }
 
 - (void)testCheckElementReportsAnalyticsCorrectly {

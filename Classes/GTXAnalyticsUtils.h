@@ -43,6 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)clientID;
 
+/**
+ @return An appropriate clientID for analytics that is based on hash of given @c bundleID.
+ */
++ (NSString *)clientIDForBundleID:(NSString *)bundleID;
+
 @end
 
 NS_ASSUME_NONNULL_END
