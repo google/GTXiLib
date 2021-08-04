@@ -53,7 +53,9 @@ ContrastSwatch ContrastSwatch::Extract(const Image &image,
   // accessing keys that dont exist may lead to creating the enties with count
   // 0.
   int64_t count = (int64_t)color_histogram.size();
-  for (auto const& [key, value] : color_histogram) {
+  for (auto& color : color_histogram) {
+    auto const& key = color.first;
+    auto const& value = color.second;
     if (value > color_histogram[top_key]) {
       penultimate_key = top_key;
       top_key = key;

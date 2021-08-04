@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @return a a shallow copy of this instrance as std::unique_ptr to gtx::Image. @note that
 gtx::Image valid only until this instance is in scope.
 */
-- (std::unique_ptr<gtx::Image>)gtxImage NS_RETURNS_INNER_POINTER;
+- (std::unique_ptr<gtx::Image>)gtxImage;
 
 @end
 

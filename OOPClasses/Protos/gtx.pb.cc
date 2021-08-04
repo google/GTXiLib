@@ -51,6 +51,7 @@ static void InitDefaultsscc_info_ElementType_gtx_2eproto() {
     new (ptr) ::gtxilib::oopclasses::protos::ElementType();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::gtxilib::oopclasses::protos::ElementType::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_ElementType_gtx_2eproto =
@@ -64,6 +65,7 @@ static void InitDefaultsscc_info_Point_gtx_2eproto() {
     new (ptr) ::gtxilib::oopclasses::protos::Point();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::gtxilib::oopclasses::protos::Point::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Point_gtx_2eproto =
@@ -77,6 +79,7 @@ static void InitDefaultsscc_info_Rect_gtx_2eproto() {
     new (ptr) ::gtxilib::oopclasses::protos::Rect();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::gtxilib::oopclasses::protos::Rect::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Rect_gtx_2eproto =
@@ -92,6 +95,7 @@ static void InitDefaultsscc_info_Size_gtx_2eproto() {
     new (ptr) ::gtxilib::oopclasses::protos::Size();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::gtxilib::oopclasses::protos::Size::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Size_gtx_2eproto =
@@ -105,6 +109,7 @@ static void InitDefaultsscc_info_UIElement_gtx_2eproto() {
     new (ptr) ::gtxilib::oopclasses::protos::UIElement();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::gtxilib::oopclasses::protos::UIElement::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_UIElement_gtx_2eproto =
@@ -116,39 +121,33 @@ static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptor
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_gtx_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_gtx_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::Point, _has_bits_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::Point, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::Point, x_),
   PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::Point, y_),
-  0,
-  1,
-  PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::Size, _has_bits_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::Size, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::Size, width_),
   PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::Size, height_),
-  0,
-  1,
-  PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::Rect, _has_bits_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::Rect, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::Rect, origin_),
   PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::Rect, size_),
-  0,
-  1,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::ElementType, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::UIElement, _has_bits_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::UIElement, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -158,18 +157,13 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_gtx_2eproto::offsets[] PROTOBU
   PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::UIElement, ax_label_),
   PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::UIElement, ax_frame_),
   PROTOBUF_FIELD_OFFSET(::gtxilib::oopclasses::protos::UIElement, ax_element_type_),
-  3,
-  2,
-  0,
-  1,
-  4,
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, 7, sizeof(::gtxilib::oopclasses::protos::Point)},
-  { 9, 16, sizeof(::gtxilib::oopclasses::protos::Size)},
-  { 18, 25, sizeof(::gtxilib::oopclasses::protos::Rect)},
-  { 27, -1, sizeof(::gtxilib::oopclasses::protos::ElementType)},
-  { 32, 42, sizeof(::gtxilib::oopclasses::protos::UIElement)},
+  { 0, -1, sizeof(::gtxilib::oopclasses::protos::Point)},
+  { 7, -1, sizeof(::gtxilib::oopclasses::protos::Size)},
+  { 14, -1, sizeof(::gtxilib::oopclasses::protos::Rect)},
+  { 21, -1, sizeof(::gtxilib::oopclasses::protos::ElementType)},
+  { 26, -1, sizeof(::gtxilib::oopclasses::protos::UIElement)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -181,55 +175,50 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_gtx_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\tgtx.proto\022\031gtxilib.oopclasses.protos\"3"
-  "\n\005Point\022\016\n\001x\030\001 \001(\002H\000\210\001\001\022\016\n\001y\030\002 \001(\002H\001\210\001\001B"
-  "\004\n\002_xB\004\n\002_y\"D\n\004Size\022\022\n\005width\030\001 \001(\002H\000\210\001\001\022"
-  "\023\n\006height\030\002 \001(\002H\001\210\001\001B\010\n\006_widthB\t\n\007_heigh"
-  "t\"\205\001\n\004Rect\0225\n\006origin\030\001 \001(\0132 .gtxilib.oop"
-  "classes.protos.PointH\000\210\001\001\0222\n\004size\030\002 \001(\0132"
-  "\037.gtxilib.oopclasses.protos.SizeH\001\210\001\001B\t\n"
-  "\007_originB\007\n\005_size\"\233\n\n\013ElementType\"\213\n\n\017El"
-  "ementTypeEnum\022\007\n\003ANY\020\000\022\t\n\005OTHER\020\001\022\017\n\013APP"
-  "LICATION\020\002\022\t\n\005GROUP\020\003\022\n\n\006WINDOW\020\004\022\t\n\005SHE"
-  "ET\020\005\022\n\n\006DRAWER\020\006\022\t\n\005ALERT\020\007\022\n\n\006DIALOG\020\010\022"
-  "\n\n\006BUTTON\020\t\022\020\n\014RADIO_BUTTON\020\n\022\017\n\013RADIO_G"
-  "ROUP\020\013\022\r\n\tCHECK_BOX\020\014\022\027\n\023DISCLOSURE_TRIA"
-  "NGLE\020\r\022\021\n\rPOP_UP_BUTTON\020\016\022\r\n\tCOMBO_BOX\020\017"
-  "\022\017\n\013MENU_BUTTON\020\020\022\022\n\016TOOLBAR_BUTTON\020\021\022\013\n"
-  "\007POPOVER\020\022\022\014\n\010KEYBOARD\020\023\022\007\n\003KEY\020\024\022\022\n\016NAV"
-  "IGATION_BAR\020\025\022\013\n\007TAB_BAR\020\026\022\r\n\tTAB_GROUP\020"
-  "\027\022\013\n\007TOOLBAR\020\030\022\016\n\nSTATUS_BAR\020\031\022\t\n\005TABLE\020"
-  "\032\022\r\n\tTABLE_ROW\020\033\022\020\n\014TABLE_COLUMN\020\034\022\013\n\007OU"
-  "TLINE\020\035\022\017\n\013OUTLINE_ROW\020\036\022\013\n\007BROWSER\020\037\022\023\n"
-  "\017COLLECTION_VIEW\020 \022\n\n\006SLIDER\020!\022\022\n\016PAGE_I"
-  "NDICATOR\020\"\022\026\n\022PROGRESS_INDICATOR\020#\022\026\n\022AC"
-  "TIVITY_INDICATOR\020$\022\025\n\021SEGMENTED_CONTROL\020"
-  "%\022\n\n\006PICKER\020&\022\020\n\014PICKER_WHEEL\020\'\022\n\n\006SWITC"
-  "H\020(\022\n\n\006TOGGLE\020)\022\010\n\004LINK\020*\022\t\n\005IMAGE\020+\022\010\n\004"
-  "ICON\020,\022\020\n\014SEARCH_FIELD\020-\022\017\n\013SCROLL_VIEW\020"
-  ".\022\016\n\nSCROLL_BAR\020/\022\017\n\013STATIC_TEXT\0200\022\016\n\nTE"
-  "XT_FIELD\0201\022\025\n\021SECURE_TEXT_FIELD\0202\022\017\n\013DAT"
-  "E_PICKER\0203\022\r\n\tTEXT_VIEW\0204\022\010\n\004MENU\0205\022\r\n\tM"
-  "ENU_ITEM\0206\022\014\n\010MENU_BAR\0207\022\021\n\rMENU_BAR_ITE"
-  "M\0208\022\007\n\003MAP\0209\022\014\n\010WEB_VIEW\020:\022\023\n\017INCREMENT_"
-  "ARROW\020;\022\023\n\017DECREMENT_ARROW\020<\022\014\n\010TIMELINE"
-  "\020=\022\024\n\020RATING_INDICATOR\020>\022\023\n\017VALUE_INDICA"
-  "TOR\020\?\022\017\n\013SPLIT_GROUP\020@\022\014\n\010SPLITTER\020A\022\027\n\023"
-  "RELEVANCE_INDICATOR\020B\022\016\n\nCOLOR_WELL\020C\022\014\n"
-  "\010HELP_TAG\020D\022\t\n\005MATTE\020E\022\r\n\tDOCK_ITEM\020F\022\t\n"
-  "\005RULER\020G\022\020\n\014RULER_MARKER\020H\022\010\n\004GRID\020I\022\023\n\017"
-  "LEVEL_INDICATOR\020J\022\010\n\004CELL\020K\022\017\n\013LAYOUT_AR"
-  "EA\020L\022\017\n\013LAYOUT_ITEM\020M\022\n\n\006HANDLE\020N\022\013\n\007STE"
-  "PPER\020O\022\007\n\003TAB\020P\022\r\n\tTOUCH_BAR\020Q\022\017\n\013STATUS"
-  "_ITEM\020R\"\262\002\n\tUIElement\022\032\n\ris_ax_element\030\001"
-  " \001(\010H\000\210\001\001\022\026\n\tax_traits\030\002 \001(\004H\001\210\001\001\022\025\n\010ax_"
-  "label\030\003 \001(\tH\002\210\001\001\0226\n\010ax_frame\030\004 \001(\0132\037.gtx"
-  "ilib.oopclasses.protos.RectH\003\210\001\001\022T\n\017ax_e"
-  "lement_type\030\005 \001(\01626.gtxilib.oopclasses.p"
-  "rotos.ElementType.ElementTypeEnumH\004\210\001\001B\020"
-  "\n\016_is_ax_elementB\014\n\n_ax_traitsB\013\n\t_ax_la"
-  "belB\013\n\t_ax_frameB\022\n\020_ax_element_typeb\006pr"
-  "oto3"
+  "\n\tgtx.proto\022\031gtxilib.oopclasses.protos\"\035"
+  "\n\005Point\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\"%\n\004Size\022\r\n"
+  "\005width\030\001 \001(\002\022\016\n\006height\030\002 \001(\002\"g\n\004Rect\0220\n\006"
+  "origin\030\001 \001(\0132 .gtxilib.oopclasses.protos"
+  ".Point\022-\n\004size\030\002 \001(\0132\037.gtxilib.oopclasse"
+  "s.protos.Size\"\233\n\n\013ElementType\"\213\n\n\017Elemen"
+  "tTypeEnum\022\007\n\003ANY\020\000\022\t\n\005OTHER\020\001\022\017\n\013APPLICA"
+  "TION\020\002\022\t\n\005GROUP\020\003\022\n\n\006WINDOW\020\004\022\t\n\005SHEET\020\005"
+  "\022\n\n\006DRAWER\020\006\022\t\n\005ALERT\020\007\022\n\n\006DIALOG\020\010\022\n\n\006B"
+  "UTTON\020\t\022\020\n\014RADIO_BUTTON\020\n\022\017\n\013RADIO_GROUP"
+  "\020\013\022\r\n\tCHECK_BOX\020\014\022\027\n\023DISCLOSURE_TRIANGLE"
+  "\020\r\022\021\n\rPOP_UP_BUTTON\020\016\022\r\n\tCOMBO_BOX\020\017\022\017\n\013"
+  "MENU_BUTTON\020\020\022\022\n\016TOOLBAR_BUTTON\020\021\022\013\n\007POP"
+  "OVER\020\022\022\014\n\010KEYBOARD\020\023\022\007\n\003KEY\020\024\022\022\n\016NAVIGAT"
+  "ION_BAR\020\025\022\013\n\007TAB_BAR\020\026\022\r\n\tTAB_GROUP\020\027\022\013\n"
+  "\007TOOLBAR\020\030\022\016\n\nSTATUS_BAR\020\031\022\t\n\005TABLE\020\032\022\r\n"
+  "\tTABLE_ROW\020\033\022\020\n\014TABLE_COLUMN\020\034\022\013\n\007OUTLIN"
+  "E\020\035\022\017\n\013OUTLINE_ROW\020\036\022\013\n\007BROWSER\020\037\022\023\n\017COL"
+  "LECTION_VIEW\020 \022\n\n\006SLIDER\020!\022\022\n\016PAGE_INDIC"
+  "ATOR\020\"\022\026\n\022PROGRESS_INDICATOR\020#\022\026\n\022ACTIVI"
+  "TY_INDICATOR\020$\022\025\n\021SEGMENTED_CONTROL\020%\022\n\n"
+  "\006PICKER\020&\022\020\n\014PICKER_WHEEL\020\'\022\n\n\006SWITCH\020(\022"
+  "\n\n\006TOGGLE\020)\022\010\n\004LINK\020*\022\t\n\005IMAGE\020+\022\010\n\004ICON"
+  "\020,\022\020\n\014SEARCH_FIELD\020-\022\017\n\013SCROLL_VIEW\020.\022\016\n"
+  "\nSCROLL_BAR\020/\022\017\n\013STATIC_TEXT\0200\022\016\n\nTEXT_F"
+  "IELD\0201\022\025\n\021SECURE_TEXT_FIELD\0202\022\017\n\013DATE_PI"
+  "CKER\0203\022\r\n\tTEXT_VIEW\0204\022\010\n\004MENU\0205\022\r\n\tMENU_"
+  "ITEM\0206\022\014\n\010MENU_BAR\0207\022\021\n\rMENU_BAR_ITEM\0208\022"
+  "\007\n\003MAP\0209\022\014\n\010WEB_VIEW\020:\022\023\n\017INCREMENT_ARRO"
+  "W\020;\022\023\n\017DECREMENT_ARROW\020<\022\014\n\010TIMELINE\020=\022\024"
+  "\n\020RATING_INDICATOR\020>\022\023\n\017VALUE_INDICATOR\020"
+  "\?\022\017\n\013SPLIT_GROUP\020@\022\014\n\010SPLITTER\020A\022\027\n\023RELE"
+  "VANCE_INDICATOR\020B\022\016\n\nCOLOR_WELL\020C\022\014\n\010HEL"
+  "P_TAG\020D\022\t\n\005MATTE\020E\022\r\n\tDOCK_ITEM\020F\022\t\n\005RUL"
+  "ER\020G\022\020\n\014RULER_MARKER\020H\022\010\n\004GRID\020I\022\023\n\017LEVE"
+  "L_INDICATOR\020J\022\010\n\004CELL\020K\022\017\n\013LAYOUT_AREA\020L"
+  "\022\017\n\013LAYOUT_ITEM\020M\022\n\n\006HANDLE\020N\022\013\n\007STEPPER"
+  "\020O\022\007\n\003TAB\020P\022\r\n\tTOUCH_BAR\020Q\022\017\n\013STATUS_ITE"
+  "M\020R\"\313\001\n\tUIElement\022\025\n\ris_ax_element\030\001 \001(\010"
+  "\022\021\n\tax_traits\030\002 \001(\004\022\020\n\010ax_label\030\003 \001(\t\0221\n"
+  "\010ax_frame\030\004 \001(\0132\037.gtxilib.oopclasses.pro"
+  "tos.Rect\022O\n\017ax_element_type\030\005 \001(\01626.gtxi"
+  "lib.oopclasses.protos.ElementType.Elemen"
+  "tTypeEnumb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_gtx_2eproto_deps[1] = {
 };
@@ -242,7 +231,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_gtx
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_gtx_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_gtx_2eproto = {
-  false, false, descriptor_table_protodef_gtx_2eproto, "gtx.proto", 1924,
+  false, false, descriptor_table_protodef_gtx_2eproto, "gtx.proto", 1737,
   &descriptor_table_gtx_2eproto_once, descriptor_table_gtx_2eproto_sccs, descriptor_table_gtx_2eproto_deps, 5, 0,
   schemas, file_default_instances, TableStruct_gtx_2eproto::offsets,
   file_level_metadata_gtx_2eproto, 5, file_level_enum_descriptors_gtx_2eproto, file_level_service_descriptors_gtx_2eproto,
@@ -439,15 +428,10 @@ constexpr int ElementType::ElementTypeEnum_ARRAYSIZE;
 
 // ===================================================================
 
+void Point::InitAsDefaultInstance() {
+}
 class Point::_Internal {
  public:
-  using HasBits = decltype(std::declval<Point>()._has_bits_);
-  static void set_has_x(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
-  static void set_has_y(HasBits* has_bits) {
-    (*has_bits)[0] |= 2u;
-  }
 };
 
 Point::Point(::PROTOBUF_NAMESPACE_ID::Arena* arena)
@@ -457,8 +441,7 @@ Point::Point(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   // @@protoc_insertion_point(arena_constructor:gtxilib.oopclasses.protos.Point)
 }
 Point::Point(const Point& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&x_, &from.x_,
     static_cast<size_t>(reinterpret_cast<char*>(&y_) -
@@ -467,9 +450,8 @@ Point::Point(const Point& from)
 }
 
 void Point::SharedCtor() {
-  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-      reinterpret_cast<char*>(&x_) - reinterpret_cast<char*>(this)),
-      0, static_cast<size_t>(reinterpret_cast<char*>(&y_) -
+  ::memset(&x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&y_) -
       reinterpret_cast<char*>(&x_)) + sizeof(y_));
 }
 
@@ -504,19 +486,15 @@ void Point::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    ::memset(&x_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&y_) -
-        reinterpret_cast<char*>(&x_)) + sizeof(y_));
-  }
-  _has_bits_.Clear();
+  ::memset(&x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&y_) -
+      reinterpret_cast<char*>(&x_)) + sizeof(y_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Point::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  _Internal::HasBits has_bits{};
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
@@ -525,7 +503,6 @@ const char* Point::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
       // float x = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
-          _Internal::set_has_x(&has_bits);
           x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else goto handle_unusual;
@@ -533,7 +510,6 @@ const char* Point::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
       // float y = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
-          _Internal::set_has_y(&has_bits);
           y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else goto handle_unusual;
@@ -553,7 +529,6 @@ const char* Point::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
     }  // switch
   }  // while
 success:
-  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -568,13 +543,13 @@ failure:
   (void) cached_has_bits;
 
   // float x = 1;
-  if (_internal_has_x()) {
+  if (!(this->x() <= 0 && this->x() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_x(), target);
   }
 
   // float y = 2;
-  if (_internal_has_y()) {
+  if (!(this->y() <= 0 && this->y() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_y(), target);
   }
@@ -595,19 +570,16 @@ size_t Point::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    // float x = 1;
-    if (cached_has_bits & 0x00000001u) {
-      total_size += 1 + 4;
-    }
-
-    // float y = 2;
-    if (cached_has_bits & 0x00000002u) {
-      total_size += 1 + 4;
-    }
-
+  // float x = 1;
+  if (!(this->x() <= 0 && this->x() >= 0)) {
+    total_size += 1 + 4;
   }
+
+  // float y = 2;
+  if (!(this->y() <= 0 && this->y() >= 0)) {
+    total_size += 1 + 4;
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -639,15 +611,11 @@ void Point::MergeFrom(const Point& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    if (cached_has_bits & 0x00000001u) {
-      x_ = from.x_;
-    }
-    if (cached_has_bits & 0x00000002u) {
-      y_ = from.y_;
-    }
-    _has_bits_[0] |= cached_has_bits;
+  if (!(from.x() <= 0 && from.x() >= 0)) {
+    _internal_set_x(from._internal_x());
+  }
+  if (!(from.y() <= 0 && from.y() >= 0)) {
+    _internal_set_y(from._internal_y());
   }
 }
 
@@ -672,7 +640,6 @@ bool Point::IsInitialized() const {
 void Point::InternalSwap(Point* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Point, y_)
       + sizeof(Point::y_)
@@ -688,15 +655,10 @@ void Point::InternalSwap(Point* other) {
 
 // ===================================================================
 
+void Size::InitAsDefaultInstance() {
+}
 class Size::_Internal {
  public:
-  using HasBits = decltype(std::declval<Size>()._has_bits_);
-  static void set_has_width(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
-  static void set_has_height(HasBits* has_bits) {
-    (*has_bits)[0] |= 2u;
-  }
 };
 
 Size::Size(::PROTOBUF_NAMESPACE_ID::Arena* arena)
@@ -706,8 +668,7 @@ Size::Size(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   // @@protoc_insertion_point(arena_constructor:gtxilib.oopclasses.protos.Size)
 }
 Size::Size(const Size& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&width_, &from.width_,
     static_cast<size_t>(reinterpret_cast<char*>(&height_) -
@@ -716,9 +677,8 @@ Size::Size(const Size& from)
 }
 
 void Size::SharedCtor() {
-  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-      reinterpret_cast<char*>(&width_) - reinterpret_cast<char*>(this)),
-      0, static_cast<size_t>(reinterpret_cast<char*>(&height_) -
+  ::memset(&width_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&height_) -
       reinterpret_cast<char*>(&width_)) + sizeof(height_));
 }
 
@@ -753,19 +713,15 @@ void Size::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    ::memset(&width_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&height_) -
-        reinterpret_cast<char*>(&width_)) + sizeof(height_));
-  }
-  _has_bits_.Clear();
+  ::memset(&width_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&height_) -
+      reinterpret_cast<char*>(&width_)) + sizeof(height_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Size::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  _Internal::HasBits has_bits{};
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
@@ -774,7 +730,6 @@ const char* Size::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
       // float width = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
-          _Internal::set_has_width(&has_bits);
           width_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else goto handle_unusual;
@@ -782,7 +737,6 @@ const char* Size::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
       // float height = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
-          _Internal::set_has_height(&has_bits);
           height_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else goto handle_unusual;
@@ -802,7 +756,6 @@ const char* Size::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
     }  // switch
   }  // while
 success:
-  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -817,13 +770,13 @@ failure:
   (void) cached_has_bits;
 
   // float width = 1;
-  if (_internal_has_width()) {
+  if (!(this->width() <= 0 && this->width() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_width(), target);
   }
 
   // float height = 2;
-  if (_internal_has_height()) {
+  if (!(this->height() <= 0 && this->height() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_height(), target);
   }
@@ -844,19 +797,16 @@ size_t Size::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    // float width = 1;
-    if (cached_has_bits & 0x00000001u) {
-      total_size += 1 + 4;
-    }
-
-    // float height = 2;
-    if (cached_has_bits & 0x00000002u) {
-      total_size += 1 + 4;
-    }
-
+  // float width = 1;
+  if (!(this->width() <= 0 && this->width() >= 0)) {
+    total_size += 1 + 4;
   }
+
+  // float height = 2;
+  if (!(this->height() <= 0 && this->height() >= 0)) {
+    total_size += 1 + 4;
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -888,15 +838,11 @@ void Size::MergeFrom(const Size& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    if (cached_has_bits & 0x00000001u) {
-      width_ = from.width_;
-    }
-    if (cached_has_bits & 0x00000002u) {
-      height_ = from.height_;
-    }
-    _has_bits_[0] |= cached_has_bits;
+  if (!(from.width() <= 0 && from.width() >= 0)) {
+    _internal_set_width(from._internal_width());
+  }
+  if (!(from.height() <= 0 && from.height() >= 0)) {
+    _internal_set_height(from._internal_height());
   }
 }
 
@@ -921,7 +867,6 @@ bool Size::IsInitialized() const {
 void Size::InternalSwap(Size* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Size, height_)
       + sizeof(Size::height_)
@@ -937,17 +882,16 @@ void Size::InternalSwap(Size* other) {
 
 // ===================================================================
 
+void Rect::InitAsDefaultInstance() {
+  ::gtxilib::oopclasses::protos::_Rect_default_instance_._instance.get_mutable()->origin_ = const_cast< ::gtxilib::oopclasses::protos::Point*>(
+      ::gtxilib::oopclasses::protos::Point::internal_default_instance());
+  ::gtxilib::oopclasses::protos::_Rect_default_instance_._instance.get_mutable()->size_ = const_cast< ::gtxilib::oopclasses::protos::Size*>(
+      ::gtxilib::oopclasses::protos::Size::internal_default_instance());
+}
 class Rect::_Internal {
  public:
-  using HasBits = decltype(std::declval<Rect>()._has_bits_);
   static const ::gtxilib::oopclasses::protos::Point& origin(const Rect* msg);
-  static void set_has_origin(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
   static const ::gtxilib::oopclasses::protos::Size& size(const Rect* msg);
-  static void set_has_size(HasBits* has_bits) {
-    (*has_bits)[0] |= 2u;
-  }
 };
 
 const ::gtxilib::oopclasses::protos::Point&
@@ -965,8 +909,7 @@ Rect::Rect(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   // @@protoc_insertion_point(arena_constructor:gtxilib.oopclasses.protos.Rect)
 }
 Rect::Rect(const Rect& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_origin()) {
     origin_ = new ::gtxilib::oopclasses::protos::Point(*from.origin_);
@@ -983,9 +926,8 @@ Rect::Rect(const Rect& from)
 
 void Rect::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Rect_gtx_2eproto.base);
-  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-      reinterpret_cast<char*>(&origin_) - reinterpret_cast<char*>(this)),
-      0, static_cast<size_t>(reinterpret_cast<char*>(&size_) -
+  ::memset(&origin_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&size_) -
       reinterpret_cast<char*>(&origin_)) + sizeof(size_));
 }
 
@@ -1022,28 +964,20 @@ void Rect::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    if (cached_has_bits & 0x00000001u) {
-      if (GetArena() == nullptr && origin_ != nullptr) {
-        delete origin_;
-      }
-      origin_ = nullptr;
-    }
-    if (cached_has_bits & 0x00000002u) {
-      if (GetArena() == nullptr && size_ != nullptr) {
-        delete size_;
-      }
-      size_ = nullptr;
-    }
+  if (GetArena() == nullptr && origin_ != nullptr) {
+    delete origin_;
   }
-  _has_bits_.Clear();
+  origin_ = nullptr;
+  if (GetArena() == nullptr && size_ != nullptr) {
+    delete size_;
+  }
+  size_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Rect::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  _Internal::HasBits has_bits{};
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
@@ -1078,7 +1012,6 @@ const char* Rect::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
     }  // switch
   }  // while
 success:
-  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -1093,7 +1026,7 @@ failure:
   (void) cached_has_bits;
 
   // .gtxilib.oopclasses.protos.Point origin = 1;
-  if (_internal_has_origin()) {
+  if (this->has_origin()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -1101,7 +1034,7 @@ failure:
   }
 
   // .gtxilib.oopclasses.protos.Size size = 2;
-  if (_internal_has_size()) {
+  if (this->has_size()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -1124,23 +1057,20 @@ size_t Rect::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    // .gtxilib.oopclasses.protos.Point origin = 1;
-    if (cached_has_bits & 0x00000001u) {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *origin_);
-    }
-
-    // .gtxilib.oopclasses.protos.Size size = 2;
-    if (cached_has_bits & 0x00000002u) {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *size_);
-    }
-
+  // .gtxilib.oopclasses.protos.Point origin = 1;
+  if (this->has_origin()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *origin_);
   }
+
+  // .gtxilib.oopclasses.protos.Size size = 2;
+  if (this->has_size()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *size_);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -1172,14 +1102,11 @@ void Rect::MergeFrom(const Rect& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    if (cached_has_bits & 0x00000001u) {
-      _internal_mutable_origin()->::gtxilib::oopclasses::protos::Point::MergeFrom(from._internal_origin());
-    }
-    if (cached_has_bits & 0x00000002u) {
-      _internal_mutable_size()->::gtxilib::oopclasses::protos::Size::MergeFrom(from._internal_size());
-    }
+  if (from.has_origin()) {
+    _internal_mutable_origin()->::gtxilib::oopclasses::protos::Point::MergeFrom(from._internal_origin());
+  }
+  if (from.has_size()) {
+    _internal_mutable_size()->::gtxilib::oopclasses::protos::Size::MergeFrom(from._internal_size());
   }
 }
 
@@ -1204,7 +1131,6 @@ bool Rect::IsInitialized() const {
 void Rect::InternalSwap(Rect* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Rect, size_)
       + sizeof(Rect::size_)
@@ -1220,6 +1146,8 @@ void Rect::InternalSwap(Rect* other) {
 
 // ===================================================================
 
+void ElementType::InitAsDefaultInstance() {
+}
 class ElementType::_Internal {
  public:
 };
@@ -1275,6 +1203,7 @@ void ElementType::Clear() {
 
 const char* ElementType::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
@@ -1382,25 +1311,13 @@ void ElementType::InternalSwap(ElementType* other) {
 
 // ===================================================================
 
+void UIElement::InitAsDefaultInstance() {
+  ::gtxilib::oopclasses::protos::_UIElement_default_instance_._instance.get_mutable()->ax_frame_ = const_cast< ::gtxilib::oopclasses::protos::Rect*>(
+      ::gtxilib::oopclasses::protos::Rect::internal_default_instance());
+}
 class UIElement::_Internal {
  public:
-  using HasBits = decltype(std::declval<UIElement>()._has_bits_);
-  static void set_has_is_ax_element(HasBits* has_bits) {
-    (*has_bits)[0] |= 8u;
-  }
-  static void set_has_ax_traits(HasBits* has_bits) {
-    (*has_bits)[0] |= 4u;
-  }
-  static void set_has_ax_label(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
   static const ::gtxilib::oopclasses::protos::Rect& ax_frame(const UIElement* msg);
-  static void set_has_ax_frame(HasBits* has_bits) {
-    (*has_bits)[0] |= 2u;
-  }
-  static void set_has_ax_element_type(HasBits* has_bits) {
-    (*has_bits)[0] |= 16u;
-  }
 };
 
 const ::gtxilib::oopclasses::protos::Rect&
@@ -1414,12 +1331,11 @@ UIElement::UIElement(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   // @@protoc_insertion_point(arena_constructor:gtxilib.oopclasses.protos.UIElement)
 }
 UIElement::UIElement(const UIElement& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _has_bits_(from._has_bits_) {
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ax_label_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (from._internal_has_ax_label()) {
-    ax_label_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_ax_label(), 
+  if (!from._internal_ax_label().empty()) {
+    ax_label_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_ax_label(),
       GetArena());
   }
   if (from._internal_has_ax_frame()) {
@@ -1436,9 +1352,8 @@ UIElement::UIElement(const UIElement& from)
 void UIElement::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_UIElement_gtx_2eproto.base);
   ax_label_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-      reinterpret_cast<char*>(&ax_frame_) - reinterpret_cast<char*>(this)),
-      0, static_cast<size_t>(reinterpret_cast<char*>(&ax_element_type_) -
+  ::memset(&ax_frame_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&ax_element_type_) -
       reinterpret_cast<char*>(&ax_frame_)) + sizeof(ax_element_type_));
 }
 
@@ -1475,30 +1390,20 @@ void UIElement::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    if (cached_has_bits & 0x00000001u) {
-      ax_label_.ClearNonDefaultToEmpty();
-    }
-    if (cached_has_bits & 0x00000002u) {
-      if (GetArena() == nullptr && ax_frame_ != nullptr) {
-        delete ax_frame_;
-      }
-      ax_frame_ = nullptr;
-    }
+  ax_label_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  if (GetArena() == nullptr && ax_frame_ != nullptr) {
+    delete ax_frame_;
   }
-  if (cached_has_bits & 0x0000001cu) {
-    ::memset(&ax_traits_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&ax_element_type_) -
-        reinterpret_cast<char*>(&ax_traits_)) + sizeof(ax_element_type_));
-  }
-  _has_bits_.Clear();
+  ax_frame_ = nullptr;
+  ::memset(&ax_traits_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&ax_element_type_) -
+      reinterpret_cast<char*>(&ax_traits_)) + sizeof(ax_element_type_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* UIElement::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  _Internal::HasBits has_bits{};
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
   while (!ctx->Done(&ptr)) {
     ::PROTOBUF_NAMESPACE_ID::uint32 tag;
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
@@ -1507,7 +1412,6 @@ const char* UIElement::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
       // bool is_ax_element = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          _Internal::set_has_is_ax_element(&has_bits);
           is_ax_element_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
@@ -1515,7 +1419,6 @@ const char* UIElement::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
       // uint64 ax_traits = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          _Internal::set_has_ax_traits(&has_bits);
           ax_traits_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
@@ -1559,7 +1462,6 @@ const char* UIElement::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
     }  // switch
   }  // while
 success:
-  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -1574,19 +1476,19 @@ failure:
   (void) cached_has_bits;
 
   // bool is_ax_element = 1;
-  if (_internal_has_is_ax_element()) {
+  if (this->is_ax_element() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(1, this->_internal_is_ax_element(), target);
   }
 
   // uint64 ax_traits = 2;
-  if (_internal_has_ax_traits()) {
+  if (this->ax_traits() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(2, this->_internal_ax_traits(), target);
   }
 
   // string ax_label = 3;
-  if (_internal_has_ax_label()) {
+  if (this->ax_label().size() > 0) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_ax_label().data(), static_cast<int>(this->_internal_ax_label().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
@@ -1596,7 +1498,7 @@ failure:
   }
 
   // .gtxilib.oopclasses.protos.Rect ax_frame = 4;
-  if (_internal_has_ax_frame()) {
+  if (this->has_ax_frame()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
@@ -1604,7 +1506,7 @@ failure:
   }
 
   // .gtxilib.oopclasses.protos.ElementType.ElementTypeEnum ax_element_type = 5;
-  if (_internal_has_ax_element_type()) {
+  if (this->ax_element_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
       5, this->_internal_ax_element_type(), target);
@@ -1626,41 +1528,38 @@ size_t UIElement::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 0x0000001fu) {
-    // string ax_label = 3;
-    if (cached_has_bits & 0x00000001u) {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_ax_label());
-    }
-
-    // .gtxilib.oopclasses.protos.Rect ax_frame = 4;
-    if (cached_has_bits & 0x00000002u) {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-          *ax_frame_);
-    }
-
-    // uint64 ax_traits = 2;
-    if (cached_has_bits & 0x00000004u) {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-          this->_internal_ax_traits());
-    }
-
-    // bool is_ax_element = 1;
-    if (cached_has_bits & 0x00000008u) {
-      total_size += 1 + 1;
-    }
-
-    // .gtxilib.oopclasses.protos.ElementType.ElementTypeEnum ax_element_type = 5;
-    if (cached_has_bits & 0x00000010u) {
-      total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_ax_element_type());
-    }
-
+  // string ax_label = 3;
+  if (this->ax_label().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_ax_label());
   }
+
+  // .gtxilib.oopclasses.protos.Rect ax_frame = 4;
+  if (this->has_ax_frame()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *ax_frame_);
+  }
+
+  // uint64 ax_traits = 2;
+  if (this->ax_traits() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
+        this->_internal_ax_traits());
+  }
+
+  // bool is_ax_element = 1;
+  if (this->is_ax_element() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // .gtxilib.oopclasses.protos.ElementType.ElementTypeEnum ax_element_type = 5;
+  if (this->ax_element_type() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_ax_element_type());
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -1692,24 +1591,20 @@ void UIElement::MergeFrom(const UIElement& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 0x0000001fu) {
-    if (cached_has_bits & 0x00000001u) {
-      _internal_set_ax_label(from._internal_ax_label());
-    }
-    if (cached_has_bits & 0x00000002u) {
-      _internal_mutable_ax_frame()->::gtxilib::oopclasses::protos::Rect::MergeFrom(from._internal_ax_frame());
-    }
-    if (cached_has_bits & 0x00000004u) {
-      ax_traits_ = from.ax_traits_;
-    }
-    if (cached_has_bits & 0x00000008u) {
-      is_ax_element_ = from.is_ax_element_;
-    }
-    if (cached_has_bits & 0x00000010u) {
-      ax_element_type_ = from.ax_element_type_;
-    }
-    _has_bits_[0] |= cached_has_bits;
+  if (from.ax_label().size() > 0) {
+    _internal_set_ax_label(from._internal_ax_label());
+  }
+  if (from.has_ax_frame()) {
+    _internal_mutable_ax_frame()->::gtxilib::oopclasses::protos::Rect::MergeFrom(from._internal_ax_frame());
+  }
+  if (from.ax_traits() != 0) {
+    _internal_set_ax_traits(from._internal_ax_traits());
+  }
+  if (from.is_ax_element() != 0) {
+    _internal_set_is_ax_element(from._internal_is_ax_element());
+  }
+  if (from.ax_element_type() != 0) {
+    _internal_set_ax_element_type(from._internal_ax_element_type());
   }
 }
 
@@ -1734,7 +1629,6 @@ bool UIElement::IsInitialized() const {
 void UIElement::InternalSwap(UIElement* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
   ax_label_.Swap(&other->ax_label_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(UIElement, ax_element_type_)
