@@ -17,20 +17,50 @@
 #ifndef GTXILIB_OOPCLASSES_CONTRAST_CHECK_H_
 #define GTXILIB_OOPCLASSES_CONTRAST_CHECK_H_
 
+#include <string>
+
+#include <abseil/absl/types/optional.h>
+#include "metadata_map.h"
+#include "typedefs.h"
 #include "check.h"
 #include "contrast_swatch.h"
 #include "image_color_utils.h"
-#include "ui_element.h"
+#include "localized_strings_manager.h"
+#include "parameters.h"
 
 namespace gtx {
 
 // Check for detecting low contrast text elements.
 class ContrastCheck : public Check {
  public:
-  ContrastCheck(const std::string &name) : Check(name) {}
+  static const int RESULT_ID_INSUFFICIENT_CONTRAST_RATIO = 1;
 
-  bool CheckElement(const UIElement &element, const Parameters &params,
-                    ErrorMessage *errorMessage) const override;
+  static constexpr char KEY_EXPECTED_CONTRAST_RATIO[] =
+      "KEY_EXPECTED_CONTRAST_RATIO";
+  static constexpr char KEY_ACTUAL_CONTRAST_RATIO[] =
+      "KEY_ACTUAL_CONTRAST_RATIO";
+  static constexpr char KEY_FOREGROUND_COLOR[] = "KEY_FOREGROUND_COLOR";
+  static constexpr char KEY_BACKGROUND_COLOR[] = "KEY_BACKGROUND_COLOR";
+
+  std::string name() const override;
+
+  CheckCategory Category() const override;
+
+  absl::optional<CheckResultProto> CheckElement(
+      const UIElementProto &element, const Parameters &params) const override;
+
+  std::string GetRichShortMessage(
+      Locale locale, int result_id, const MetadataMap &metadata,
+      const LocalizedStringsManager &string_manager) const override;
+
+  std::string GetRichTitle(
+      Locale locale, int result_id, const MetadataMap &metadata,
+      const LocalizedStringsManager &string_manager) const override;
+
+ protected:
+  std::string GetDefaultMessage(
+      Locale locale, int result_id, const MetadataMap &metadata,
+      const LocalizedStringsManager &string_manager) const override;
 };
 
 }  // namespace gtx

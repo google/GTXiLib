@@ -20,11 +20,7 @@
 #import "GTXImageRGBAData+GTXOOPAdditions.h"
 #import "UIColor+GTXOOPAdditions.h"
 #include "contrast_swatch.h"
-
-/**
- * Number of bytes per RGBA colored pixel.
- * */
-static const NSInteger kBytesPerPixel = 4;
+#include "GTXUITestUtils.h"
 
 @interface GTXContrastSwatchTests : XCTestCase
 @end
@@ -36,12 +32,12 @@ static const NSInteger kBytesPerPixel = 4;
   XCTAssertEqual(sizeof(gtx::Pixel), sizeof(unsigned char) * kBytesPerPixel);
   UIColor *fillColor = [UIColor whiteColor];
   const int width = 2, height = 2;
-  unsigned char pixels[width * height * kBytesPerPixel];
-  [GTXContrastSwatchTests gtxtest_fillRect:CGRectMake(0, 0, width, height)
-                                 withColor:fillColor
-                                  inBuffer:pixels
-                                    ofSize:CGSizeMake(width, height)];
-  gtx::Image image = gtx::Image((gtx::Pixel *)pixels, width, height);
+  std::unique_ptr<unsigned char> pixels(new unsigned char[width * height * kBytesPerPixel]);
+  [GTXUITestUtils fillRect:CGRectMake(0, 0, width, height)
+                 withColor:fillColor
+                  inBuffer:pixels.get()
+                    ofSize:CGSizeMake(width, height)];
+  gtx::Image image = gtx::Image((gtx::Pixel *)pixels.get(), width, height);
   gtx::Rect rect(0, 0, width, height);
   gtx::ContrastSwatch swatch = gtx::ContrastSwatch::Extract(image, rect);
 
@@ -79,20 +75,20 @@ static const NSInteger kBytesPerPixel = 4;
 
   const NSInteger width = 20;
   const NSInteger height = 20;
-  unsigned char pixels[width * height * 4];
+  std::unique_ptr<unsigned char> pixels(new unsigned char[width * height * kBytesPerPixel]);
   CGRect testImageBounds = CGRectMake(0, 0, width, height);
   CGRect innerBounds = CGRectInset(testImageBounds, 2, 2);
   CGRect innerColorBounds = CGRectInset(innerBounds, 4, 4);
-  [GTXContrastSwatchTests gtxtest_fillRect:testImageBounds
-                                 withColor:backgroundColor
-                                  inBuffer:pixels
-                                    ofSize:testImageBounds.size];
-  [GTXContrastSwatchTests gtxtest_fillRect:innerColorBounds
-                                 withColor:innerColor
-                                  inBuffer:pixels
-                                    ofSize:testImageBounds.size];
+  [GTXUITestUtils fillRect:testImageBounds
+                 withColor:backgroundColor
+                  inBuffer:pixels.get()
+                    ofSize:testImageBounds.size];
+  [GTXUITestUtils fillRect:innerColorBounds
+                 withColor:innerColor
+                  inBuffer:pixels.get()
+                    ofSize:testImageBounds.size];
 
-  gtx::Image image = gtx::Image((gtx::Pixel *)pixels, width, height);
+  gtx::Image image = gtx::Image((gtx::Pixel *)pixels.get(), width, height);
   gtx::Rect rect(innerBounds.origin.x, innerBounds.origin.y,
                  innerBounds.size.width, innerBounds.size.height);
   gtx::ContrastSwatch swatch = gtx::ContrastSwatch::Extract(image, rect);
@@ -177,30 +173,6 @@ static const NSInteger kBytesPerPixel = 4;
   XCTAssertTrue(*expected_background == swatch.background());
   std::unique_ptr<gtx::Color> expected_foreground = [textColor gtx_color];
   XCTAssertTrue(*expected_foreground == swatch.foreground());
-}
-
-#pragma mark - Private
-
-/**
- Fills the given @c rgbaBuffer of color values at the given @c rect with the given @c color.
- */
-+ (void)gtxtest_fillRect:(CGRect)rect
-               withColor:(UIColor *)color
-                inBuffer:(unsigned char *)rgbaBuffer
-                  ofSize:(CGSize)size {
-  for (NSInteger y = CGRectGetMinY(rect); y < CGRectGetMaxY(rect); y++) {
-    for (NSInteger x = CGRectGetMinX(rect); x < CGRectGetMaxX(rect); x++) {
-      if (CGRectContainsPoint(CGRectMake(0, 0, size.width, size.height), CGPointMake(x, y))) {
-        NSInteger index = x + y * size.width;
-        CGFloat red, green, blue, alpha;
-        [color getRed:&red green:&green blue:&blue alpha:&alpha];
-        rgbaBuffer[index * kBytesPerPixel] = (unsigned char)(red * 255);
-        rgbaBuffer[index * kBytesPerPixel + 1] = (unsigned char)(green * 255);
-        rgbaBuffer[index * kBytesPerPixel + 2] = (unsigned char)(blue * 255);
-        rgbaBuffer[index * kBytesPerPixel + 3] = (unsigned char)(alpha * 255);
-      }
-    }
-  }
 }
 
 @end

@@ -357,10 +357,13 @@ NSString *const kExpectedErrorDescription = @"Check \"Accessibility label punctu
   NSString *accessibilityFrameErrorDescription = @"Element accessibilityFrame:";
   NSString *frameErrorDescription = @"Element frame:";
   CGFloat validSize = 64.0;
+  CGFloat exactlyValidSize = 44.0;
   CGFloat invalidSize = 16.0;
   CGRect validFrame = CGRectMake(0.0, 0.0, validSize, validSize);
   CGRect invalidFrame = CGRectMake(0.0, 0.0, invalidSize, invalidSize);
   CGRect validTouchableRect = CGRectMake(-validSize / 2.0, -validSize / 2.0, validSize, validSize);
+  CGRect exactlyValidTouchableRect = CGRectMake(-exactlyValidSize / 2.0, -exactlyValidSize / 2.0,
+                                                exactlyValidSize, exactlyValidSize);
   CGRect invalidTouchableRect =
       CGRectMake(-invalidSize / 2.0, -invalidSize / 2.0, invalidSize, invalidSize);
   // accessibilityFrame
@@ -512,6 +515,12 @@ NSString *const kExpectedErrorDescription = @"Check \"Accessibility label punctu
                     succeeds:YES
                  withElement:[self gtxtest_tabbableViewRespondingToTouchesInRect:validTouchableRect]
             errorDescription:nil];
+  // frame and accessibility frame invalid, pointInside:withEvent: exactly valid.
+  [self gtxtest_assertGtxCheck:[GTXChecksCollection checkForMinimumTappableArea]
+                      succeeds:YES
+                   withElement:[self gtxtest_tabbableViewRespondingToTouchesInRect:
+                                         exactlyValidTouchableRect]
+              errorDescription:nil];
   // frame, accessibility frame, and pointInside:withEvent: all invalid.
   [self
       gtxtest_assertGtxCheck:[GTXChecksCollection checkForMinimumTappableArea]

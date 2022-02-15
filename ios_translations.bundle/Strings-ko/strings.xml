@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="result_message_no_accessibility_label">VoiceOver에서 읽을 수 있는 접근성 라벨이 이 요소에 없을 수 있습니다. 모든 접근성 요소에는 접근성 라벨이 있어야 합니다.</string>
+  <string name="check_title_no_accessibility_label">접근성 라벨</string>
+  <string name="result_message_brief_no_accessibility_label">이 요소에 접근성 라벨을 추가해 보세요.</string>
+  <string name="result_message_accessibility_label_is_punctuated">구두점으로 끝나지만 텍스트 특성이 없는 접근성 라벨이 이 요소에 있을 수 있습니다. 이 요소에서 텍스트를 시각적으로 표시한다면 &lt;tt&gt;UITextView&lt;/tt&gt; 또는 &lt;tt&gt;UILabel&lt;/tt&gt;과(와) 유사한 &lt;tt&gt;UIAccessibilityStaticTrait&lt;/tt&gt;을(를) 추가해 보세요. 요소에서 텍스트를 표시하지 않는다면 구두점을 삭제하는 것이 좋습니다. 발견된 라벨: &lt;tt&gt;$0&lt;/tt&gt;</string>
+  <string name="check_title_accessibility_label_is_punctuated">접근성 라벨 구두점</string>
+  <string name="result_message_brief_accessibility_label_is_punctuated">이 요소의 접근성 라벨 끝 부분에서 구두점을 삭제해 보세요.</string>
+  <string name="result_message_insufficient_text_contrast">요소의 텍스트 대비율이 $0입니다. 이 비율은 텍스트 색상 &lt;tt&gt;$1&lt;/tt&gt; 및 배경 색상 &lt;tt&gt;$2&lt;/tt&gt;에 기반한 수치입니다. 이 요소의 텍스트 대비율을 수정된 비율인 $3 이상으로 늘려보세요.</string>
+  <string name="check_title_text_contrast">텍스트 대비</string>
+  <string name="result_message_brief_insufficient_text_contrast">이 요소의 텍스트 전경과 배경의 대비율을 늘려보세요.</string>
+  <string name="result_message_insufficient_touch_target_size">이 요소의 크기가 &lt;tt&gt;$0&lt;/tt&gt;x&lt;tt&gt;$1&lt;/tt&gt;포인트입니다. 터치 영역의 폭을 &lt;tt&gt;$2&lt;/tt&gt;포인트, 높이를 &lt;tt&gt;$2&lt;/tt&gt;포인트 이상으로 늘려보세요.</string>
+  <string name="check_title_touch_target_size">터치 영역</string>
+  <string name="result_message_brief_insufficient_touch_target_size">이 요소의 크기를 늘려보세요.</string>
+</resources>

@@ -16,7 +16,14 @@
 
 #import <Foundation/Foundation.h>
 
+#import "GTXTreeIteratorElement.h"
+
 NS_ASSUME_NONNULL_BEGIN
+
+/**
+ *  Block type used by GTXAccessibilityTree APIs for handling iteration.
+ */
+typedef void (^GTXTreeIterationBlock)(GTXTreeIteratorElement *iteratorElement);
 
 /**
  *  An enumerator for the accessibility trees navigated by accessibility services like VoiceOver.
@@ -27,6 +34,13 @@ NS_ASSUME_NONNULL_BEGIN
  *  Creates a new accessibility tree whose traversals will include the given @c rootElements.
  */
 - (instancetype)initWithRootElements:(NSArray *)rootElements;
+
+/**
+ *  Iterates through all the elements in the tree using the given block
+ *
+ *  @param block The block that will be invoked with iteration element objects.
+ */
+- (void)iterateAllElementsWithBlock:(GTXTreeIterationBlock)block;
 
 @end
 

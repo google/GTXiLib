@@ -16,6 +16,9 @@
 
 #include "gtx_types.h"
 
+#include <stdint.h>
+
+#include "gtx.pb.h"
 #include "image_color_utils.h"
 
 bool gtx::Color::operator==(const gtx::Color& other) const {

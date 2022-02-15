@@ -22,6 +22,17 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
+ * Block that constructs a new error message to return from a @c GTXChecking
+ * instance.
+ *
+ * @param originalMessage The original message outputted by a @c GTXChecking instance.
+ * @param element The element failing the accessibility check.
+ * @param error The error produced when the element failed the check.
+ */
+typedef NSString *_Nonnull (^GTXMessageProvider)(NSString *originalMessage, id element,
+                                                 NSError *error);
+
+/**
  *  Protocol for performing accessibility checks.
  */
 @protocol GTXChecking <NSObject>
@@ -53,6 +64,12 @@ NS_ASSUME_NONNULL_BEGIN
  *  to be performed, @c NO otherwise.
  */
 - (BOOL)requiresWindowBeforeChecking;
+
+/**
+ * Registers a message provider to modify the description of the error produced when an element
+ * fails the check. Called after any previously registered message provider.
+ */
+- (void)registerMessageProvider:(GTXMessageProvider)provider;
 
 @end
 

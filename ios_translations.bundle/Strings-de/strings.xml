@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="result_message_no_accessibility_label">Dieses Element hat kein für VoiceOver lesbares Bedienungshilfen-Label. Alle Bedienungshilfen-Elemente sollten Bedienungshilfen-Labels haben.</string>
+  <string name="check_title_no_accessibility_label">Bedienungshilfen-Label</string>
+  <string name="result_message_brief_no_accessibility_label">Sie sollten diesem Element ein Bedienungshilfen-Label hinzufügen.</string>
+  <string name="result_message_accessibility_label_is_punctuated">Dieses Element hat ein Bedienungshilfen-Label, das mit einem Satzzeichen endet, aber keine Textmerkmale aufweist. Wenn der Text visuell dargestellt wird, fügen Sie &lt;tt&gt;UIAccessibilityStaticTrait&lt;/tt&gt; hinzu. Dies ähnelt &lt;tt&gt;UITextView&lt;/tt&gt; bzw. &lt;tt&gt;UILabel&lt;/tt&gt;. Wenn kein Text angezeigt wird, sollten Sie das Satzzeichen entfernen. Gefundenes Label: &lt;tt&gt;$0&lt;/tt&gt;</string>
+  <string name="check_title_accessibility_label_is_punctuated">Bedienungshilfen-Label mit Satzzeichen</string>
+  <string name="result_message_brief_accessibility_label_is_punctuated">Sie sollten das Satzzeichen am Ende des Bedienungshilfen-Labels dieses Elements entfernen.</string>
+  <string name="result_message_insufficient_text_contrast">Das Textkontrastverhältnis des Elements liegt bei $0. Dieses Verhältnis ergibt sich aus der Textfarbe &lt;tt&gt;$1&lt;/tt&gt; und der Hintergrundfarbe &lt;tt&gt;$2&lt;/tt&gt;. Sie sollten das Textkontrastverhältnis dieses Elements auf mindestens $3 erhöhen.</string>
+  <string name="check_title_text_contrast">Textkontrast</string>
+  <string name="result_message_brief_insufficient_text_contrast">Sie sollten bei diesem Element das Kontrastverhältnis zwischen Textvordergrund und -hintergrund erhöhen.</string>
+  <string name="result_message_insufficient_touch_target_size">Dieses Element ist &lt;tt&gt;$0&lt;/tt&gt; mal &lt;tt&gt;$1&lt;/tt&gt; Punkte groß. Sie sollten für diesen Berührungszielbereich mindestens eine Breite von &lt;tt&gt;$2&lt;/tt&gt; Punkten und eine Höhe von &lt;tt&gt;$2&lt;/tt&gt; Punkten wählen.</string>
+  <string name="check_title_touch_target_size">Berührungszielbereich</string>
+  <string name="result_message_brief_insufficient_touch_target_size">Sie sollten dieses Element vergrößern.</string>
+</resources>

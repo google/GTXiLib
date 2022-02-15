@@ -17,6 +17,7 @@
 #ifndef GTXILIB_OOPCLASSES_CONTRAST_SWATCH_H_
 #define GTXILIB_OOPCLASSES_CONTRAST_SWATCH_H_
 
+#include "contrast_check.h"
 #include "gtx_types.h"
 
 namespace gtx {

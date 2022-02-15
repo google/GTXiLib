@@ -20,7 +20,6 @@
 #include <map>
 #include <string>
 
-#include "gtx_types.h"
 #include "localized_strings_manager.h"
 
 namespace gtx {

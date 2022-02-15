@@ -105,7 +105,9 @@ NS_ASSUME_NONNULL_BEGIN
  @deprecated Use -resultFromCheckingAllElementsFromRootElements: instead.
 
  Applies the registered checks on all elements in the accessibility tree under the given root
- elements while respecting excluded elements.
+ elements while respecting excluded elements. Root elements are instances of @c UIView, @c UIWindow
+ or @c UIAccessibiltyElement objects which conform to UIAccessibility or UIAccessibilityContainer
+ protocols, objects such as UIViewControllers in general are not.
 
  @param rootElements An array of root elements whose accessibility trees are to be checked.
  @param errorOrNil Error object to be filled with error info on check failures.
@@ -115,7 +117,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Applies the registered checks on all elements in the accessibility tree under the given root
- elements while respecting excluded elements.
+ elements while respecting excluded elements. Root elements are instances of @c UIView, @c UIWindow
+ or @c UIAccessibiltyElement objects which conform to UIAccessibility or UIAccessibilityContainer
+ protocols, objects such as UIViewControllers in general are not.
 
  @param rootElements An array of root elements whose accessibility trees are to be checked.
  @return A @c GTXResult object encpsulating the results.

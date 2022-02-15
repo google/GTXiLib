@@ -17,18 +17,43 @@
 #ifndef GTXILIB_OOPCLASSES_ACCESSIBILITY_LABEL_NOT_PUNCTUATED_CHECK_H_
 #define GTXILIB_OOPCLASSES_ACCESSIBILITY_LABEL_NOT_PUNCTUATED_CHECK_H_
 
+#include <string>
+
+#include <abseil/absl/types/optional.h>
+#include "metadata_map.h"
+#include "typedefs.h"
 #include "check.h"
-#include "ui_element.h"
+#include "localized_strings_manager.h"
+#include "parameters.h"
 
 namespace gtx {
 
 // Check for accessibility labels not ending with punctuation marks.
 class AccessibilityLabelNotPunctuatedCheck : public Check {
  public:
-  AccessibilityLabelNotPunctuatedCheck(const std::string &name) : Check(name) {}
+  static const int RESULT_ID_ENDS_WITH_INVALID_PUNCTUATION = 1;
 
-  bool CheckElement(const UIElement &element, const Parameters &params,
-                    ErrorMessage *errorMessage) const override;
+  static constexpr char KEY_ACCESSIBILITY_LABEL[] = "KEY_ACCESSIBILITY_LABEL";
+
+  std::string name() const override;
+
+  CheckCategory Category() const override;
+
+  absl::optional<CheckResultProto> CheckElement(
+      const UIElementProto &element, const Parameters &params) const override;
+
+  std::string GetRichShortMessage(
+      Locale locale, int result_id, const MetadataMap &metadata,
+      const LocalizedStringsManager &string_manager) const override;
+
+  std::string GetRichTitle(
+      Locale locale, int result_id, const MetadataMap &metadata,
+      const LocalizedStringsManager &string_manager) const override;
+
+ protected:
+  std::string GetDefaultMessage(
+      Locale locale, int result_id, const MetadataMap &metadata,
+      const LocalizedStringsManager &string_manager) const override;
 
  private:
   // Returns true if str ends with a punctuation mark, false otherwise. Only '.'

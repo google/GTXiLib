@@ -37,6 +37,11 @@ extern id<GTXChecking> gAlwaysFail;
 extern id<GTXChecking> gAlwaysPass;
 
 /**
+ The default wait time for app events.
+ */
+extern const NSTimeInterval kGTXDefaultAppEventsWaitTime;
+
+/**
  Base test for all GTXiLib functional/integration tests used to setup GTXiLib and capture check
  failures.
  */
@@ -57,6 +62,16 @@ extern id<GTXChecking> gAlwaysPass;
  Assert a single failure then clear the detected failures.
  */
 - (void)assertAndClearSingleFailure;
+
+/**
+ Performs the provided test action on the test app and waits for its completion.
+ */
+- (void)performTestActionNamed:(NSString *)testAction;
+
+/**
+ Waits given time interval for any app events to be processed.
+ */
+- (void)waitForAppEvents:(NSTimeInterval)seconds;
 
 @end
 

@@ -16,7 +16,7 @@
 
 #import "GTXAnalyticsUtils.h"
 #import "GTXAssertions.h"
-#import "GTXLogging.h"
+#import "GTXLogger.h"
 
 #import <CommonCrypto/CommonDigest.h>
 
@@ -105,7 +105,8 @@ static NSString *const kGTXTrackingEndPoint = @"https://ssl.google-analytics.com
       // Failed to send analytics data, but since the test might be running in a sandboxed
       // environment it's not a good idea to freeze or throw assertions, let's just log and
       // move on.
-      GTX_LOG(@"Failed to send analytics data due to: %@", error);
+      [[GTXLogger defaultLogger] logWithLevel:GTXLogLevelInfo
+                                       format:@"Failed to send analytics data due to: %@", error];
     }
   }] resume];
 }

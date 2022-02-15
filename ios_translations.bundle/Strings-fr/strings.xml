@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="result_message_no_accessibility_label">Cet élément n\'a peut-être pas de libellé d\'accessibilité lisible par VoiceOver. Tous les éléments d\'accessibilité doivent comporter un libellé.</string>
+  <string name="check_title_no_accessibility_label">Libellé d\'accessibilité</string>
+  <string name="result_message_brief_no_accessibility_label">Nous vous conseillons d\'ajouter un libellé d\'accessibilité à cet élément.</string>
+  <string name="result_message_accessibility_label_is_punctuated">Le libellé d\'accessibilité de cet élément se termine par un signe de ponctuation, mais il n\'est pas associé à un comportement de type texte. Si un texte est visible pour cet élément, ajoutez le comportement &lt;tt&gt;UIAccessibilityStaticTrait&lt;/tt&gt;, semblable à &lt;tt&gt;UITextView&lt;/tt&gt; ou &lt;tt&gt;UILabel&lt;/tt&gt;. Si l\'élément n\'affiche pas de texte, nous vous conseillons de supprimer le signe de ponctuation. Libellé trouvé : &lt;tt&gt;$0&lt;/tt&gt;</string>
+  <string name="check_title_accessibility_label_is_punctuated">Ponctuation dans le libellé d\'accessibilité</string>
+  <string name="result_message_brief_accessibility_label_is_punctuated">Nous vous conseillons de supprimer le signe de ponctuation à la fin du libellé d\'accessibilité de cet élément.</string>
+  <string name="result_message_insufficient_text_contrast">Le rapport de contraste du texte de cet élément est de $0. Il est basé sur les couleurs du texte et de l\'arrière-plan (respectivement &lt;tt&gt;$1&lt;/tt&gt; et &lt;tt&gt;$2&lt;/tt&gt;). Nous vous conseillons de l\'augmenter afin qu\'il soit supérieur ou égal à $3.</string>
+  <string name="check_title_text_contrast">Contraste du texte</string>
+  <string name="result_message_brief_insufficient_text_contrast">Nous vous conseillons d\'augmenter le rapport de contraste entre le premier plan et l\'arrière-plan du texte de cet élément.</string>
+  <string name="result_message_insufficient_touch_target_size">La taille de cet élément est de &lt;tt&gt;$0&lt;/tt&gt; points par &lt;tt&gt;$1&lt;/tt&gt;. Nous vous conseillons d\'utiliser une largeur de &lt;tt&gt;$2&lt;/tt&gt; points et une hauteur de &lt;tt&gt;$2&lt;/tt&gt; points minimum pour cette zone cible tactile.</string>
+  <string name="check_title_touch_target_size">Zone cible tactile</string>
+  <string name="result_message_brief_insufficient_touch_target_size">Nous vous conseillons d\'augmenter la taille de cet élément.</string>
+</resources>

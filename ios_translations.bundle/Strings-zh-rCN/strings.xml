@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="result_message_no_accessibility_label">此元素可能没有可被 VoiceOver 读取的无障碍功能标签。所有无障碍功能元素都应包含无障碍功能标签。</string>
+  <string name="check_title_no_accessibility_label">无障碍功能标签</string>
+  <string name="result_message_brief_no_accessibility_label">建议为此元素添加无障碍功能标签。</string>
+  <string name="result_message_accessibility_label_is_punctuated">此元素的无障碍功能标签以标点符号结尾，但不包含文本内容。如果此元素显示有可见文本，建议添加 &lt;tt&gt;UIAccessibilityStaticTrait&lt;/tt&gt;，类似于 &lt;tt&gt;UITextView&lt;/tt&gt; 或 &lt;tt&gt;UILabel&lt;/tt&gt;。如果元素未显示文本，建议移除标点符号。找到标签：&lt;tt&gt;$0&lt;/tt&gt;</string>
+  <string name="check_title_accessibility_label_is_punctuated">无障碍功能标签的标点符号</string>
+  <string name="result_message_brief_accessibility_label_is_punctuated">建议移除此元素的无障碍功能标签末尾的标点符号。</string>
+  <string name="result_message_insufficient_text_contrast">此元素的文本对比度为 $0。该比率是根据文本颜色 (&lt;tt&gt;$1&lt;/tt&gt;) 和背景颜色 (&lt;tt&gt;$2&lt;/tt&gt;) 计算得出的。建议将此元素的文本对比度提高至 $3 或更高。</string>
+  <string name="check_title_text_contrast">文本对比度</string>
+  <string name="result_message_brief_insufficient_text_contrast">建议提高此元素文本前景相对于背景的对比度。</string>
+  <string name="result_message_insufficient_touch_target_size">此元素的尺寸是 &lt;tt&gt;$0&lt;/tt&gt; × &lt;tt&gt;$1&lt;/tt&gt; 点。建议将此触摸目标的宽度调整为 &lt;tt&gt;$2&lt;/tt&gt; 点，高度调整为 &lt;tt&gt;$2&lt;/tt&gt; 点或以上。</string>
+  <string name="check_title_touch_target_size">触摸目标</string>
+  <string name="result_message_brief_insufficient_touch_target_size">建议调大此元素的尺寸。</string>
+</resources>

@@ -1,0 +1,92 @@
+// result.proto
+// Protos outputted by checks performed on accessibility hierarchies.
+
+syntax = "proto3";
+
+package gtxilib.oopclasses.protos;
+
+import "enums.proto";
+import "gtx.proto";
+
+option java_multiple_files = true;
+option objc_class_prefix = "GTX";
+
+// Proto describing a list of strings.
+// Next index: 2
+message StringListProto {
+  repeated string values = 1;
+}
+
+// Proto describing a list of ints.
+// Next index: 2
+message IntListProto {
+  repeated int32 values = 1;
+}
+
+// Proto describing raw metadata information and its associated type.
+// Next index: 13
+message TypedValueProto {
+  // Once a TypeProto is defined here, it must not be removed and its value
+  // must not be changed. Additions are permitted at the end of enum. Data may
+  // be persisted using these values, so incompatible changes may result in
+  // corruption during deserialization.
+  // Next index: 12
+  enum TypeProto {
+    UNKNOWN = 0;
+    BOOLEAN = 1;
+    BYTE = 2;
+    SHORT = 3;
+    CHAR = 4;
+    INT = 5;
+    FLOAT = 6;
+    LONG = 7;
+    DOUBLE = 8;
+    STRING = 9;
+    STRING_LIST = 10;
+    INT_LIST = 11;
+  }
+
+  optional TypeProto type = 1;
+  oneof value {
+    bool boolean_value = 2;
+    bytes byte_value = 3;
+    bytes short_value = 4;
+    bytes char_value = 5;
+    int32 int_value = 6;
+    float float_value = 7;
+    int64 long_value = 8;
+    double double_value = 9;
+    string string_value = 10;
+    StringListProto string_list_value = 11;
+    IntListProto int_list_value = 12;
+  }
+}
+
+// Proto describing a Metadata, used by CheckResult to store parameters used to
+// generate result messages.
+// Next index: 2
+message MetadataProto {
+  map<string, TypedValueProto> metadata_map = 1;
+}
+
+// The result of checking an accessibility element for issues.
+// Next index: 6.
+message CheckResultProto {
+  string source_check_class = 1;
+  // result_id is an arbitrary value differentiating different outcomes of the
+  // same check. For example, a touch target size check might have one result_id
+  // for too small width and another for too small height. Result ids are only
+  // meaningful to the original check they were defined in. Result ids cannot
+  // be used across different checks.
+  int32 result_id = 2;
+  optional int64 hierarchy_source_id = 3;
+  ResultType result_type = 4;
+  MetadataProto metadata = 5;
+}
+
+// All results of checking elements in an accessibility hierarchy for issues.
+// Next index: 3.
+message AccessibilityEvaluation {
+  AccessibilityHierarchy hierarchy = 1;
+  repeated CheckResultProto results = 2;
+}

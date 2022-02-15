@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="result_message_no_accessibility_label">Es posible que este elemento no tenga una etiqueta de accesibilidad que pueda leer VoiceOver. Todos los elementos de accesibilidad deben tener las etiquetas correspondientes.</string>
+  <string name="check_title_no_accessibility_label">Etiqueta de accesibilidad</string>
+  <string name="result_message_brief_no_accessibility_label">Te recomendamos que agregues una etiqueta de accesibilidad a este elemento.</string>
+  <string name="result_message_accessibility_label_is_punctuated">Es posible que este elemento tenga una etiqueta de accesibilidad que termina con algún tipo de puntuación, pero que no tenga un rasgo de texto. Si el elemento muestra texto, te recomendamos que agregues el &lt;tt&gt;UIAccessibilityStaticTrait&lt;/tt&gt;, similar a &lt;tt&gt;UITextView&lt;/tt&gt; o &lt;tt&gt;UILabel&lt;/tt&gt;. Si el elemento no muestra texto, te recomendamos que quites la puntuación. Etiqueta encontrada: &lt;tt&gt;$0&lt;/tt&gt;</string>
+  <string name="check_title_accessibility_label_is_punctuated">Puntuación de la etiqueta de accesibilidad</string>
+  <string name="result_message_brief_accessibility_label_is_punctuated">Te recomendamos que quites la puntuación al final de la etiqueta de accesibilidad de este elemento.</string>
+  <string name="result_message_insufficient_text_contrast">La relación de contraste del texto de este elemento es de $0. Esta se calcula con un color de texto de &lt;tt&gt;$1&lt;/tt&gt; y un color de fondo de &lt;tt&gt;$2&lt;/tt&gt;. Te recomendamos que aumentes la relación de contraste del texto de este elemento a $3 o un valor mayor.</string>
+  <string name="check_title_text_contrast">Contraste del texto</string>
+  <string name="result_message_brief_insufficient_text_contrast">Te recomendamos que aumentes la relación de contraste del texto entre el primer plano y el fondo de este elemento.</string>
+  <string name="result_message_insufficient_touch_target_size">El tamaño del elemento es de &lt;tt&gt;$0&lt;/tt&gt; por &lt;tt&gt;$1&lt;/tt&gt; puntos. Te recomendamos que este objetivo táctil tenga &lt;tt&gt;$2&lt;/tt&gt; puntos de ancho y &lt;tt&gt;$2&lt;/tt&gt; puntos de alto o un tamaño mayor.</string>
+  <string name="check_title_touch_target_size">Objetivo táctil</string>
+  <string name="result_message_brief_insufficient_touch_target_size">Te recomendamos que aumentes el tamaño de este elemento.</string>
+</resources>

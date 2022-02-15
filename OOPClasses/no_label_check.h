@@ -17,20 +17,41 @@
 #ifndef GTXILIB_OOPCLASSES_NO_LABEL_CHECK_H_
 #define GTXILIB_OOPCLASSES_NO_LABEL_CHECK_H_
 
+#include <string>
+
+#include <abseil/absl/types/optional.h>
+#include "metadata_map.h"
+#include "typedefs.h"
 #include "check.h"
-#include "ui_element.h"
+#include "localized_strings_manager.h"
+#include "parameters.h"
 
 namespace gtx {
 
 // Check for detecting missing accessibility labels.
 class NoLabelCheck : public Check {
  public:
-  NoLabelCheck(const std::string &name) : Check(name) {}
+  static const int RESULT_ID_MISSING_ACCESSIBILITY_LABEL = 1;
 
-  bool CheckElement(const UIElement &element, const Parameters &params,
-                    ErrorMessage *errorMessage) const override {
-    return !element.ax_label().empty();
-  }
+  std::string name() const override;
+
+  CheckCategory Category() const override;
+
+  absl::optional<CheckResultProto> CheckElement(
+      const UIElementProto &element, const Parameters &params) const override;
+
+  std::string GetRichShortMessage(
+      Locale locale, int result_id, const MetadataMap &metadata,
+      const LocalizedStringsManager &string_manager) const override;
+
+  std::string GetRichTitle(
+      Locale locale, int result_id, const MetadataMap &metadata,
+      const LocalizedStringsManager &string_manager) const override;
+
+ protected:
+  std::string GetDefaultMessage(
+      Locale locale, int result_id, const MetadataMap &metadata,
+      const LocalizedStringsManager &string_manager) const override;
 };
 
 }  // namespace gtx

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="result_message_no_accessibility_label">この要素には VoiceOver で読み取り可能なユーザー補助ラベルが含まれていない可能性があります。すべてのユーザー補助要素にユーザー補助ラベルが必要です。</string>
+  <string name="check_title_no_accessibility_label">ユーザー補助ラベル</string>
+  <string name="result_message_brief_no_accessibility_label">この要素にユーザー補助ラベルを追加することを検討してください。</string>
+  <string name="result_message_accessibility_label_is_punctuated">この要素には、句読点で終わるものの、テキストの特性がないユーザー補助ラベルが含まれている可能性があります。この要素にテキストを表示する場合は、&lt;tt&gt;UITextView&lt;/tt&gt; または &lt;tt&gt;UILabel&lt;/tt&gt; と同様に &lt;tt&gt;UIAccessibilityStaticTrait&lt;/tt&gt; を追加することを検討してください。この要素にテキストを表示しない場合は、句読点を削除することを検討してください。見つかったラベル: &lt;tt&gt;$0&lt;/tt&gt;</string>
+  <string name="check_title_accessibility_label_is_punctuated">ユーザー補助ラベルの句読点</string>
+  <string name="result_message_brief_accessibility_label_is_punctuated">この要素のユーザー補助ラベルの最後にある句読点を削除することを検討してください。</string>
+  <string name="result_message_insufficient_text_contrast">この要素のテキストのコントラスト比は $0 です。この比率は、テキストの色（&lt;tt&gt;$1&lt;/tt&gt;）と背景色（&lt;tt&gt;$2&lt;/tt&gt;）に基づいています。この比率を $3 以上に上げることを検討してください。</string>
+  <string name="check_title_text_contrast">テキストのコントラスト</string>
+  <string name="result_message_brief_insufficient_text_contrast">要素のテキストの前景と背景のコントラスト比を上げることを検討してください。</string>
+  <string name="result_message_insufficient_touch_target_size">この要素のサイズは &lt;tt&gt;$0&lt;/tt&gt; × &lt;tt&gt;$1&lt;/tt&gt; ポイントです。このタッチ ターゲットの幅を &lt;tt&gt;$2&lt;/tt&gt; ポイント以上、高さを &lt;tt&gt;$2&lt;/tt&gt; ポイント以上にすることを検討してください。</string>
+  <string name="check_title_touch_target_size">タッチ ターゲット</string>
+  <string name="result_message_brief_insufficient_touch_target_size">この要素のサイズを大きくすることを検討してください。</string>
+</resources>

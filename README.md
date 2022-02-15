@@ -79,6 +79,7 @@ headers under "GTXiLib > Build Settings > Header Search Paths".
 
 ## Podfile
 If installing via CocoaPods, you need to add `GTXiLib` as a dependency in your Podfile. `GTXiLib` only runs in test processes, so do not add it to your main app's spec. Additionally, CocoaPods no longer requires `use_frameworks!`. `use_frameworks!` will cause your build to fail with error `ld: framework not found`. Your Podfile should look like:
+
 ```
 target 'myapp' do
   # Configuration for app myapp

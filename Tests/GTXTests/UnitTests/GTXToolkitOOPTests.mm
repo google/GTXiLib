@@ -18,54 +18,15 @@
 #import <XCTest/XCTest.h>
 
 #import "GTXAnalytics.h"
-#import "GTXToolKit+GTXOOPAdditions.h"
 #import "GTXToolKit.h"
+#import "GTXToolKit+GTXOOPAdditions.h"
+#include "metadata_map.h"
+#include "typedefs.h"
 #include "check.h"
 #include "error_message.h"
+#include "gtxtest_always_failing_check.h"
+#include "gtxtest_always_passing_check.h"
 #import "GTXBaseTestCase.h"
-
-#pragma mark - Test Checks Prototypes
-
-namespace gtxtest {
-
-// Test check that always reports success.
-class GTXTestAlwaysPassingCheck : public gtx::Check {
- public:
-  GTXTestAlwaysPassingCheck(const std::string &name);
-  virtual ~GTXTestAlwaysPassingCheck() {}
-
-  virtual bool CheckElement(const gtx::UIElement &element, const gtx::Parameters &params,
-                            gtx::ErrorMessage *errorMessage) const;
-};
-
-GTXTestAlwaysPassingCheck::GTXTestAlwaysPassingCheck(const std::string &name) : gtx::Check(name) {}
-
-bool GTXTestAlwaysPassingCheck::CheckElement(const gtx::UIElement &element,
-                                             const gtx::Parameters &params,
-                                             gtx::ErrorMessage *error) const {
-  return true;
-}
-
-// Test check that always reports failures.
-class GTXTestAlwaysFailingCheck : public gtx::Check {
- public:
-  GTXTestAlwaysFailingCheck(const std::string &name);
-  virtual ~GTXTestAlwaysFailingCheck() {}
-
-  virtual bool CheckElement(const gtx::UIElement &element, const gtx::Parameters &params,
-                            gtx::ErrorMessage *errorMessage) const;
-};
-
-GTXTestAlwaysFailingCheck::GTXTestAlwaysFailingCheck(const std::string &name) : gtx::Check(name) {}
-
-bool GTXTestAlwaysFailingCheck::CheckElement(const gtx::UIElement &element,
-                                             const gtx::Parameters &params,
-                                             gtx::ErrorMessage *error) const {
-  error->set_description_id(gtx::LocalizedStringID::kEmptyString);
-  return false;
-}
-
-}  // gtxtest
 
 #pragma mark - Test Classes
 

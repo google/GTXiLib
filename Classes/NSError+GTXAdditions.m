@@ -16,15 +16,16 @@
 
 #import "NSError+GTXAdditions.h"
 
-#import "GTXLogging.h"
+#import "GTXLogger.h"
 
 #pragma mark - Externs
 
 NSString *const kGTXErrorDomain = @"com.google.gtxchecker";
 NSString *const kGTXErrorFailingElementKey = @"kGTXErrorFailingElementKey";
-NSString *const kGTXErrorUnderlyingErrorsKey= @"kGTXErrorUnderlyingErrorsKey";
+NSString *const kGTXErrorUnderlyingErrorsKey = @"kGTXErrorUnderlyingErrorsKey";
 NSString *const kGTXErrorFailuresKey = @"kGTXErrorFailuresKey";
 NSString *const kGTXErrorCheckNameKey = @"kGTXErrorCheckNameKey";
+NSString *const kGTXErrorDescriptionKey = @"kGTXErrorDescriptionKey";
 
 #pragma mark - Implementation
 
@@ -37,13 +38,12 @@ NSString *const kGTXErrorCheckNameKey = @"kGTXErrorCheckNameKey";
   NSParameterAssert(description);
   NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:userInfoOrNil];
   userInfo[NSLocalizedDescriptionKey] = description;
-  NSError *error = [NSError errorWithDomain:kGTXErrorDomain
-                                       code:errorCode
-                                   userInfo:userInfo];
+  userInfo[kGTXErrorDescriptionKey] = description;
+  NSError *error = [NSError errorWithDomain:kGTXErrorDomain code:errorCode userInfo:userInfo];
   if (errorOrNil) {
     *errorOrNil = error;
   } else {
-    GTX_LOG(@"%@", error);
+    [[GTXLogger defaultLogger] logWithLevel:GTXLogLevelError format:@"%@", error];
   }
   return YES;
 }
@@ -56,18 +56,20 @@ NSString *const kGTXErrorCheckNameKey = @"kGTXErrorCheckNameKey";
   NSParameterAssert(element);
   NSParameterAssert(description);
   NSString *fullDescription =
-      [NSString stringWithFormat:@"Check \"%@\" failed, %@",
-                                 name, description];
-  NSDictionary *userInfo = @{ NSLocalizedDescriptionKey : fullDescription,
-                              kGTXErrorFailingElementKey: element,
-                              kGTXErrorCheckNameKey: name };
+      [NSString stringWithFormat:@"Check \"%@\" failed, %@", name, description];
+  NSDictionary *userInfo = @{
+    kGTXErrorDescriptionKey : description,
+    NSLocalizedDescriptionKey : fullDescription,
+    kGTXErrorFailingElementKey : element,
+    kGTXErrorCheckNameKey : name
+  };
   NSError *error = [NSError errorWithDomain:kGTXErrorDomain
                                        code:GTXCheckErrorCodeAccessibilityCheckFailed
                                    userInfo:userInfo];
   if (errorOrNil) {
     *errorOrNil = error;
   } else {
-    GTX_LOG(@"%@", error);
+    [[GTXLogger defaultLogger] logWithLevel:GTXLogLevelError format:@"%@", error];
   }
   return YES;
 }

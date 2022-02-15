@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="result_message_no_accessibility_label">Questo elemento potrebbe non disporre di un\'etichetta di accessibilità leggibile da VoiceOver. Tutti gli elementi di accessibilità devono disporre di etichette di accessibilità.</string>
+  <string name="check_title_no_accessibility_label">Etichetta di accessibilità</string>
+  <string name="result_message_brief_no_accessibility_label">Ti consigliamo di aggiungere un\'etichetta di accessibilità a questo elemento.</string>
+  <string name="result_message_accessibility_label_is_punctuated">Questo elemento potrebbe disporre di un\'etichetta di accessibilità che termina con la punteggiatura ma non dispone di un tratto di testo. Se questo elemento mostra visivamente del testo, valuta la possibilità di aggiungere &lt;tt&gt;UIAccessibilityStaticTrait&lt;/tt&gt;, simile a &lt;tt&gt;UITextView&lt;/tt&gt; o &lt;tt&gt;UILabel&lt;/tt&gt;. Se l\'elemento non mostra testo, valuta la possibilità di rimuovere la punteggiatura. Etichetta trovata: &lt;tt&gt;$0&lt;/tt&gt;</string>
+  <string name="check_title_accessibility_label_is_punctuated">Punteggiatura dell\'etichetta di accessibilità</string>
+  <string name="result_message_brief_accessibility_label_is_punctuated">È consigliabile rimuovere la punteggiatura alla fine dell\'etichetta di accessibilità di questo elemento.</string>
+  <string name="result_message_insufficient_text_contrast">Il rapporto del contrasto del testo dell\'elemento è $0. Questo valore si basa sul colore del testo &lt;tt&gt;$1&lt;/tt&gt; e un colore di sfondo &lt;tt&gt;$2&lt;/tt&gt;. Ti consigliamo di aumentare il rapporto del contrasto del testo di questo elemento fino a un valore maggiore o uguale a $3.</string>
+  <string name="check_title_text_contrast">Contrasto del testo</string>
+  <string name="result_message_brief_insufficient_text_contrast">È consigliabile aumentare il rapporto del contrasto tra il primo piano e lo sfondo del testo dell\'elemento.</string>
+  <string name="result_message_insufficient_touch_target_size">Le dimensioni di questo elemento sono pari a &lt;tt&gt;$0&lt;/tt&gt; per &lt;tt&gt;$1&lt;/tt&gt; punti. È consigliabile impostare la larghezza del touch target su &lt;tt&gt;$2&lt;/tt&gt; punti e l\'altezza su &lt;tt&gt;$2&lt;/tt&gt; punti o un valore superiore.</string>
+  <string name="check_title_touch_target_size">Touch target</string>
+  <string name="result_message_brief_insufficient_touch_target_size">È consigliabile aumentare le dimensioni di questo elemento.</string>
+</resources>

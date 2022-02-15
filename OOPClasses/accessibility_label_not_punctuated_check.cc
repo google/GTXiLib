@@ -16,29 +16,83 @@
 
 #include "accessibility_label_not_punctuated_check.h"
 
+#include <string>
+
+#include <abseil/absl/strings/substitute.h>
+#include <abseil/absl/types/optional.h>
+#include "metadata_map.h"
+#include "proto_utils.h"
+#include "typedefs.h"
+#include "check.h"
+#include "localized_string_ids.h"
+#include "localized_strings_manager.h"
+#include "parameters.h"
 #include "string_utils.h"
 
 namespace gtx {
 
-bool AccessibilityLabelNotPunctuatedCheck::CheckElement(
-    const UIElement &element, const Parameters &params,
-    ErrorMessage *errorMessage) const {
-  if (element.is_text_displaying_element()) {
+constexpr char AccessibilityLabelNotPunctuatedCheck::KEY_ACCESSIBILITY_LABEL[];
+
+std::string AccessibilityLabelNotPunctuatedCheck::name() const {
+  return "AccessibilityLabelNotPunctuatedCheck";
+}
+
+CheckCategory AccessibilityLabelNotPunctuatedCheck::Category() const {
+  return CheckCategory::kAccessibilityLabel;
+}
+
+absl::optional<CheckResultProto>
+AccessibilityLabelNotPunctuatedCheck::CheckElement(
+    const UIElementProto &element, const Parameters &params) const {
+  if (IsTextDisplayingElement(element)) {
     // This check is not applicable to text elements as accessibility labels can
     // hold static text that can be punctuated and formatted like a string.
-    return true;
+    return absl::nullopt;
   }
   std::string accessibility_label = TrimWhitespace(element.ax_label());
   // This check is not applicable for container elements that combine individual
   // labels joined with commas.
   if (accessibility_label.find(',') != std::string::npos) {
-    return true;
+    return absl::nullopt;
   }
-  return !EndsWithInvalidPunctuation(accessibility_label);
+  if (!EndsWithInvalidPunctuation(accessibility_label)) {
+    return absl::nullopt;
+  }
+  MetadataMap metadata;
+  metadata.SetString(KEY_ACCESSIBILITY_LABEL, accessibility_label);
+  return CheckResult(RESULT_ID_ENDS_WITH_INVALID_PUNCTUATION, element,
+                     metadata);
+}
+
+std::string AccessibilityLabelNotPunctuatedCheck::GetRichShortMessage(
+    Locale locale, int result_id, const MetadataMap &metadata,
+    const LocalizedStringsManager &string_manager) const {
+  return string_manager.LocalizedString(
+      locale,
+      kLocalizedStringIDResultMessageBriefAccessibilityLabelIsPunctuated);
+}
+
+std::string AccessibilityLabelNotPunctuatedCheck::GetRichTitle(
+    Locale locale, int result_id, const MetadataMap &metadata,
+    const LocalizedStringsManager &string_manager) const {
+  return string_manager.LocalizedString(
+      locale, kLocalizedStringIDCheckTitleAccessibilityLabelIsPunctuated);
+}
+
+std::string AccessibilityLabelNotPunctuatedCheck::GetDefaultMessage(
+    Locale locale, int result_id, const MetadataMap &metadata,
+    const LocalizedStringsManager &string_manager) const {
+  std::string format = string_manager.LocalizedString(
+      locale, kLocalizedStringIDResultMessageAccessibilityLabelIsPunctuated);
+  std::string original_accessibility_label =
+      *metadata.GetString(KEY_ACCESSIBILITY_LABEL);
+  return absl::Substitute(format, original_accessibility_label);
 }
 
 bool AccessibilityLabelNotPunctuatedCheck::EndsWithInvalidPunctuation(
     const std::string &str) const {
+  // TODO: Account for all punctuation once it is confirmed that
+  // this is Apple's intention.
   return !str.empty() && str.back() == '.';
 }
 

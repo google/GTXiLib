@@ -20,6 +20,7 @@
 #import "GTXCheckBlock.h"
 #import "GTXChecking.h"
 #import "GTXImageAndColorUtils.h"
+#import "GTXOCRContrastCheck.h"
 #import "NSError+GTXAdditions.h"
 #import "UIColor+GTXAdditions.h"
 
@@ -33,6 +34,7 @@ NSString *const kGTXCheckNameAccessibilityTraitsDontConflict = @"Accessibility t
 NSString *const kGTXCheckNameMinimumTappableArea = @"Touch target size";
 NSString *const kGTXCheckNameLabelMinimumContrastRatio = @"Contrast ratio (Label)";
 NSString *const kGTXCheckNameTextViewMinimumContrastRatio = @"Contrast ratio (TextView)";
+NSString *const kGTXCheckNameOCRBasedMinimumContrastRatio = @"Contrast ratio (OCR-Based)";
 NSString *const kGTXCheckNameSupportsDynamicType = @"Supports Dynamic Type";
 
 /**
@@ -40,6 +42,13 @@ NSString *const kGTXCheckNameSupportsDynamicType = @"Supports Dynamic Type";
  * scale with Dynamic Type.
  */
 static NSString *const kGTXDefaultFontDescriptorTextStyle = @"CTFontRegularUsage";
+
+/**
+ * The amount of tolerance used when checking if a point is within an element's touch recepting
+ * frame. If a point is outside the frame, but within the frame plus @c kGTXTouchTargetErrorMargin,
+ * it is still considered inside the frame.
+ */
+static const CGFloat kGTXTouchTargetErrorMargin = 0.1;
 
 #pragma mark - Globals
 
@@ -116,7 +125,7 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
       GTXCheckWithName:kGTXCheckNameAccessibilityLabelPresent
         requiresWindow:NO
                  block:^BOOL(id element, GTXErrorRefType errorOrNil) {
-                   if ([self gtx_isTextDisplayingElement:element]) {
+                   if ([self isTextDisplayingElement:element]) {
                      // Elements that display text can use its text as an accessibility value making
                      // the accessibility label optional.
                      return YES;
@@ -152,7 +161,7 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
       GTXCheckWithName:kGTXCheckNameAccessibilityLabelNotPunctuated
         requiresWindow:NO
                  block:^BOOL(id element, GTXErrorRefType errorOrNil) {
-                   if ([self gtx_isTextDisplayingElement:element]) {
+                   if ([self isTextDisplayingElement:element]) {
                      // This check is not applicable to text elements as accessibility labels can
                      // hold static text that can be punctuated and formatted like a string.
                      return YES;
@@ -172,6 +181,9 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
                    if ([label rangeOfString:@","].location != NSNotFound) {
                      return YES;
                    }
+
+                   // TODO: Account for all punctuation once it is confirmed that
+                   // this is Apple's intention.
                    if ([label length] > 0 && [label hasSuffix:@"."]) {
                      // Check failed.
                      NSString *errorDescription = [NSString
@@ -358,7 +370,7 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
                              gtx_elementRespondsToTouchesInSufficientArea:element]) {
                        NSString *errorDescription = [errorDescriptionTemplate
                            stringByAppendingString:
-                               @"%@ The element does not respond to touches in the given range "
+                               @" The element does not respond to touches in the given range "
                                @"using pointInside:withEvent:."];
                        [NSError gtx_logOrSetGTXCheckFailedError:errorOrNil
                                                         element:element
@@ -480,6 +492,15 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
                    return hasSufficientContrast;
                  }];
   return check;
+}
+
++ (id<GTXChecking>)checkForSufficientContrastRatioUsingOCR {
+  if (@available(iOS 11.0, *)) {
+    return [[GTXOCRContrastCheck alloc] initWithName:kGTXCheckNameOCRBasedMinimumContrastRatio
+                        expectedMinimumContrastRatio:kGTXMinContrastRatioForAccessibleText];
+  } else {
+    return nil;
+  }
 }
 
 + (id<GTXChecking>)checkForSupportsDynamicType {
@@ -677,10 +698,7 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
   return hasTappableTrait;
 }
 
-/**
- *  @return @c YES if @c element displays text @c NO otherwise.
- */
-+ (BOOL)gtx_isTextDisplayingElement:(id)element {
++ (BOOL)isTextDisplayingElement:(id)element {
   BOOL hasTextTrait = NO;
   if ([element respondsToSelector:@selector(accessibilityTraits)]) {
     UIAccessibilityTraits traits = [element accessibilityTraits];
@@ -753,12 +771,14 @@ static const float kGTXMinContrastRatioForAccessibleText = 3.0;
                              CGRectGetMidY([element accessibilityFrame]), 0, 0);
   CGRect minimumFrame = CGRectInset(center, -kGTXMinSizeForAccessibleElements / 2.0,
                                     -kGTXMinSizeForAccessibleElements / 2.0);
+  // Decrease the size of the frame that is checked, so elements slightly outside this frame still
+  // return YES from pointInside:withEvent:
+  minimumFrame = CGRectInset(minimumFrame, kGTXTouchTargetErrorMargin, kGTXTouchTargetErrorMargin);
   const NSInteger cornerCount = 4;
-  CGPoint corners[] = {
-      CGPointMake(CGRectGetMinX(minimumFrame), CGRectGetMinY(minimumFrame)),
-      CGPointMake(CGRectGetMaxX(minimumFrame), CGRectGetMinY(minimumFrame)),
-      CGPointMake(CGRectGetMinX(minimumFrame), CGRectGetMaxY(minimumFrame)),
-      CGPointMake(CGRectGetMaxX(minimumFrame), CGRectGetMaxY(minimumFrame))};
+  CGPoint corners[] = {CGPointMake(CGRectGetMinX(minimumFrame), CGRectGetMinY(minimumFrame)),
+                       CGPointMake(CGRectGetMaxX(minimumFrame), CGRectGetMinY(minimumFrame)),
+                       CGPointMake(CGRectGetMinX(minimumFrame), CGRectGetMaxY(minimumFrame)),
+                       CGPointMake(CGRectGetMaxX(minimumFrame), CGRectGetMaxY(minimumFrame))};
   UIWindow *window = [element window];
   for (NSInteger i = 0; i < cornerCount; i++) {
     CGPoint pointInElementCoordinates = [element convertPoint:corners[i] fromView:window];

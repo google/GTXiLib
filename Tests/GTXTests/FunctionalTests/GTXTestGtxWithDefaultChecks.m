@@ -28,8 +28,8 @@
 + (void)setUp {
   [super setUp];
 
-  NSString *notRedundantCheckName = [[GTXChecksCollection checkForAXLabelNotRedundantWithTraits]
-      name];
+  NSString *notRedundantCheckName =
+      [[GTXChecksCollection checkForAXLabelNotRedundantWithTraits] name];
   NSArray<id<GTXExcludeListing>> *excludeLists =
       @[ [GTXExcludeListFactory excludeListWithAccessibilityIdentifier:kAddInaccessibleButton
                                                              checkName:notRedundantCheckName] ];
@@ -46,12 +46,12 @@
   [super setUp];
 
   [GTXTestViewController clearTestArea];
-  [self gtxtest_waitForAppEvents:0.5];
+  [self waitForAppEvents:kGTXDefaultAppEventsWaitTime];
 
   // Set up failure handler to simple detect if errors were found.
   _expectErrors = NO;
   _foundErrors = NO;
-  [GTXiLib setFailureHandler:^(NSError * _Nonnull error) {
+  [GTXiLib setFailureHandler:^(NSError *_Nonnull error) {
     _foundErrors = YES;
   }];
 }
@@ -63,136 +63,116 @@
 }
 
 - (void)testNoLabelElementsCauseFailures {
-  [self gtxtest_performTestActionNamed:kAddNoLabelElementActionName];
+  [self performTestActionNamed:kAddNoLabelElementActionName];
   _expectErrors = YES;
 }
 
 - (void)testNonpunctuatedLabelsDoesNotCauseFailures {
-  [self gtxtest_performTestActionNamed:kAddNonpunctuatedLabelElementActionName];
+  [self performTestActionNamed:kAddNonpunctuatedLabelElementActionName];
   _expectErrors = NO;
 }
 
 - (void)testPunctuatedLabelsCauseFailures {
-  [self gtxtest_performTestActionNamed:kAddPunctuatedLabelElementActionName];
+  [self performTestActionNamed:kAddPunctuatedLabelElementActionName];
   _expectErrors = YES;
 }
 
 - (void)testDefaultKeyboardDoesNotCauseFailures {
-  [self gtxtest_performTestActionNamed:kShowKeyboardActionName];
-  [self gtxtest_waitForAppEvents:1.0];
+  [self performTestActionNamed:kShowKeyboardActionName];
+  [self waitForAppEvents:1.0];
   _expectErrors = NO;
 }
 
 - (void)testButtonsMarkedInaccessibleAreSkippedByDefault {
-  [self gtxtest_performTestActionNamed:kAddInaccessibleButton];
+  [self performTestActionNamed:kAddInaccessibleButton];
   _expectErrors = NO;
 }
 
 - (void)testAccessibleButtonsInsideContainersDoesNotCauseFailures {
-  [self gtxtest_performTestActionNamed:kAddAccessibleButtonInContainer];
+  [self performTestActionNamed:kAddAccessibleButtonInContainer];
   _expectErrors = NO;
 }
 
 - (void)testTinyTappableAreasCauseErrors {
-  [self gtxtest_performTestActionNamed:kAddTinyTappableElement];
+  [self performTestActionNamed:kAddTinyTappableElement];
   _expectErrors = YES;
 }
 
 - (void)testLowContrastLabelsCauseErrors {
-  [self gtxtest_performTestActionNamed:kAddVeryLowContrastLabel];
+  [self performTestActionNamed:kAddVeryLowContrastLabel];
   _expectErrors = YES;
 }
 
 - (void)testBarelyContrastLabelsCauseErrors {
-  [self gtxtest_performTestActionNamed:kAddBarelyLowContrastLabel];
+  [self performTestActionNamed:kAddBarelyLowContrastLabel];
   _expectErrors = YES;
 }
 
 - (void)testHighContrastLabelsDoesNotCauseFailures {
-  [self gtxtest_performTestActionNamed:kAddVeryHighContrastLabel];
+  [self performTestActionNamed:kAddVeryHighContrastLabel];
   _expectErrors = NO;
 }
 
 - (void)testBarelyHighContrastLabelsDoesNotCauseFailures {
-  [self gtxtest_performTestActionNamed:kAddBarelyHighContrastLabel];
+  [self performTestActionNamed:kAddBarelyHighContrastLabel];
   _expectErrors = NO;
 }
 
 - (void)testNoContrastLabelsCauseErrors {
-  [self gtxtest_performTestActionNamed:kAddNoContrastLabel];
+  [self performTestActionNamed:kAddNoContrastLabel];
   _expectErrors = YES;
 }
 
 - (void)testTransparentHighContrastLabelDoesNotCauseFailures {
-  [self gtxtest_performTestActionNamed:kAddTransparentHighContrastLabel];
+  [self performTestActionNamed:kAddTransparentHighContrastLabel];
   _expectErrors = NO;
 }
 
 - (void)testTransparentLowContrastLabelsCauseError {
-  [self gtxtest_performTestActionNamed:kAddTransparentLowContrastLabel];
+  [self performTestActionNamed:kAddTransparentLowContrastLabel];
   _expectErrors = YES;
 }
 
 - (void)testLowContrastTextViewCausesErrors {
-  [self gtxtest_performTestActionNamed:kAddLowContrastTextView];
+  [self performTestActionNamed:kAddLowContrastTextView];
   _expectErrors = YES;
 }
 
 - (void)testStandardContrastTextViewDoesNotCauseFailures {
-  [self gtxtest_performTestActionNamed:kAddStandardUIKitTextView];
+  [self performTestActionNamed:kAddStandardUIKitTextView];
   _expectErrors = NO;
 }
 
 - (void)testLabelWithFontWithNameCausesErrors {
-  [self gtxtest_performTestActionNamed:kAddLabelWithFontWithName];
+  [self performTestActionNamed:kAddLabelWithFontWithName];
   _expectErrors = YES;
 }
 
 - (void)testLabelWithPreferredFontForTextStyleDoesNotCauseFailures {
-  [self gtxtest_performTestActionNamed:kAddLabelWithPreferredFontForTextStyle];
+  [self performTestActionNamed:kAddLabelWithPreferredFontForTextStyle];
   _expectErrors = NO;
 }
 
 - (void)testLabelWithFontMetricsDoesNotCauseFailures {
   // This test is a no-op when UIFontMetrics doesn't exist, so there are no errors either way.
-  [self gtxtest_performTestActionNamed:kAddLabelWithFontMetrics];
+  [self performTestActionNamed:kAddLabelWithFontMetrics];
   _expectErrors = NO;
 }
 
 - (void)testTextViewWithFontWithNameCausesErrors {
-  [self gtxtest_performTestActionNamed:kAddTextViewWithFontWithName];
+  [self performTestActionNamed:kAddTextViewWithFontWithName];
   _expectErrors = YES;
 }
 
 - (void)testTextViewWithPreferredFontForTextStyleDoesNotCauseFailures {
-  [self gtxtest_performTestActionNamed:kAddTextViewWithPreferredFontForTextStyle];
+  [self performTestActionNamed:kAddTextViewWithPreferredFontForTextStyle];
   _expectErrors = NO;
 }
 
 - (void)testTextViewWithFontMetricsDoesNotCauseFailures {
   // This test is a no-op when UIFontMetrics doesn't exist, so there are no errors either way.
-  [self gtxtest_performTestActionNamed:kAddTextViewWithFontMetrics];
+  [self performTestActionNamed:kAddTextViewWithFontMetrics];
   _expectErrors = NO;
-}
-
-#pragma mark - Private
-
-/**
- Performs the provided test action on the test app and waits for its completion.
- */
-- (void)gtxtest_performTestActionNamed:(NSString *)testAction {
-  [GTXTestViewController performTestActionNamed:testAction];
-  [self gtxtest_waitForAppEvents:0.5];
-}
-
-/**
- Waits given time interval for any app events to be processed.
- */
-- (void)gtxtest_waitForAppEvents:(NSTimeInterval)seconds {
-  NSTimeInterval start = CACurrentMediaTime();
-  while (CACurrentMediaTime() - start < seconds) {
-    CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.01, false);
-  }
 }
 
 @end

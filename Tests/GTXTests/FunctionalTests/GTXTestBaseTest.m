@@ -16,31 +16,36 @@
 
 #import "GTXTestBaseTest.h"
 
+#import "GTXLogger.h"
 #import "GTXTestViewController.h"
 
 static NSInteger gFailureCount = 0;
 id<GTXChecking> gCheckFailsIfFailingClass;
 id<GTXChecking> gAlwaysFail;
 id<GTXChecking> gAlwaysPass;
+const NSTimeInterval kGTXDefaultAppEventsWaitTime = 0.5;
+static const NSTimeInterval kDefaultAppEventsRunLoopInterval = 0.01;
 
 @implementation GTXTestBaseTest
 
 + (void)setUp {
   [super setUp];
 
-  gCheckFailsIfFailingClass = [GTXiLib checkWithName:@"gCheckFailsIfFailingClass"
-                                               block:^BOOL(id element, GTXErrorRefType errorOrNil) {
-    return ![element isKindOfClass:[GTXTestFailingClass class]];
-  }];
+  [[GTXLogger defaultLogger] setLogLevel:GTXLogLevelDeveloper];
+  gCheckFailsIfFailingClass =
+      [GTXiLib checkWithName:@"gCheckFailsIfFailingClass"
+                       block:^BOOL(id element, GTXErrorRefType errorOrNil) {
+                         return ![element isKindOfClass:[GTXTestFailingClass class]];
+                       }];
 
   gAlwaysFail = [GTXiLib checkWithName:@"gAlwaysFail"
                                  block:^BOOL(id element, GTXErrorRefType errorOrNil) {
-    return NO;
-  }];
+                                   return NO;
+                                 }];
   gAlwaysPass = [GTXiLib checkWithName:@"gAlwaysPass"
                                  block:^BOOL(id element, GTXErrorRefType errorOrNil) {
-    return YES;
-  }];
+                                   return YES;
+                                 }];
 
   // Wait for view controller to be launched.
   NSTimeInterval start = CACurrentMediaTime();
@@ -54,7 +59,7 @@ id<GTXChecking> gAlwaysPass;
   }
 
   gFailureCount = 0;
-  [GTXiLib setFailureHandler:^(NSError * error) {
+  [GTXiLib setFailureHandler:^(NSError *error) {
     gFailureCount += 1;
   }];
 }
@@ -71,6 +76,18 @@ id<GTXChecking> gAlwaysPass;
 - (void)assertAndClearSingleFailure {
   XCTAssertEqual(gFailureCount, 1);
   gFailureCount = 0;
+}
+
+- (void)performTestActionNamed:(NSString *)testAction {
+  [GTXTestViewController performTestActionNamed:testAction];
+  [self waitForAppEvents:kGTXDefaultAppEventsWaitTime];
+}
+
+- (void)waitForAppEvents:(NSTimeInterval)seconds {
+  NSTimeInterval start = CACurrentMediaTime();
+  while (CACurrentMediaTime() - start < seconds) {
+    CFRunLoopRunInMode(kCFRunLoopDefaultMode, kDefaultAppEventsRunLoopInterval, false);
+  }
 }
 
 @end

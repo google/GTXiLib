@@ -18,11 +18,9 @@
 #define GTXILIB_OOPCLASSES_GTX_TYPES_H_
 
 #include <math.h>
+#include <stdint.h>
 
-#include <functional>
-#include <string>
-
-#include "Protos/gtx.pb.h"
+#include "gtx.pb.h"
 
 #pragma mark - Types
 

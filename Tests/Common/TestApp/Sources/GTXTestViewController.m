@@ -16,6 +16,8 @@
 
 #import "GTXTestViewController.h"
 
+#import "GTXTestContrastCheckTestView.h"
+#import "GTXTestCustomTraitElement.h"
 #import "GTXTestStepperButton.h"
 
 NSString *const kAddNoLabelElementActionName = @"Add no-label Element";
@@ -46,6 +48,20 @@ NSString *const kAddTextViewWithPreferredFontForTextStyle =
 NSString *const kAddTextViewWithFontMetrics = @"Add text view with metricsWithTextStyle";
 NSString *const kAddLowContrastBackground = @"Add Low contrast background";
 NSString *const kAddHighContrastBackground = @"Add High contrast backgorund";
+NSString *const kAddMultipleElementsWithChildren = @"Add multiple elements with children";
+NSString *const kAddCustomTraitsTestElement = @"Add custom traits element";
+NSString *const kAddButtonTraitToCustomTraitsElement = @"Add button trait to the test element";
+NSString *const kAddPlaysSoundTraitToCustomTraitsElement =
+    @"Add 'plays sound' trait to the test element";
+NSString *const kAddContrastCheckTestViewWithNoText = @"Add no-text ContrastCheck view";
+NSString *const kAddContrastCheckTestViewWithSingleWord = @"Add one word ContrastCheck view";
+NSString *const kAddContrastCheckTestViewWithMultipleWords = @"Add many words ContrastCheck view";
+NSString *const kAddContrastCheckTestViewWithLowContrastSingleWord =
+    @"Add one word low contrast ContrastCheck view";
+NSString *const kAddContrastCheckTestViewWithLowContrastMultipleWords =
+    @"Add low contrast multiple words ContrastCheck view";
+NSString *const kAddContrastCheckTestViewWithLargeColorBlocks =
+    @"Add ContrastCheck view with color blocks";
 
 #pragma mark - Accessibility Identifiers
 
@@ -54,6 +70,10 @@ NSString *const kGTXTestAppScrollToTopID = @"kGTXTestAppScrollToTopID";
 NSString *const kGTXTestAppActionsContainerID = @"kGTXTestAppActionsContainerID";
 NSString *const kGTXTestTestingAreaID = @"kGTXTestTestingAreaID";
 NSString *const kGTXTestTestingElementID = @"kGTXTestTestingElementID";
+const NSInteger kGTXTestMultipleTestingElementIDsCount = 4;
+NSString *const kGTXTestMultipleTestingElementsIDs[4] = {
+    kGTXTestTestingElementID, @"kGTXTestMultipleTestingElementsIDs1",
+    @"kGTXTestMultipleTestingElementsIDs2", @"kGTXTestMultipleTestingElementsIDs3"};
 
 /**
  *  The minimum size required to make UIElements accessible.
@@ -83,9 +103,9 @@ static const CGFloat kDefaultFontSize = 48.0;
 
 static __weak GTXTestViewController *gViewController;
 
-typedef void(^ActionHandler)(GTXTestViewController *sSelf);
+typedef void (^ActionHandler)(GTXTestViewController *sSelf);
 
-@interface GTXTestViewController ()<UITextFieldDelegate>
+@interface GTXTestViewController () <UITextFieldDelegate>
 
 @property(weak, nonatomic) IBOutlet UIScrollView *actionsContainerView;
 @property(weak, nonatomic) IBOutlet UIView *testArea;
@@ -93,7 +113,8 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
 @end
 
 @implementation GTXTestViewController {
-  NSMutableDictionary *actionsToHandlers;
+  NSMutableDictionary *_actionsToHandlers;
+  __weak GTXTestCustomTraitElement *_customTraitsElement;
 }
 
 - (instancetype)init {
@@ -106,7 +127,7 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
   gViewController = self;
   self.testArea.accessibilityIdentifier = kGTXTestTestingAreaID;
   self.actionsContainerView.accessibilityIdentifier = kGTXTestAppActionsContainerID;
-  actionsToHandlers = [[NSMutableDictionary alloc] init];
+  _actionsToHandlers = [[NSMutableDictionary alloc] init];
   [self.navigationController setNavigationBarHidden:YES animated:NO];
 
   [self gtxtest_addActionNamed:kAddNoLabelElementActionName
@@ -278,6 +299,44 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
                                                       backgroundColor:nil
                                                                  font:nil];
                        }];
+  [self gtxtest_addActionNamed:kAddButtonTraitToCustomTraitsElement
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf
+                             gtxtest_withCustomTraitsElementAppendTrait:UIAccessibilityTraitButton];
+                       }];
+  [self gtxtest_addActionNamed:kAddPlaysSoundTraitToCustomTraitsElement
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_withCustomTraitsElementAppendTrait:
+                                    UIAccessibilityTraitPlaysSound];
+                       }];
+  [self gtxtest_addActionNamed:kAddCustomTraitsTestElement
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_addCustomTraitsTestElement];
+                       }];
+  [self gtxtest_addActionNamed:kAddContrastCheckTestViewWithNoText
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_addContrastCheckTestViewWithNoText];
+                       }];
+  [self gtxtest_addActionNamed:kAddContrastCheckTestViewWithSingleWord
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_addContrastCheckTestViewWithSingleWord];
+                       }];
+  [self gtxtest_addActionNamed:kAddContrastCheckTestViewWithMultipleWords
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_addContrastCheckTestViewWithMultipleWords];
+                       }];
+  [self gtxtest_addActionNamed:kAddContrastCheckTestViewWithLowContrastSingleWord
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_addContrastCheckTestViewWithLowContrastSingleWord];
+                       }];
+  [self gtxtest_addActionNamed:kAddContrastCheckTestViewWithLowContrastMultipleWords
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_addLowContrastMultiWordContrastCheckTestView];
+                       }];
+  [self gtxtest_addActionNamed:kAddContrastCheckTestViewWithLargeColorBlocks
+                       handler:^(GTXTestViewController *sSelf) {
+                         [sSelf gtxtest_addContrastCheckTestViewWithColorBlocks];
+                       }];
   [self gtxtest_addActionNamed:kAddLowContrastTextView
                        handler:^(GTXTestViewController *sSelf) {
                          // Add a low contrast text view: black text on very dark grey background.
@@ -286,6 +345,32 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
                                                       backgroundColor:veryDarkGreyColor
                                                                  font:nil];
                        }];
+  [self gtxtest_addActionNamed:kAddMultipleElementsWithChildren
+                       handler:^(GTXTestViewController *sSelf) {
+                         UIView *parent = [GTXTestViewController
+                             accessibleViewInSuperview:sSelf.testArea
+                                                 frame:CGRectMake(0, 0, 44, 44)
+                               accessibilityIdentifier:kGTXTestMultipleTestingElementsIDs[0]
+                                       backgroundColor:[UIColor redColor]];
+                         UIView *child1 = [GTXTestViewController
+                             accessibleViewInSuperview:parent
+                                                 frame:CGRectMake(44, 0, 44, 44)
+                               accessibilityIdentifier:kGTXTestMultipleTestingElementsIDs[1]
+                                       backgroundColor:[UIColor blueColor]];
+                         [GTXTestViewController
+                             accessibleViewInSuperview:parent
+                                                 frame:CGRectMake(0, 44, 44, 44)
+                               accessibilityIdentifier:kGTXTestMultipleTestingElementsIDs[2]
+                                       backgroundColor:[UIColor greenColor]];
+                         [GTXTestViewController
+                             accessibleViewInSuperview:child1
+                                                 frame:CGRectMake(0, 44, 44, 44)
+                               accessibilityIdentifier:kGTXTestMultipleTestingElementsIDs[3]
+                                       backgroundColor:[UIColor yellowColor]];
+                       }];
+  // Default state of the test app is to include an invalid acccessibile element, this helps verify
+  // the case where app is launched and scanned for accessibility without interacting with it.
+  [self gtxtest_addTinyTappableElement];
 }
 
 - (void)gtxtest_addActionNamed:(NSString *)name handler:(ActionHandler)handler {
@@ -307,14 +392,14 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
   newButton.frame = buttonFrame;
   self.actionsContainerView.contentSize = contentSize;
   [self.actionsContainerView addSubview:newButton];
-  NSAssert(!actionsToHandlers[name], @"Action %@ was already added.", name);
-  actionsToHandlers[name] = handler;
+  NSAssert(!_actionsToHandlers[name], @"Action %@ was already added.", name);
+  _actionsToHandlers[name] = handler;
 }
 
 + (void)performTestActionNamed:(NSString *)actionName {
   GTXTestViewController *controller = gViewController;
   NSAssert(controller, @"View controller has not loaded yet.");
-  ActionHandler handler = controller->actionsToHandlers[actionName];
+  ActionHandler handler = controller->_actionsToHandlers[actionName];
   NSAssert(handler, @"Action named %@ does not exist", actionName);
   handler(controller);
 }
@@ -324,9 +409,8 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
 }
 
 - (void)gtxtest_addElementWithLabel:(NSString *)label {
-  UIView *newElement = [[UIView alloc] initWithFrame:CGRectMake(kMargin, kMargin,
-                                                                kMinimumElementSize,
-                                                                kMinimumElementSize)];
+  UIView *newElement = [[UIView alloc]
+      initWithFrame:CGRectMake(kMargin, kMargin, kMinimumElementSize, kMinimumElementSize)];
   newElement.isAccessibilityElement = YES;
   newElement.accessibilityLabel = label;
   newElement.backgroundColor = [UIColor whiteColor];
@@ -334,9 +418,8 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
 }
 
 - (void)gtxtest_addShowKeyboard {
-  UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(kMargin, kMargin,
-                                                                      kMinimumElementSize * 2,
-                                                                      kMinimumElementSize)];
+  UITextView *textView = [[UITextView alloc]
+      initWithFrame:CGRectMake(kMargin, kMargin, kMinimumElementSize * 2, kMinimumElementSize)];
   textView.font = [UIFont preferredFontForTextStyle:UIFontTextStyleTitle1];
   textView.adjustsFontForContentSizeCategory = YES;
   [self gtxtest_addTestElement:textView];
@@ -344,10 +427,8 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
 }
 
 - (void)gtxtest_addInaccessibleButton {
-  GTXTestStepperButton *stepperButton =
-      [[GTXTestStepperButton alloc] initWithFrame:CGRectMake(kMargin, kMargin,
-                                                             kMinimumElementSize,
-                                                             kMinimumElementSize)];
+  GTXTestStepperButton *stepperButton = [[GTXTestStepperButton alloc]
+      initWithFrame:CGRectMake(kMargin, kMargin, kMinimumElementSize, kMinimumElementSize)];
   [self gtxtest_addTestElement:stepperButton];
 }
 
@@ -430,6 +511,158 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
   [self gtxtest_addTestElement:view];
 }
 
+/**
+ *  Adds a custom element whose traits can be modified.
+ */
+- (void)gtxtest_addCustomTraitsTestElement {
+  GTXTestCustomTraitElement *element = [[GTXTestCustomTraitElement alloc]
+      initWithFrame:CGRectMake(kMargin, kMargin, kMinimumElementSize, kMinimumElementSize)];
+  element.isAccessibilityElement = YES;
+  _customTraitsElement = element;
+  [self gtxtest_addTestElement:element];
+}
+
+/**
+ *  Adds a contrast test view with no text.
+ */
+- (void)gtxtest_addContrastCheckTestViewWithNoText {
+  GTXTestContrastCheckTestView *element = [[GTXTestContrastCheckTestView alloc]
+      initWithFrame:CGRectMake(kMargin, kMargin, 100, kMinimumElementSize)
+        renderBlock:^(GTXTestContrastCheckTestView *testView, CGContextRef contextRef) {
+          [[UIColor whiteColor] setFill];
+          [[UIBezierPath bezierPathWithRect:testView.bounds] fill];
+        }];
+  element.isAccessibilityElement = YES;
+  element.accessibilityTraits |= UIAccessibilityTraitLink;
+  [self gtxtest_addTestElement:element];
+}
+
+/**
+ *  Adds a contrast test view with no text.
+ */
+- (void)gtxtest_addContrastCheckTestViewWithSingleWord {
+  [self gtxtest_addSingleWordContrastCheckTestViewWithBackgroundColor:UIColor.whiteColor
+                                                            textColor:UIColor.blackColor];
+}
+
+/**
+ *  Adds a contrast test view with single word.
+ */
+- (void)gtxtest_addContrastCheckTestViewWithLowContrastSingleWord {
+  [self gtxtest_addSingleWordContrastCheckTestViewWithBackgroundColor:UIColor.whiteColor
+                                                            textColor:[UIColor colorWithWhite:0.8
+                                                                                        alpha:1.0]];
+}
+
+/**
+ *  Adds a contrast test view with multiple separated words.
+ */
+- (void)gtxtest_addContrastCheckTestViewWithMultipleWords {
+  [self gtxtest_addMultiWordContrastCheckTestViewWithBackgroundColor:UIColor.whiteColor
+                                                          word1Color:UIColor.blackColor
+                                                          word2Color:UIColor.blackColor];
+}
+
+/**
+ *  Adds a low contrast contrast test view with multiple separated words.
+ */
+- (void)gtxtest_addLowContrastMultiWordContrastCheckTestView {
+  // NOTE: Contrast ratio of white vs 55% white is 3.3 (high contrast) and vs 70% white is 2.12 (low
+  // contrast).
+  [self gtxtest_addMultiWordContrastCheckTestViewWithBackgroundColor:UIColor.whiteColor
+                                                          word1Color:[UIColor colorWithWhite:0.55
+                                                                                       alpha:1.0]
+                                                          word2Color:[UIColor colorWithWhite:0.7
+                                                                                       alpha:1.0]];
+}
+
+/**
+ *  Adds a contrast test view with multiple separated words.
+ */
+- (void)gtxtest_addMultiWordContrastCheckTestViewWithBackgroundColor:(UIColor *)backgroundColor
+                                                          word1Color:(UIColor *)word1Color
+                                                          word2Color:(UIColor *)word2Color {
+  GTXTestContrastCheckTestView *element = [[GTXTestContrastCheckTestView alloc]
+      initWithFrame:CGRectMake(kMargin, kMargin, 100, kMinimumElementSize)
+        renderBlock:^(GTXTestContrastCheckTestView *testView, CGContextRef contextRef) {
+          [backgroundColor setFill];
+          [[UIBezierPath bezierPathWithRect:testView.bounds] fill];
+          // Draw first word at top left corner.
+          [@"Hello" drawAtPoint:CGPointMake(0, 0)
+                 withAttributes:@{NSForegroundColorAttributeName : word1Color}];
+          // Draw second word at bottom right corner.
+          NSString *bottomText = @"World";
+          CGRect textRect;
+          textRect.size = [bottomText sizeWithAttributes:nil];
+          textRect.origin.x = CGRectGetMaxX(testView.bounds) - textRect.size.width;
+          textRect.origin.y = CGRectGetMaxY(testView.bounds) - textRect.size.height;
+          [bottomText drawInRect:textRect
+                  withAttributes:@{NSForegroundColorAttributeName : word2Color}];
+        }];
+  element.isAccessibilityElement = YES;
+  element.accessibilityTraits |= UIAccessibilityTraitLink;
+  [self gtxtest_addTestElement:element];
+}
+
+- (void)gtxtest_addSingleWordContrastCheckTestViewWithBackgroundColor:(UIColor *)backgroundColor
+                                                            textColor:(UIColor *)textColor {
+  GTXTestContrastCheckTestView *element = [[GTXTestContrastCheckTestView alloc]
+      initWithFrame:CGRectMake(kMargin, kMargin, 100, kMinimumElementSize)
+        renderBlock:^(GTXTestContrastCheckTestView *testView, CGContextRef contextRef) {
+          [backgroundColor setFill];
+          [[UIBezierPath bezierPathWithRect:testView.bounds] fill];
+          [@"Hello" drawAtPoint:CGPointMake(0, 0)
+                 withAttributes:@{NSForegroundColorAttributeName : textColor}];
+        }];
+  element.isAccessibilityElement = YES;
+  element.accessibilityTraits |= UIAccessibilityTraitLink;
+  [self gtxtest_addTestElement:element];
+}
+
+/**
+ *  Adds a contrast test view text on top and color blocks below it.
+ */
+- (void)gtxtest_addContrastCheckTestViewWithColorBlocks {
+  GTXTestContrastCheckTestView *element = [[GTXTestContrastCheckTestView alloc]
+      initWithFrame:CGRectMake(kMargin, kMargin, 100, kMinimumElementSize)
+        renderBlock:^(GTXTestContrastCheckTestView *testView, CGContextRef contextRef) {
+          [[UIColor whiteColor] setFill];
+          [[UIBezierPath bezierPathWithRect:testView.bounds] fill];
+          [[UIColor blackColor] setStroke];
+          // Draw some text at top left corner.
+          NSString *text = @"Hello";
+          [text drawAtPoint:CGPointMake(0, 0) withAttributes:nil];
+          // Now render color blocks *outside* its bounds (this ensures that colors obtained from
+          // OCR differ from colors obtained using histogram).
+          CGSize size = [text sizeWithAttributes:nil];
+          CGRect blockBounds = testView.bounds;
+          blockBounds.size.height -= size.height;
+          blockBounds.origin.y += size.height;
+          UIColor *veryLightGray = [UIColor colorWithWhite:0.8 alpha:1.0];
+          UIColor *lightGray = [UIColor colorWithWhite:0.6 alpha:1.0];
+          CGRect leftBock = blockBounds;
+          leftBock.size.width /= 2.0;
+          CGRect rightBlock = leftBock;
+          rightBlock.origin.x += rightBlock.size.width;
+          [veryLightGray setFill];
+          [[UIBezierPath bezierPathWithRect:leftBock] fill];
+          [lightGray setFill];
+          [[UIBezierPath bezierPathWithRect:rightBlock] fill];
+        }];
+  element.isAccessibilityElement = YES;
+  element.accessibilityTraits |= UIAccessibilityTraitLink;
+  [self gtxtest_addTestElement:element];
+}
+
+/**
+ *  Appends the given trait to the custom element.
+ *
+ *  @param newTrait The new trait to be appended.
+ */
+- (void)gtxtest_withCustomTraitsElementAppendTrait:(UIAccessibilityTraits)newTrait {
+  [_customTraitsElement addCustomTrait:newTrait];
+}
+
 - (IBAction)gtxtest_userTappedClearFields:(UIButton *)sender {
   [self gtxtest_clearAllFields];
 }
@@ -453,6 +686,19 @@ typedef void(^ActionHandler)(GTXTestViewController *sSelf);
 + (void)addElementToTestArea:(UIView *)element {
   NSAssert(gViewController, @"View controller has not loaded yet.");
   [gViewController gtxtest_addTestElement:element];
+}
+
++ (UIView *)accessibleViewInSuperview:(UIView *)superview
+                                frame:(CGRect)frame
+              accessibilityIdentifier:(NSString *)accessibilityIdentifier
+                      backgroundColor:(UIColor *)color {
+  UIView *view = [[UIView alloc] initWithFrame:frame];
+  view.isAccessibilityElement = YES;
+  view.accessibilityIdentifier = accessibilityIdentifier;
+  view.backgroundColor = color;
+  [superview addSubview:view];
+  superview.isAccessibilityElement = NO;
+  return view;
 }
 
 + (void)clearTestArea {

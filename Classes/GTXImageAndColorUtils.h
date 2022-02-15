@@ -95,6 +95,11 @@ extern const CGFloat kGTXContrastRatioAccuracy;
 + (void)renderViewHierarchy:(UIView *)view inContext:(CGContextRef)context;
 
 /**
+ * @return an image of the given @c view.
+ */
++ (UIImage *)imageFromUIView:(UIView *)view;
+
+/**
  * Renders the views in @c views to a single image, with the first element in back and the last
  * element in front. The size of the image is equal to the greatest width and greatest height of the
  * bounds in @c views. May not be the bounds of the largest view. For example, one view may have a

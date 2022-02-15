@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="result_message_no_accessibility_label">This element may not have an accessibility label readable by VoiceOver. All accessibility elements should have accessibility labels.</string>
+  <string name="check_title_no_accessibility_label">Accessibility label</string>
+  <string name="result_message_brief_no_accessibility_label">Consider adding an accessibility label to this element.</string>
+  <string name="result_message_accessibility_label_is_punctuated">This element may have an accessibility label that ends in punctuation but doesn\'t have a text trait. If this element displays text visually, consider adding the &lt;tt&gt;UIAccessibilityStaticTrait&lt;/tt&gt;, similar to &lt;tt&gt;UITextView&lt;/tt&gt; or &lt;tt&gt;UILabel&lt;/tt&gt;. If the element does not display text, consider removing the punctuation. Label found: &lt;tt&gt;$0&lt;/tt&gt;</string>
+  <string name="check_title_accessibility_label_is_punctuated">Accessibility label punctuation</string>
+  <string name="result_message_brief_accessibility_label_is_punctuated">Consider removing the punctuation at the end of this element\'s accessibility label.</string>
+  <string name="result_message_insufficient_text_contrast">The element\'s text contrast ratio is $0. This ratio is based on a text colour of &lt;tt&gt;$1&lt;/tt&gt; and background colour of &lt;tt&gt;$2&lt;/tt&gt;. Consider increasing this element\'s text contrast ratio to $3 or greater.</string>
+  <string name="check_title_text_contrast">Text contrast</string>
+  <string name="result_message_brief_insufficient_text_contrast">Consider increasing this element\'s text foreground to background contrast ratio.</string>
+  <string name="result_message_insufficient_touch_target_size">This element\'s size is &lt;tt&gt;$0&lt;/tt&gt; by &lt;tt&gt;$1&lt;/tt&gt; points. Consider making this touch target &lt;tt&gt;$2&lt;/tt&gt; points wide and &lt;tt&gt;$2&lt;/tt&gt; points high or larger.</string>
+  <string name="check_title_touch_target_size">Touch target</string>
+  <string name="result_message_brief_insufficient_touch_target_size">Consider making this element\'s size larger.</string>
+</resources>

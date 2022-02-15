@@ -44,7 +44,9 @@ FOUNDATION_EXPORT const unsigned char GTXiLibVersionString[];
 #import <GTXiLib/GTXHierarchyResultCollection.h>
 #import <GTXiLib/GTXImageAndColorUtils.h>
 #import <GTXiLib/GTXImageRGBAData.h>
-#import <GTXiLib/GTXLogging.h>
+#import <GTXiLib/GTXLogProperty.h>
+#import <GTXiLib/GTXLogger.h>
+#import <GTXiLib/GTXOCRContrastCheck.h>
 #import <GTXiLib/GTXPluginXCTestCase.h>
 #import <GTXiLib/GTXReport.h>
 #import <GTXiLib/GTXResult.h>
@@ -53,9 +55,12 @@ FOUNDATION_EXPORT const unsigned char GTXiLibVersionString[];
 #import <GTXiLib/GTXTestEnvironment.h>
 #import <GTXiLib/GTXTestSuite.h>
 #import <GTXiLib/GTXToolKit.h>
+#import <GTXiLib/GTXTreeIteratorContext.h>
+#import <GTXiLib/GTXTreeIteratorElement.h>
 #import <GTXiLib/GTXXCUIApplicationProxy.h>
 #import <GTXiLib/GTXXCUIElementProxy.h>
 #import <GTXiLib/GTXXCUIElementQueryProxy.h>
 #import <GTXiLib/GTXiLibCore.h>
 #import <GTXiLib/NSError+GTXAdditions.h>
+#import <GTXiLib/NSObject+GTXLogging.h>
 #import <GTXiLib/UIColor+GTXAdditions.h>

@@ -27,9 +27,14 @@
 static Class gXCUIApplicationClass;
 
 /**
- Reference to last known XCUIApplication instance.
+ Weak reference to the last known XCUIApplication instance.
  */
-static __weak GTXXCUIApplicationProxy *gLastKnownApplication;
+static __weak GTXXCUIApplicationProxy *gLastKnownApplicationWeakRef;
+
+/**
+ Reference to the last known XCUIApplication instance.
+ */
+static GTXXCUIApplicationProxy *gLastKnownApplication;
 
 /**
  Category to expose the methods on XCUIApplication that this class uses.
@@ -61,7 +66,14 @@ static __weak GTXXCUIApplicationProxy *gLastKnownApplication;
 }
 
 + (GTXXCUIApplicationProxy *)lastKnownApplicationProxy {
-  return gLastKnownApplication;
+  return gLastKnownApplication ?: gLastKnownApplicationWeakRef;
+}
+
++ (void)didFinishTestTeardown {
+  // Save gLastKnownApplication in a weak reference, this allows the application object to be freed
+  // if needed or if the tests are also holding on to the reference we can still access it.
+  gLastKnownApplicationWeakRef = gLastKnownApplication;
+  gLastKnownApplication = nil;
 }
 
 - (id)initGTXXCUIApplication {

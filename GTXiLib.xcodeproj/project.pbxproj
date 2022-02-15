@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		387C9786A3C1D45B6E6B81A6 /* libPods-GTXiLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEE861A7DDE5FF9E25B6B26 /* libPods-GTXiLib.a */; };
 		610CA3FD204DFC76008BAAA1 /* GTXPluginXCTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 610CA3FB204DFC76008BAAA1 /* GTXPluginXCTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		610CA3FE204DFC76008BAAA1 /* GTXPluginXCTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 610CA3FC204DFC76008BAAA1 /* GTXPluginXCTestCase.m */; };
 		6115E78B204F5BA3003E32F9 /* GTXiLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613C3F41204A09E8007D44A8 /* GTXiLib.framework */; };
@@ -20,7 +21,6 @@
 		6133088623FF2F53003F8D41 /* GTXError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133087A23FF2F53003F8D41 /* GTXError.m */; };
 		6133088823FF2F53003F8D41 /* GTXReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 6133087C23FF2F53003F8D41 /* GTXReport.m */; };
 		6133088C23FF2F53003F8D41 /* GTXReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 6133088023FF2F53003F8D41 /* GTXReport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		616FDEE725BF49EC00CCCAD5 /* GTXImageRGBAData+GTXOOPAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 616FDEC725BF49EB00CCCAD5 /* GTXImageRGBAData+GTXOOPAdditions.mm */; };
 		616FDEE825BF49EC00CCCAD5 /* GTXXCUIElementProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDEC825BF49EB00CCCAD5 /* GTXXCUIElementProxy.h */; };
 		616FDEE925BF49EC00CCCAD5 /* GTXSwizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDEC925BF49EB00CCCAD5 /* GTXSwizzler.m */; };
 		616FDEEA25BF49EC00CCCAD5 /* GTXXCUIElementQueryProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDECA25BF49EB00CCCAD5 /* GTXXCUIElementQueryProxy.h */; };
@@ -30,27 +30,19 @@
 		616FDEEE25BF49EC00CCCAD5 /* GTXXCUIApplicationProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDECE25BF49EB00CCCAD5 /* GTXXCUIApplicationProxy.h */; };
 		616FDEEF25BF49EC00CCCAD5 /* GTXToolKit.mm in Sources */ = {isa = PBXBuildFile; fileRef = 616FDECF25BF49EB00CCCAD5 /* GTXToolKit.mm */; };
 		616FDEF025BF49EC00CCCAD5 /* GTXExcludeListFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDED025BF49EB00CCCAD5 /* GTXExcludeListFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		616FDEF125BF49EC00CCCAD5 /* UIColor+GTXOOPAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDED125BF49EB00CCCAD5 /* UIColor+GTXOOPAdditions.h */; };
-		616FDEF225BF49EC00CCCAD5 /* GTXImageRGBAData+GTXOOPAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDED225BF49EB00CCCAD5 /* GTXImageRGBAData+GTXOOPAdditions.h */; };
 		616FDEF325BF49EC00CCCAD5 /* GTXCheckResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDED325BF49EC00CCCAD5 /* GTXCheckResult.m */; };
-		616FDEF425BF49EC00CCCAD5 /* GTXToolKit+GTXOOPAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDED425BF49EC00CCCAD5 /* GTXToolKit+GTXOOPAdditions.h */; };
 		616FDEF525BF49EC00CCCAD5 /* GTXExcludeListBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDED525BF49EC00CCCAD5 /* GTXExcludeListBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		616FDEF625BF49EC00CCCAD5 /* NSObject+GTXAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDED625BF49EC00CCCAD5 /* NSObject+GTXAdditions.h */; };
 		616FDEF725BF49EC00CCCAD5 /* GTXXCUIElementProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDED725BF49EC00CCCAD5 /* GTXXCUIElementProxy.m */; };
-		616FDEF825BF49EC00CCCAD5 /* UIColor+GTXOOPAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 616FDED825BF49EC00CCCAD5 /* UIColor+GTXOOPAdditions.mm */; };
 		616FDEF925BF49EC00CCCAD5 /* GTXHierarchyResultCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDED925BF49EC00CCCAD5 /* GTXHierarchyResultCollection.h */; };
 		616FDEFA25BF49EC00CCCAD5 /* GTXXCUIApplicationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDEDA25BF49EC00CCCAD5 /* GTXXCUIApplicationProxy.m */; };
 		616FDEFB25BF49EC00CCCAD5 /* GTXElementReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDEDB25BF49EC00CCCAD5 /* GTXElementReference.m */; };
 		616FDEFC25BF49EC00CCCAD5 /* GTXHierarchyResultCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDEDC25BF49EC00CCCAD5 /* GTXHierarchyResultCollection.m */; };
 		616FDEFD25BF49EC00CCCAD5 /* GTXExcludeListFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDEDD25BF49EC00CCCAD5 /* GTXExcludeListFactory.m */; };
-		616FDEFE25BF49EC00CCCAD5 /* NSString+GTXAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDEDE25BF49EC00CCCAD5 /* NSString+GTXAdditions.h */; };
-		616FDEFF25BF49EC00CCCAD5 /* NSString+GTXAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 616FDEDF25BF49EC00CCCAD5 /* NSString+GTXAdditions.mm */; };
 		616FDF0025BF49EC00CCCAD5 /* GTXElementResultCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDEE025BF49EC00CCCAD5 /* GTXElementResultCollection.m */; };
 		616FDF0125BF49EC00CCCAD5 /* GTXImageAndColorUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 616FDEE125BF49EC00CCCAD5 /* GTXImageAndColorUtils.mm */; };
 		616FDF0225BF49EC00CCCAD5 /* GTXXCUIElementQueryProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDEE225BF49EC00CCCAD5 /* GTXXCUIElementQueryProxy.m */; };
 		616FDF0325BF49EC00CCCAD5 /* GTXExcludeListBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDEE325BF49EC00CCCAD5 /* GTXExcludeListBlock.m */; };
 		616FDF0425BF49EC00CCCAD5 /* GTXElementReference.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDEE425BF49EC00CCCAD5 /* GTXElementReference.h */; };
-		616FDF0525BF49EC00CCCAD5 /* NSObject+GTXAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 616FDEE525BF49EC00CCCAD5 /* NSObject+GTXAdditions.mm */; };
 		616FDF0625BF49EC00CCCAD5 /* GTXCheckResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDEE625BF49EC00CCCAD5 /* GTXCheckResult.h */; };
 		616FDF1325BF4ACB00CCCAD5 /* GTXTestApp-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 616FDF1125BF4ACA00CCCAD5 /* GTXTestApp-Info.plist */; };
 		616FDF1425BF4ACB00CCCAD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 616FDF1225BF4ACA00CCCAD5 /* LaunchScreen.storyboard */; };
@@ -79,7 +71,7 @@
 		616FDF5E25BF4B7800CCCAD5 /* GTXHierarchyResultCollectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDF4C25BF4B7800CCCAD5 /* GTXHierarchyResultCollectionTests.m */; };
 		616FDF7625BF4BB400CCCAD5 /* GTXTestGtxCanIgnoreElementsOnSpecificCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDF6825BF4BB400CCCAD5 /* GTXTestGtxCanIgnoreElementsOnSpecificCheck.m */; };
 		616FDF7725BF4BB400CCCAD5 /* GTXTestAnalyticsCanBeDisabled.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDF6925BF4BB400CCCAD5 /* GTXTestAnalyticsCanBeDisabled.m */; };
-		616FDF7825BF4BB400CCCAD5 /* GTXTestGtxCanWhitelistTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDF6B25BF4BB400CCCAD5 /* GTXTestGtxCanWhitelistTestCases.m */; };
+		616FDF7825BF4BB400CCCAD5 /* GTXTestGtxCanAllowlistTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDF6B25BF4BB400CCCAD5 /* GTXTestGtxCanAllowlistTestCases.m */; };
 		616FDF7925BF4BB400CCCAD5 /* GTXTestFailingClassFailCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDF6C25BF4BB400CCCAD5 /* GTXTestFailingClassFailCheck.m */; };
 		616FDF7A25BF4BB400CCCAD5 /* GTXTestGtxCanExcludeListTestCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDF6D25BF4BB400CCCAD5 /* GTXTestGtxCanExcludeListTestCases.m */; };
 		616FDF7B25BF4BB400CCCAD5 /* GTXTestAnalyticsBaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDF6E25BF4BB400CCCAD5 /* GTXTestAnalyticsBaseTest.m */; };
@@ -93,9 +85,7 @@
 		616FDFB825BF4D3500CCCAD5 /* GTXTestPassingIntegrationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDF9525BF4C1200CCCAD5 /* GTXTestPassingIntegrationTest.m */; };
 		616FDFB925BF4D3500CCCAD5 /* GTXTestIntegrationTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDF9425BF4C1200CCCAD5 /* GTXTestIntegrationTestCase.m */; };
 		616FDFBA25BF4D3500CCCAD5 /* GTXTestFailingIntegrationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDF9725BF4C1200CCCAD5 /* GTXTestFailingIntegrationTest.m */; };
-		616FDFE125BF4DC500CCCAD5 /* ui_element.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDFC325BF4DC400CCCAD5 /* ui_element.h */; };
 		616FDFE225BF4DC500CCCAD5 /* localized_strings_manager.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616FDFC425BF4DC400CCCAD5 /* localized_strings_manager.cc */; };
-		616FDFE325BF4DC500CCCAD5 /* check_result.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616FDFC525BF4DC400CCCAD5 /* check_result.cc */; };
 		616FDFE425BF4DC500CCCAD5 /* no_label_check.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDFC625BF4DC400CCCAD5 /* no_label_check.h */; };
 		616FDFE525BF4DC500CCCAD5 /* parameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDFC725BF4DC400CCCAD5 /* parameters.h */; };
 		616FDFE625BF4DC500CCCAD5 /* gtx_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDFC825BF4DC400CCCAD5 /* gtx_types.h */; };
@@ -108,7 +98,6 @@
 		616FDFED25BF4DC500CCCAD5 /* toolkit.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDFCF25BF4DC400CCCAD5 /* toolkit.h */; };
 		616FDFEE25BF4DC500CCCAD5 /* toolkit.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616FDFD025BF4DC400CCCAD5 /* toolkit.cc */; };
 		616FDFEF25BF4DC500CCCAD5 /* gtx_types.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616FDFD125BF4DC500CCCAD5 /* gtx_types.cc */; };
-		616FDFF025BF4DC500CCCAD5 /* ui_element.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616FDFD225BF4DC500CCCAD5 /* ui_element.cc */; };
 		616FDFF125BF4DC500CCCAD5 /* contrast_check.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616FDFD325BF4DC500CCCAD5 /* contrast_check.cc */; };
 		616FDFF225BF4DC500CCCAD5 /* accessibility_label_not_punctuated_check.cc in Sources */ = {isa = PBXBuildFile; fileRef = 616FDFD425BF4DC500CCCAD5 /* accessibility_label_not_punctuated_check.cc */; };
 		616FDFF325BF4DC500CCCAD5 /* contrast_swatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDFD525BF4DC500CCCAD5 /* contrast_swatch.h */; };
@@ -120,7 +109,6 @@
 		616FDFF925BF4DC500CCCAD5 /* check.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDFDB25BF4DC500CCCAD5 /* check.h */; };
 		616FDFFA25BF4DC500CCCAD5 /* minimum_tappable_area_check.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDFDC25BF4DC500CCCAD5 /* minimum_tappable_area_check.h */; };
 		616FDFFB25BF4DC500CCCAD5 /* contrast_check.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDFDD25BF4DC500CCCAD5 /* contrast_check.h */; };
-		616FDFFC25BF4DC500CCCAD5 /* check_result.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDFDE25BF4DC500CCCAD5 /* check_result.h */; };
 		616FDFFD25BF4DC500CCCAD5 /* string_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDFDF25BF4DC500CCCAD5 /* string_utils.h */; };
 		616FDFFE25BF4DC500CCCAD5 /* element_type.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FDFE025BF4DC500CCCAD5 /* element_type.h */; };
 		616FE00625BF4DF700CCCAD5 /* gtx.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 616FE00425BF4DF700CCCAD5 /* gtx.pb.h */; };
@@ -146,7 +134,6 @@
 		61ABAEB4204A0B0B006DBF0A /* GTXTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ABAE92204A0B03006DBF0A /* GTXTestSuite.m */; };
 		61ABAEB5204A0B0B006DBF0A /* GTXAccessibilityTree.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAE93204A0B03006DBF0A /* GTXAccessibilityTree.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61ABAEB6204A0B0B006DBF0A /* GTXCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAE94204A0B03006DBF0A /* GTXCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		61ABAEB7204A0B0B006DBF0A /* GTXLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAE95204A0B03006DBF0A /* GTXLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61ABAEB8204A0B0B006DBF0A /* GTXAnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ABAE96204A0B03006DBF0A /* GTXAnalyticsUtils.m */; };
 		61ABAEB9204A0B0B006DBF0A /* GTXChecking.h in Headers */ = {isa = PBXBuildFile; fileRef = 61ABAE97204A0B04006DBF0A /* GTXChecking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61ABAEBB204A0B0B006DBF0A /* GTXTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 61ABAE99204A0B04006DBF0A /* GTXTestCase.m */; };
@@ -172,6 +159,61 @@
 		61E1A12F25C0CD34009FBAD9 /* GTXTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDF1B25BF4ADC00CCCAD5 /* GTXTestViewController.m */; };
 		61E1A18425C0CDBF009FBAD9 /* GTXTestStepperButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDF2025BF4ADC00CCCAD5 /* GTXTestStepperButton.m */; };
 		61E1A18525C0CDBF009FBAD9 /* GTXTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 616FDF1B25BF4ADC00CCCAD5 /* GTXTestViewController.m */; };
+		DC145DA82617BE4300E1DB4D /* enums.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC145DA22617BE4300E1DB4D /* enums.pb.cc */; };
+		DC145DA92617BE4300E1DB4D /* enums.proto in Sources */ = {isa = PBXBuildFile; fileRef = DC145DA32617BE4300E1DB4D /* enums.proto */; };
+		DC145DAA2617BE4300E1DB4D /* proto_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = DC145DA42617BE4300E1DB4D /* proto_utils.h */; };
+		DC145DAB2617BE4300E1DB4D /* proto_utils.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC145DA52617BE4300E1DB4D /* proto_utils.cc */; };
+		DC145DAC2617BE4300E1DB4D /* typedefs.h in Headers */ = {isa = PBXBuildFile; fileRef = DC145DA62617BE4300E1DB4D /* typedefs.h */; };
+		DC145DAD2617BE4300E1DB4D /* enums.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = DC145DA72617BE4300E1DB4D /* enums.pb.h */; };
+		DC145DB62617BE4E00E1DB4D /* element_trait.h in Headers */ = {isa = PBXBuildFile; fileRef = DC145DB52617BE4E00E1DB4D /* element_trait.h */; };
+		DC171BDB27864EB9007094FE /* GTXLocalizedStringsManagerUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171BD927864EB9007094FE /* GTXLocalizedStringsManagerUtils.h */; };
+		DC171BDC27864EB9007094FE /* GTXLocalizedStringsManagerUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC171BDA27864EB9007094FE /* GTXLocalizedStringsManagerUtils.mm */; };
+		DC171BE927864FF3007094FE /* GTXOCRContrastCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171BDD27864FF2007094FE /* GTXOCRContrastCheck.h */; };
+		DC171BEA27864FF3007094FE /* GTXTreeIteratorContext.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171BDE27864FF2007094FE /* GTXTreeIteratorContext.h */; };
+		DC171BEB27864FF3007094FE /* GTXTreeIteratorContext.m in Sources */ = {isa = PBXBuildFile; fileRef = DC171BDF27864FF2007094FE /* GTXTreeIteratorContext.m */; };
+		DC171BEC27864FF3007094FE /* GTXLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171BE027864FF2007094FE /* GTXLogger.h */; };
+		DC171BED27864FF3007094FE /* GTXLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = DC171BE127864FF2007094FE /* GTXLogger.m */; };
+		DC171BEE27864FF3007094FE /* NSObject+GTXLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = DC171BE227864FF2007094FE /* NSObject+GTXLogging.m */; };
+		DC171BEF27864FF3007094FE /* NSObject+GTXLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171BE327864FF2007094FE /* NSObject+GTXLogging.h */; };
+		DC171BF027864FF3007094FE /* GTXLogProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = DC171BE427864FF2007094FE /* GTXLogProperty.m */; };
+		DC171BF127864FF3007094FE /* GTXTreeIteratorElement.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171BE527864FF2007094FE /* GTXTreeIteratorElement.h */; };
+		DC171BF227864FF3007094FE /* GTXOCRContrastCheck.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC171BE627864FF3007094FE /* GTXOCRContrastCheck.mm */; };
+		DC171BF327864FF3007094FE /* GTXLogProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171BE727864FF3007094FE /* GTXLogProperty.h */; };
+		DC171BF427864FF3007094FE /* GTXTreeIteratorElement.m in Sources */ = {isa = PBXBuildFile; fileRef = DC171BE827864FF3007094FE /* GTXTreeIteratorElement.m */; };
+		DC171C032786500A007094FE /* check_lookup.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171BF527865009007094FE /* check_lookup.h */; };
+		DC171C042786500A007094FE /* no_label_check.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC171BF627865009007094FE /* no_label_check.cc */; };
+		DC171C052786500A007094FE /* check_lookup.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC171BF727865009007094FE /* check_lookup.cc */; };
+		DC171C062786500A007094FE /* resource_id_generator.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171BF827865009007094FE /* resource_id_generator.h */; };
+		DC171C072786500A007094FE /* xml_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171BF927865009007094FE /* xml_utils.h */; };
+		DC171C082786500A007094FE /* nearest_ancestor_relation_resource_id_generator.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC171BFA27865009007094FE /* nearest_ancestor_relation_resource_id_generator.cc */; };
+		DC171C092786500A007094FE /* check_result_resource_similarity.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171BFB27865009007094FE /* check_result_resource_similarity.h */; };
+		DC171C0A2786500A007094FE /* locales.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171BFC27865009007094FE /* locales.h */; };
+		DC171C0B2786500A007094FE /* check_result_similarity.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171BFD2786500A007094FE /* check_result_similarity.h */; };
+		DC171C0C2786500A007094FE /* check_result_in_hierarchy.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171BFE2786500A007094FE /* check_result_in_hierarchy.h */; };
+		DC171C0D2786500A007094FE /* xml_utils.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC171BFF2786500A007094FE /* xml_utils.cc */; };
+		DC171C0E2786500A007094FE /* check_result_resource_similarity.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC171C002786500A007094FE /* check_result_resource_similarity.cc */; };
+		DC171C0F2786500A007094FE /* localized_string_ids.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171C012786500A007094FE /* localized_string_ids.h */; };
+		DC171C102786500A007094FE /* nearest_ancestor_relation_resource_id_generator.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171C022786500A007094FE /* nearest_ancestor_relation_resource_id_generator.h */; };
+		DC171C1A2786501D007094FE /* metadata_map.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171C112786501D007094FE /* metadata_map.h */; };
+		DC171C1B2786501D007094FE /* check_result_clustering.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171C122786501D007094FE /* check_result_clustering.h */; };
+		DC171C1C2786501D007094FE /* check_result_clustering.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC171C132786501D007094FE /* check_result_clustering.cc */; };
+		DC171C1D2786501D007094FE /* accessibility_hierarchy_searching.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC171C142786501D007094FE /* accessibility_hierarchy_searching.cc */; };
+		DC171C1E2786501D007094FE /* result.pb.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC171C152786501D007094FE /* result.pb.cc */; };
+		DC171C1F2786501D007094FE /* result.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171C162786501D007094FE /* result.pb.h */; };
+		DC171C202786501D007094FE /* result.proto in Sources */ = {isa = PBXBuildFile; fileRef = DC171C172786501D007094FE /* result.proto */; };
+		DC171C212786501D007094FE /* accessibility_hierarchy_searching.h in Headers */ = {isa = PBXBuildFile; fileRef = DC171C182786501D007094FE /* accessibility_hierarchy_searching.h */; };
+		DC171C222786501D007094FE /* metadata_map.cc in Sources */ = {isa = PBXBuildFile; fileRef = DC171C192786501D007094FE /* metadata_map.cc */; };
+		DC6E984A2617BB2B00B760E8 /* GTXImageRGBAData+GTXOOPAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC6E983F2617BB2B00B760E8 /* GTXImageRGBAData+GTXOOPAdditions.mm */; };
+		DC6E984B2617BB2B00B760E8 /* NSString+GTXAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = DC6E98402617BB2B00B760E8 /* NSString+GTXAdditions.h */; };
+		DC6E984C2617BB2B00B760E8 /* GTXToolKit+GTXOOPAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = DC6E98412617BB2B00B760E8 /* GTXToolKit+GTXOOPAdditions.h */; };
+		DC6E984D2617BB2B00B760E8 /* NSObject+GTXAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = DC6E98422617BB2B00B760E8 /* NSObject+GTXAdditions.h */; };
+		DC6E984E2617BB2B00B760E8 /* UIColor+GTXOOPAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC6E98432617BB2B00B760E8 /* UIColor+GTXOOPAdditions.mm */; };
+		DC6E984F2617BB2B00B760E8 /* GTXImageRGBAData+GTXOOPAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = DC6E98442617BB2B00B760E8 /* GTXImageRGBAData+GTXOOPAdditions.h */; };
+		DC6E98502617BB2B00B760E8 /* UIColor+GTXOOPAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = DC6E98452617BB2B00B760E8 /* UIColor+GTXOOPAdditions.h */; };
+		DC6E98512617BB2B00B760E8 /* GTXProtoUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = DC6E98462617BB2B00B760E8 /* GTXProtoUtils.h */; };
+		DC6E98522617BB2B00B760E8 /* NSObject+GTXAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC6E98472617BB2B00B760E8 /* NSObject+GTXAdditions.mm */; };
+		DC6E98532617BB2B00B760E8 /* NSString+GTXAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC6E98482617BB2B00B760E8 /* NSString+GTXAdditions.mm */; };
+		DC6E98542617BB2B00B760E8 /* GTXProtoUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = DC6E98492617BB2B00B760E8 /* GTXProtoUtils.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,6 +269,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2EEE861A7DDE5FF9E25B6B26 /* libPods-GTXiLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GTXiLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		610CA3FB204DFC76008BAAA1 /* GTXPluginXCTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXPluginXCTestCase.h; path = Classes/GTXPluginXCTestCase.h; sourceTree = SOURCE_ROOT; };
 		610CA3FC204DFC76008BAAA1 /* GTXPluginXCTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXPluginXCTestCase.m; path = Classes/GTXPluginXCTestCase.m; sourceTree = SOURCE_ROOT; };
 		6115E786204F5BA2003E32F9 /* GTXiUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GTXiUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,7 +286,6 @@
 		6133087C23FF2F53003F8D41 /* GTXReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXReport.m; path = Classes/GTXReport.m; sourceTree = SOURCE_ROOT; };
 		6133088023FF2F53003F8D41 /* GTXReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXReport.h; path = Classes/GTXReport.h; sourceTree = SOURCE_ROOT; };
 		613C3F41204A09E8007D44A8 /* GTXiLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GTXiLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		616FDEC725BF49EB00CCCAD5 /* GTXImageRGBAData+GTXOOPAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "GTXImageRGBAData+GTXOOPAdditions.mm"; path = "Classes/GTXImageRGBAData+GTXOOPAdditions.mm"; sourceTree = SOURCE_ROOT; };
 		616FDEC825BF49EB00CCCAD5 /* GTXXCUIElementProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXXCUIElementProxy.h; path = Classes/GTXXCUIElementProxy.h; sourceTree = SOURCE_ROOT; };
 		616FDEC925BF49EB00CCCAD5 /* GTXSwizzler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXSwizzler.m; path = Classes/GTXSwizzler.m; sourceTree = SOURCE_ROOT; };
 		616FDECA25BF49EB00CCCAD5 /* GTXXCUIElementQueryProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXXCUIElementQueryProxy.h; path = Classes/GTXXCUIElementQueryProxy.h; sourceTree = SOURCE_ROOT; };
@@ -253,27 +295,19 @@
 		616FDECE25BF49EB00CCCAD5 /* GTXXCUIApplicationProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXXCUIApplicationProxy.h; path = Classes/GTXXCUIApplicationProxy.h; sourceTree = SOURCE_ROOT; };
 		616FDECF25BF49EB00CCCAD5 /* GTXToolKit.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GTXToolKit.mm; path = Classes/GTXToolKit.mm; sourceTree = SOURCE_ROOT; };
 		616FDED025BF49EB00CCCAD5 /* GTXExcludeListFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXExcludeListFactory.h; path = Classes/GTXExcludeListFactory.h; sourceTree = SOURCE_ROOT; };
-		616FDED125BF49EB00CCCAD5 /* UIColor+GTXOOPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+GTXOOPAdditions.h"; path = "Classes/UIColor+GTXOOPAdditions.h"; sourceTree = SOURCE_ROOT; };
-		616FDED225BF49EB00CCCAD5 /* GTXImageRGBAData+GTXOOPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GTXImageRGBAData+GTXOOPAdditions.h"; path = "Classes/GTXImageRGBAData+GTXOOPAdditions.h"; sourceTree = SOURCE_ROOT; };
 		616FDED325BF49EC00CCCAD5 /* GTXCheckResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXCheckResult.m; path = Classes/GTXCheckResult.m; sourceTree = SOURCE_ROOT; };
-		616FDED425BF49EC00CCCAD5 /* GTXToolKit+GTXOOPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GTXToolKit+GTXOOPAdditions.h"; path = "Classes/GTXToolKit+GTXOOPAdditions.h"; sourceTree = SOURCE_ROOT; };
 		616FDED525BF49EC00CCCAD5 /* GTXExcludeListBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXExcludeListBlock.h; path = Classes/GTXExcludeListBlock.h; sourceTree = SOURCE_ROOT; };
-		616FDED625BF49EC00CCCAD5 /* NSObject+GTXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+GTXAdditions.h"; path = "Classes/NSObject+GTXAdditions.h"; sourceTree = SOURCE_ROOT; };
 		616FDED725BF49EC00CCCAD5 /* GTXXCUIElementProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXXCUIElementProxy.m; path = Classes/GTXXCUIElementProxy.m; sourceTree = SOURCE_ROOT; };
-		616FDED825BF49EC00CCCAD5 /* UIColor+GTXOOPAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "UIColor+GTXOOPAdditions.mm"; path = "Classes/UIColor+GTXOOPAdditions.mm"; sourceTree = SOURCE_ROOT; };
 		616FDED925BF49EC00CCCAD5 /* GTXHierarchyResultCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXHierarchyResultCollection.h; path = Classes/GTXHierarchyResultCollection.h; sourceTree = SOURCE_ROOT; };
 		616FDEDA25BF49EC00CCCAD5 /* GTXXCUIApplicationProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXXCUIApplicationProxy.m; path = Classes/GTXXCUIApplicationProxy.m; sourceTree = SOURCE_ROOT; };
 		616FDEDB25BF49EC00CCCAD5 /* GTXElementReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXElementReference.m; path = Classes/GTXElementReference.m; sourceTree = SOURCE_ROOT; };
 		616FDEDC25BF49EC00CCCAD5 /* GTXHierarchyResultCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXHierarchyResultCollection.m; path = Classes/GTXHierarchyResultCollection.m; sourceTree = SOURCE_ROOT; };
 		616FDEDD25BF49EC00CCCAD5 /* GTXExcludeListFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXExcludeListFactory.m; path = Classes/GTXExcludeListFactory.m; sourceTree = SOURCE_ROOT; };
-		616FDEDE25BF49EC00CCCAD5 /* NSString+GTXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+GTXAdditions.h"; path = "Classes/NSString+GTXAdditions.h"; sourceTree = SOURCE_ROOT; };
-		616FDEDF25BF49EC00CCCAD5 /* NSString+GTXAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "NSString+GTXAdditions.mm"; path = "Classes/NSString+GTXAdditions.mm"; sourceTree = SOURCE_ROOT; };
 		616FDEE025BF49EC00CCCAD5 /* GTXElementResultCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXElementResultCollection.m; path = Classes/GTXElementResultCollection.m; sourceTree = SOURCE_ROOT; };
 		616FDEE125BF49EC00CCCAD5 /* GTXImageAndColorUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GTXImageAndColorUtils.mm; path = Classes/GTXImageAndColorUtils.mm; sourceTree = SOURCE_ROOT; };
 		616FDEE225BF49EC00CCCAD5 /* GTXXCUIElementQueryProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXXCUIElementQueryProxy.m; path = Classes/GTXXCUIElementQueryProxy.m; sourceTree = SOURCE_ROOT; };
 		616FDEE325BF49EC00CCCAD5 /* GTXExcludeListBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXExcludeListBlock.m; path = Classes/GTXExcludeListBlock.m; sourceTree = SOURCE_ROOT; };
 		616FDEE425BF49EC00CCCAD5 /* GTXElementReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXElementReference.h; path = Classes/GTXElementReference.h; sourceTree = SOURCE_ROOT; };
-		616FDEE525BF49EC00CCCAD5 /* NSObject+GTXAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "NSObject+GTXAdditions.mm"; path = "Classes/NSObject+GTXAdditions.mm"; sourceTree = SOURCE_ROOT; };
 		616FDEE625BF49EC00CCCAD5 /* GTXCheckResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXCheckResult.h; path = Classes/GTXCheckResult.h; sourceTree = SOURCE_ROOT; };
 		616FDF1125BF4ACA00CCCAD5 /* GTXTestApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GTXTestApp-Info.plist"; path = "Tests/Common/TestApp/GTXTestApp-Info.plist"; sourceTree = SOURCE_ROOT; };
 		616FDF1225BF4ACA00CCCAD5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Tests/Common/TestApp/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
@@ -310,7 +344,7 @@
 		616FDF6825BF4BB400CCCAD5 /* GTXTestGtxCanIgnoreElementsOnSpecificCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestGtxCanIgnoreElementsOnSpecificCheck.m; path = Tests/GTXTests/FunctionalTests/GTXTestGtxCanIgnoreElementsOnSpecificCheck.m; sourceTree = SOURCE_ROOT; };
 		616FDF6925BF4BB400CCCAD5 /* GTXTestAnalyticsCanBeDisabled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestAnalyticsCanBeDisabled.m; path = Tests/GTXTests/FunctionalTests/GTXTestAnalyticsCanBeDisabled.m; sourceTree = SOURCE_ROOT; };
 		616FDF6A25BF4BB400CCCAD5 /* GTXTestAnalyticsBaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXTestAnalyticsBaseTest.h; path = Tests/GTXTests/FunctionalTests/GTXTestAnalyticsBaseTest.h; sourceTree = SOURCE_ROOT; };
-		616FDF6B25BF4BB400CCCAD5 /* GTXTestGtxCanWhitelistTestCases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestGtxCanWhitelistTestCases.m; path = Tests/GTXTests/FunctionalTests/GTXTestGtxCanWhitelistTestCases.m; sourceTree = SOURCE_ROOT; };
+		616FDF6B25BF4BB400CCCAD5 /* GTXTestGtxCanAllowlistTestCases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestGtxCanAllowlistTestCases.m; path = Tests/GTXTests/FunctionalTests/GTXTestGtxCanAllowlistTestCases.m; sourceTree = SOURCE_ROOT; };
 		616FDF6C25BF4BB400CCCAD5 /* GTXTestFailingClassFailCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestFailingClassFailCheck.m; path = Tests/GTXTests/FunctionalTests/GTXTestFailingClassFailCheck.m; sourceTree = SOURCE_ROOT; };
 		616FDF6D25BF4BB400CCCAD5 /* GTXTestGtxCanExcludeListTestCases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestGtxCanExcludeListTestCases.m; path = Tests/GTXTests/FunctionalTests/GTXTestGtxCanExcludeListTestCases.m; sourceTree = SOURCE_ROOT; };
 		616FDF6E25BF4BB400CCCAD5 /* GTXTestAnalyticsBaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestAnalyticsBaseTest.m; path = Tests/GTXTests/FunctionalTests/GTXTestAnalyticsBaseTest.m; sourceTree = SOURCE_ROOT; };
@@ -335,9 +369,7 @@
 		616FDF9A25BF4C3B00CCCAD5 /* XCUIElement+GTXTestAdditions.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "XCUIElement+GTXTestAdditions.mm"; path = "Tests/Common/OOPTestLib/XCUIElement+GTXTestAdditions.mm"; sourceTree = SOURCE_ROOT; };
 		616FDFA425BF4CFE00CCCAD5 /* GTXOOPIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GTXOOPIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		616FDFC225BF4DAD00CCCAD5 /* gtx.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; name = gtx.proto; path = OOPClasses/Protos/gtx.proto; sourceTree = SOURCE_ROOT; };
-		616FDFC325BF4DC400CCCAD5 /* ui_element.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ui_element.h; path = OOPClasses/ui_element.h; sourceTree = SOURCE_ROOT; };
 		616FDFC425BF4DC400CCCAD5 /* localized_strings_manager.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = localized_strings_manager.cc; path = OOPClasses/localized_strings_manager.cc; sourceTree = SOURCE_ROOT; };
-		616FDFC525BF4DC400CCCAD5 /* check_result.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = check_result.cc; path = OOPClasses/check_result.cc; sourceTree = SOURCE_ROOT; };
 		616FDFC625BF4DC400CCCAD5 /* no_label_check.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = no_label_check.h; path = OOPClasses/no_label_check.h; sourceTree = SOURCE_ROOT; };
 		616FDFC725BF4DC400CCCAD5 /* parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = parameters.h; path = OOPClasses/parameters.h; sourceTree = SOURCE_ROOT; };
 		616FDFC825BF4DC400CCCAD5 /* gtx_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gtx_types.h; path = OOPClasses/gtx_types.h; sourceTree = SOURCE_ROOT; };
@@ -350,7 +382,6 @@
 		616FDFCF25BF4DC400CCCAD5 /* toolkit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = toolkit.h; path = OOPClasses/toolkit.h; sourceTree = SOURCE_ROOT; };
 		616FDFD025BF4DC400CCCAD5 /* toolkit.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = toolkit.cc; path = OOPClasses/toolkit.cc; sourceTree = SOURCE_ROOT; };
 		616FDFD125BF4DC500CCCAD5 /* gtx_types.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gtx_types.cc; path = OOPClasses/gtx_types.cc; sourceTree = SOURCE_ROOT; };
-		616FDFD225BF4DC500CCCAD5 /* ui_element.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ui_element.cc; path = OOPClasses/ui_element.cc; sourceTree = SOURCE_ROOT; };
 		616FDFD325BF4DC500CCCAD5 /* contrast_check.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = contrast_check.cc; path = OOPClasses/contrast_check.cc; sourceTree = SOURCE_ROOT; };
 		616FDFD425BF4DC500CCCAD5 /* accessibility_label_not_punctuated_check.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = accessibility_label_not_punctuated_check.cc; path = OOPClasses/accessibility_label_not_punctuated_check.cc; sourceTree = SOURCE_ROOT; };
 		616FDFD525BF4DC500CCCAD5 /* contrast_swatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = contrast_swatch.h; path = OOPClasses/contrast_swatch.h; sourceTree = SOURCE_ROOT; };
@@ -362,7 +393,6 @@
 		616FDFDB25BF4DC500CCCAD5 /* check.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = check.h; path = OOPClasses/check.h; sourceTree = SOURCE_ROOT; };
 		616FDFDC25BF4DC500CCCAD5 /* minimum_tappable_area_check.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = minimum_tappable_area_check.h; path = OOPClasses/minimum_tappable_area_check.h; sourceTree = SOURCE_ROOT; };
 		616FDFDD25BF4DC500CCCAD5 /* contrast_check.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = contrast_check.h; path = OOPClasses/contrast_check.h; sourceTree = SOURCE_ROOT; };
-		616FDFDE25BF4DC500CCCAD5 /* check_result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = check_result.h; path = OOPClasses/check_result.h; sourceTree = SOURCE_ROOT; };
 		616FDFDF25BF4DC500CCCAD5 /* string_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = string_utils.h; path = OOPClasses/string_utils.h; sourceTree = SOURCE_ROOT; };
 		616FDFE025BF4DC500CCCAD5 /* element_type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = element_type.h; path = OOPClasses/element_type.h; sourceTree = SOURCE_ROOT; };
 		616FE00425BF4DF700CCCAD5 /* gtx.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gtx.pb.h; path = OOPClasses/Protos/gtx.pb.h; sourceTree = SOURCE_ROOT; };
@@ -381,7 +411,6 @@
 		61ABAE92204A0B03006DBF0A /* GTXTestSuite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestSuite.m; path = Classes/GTXTestSuite.m; sourceTree = SOURCE_ROOT; };
 		61ABAE93204A0B03006DBF0A /* GTXAccessibilityTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXAccessibilityTree.h; path = Classes/GTXAccessibilityTree.h; sourceTree = SOURCE_ROOT; };
 		61ABAE94204A0B03006DBF0A /* GTXCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXCommon.h; path = Classes/GTXCommon.h; sourceTree = SOURCE_ROOT; };
-		61ABAE95204A0B03006DBF0A /* GTXLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXLogging.h; path = Classes/GTXLogging.h; sourceTree = SOURCE_ROOT; };
 		61ABAE96204A0B03006DBF0A /* GTXAnalyticsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXAnalyticsUtils.m; path = Classes/GTXAnalyticsUtils.m; sourceTree = SOURCE_ROOT; };
 		61ABAE97204A0B04006DBF0A /* GTXChecking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXChecking.h; path = Classes/GTXChecking.h; sourceTree = SOURCE_ROOT; };
 		61ABAE99204A0B04006DBF0A /* GTXTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTestCase.m; path = Classes/GTXTestCase.m; sourceTree = SOURCE_ROOT; };
@@ -404,6 +433,65 @@
 		61B7F4A2204A15D30062DF65 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		61CC44AE25C0CAE600CF632A /* GTXUITestBaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXUITestBaseTest.h; path = Tests/Common/OOPTestLib/GTXUITestBaseTest.h; sourceTree = SOURCE_ROOT; };
 		61CC44AF25C0CAE600CF632A /* GTXUITestBaseTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GTXUITestBaseTest.mm; path = Tests/Common/OOPTestLib/GTXUITestBaseTest.mm; sourceTree = SOURCE_ROOT; };
+		A429390C2DBEEB51ABAC74BB /* Pods-GTXiLib.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTXiLib.release.xcconfig"; path = "Target Support Files/Pods-GTXiLib/Pods-GTXiLib.release.xcconfig"; sourceTree = "<group>"; };
+		DC145DA22617BE4300E1DB4D /* enums.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = enums.pb.cc; path = OOPClasses/Protos/enums.pb.cc; sourceTree = SOURCE_ROOT; };
+		DC145DA32617BE4300E1DB4D /* enums.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; name = enums.proto; path = OOPClasses/Protos/enums.proto; sourceTree = SOURCE_ROOT; };
+		DC145DA42617BE4300E1DB4D /* proto_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = proto_utils.h; path = OOPClasses/Protos/proto_utils.h; sourceTree = SOURCE_ROOT; };
+		DC145DA52617BE4300E1DB4D /* proto_utils.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = proto_utils.cc; path = OOPClasses/Protos/proto_utils.cc; sourceTree = SOURCE_ROOT; };
+		DC145DA62617BE4300E1DB4D /* typedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = typedefs.h; path = OOPClasses/Protos/typedefs.h; sourceTree = SOURCE_ROOT; };
+		DC145DA72617BE4300E1DB4D /* enums.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enums.pb.h; path = OOPClasses/Protos/enums.pb.h; sourceTree = SOURCE_ROOT; };
+		DC145DB52617BE4E00E1DB4D /* element_trait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = element_trait.h; path = OOPClasses/element_trait.h; sourceTree = SOURCE_ROOT; };
+		DC145DBF2617BE6D00E1DB4D /* XCUIElement+GTXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCUIElement+GTXAdditions.h"; sourceTree = "<group>"; };
+		DC145DC02617BE6D00E1DB4D /* XCUIElement+GTXAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "XCUIElement+GTXAdditions.mm"; sourceTree = "<group>"; };
+		DC171BD927864EB9007094FE /* GTXLocalizedStringsManagerUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTXLocalizedStringsManagerUtils.h; sourceTree = "<group>"; };
+		DC171BDA27864EB9007094FE /* GTXLocalizedStringsManagerUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GTXLocalizedStringsManagerUtils.mm; sourceTree = "<group>"; };
+		DC171BDD27864FF2007094FE /* GTXOCRContrastCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXOCRContrastCheck.h; path = Classes/GTXOCRContrastCheck.h; sourceTree = SOURCE_ROOT; };
+		DC171BDE27864FF2007094FE /* GTXTreeIteratorContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXTreeIteratorContext.h; path = Classes/GTXTreeIteratorContext.h; sourceTree = SOURCE_ROOT; };
+		DC171BDF27864FF2007094FE /* GTXTreeIteratorContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTreeIteratorContext.m; path = Classes/GTXTreeIteratorContext.m; sourceTree = SOURCE_ROOT; };
+		DC171BE027864FF2007094FE /* GTXLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXLogger.h; path = Classes/GTXLogger.h; sourceTree = SOURCE_ROOT; };
+		DC171BE127864FF2007094FE /* GTXLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXLogger.m; path = Classes/GTXLogger.m; sourceTree = SOURCE_ROOT; };
+		DC171BE227864FF2007094FE /* NSObject+GTXLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+GTXLogging.m"; path = "Classes/NSObject+GTXLogging.m"; sourceTree = SOURCE_ROOT; };
+		DC171BE327864FF2007094FE /* NSObject+GTXLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+GTXLogging.h"; path = "Classes/NSObject+GTXLogging.h"; sourceTree = SOURCE_ROOT; };
+		DC171BE427864FF2007094FE /* GTXLogProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXLogProperty.m; path = Classes/GTXLogProperty.m; sourceTree = SOURCE_ROOT; };
+		DC171BE527864FF2007094FE /* GTXTreeIteratorElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXTreeIteratorElement.h; path = Classes/GTXTreeIteratorElement.h; sourceTree = SOURCE_ROOT; };
+		DC171BE627864FF3007094FE /* GTXOCRContrastCheck.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GTXOCRContrastCheck.mm; path = Classes/GTXOCRContrastCheck.mm; sourceTree = SOURCE_ROOT; };
+		DC171BE727864FF3007094FE /* GTXLogProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTXLogProperty.h; path = Classes/GTXLogProperty.h; sourceTree = SOURCE_ROOT; };
+		DC171BE827864FF3007094FE /* GTXTreeIteratorElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTXTreeIteratorElement.m; path = Classes/GTXTreeIteratorElement.m; sourceTree = SOURCE_ROOT; };
+		DC171BF527865009007094FE /* check_lookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = check_lookup.h; path = OOPClasses/check_lookup.h; sourceTree = SOURCE_ROOT; };
+		DC171BF627865009007094FE /* no_label_check.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = no_label_check.cc; path = OOPClasses/no_label_check.cc; sourceTree = SOURCE_ROOT; };
+		DC171BF727865009007094FE /* check_lookup.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = check_lookup.cc; path = OOPClasses/check_lookup.cc; sourceTree = SOURCE_ROOT; };
+		DC171BF827865009007094FE /* resource_id_generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource_id_generator.h; path = OOPClasses/resource_id_generator.h; sourceTree = SOURCE_ROOT; };
+		DC171BF927865009007094FE /* xml_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xml_utils.h; path = OOPClasses/xml_utils.h; sourceTree = SOURCE_ROOT; };
+		DC171BFA27865009007094FE /* nearest_ancestor_relation_resource_id_generator.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = nearest_ancestor_relation_resource_id_generator.cc; path = OOPClasses/nearest_ancestor_relation_resource_id_generator.cc; sourceTree = SOURCE_ROOT; };
+		DC171BFB27865009007094FE /* check_result_resource_similarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = check_result_resource_similarity.h; path = OOPClasses/check_result_resource_similarity.h; sourceTree = SOURCE_ROOT; };
+		DC171BFC27865009007094FE /* locales.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = locales.h; path = OOPClasses/locales.h; sourceTree = SOURCE_ROOT; };
+		DC171BFD2786500A007094FE /* check_result_similarity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = check_result_similarity.h; path = OOPClasses/check_result_similarity.h; sourceTree = SOURCE_ROOT; };
+		DC171BFE2786500A007094FE /* check_result_in_hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = check_result_in_hierarchy.h; path = OOPClasses/check_result_in_hierarchy.h; sourceTree = SOURCE_ROOT; };
+		DC171BFF2786500A007094FE /* xml_utils.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xml_utils.cc; path = OOPClasses/xml_utils.cc; sourceTree = SOURCE_ROOT; };
+		DC171C002786500A007094FE /* check_result_resource_similarity.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = check_result_resource_similarity.cc; path = OOPClasses/check_result_resource_similarity.cc; sourceTree = SOURCE_ROOT; };
+		DC171C012786500A007094FE /* localized_string_ids.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = localized_string_ids.h; path = OOPClasses/localized_string_ids.h; sourceTree = SOURCE_ROOT; };
+		DC171C022786500A007094FE /* nearest_ancestor_relation_resource_id_generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nearest_ancestor_relation_resource_id_generator.h; path = OOPClasses/nearest_ancestor_relation_resource_id_generator.h; sourceTree = SOURCE_ROOT; };
+		DC171C112786501D007094FE /* metadata_map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = metadata_map.h; path = OOPClasses/Protos/metadata_map.h; sourceTree = SOURCE_ROOT; };
+		DC171C122786501D007094FE /* check_result_clustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = check_result_clustering.h; path = OOPClasses/Protos/check_result_clustering.h; sourceTree = SOURCE_ROOT; };
+		DC171C132786501D007094FE /* check_result_clustering.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = check_result_clustering.cc; path = OOPClasses/Protos/check_result_clustering.cc; sourceTree = SOURCE_ROOT; };
+		DC171C142786501D007094FE /* accessibility_hierarchy_searching.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = accessibility_hierarchy_searching.cc; path = OOPClasses/Protos/accessibility_hierarchy_searching.cc; sourceTree = SOURCE_ROOT; };
+		DC171C152786501D007094FE /* result.pb.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = result.pb.cc; path = OOPClasses/Protos/result.pb.cc; sourceTree = SOURCE_ROOT; };
+		DC171C162786501D007094FE /* result.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = result.pb.h; path = OOPClasses/Protos/result.pb.h; sourceTree = SOURCE_ROOT; };
+		DC171C172786501D007094FE /* result.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; name = result.proto; path = OOPClasses/Protos/result.proto; sourceTree = SOURCE_ROOT; };
+		DC171C182786501D007094FE /* accessibility_hierarchy_searching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = accessibility_hierarchy_searching.h; path = OOPClasses/Protos/accessibility_hierarchy_searching.h; sourceTree = SOURCE_ROOT; };
+		DC171C192786501D007094FE /* metadata_map.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = metadata_map.cc; path = OOPClasses/Protos/metadata_map.cc; sourceTree = SOURCE_ROOT; };
+		DC6E983F2617BB2B00B760E8 /* GTXImageRGBAData+GTXOOPAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "GTXImageRGBAData+GTXOOPAdditions.mm"; sourceTree = "<group>"; };
+		DC6E98402617BB2B00B760E8 /* NSString+GTXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GTXAdditions.h"; sourceTree = "<group>"; };
+		DC6E98412617BB2B00B760E8 /* GTXToolKit+GTXOOPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTXToolKit+GTXOOPAdditions.h"; sourceTree = "<group>"; };
+		DC6E98422617BB2B00B760E8 /* NSObject+GTXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GTXAdditions.h"; sourceTree = "<group>"; };
+		DC6E98432617BB2B00B760E8 /* UIColor+GTXOOPAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIColor+GTXOOPAdditions.mm"; sourceTree = "<group>"; };
+		DC6E98442617BB2B00B760E8 /* GTXImageRGBAData+GTXOOPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTXImageRGBAData+GTXOOPAdditions.h"; sourceTree = "<group>"; };
+		DC6E98452617BB2B00B760E8 /* UIColor+GTXOOPAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GTXOOPAdditions.h"; sourceTree = "<group>"; };
+		DC6E98462617BB2B00B760E8 /* GTXProtoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTXProtoUtils.h; sourceTree = "<group>"; };
+		DC6E98472617BB2B00B760E8 /* NSObject+GTXAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSObject+GTXAdditions.mm"; sourceTree = "<group>"; };
+		DC6E98482617BB2B00B760E8 /* NSString+GTXAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSString+GTXAdditions.mm"; sourceTree = "<group>"; };
+		DC6E98492617BB2B00B760E8 /* GTXProtoUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GTXProtoUtils.mm; sourceTree = "<group>"; };
+		FD366890DD133FF034DC5C4A /* Pods-GTXiLib.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GTXiLib.debug.xcconfig"; path = "Target Support Files/Pods-GTXiLib/Pods-GTXiLib.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -433,6 +521,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				387C9786A3C1D45B6E6B81A6 /* libPods-GTXiLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,12 +553,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		55B785DD3623EBFEA15F0A16 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FD366890DD133FF034DC5C4A /* Pods-GTXiLib.debug.xcconfig */,
+				A429390C2DBEEB51ABAC74BB /* Pods-GTXiLib.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		613C3F37204A09E7007D44A8 = {
 			isa = PBXGroup;
 			children = (
 				613C3F43204A09E8007D44A8 /* GTXiLib */,
 				613C3F42204A09E8007D44A8 /* Products */,
 				61B7F4A1204A15D30062DF65 /* Frameworks */,
+				55B785DD3623EBFEA15F0A16 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -607,7 +706,7 @@
 				616FDF6D25BF4BB400CCCAD5 /* GTXTestGtxCanExcludeListTestCases.m */,
 				616FDF6F25BF4BB400CCCAD5 /* GTXTestGtxCanIgnoreElements.m */,
 				616FDF6825BF4BB400CCCAD5 /* GTXTestGtxCanIgnoreElementsOnSpecificCheck.m */,
-				616FDF6B25BF4BB400CCCAD5 /* GTXTestGtxCanWhitelistTestCases.m */,
+				616FDF6B25BF4BB400CCCAD5 /* GTXTestGtxCanAllowlistTestCases.m */,
 				616FDF7525BF4BB400CCCAD5 /* GTXTestGtxWithDefaultChecks.m */,
 				616FDF7025BF4BB400CCCAD5 /* GTXTestGtxWorksForPassingTests.m */,
 			);
@@ -648,10 +747,23 @@
 		616FDFC025BF4D7E00CCCAD5 /* OOPClasses */ = {
 			isa = PBXGroup;
 			children = (
+				DC171BF727865009007094FE /* check_lookup.cc */,
+				DC171BF527865009007094FE /* check_lookup.h */,
+				DC171BFE2786500A007094FE /* check_result_in_hierarchy.h */,
+				DC171C002786500A007094FE /* check_result_resource_similarity.cc */,
+				DC171BFB27865009007094FE /* check_result_resource_similarity.h */,
+				DC171BFD2786500A007094FE /* check_result_similarity.h */,
+				DC171BFC27865009007094FE /* locales.h */,
+				DC171C012786500A007094FE /* localized_string_ids.h */,
+				DC171BFA27865009007094FE /* nearest_ancestor_relation_resource_id_generator.cc */,
+				DC171C022786500A007094FE /* nearest_ancestor_relation_resource_id_generator.h */,
+				DC171BF627865009007094FE /* no_label_check.cc */,
+				DC171BF827865009007094FE /* resource_id_generator.h */,
+				DC171BFF2786500A007094FE /* xml_utils.cc */,
+				DC171BF927865009007094FE /* xml_utils.h */,
+				DC145DB52617BE4E00E1DB4D /* element_trait.h */,
 				616FDFD425BF4DC500CCCAD5 /* accessibility_label_not_punctuated_check.cc */,
 				616FDFCA25BF4DC400CCCAD5 /* accessibility_label_not_punctuated_check.h */,
-				616FDFC525BF4DC400CCCAD5 /* check_result.cc */,
-				616FDFDE25BF4DC500CCCAD5 /* check_result.h */,
 				616FDFD825BF4DC500CCCAD5 /* check.cc */,
 				616FDFDB25BF4DC500CCCAD5 /* check.h */,
 				616FDFD325BF4DC500CCCAD5 /* contrast_check.cc */,
@@ -676,8 +788,6 @@
 				616FDFDF25BF4DC500CCCAD5 /* string_utils.h */,
 				616FDFD025BF4DC400CCCAD5 /* toolkit.cc */,
 				616FDFCF25BF4DC400CCCAD5 /* toolkit.h */,
-				616FDFD225BF4DC500CCCAD5 /* ui_element.cc */,
-				616FDFC325BF4DC400CCCAD5 /* ui_element.h */,
 				616FDFC125BF4D8D00CCCAD5 /* Protos */,
 			);
 			name = OOPClasses;
@@ -686,6 +796,21 @@
 		616FDFC125BF4D8D00CCCAD5 /* Protos */ = {
 			isa = PBXGroup;
 			children = (
+				DC171C142786501D007094FE /* accessibility_hierarchy_searching.cc */,
+				DC171C182786501D007094FE /* accessibility_hierarchy_searching.h */,
+				DC171C132786501D007094FE /* check_result_clustering.cc */,
+				DC171C122786501D007094FE /* check_result_clustering.h */,
+				DC171C192786501D007094FE /* metadata_map.cc */,
+				DC171C112786501D007094FE /* metadata_map.h */,
+				DC171C152786501D007094FE /* result.pb.cc */,
+				DC171C162786501D007094FE /* result.pb.h */,
+				DC171C172786501D007094FE /* result.proto */,
+				DC145DA22617BE4300E1DB4D /* enums.pb.cc */,
+				DC145DA72617BE4300E1DB4D /* enums.pb.h */,
+				DC145DA32617BE4300E1DB4D /* enums.proto */,
+				DC145DA52617BE4300E1DB4D /* proto_utils.cc */,
+				DC145DA42617BE4300E1DB4D /* proto_utils.h */,
+				DC145DA62617BE4300E1DB4D /* typedefs.h */,
 				616FE00525BF4DF700CCCAD5 /* gtx.pb.cc */,
 				616FE00425BF4DF700CCCAD5 /* gtx.pb.h */,
 				616FDFC225BF4DAD00CCCAD5 /* gtx.proto */,
@@ -696,6 +821,20 @@
 		61ABAE8D204A0AF1006DBF0A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DC171BE027864FF2007094FE /* GTXLogger.h */,
+				DC171BE127864FF2007094FE /* GTXLogger.m */,
+				DC171BE727864FF3007094FE /* GTXLogProperty.h */,
+				DC171BE427864FF2007094FE /* GTXLogProperty.m */,
+				DC171BDD27864FF2007094FE /* GTXOCRContrastCheck.h */,
+				DC171BE627864FF3007094FE /* GTXOCRContrastCheck.mm */,
+				DC171BDE27864FF2007094FE /* GTXTreeIteratorContext.h */,
+				DC171BDF27864FF2007094FE /* GTXTreeIteratorContext.m */,
+				DC171BE527864FF2007094FE /* GTXTreeIteratorElement.h */,
+				DC171BE827864FF3007094FE /* GTXTreeIteratorElement.m */,
+				DC171BE327864FF2007094FE /* NSObject+GTXLogging.h */,
+				DC171BE227864FF2007094FE /* NSObject+GTXLogging.m */,
+				DC145DBE2617BE6D00E1DB4D /* XCTest */,
+				DC6E983E2617BB2B00B760E8 /* ObjCPP */,
 				616FDEE625BF49EC00CCCAD5 /* GTXCheckResult.h */,
 				616FDED325BF49EC00CCCAD5 /* GTXCheckResult.m */,
 				616FDEE425BF49EC00CCCAD5 /* GTXElementReference.h */,
@@ -710,24 +849,15 @@
 				616FDED925BF49EC00CCCAD5 /* GTXHierarchyResultCollection.h */,
 				616FDEDC25BF49EC00CCCAD5 /* GTXHierarchyResultCollection.m */,
 				616FDEE125BF49EC00CCCAD5 /* GTXImageAndColorUtils.mm */,
-				616FDED225BF49EB00CCCAD5 /* GTXImageRGBAData+GTXOOPAdditions.h */,
-				616FDEC725BF49EB00CCCAD5 /* GTXImageRGBAData+GTXOOPAdditions.mm */,
 				616FDECC25BF49EB00CCCAD5 /* GTXSwizzler.h */,
 				616FDEC925BF49EB00CCCAD5 /* GTXSwizzler.m */,
 				616FDECF25BF49EB00CCCAD5 /* GTXToolKit.mm */,
-				616FDED425BF49EC00CCCAD5 /* GTXToolKit+GTXOOPAdditions.h */,
 				616FDECE25BF49EB00CCCAD5 /* GTXXCUIApplicationProxy.h */,
 				616FDEDA25BF49EC00CCCAD5 /* GTXXCUIApplicationProxy.m */,
 				616FDEC825BF49EB00CCCAD5 /* GTXXCUIElementProxy.h */,
 				616FDED725BF49EC00CCCAD5 /* GTXXCUIElementProxy.m */,
 				616FDECA25BF49EB00CCCAD5 /* GTXXCUIElementQueryProxy.h */,
 				616FDEE225BF49EC00CCCAD5 /* GTXXCUIElementQueryProxy.m */,
-				616FDED625BF49EC00CCCAD5 /* NSObject+GTXAdditions.h */,
-				616FDEE525BF49EC00CCCAD5 /* NSObject+GTXAdditions.mm */,
-				616FDEDE25BF49EC00CCCAD5 /* NSString+GTXAdditions.h */,
-				616FDEDF25BF49EC00CCCAD5 /* NSString+GTXAdditions.mm */,
-				616FDED125BF49EB00CCCAD5 /* UIColor+GTXOOPAdditions.h */,
-				616FDED825BF49EC00CCCAD5 /* UIColor+GTXOOPAdditions.mm */,
 				618E065D23FF412800BDD929 /* GTXResult.h */,
 				618E065E23FF412800BDD929 /* GTXResult.m */,
 				6133087723FF2F53003F8D41 /* GTXError.h */,
@@ -759,7 +889,6 @@
 				61ABAEA2204A0B06006DBF0A /* GTXImageAndColorUtils.h */,
 				61ABAE9C204A0B05006DBF0A /* GTXImageRGBAData.h */,
 				61ABAEAC204A0B0A006DBF0A /* GTXImageRGBAData.m */,
-				61ABAE95204A0B03006DBF0A /* GTXLogging.h */,
 				61284DD9211E437800F8FF29 /* GTXTestEnvironment.h */,
 				61284DD8211E437700F8FF29 /* GTXTestEnvironment.m */,
 				61ABAEA1204A0B06006DBF0A /* GTXTestCase.h */,
@@ -779,9 +908,41 @@
 				6121D2C925CDF4FF0081FAE0 /* CoreGraphics.framework */,
 				6121D2C725CDF4F70081FAE0 /* UIKit.framework */,
 				61B7F4A2204A15D30062DF65 /* XCTest.framework */,
+				2EEE861A7DDE5FF9E25B6B26 /* libPods-GTXiLib.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		DC145DBE2617BE6D00E1DB4D /* XCTest */ = {
+			isa = PBXGroup;
+			children = (
+				DC145DBF2617BE6D00E1DB4D /* XCUIElement+GTXAdditions.h */,
+				DC145DC02617BE6D00E1DB4D /* XCUIElement+GTXAdditions.mm */,
+			);
+			name = XCTest;
+			path = Classes/XCTest;
+			sourceTree = SOURCE_ROOT;
+		};
+		DC6E983E2617BB2B00B760E8 /* ObjCPP */ = {
+			isa = PBXGroup;
+			children = (
+				DC171BD927864EB9007094FE /* GTXLocalizedStringsManagerUtils.h */,
+				DC171BDA27864EB9007094FE /* GTXLocalizedStringsManagerUtils.mm */,
+				DC6E983F2617BB2B00B760E8 /* GTXImageRGBAData+GTXOOPAdditions.mm */,
+				DC6E98402617BB2B00B760E8 /* NSString+GTXAdditions.h */,
+				DC6E98412617BB2B00B760E8 /* GTXToolKit+GTXOOPAdditions.h */,
+				DC6E98422617BB2B00B760E8 /* NSObject+GTXAdditions.h */,
+				DC6E98432617BB2B00B760E8 /* UIColor+GTXOOPAdditions.mm */,
+				DC6E98442617BB2B00B760E8 /* GTXImageRGBAData+GTXOOPAdditions.h */,
+				DC6E98452617BB2B00B760E8 /* UIColor+GTXOOPAdditions.h */,
+				DC6E98462617BB2B00B760E8 /* GTXProtoUtils.h */,
+				DC6E98472617BB2B00B760E8 /* NSObject+GTXAdditions.mm */,
+				DC6E98482617BB2B00B760E8 /* NSString+GTXAdditions.mm */,
+				DC6E98492617BB2B00B760E8 /* GTXProtoUtils.mm */,
+			);
+			name = ObjCPP;
+			path = Classes/ObjCPP;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -796,31 +957,48 @@
 				616FDFE825BF4DC500CCCAD5 /* accessibility_label_not_punctuated_check.h in Headers */,
 				61284DDB211E437800F8FF29 /* GTXTestEnvironment.h in Headers */,
 				61ABAEB5204A0B0B006DBF0A /* GTXAccessibilityTree.h in Headers */,
+				DC171C0C2786500A007094FE /* check_result_in_hierarchy.h in Headers */,
 				61ABAECD204A0B0B006DBF0A /* GTXToolKit.h in Headers */,
 				616FDFF925BF4DC500CCCAD5 /* check.h in Headers */,
 				616FDEEC25BF49EC00CCCAD5 /* GTXSwizzler.h in Headers */,
+				DC171C0B2786500A007094FE /* check_result_similarity.h in Headers */,
 				616FDFE425BF4DC500CCCAD5 /* no_label_check.h in Headers */,
-				616FDEF225BF49EC00CCCAD5 /* GTXImageRGBAData+GTXOOPAdditions.h in Headers */,
+				DC171C0A2786500A007094FE /* locales.h in Headers */,
 				616FDFED25BF4DC500CCCAD5 /* toolkit.h in Headers */,
-				616FDFE125BF4DC500CCCAD5 /* ui_element.h in Headers */,
+				DC171C102786500A007094FE /* nearest_ancestor_relation_resource_id_generator.h in Headers */,
+				DC171BE927864FF3007094FE /* GTXOCRContrastCheck.h in Headers */,
 				616FDF0625BF49EC00CCCAD5 /* GTXCheckResult.h in Headers */,
+				DC171BDB27864EB9007094FE /* GTXLocalizedStringsManagerUtils.h in Headers */,
 				61ABAEC8204A0B0B006DBF0A /* NSError+GTXAdditions.h in Headers */,
+				DC171C062786500A007094FE /* resource_id_generator.h in Headers */,
+				DC171C072786500A007094FE /* xml_utils.h in Headers */,
 				6133088323FF2F53003F8D41 /* GTXError.h in Headers */,
+				DC145DAA2617BE4300E1DB4D /* proto_utils.h in Headers */,
+				DC145DAC2617BE4300E1DB4D /* typedefs.h in Headers */,
 				616FDEE825BF49EC00CCCAD5 /* GTXXCUIElementProxy.h in Headers */,
+				DC171C212786501D007094FE /* accessibility_hierarchy_searching.h in Headers */,
+				DC171C0F2786500A007094FE /* localized_string_ids.h in Headers */,
+				DC171C1A2786501D007094FE /* metadata_map.h in Headers */,
+				DC6E98512617BB2B00B760E8 /* GTXProtoUtils.h in Headers */,
 				61ABAEC4204A0B0B006DBF0A /* GTXImageAndColorUtils.h in Headers */,
 				61ABAEB6204A0B0B006DBF0A /* GTXCommon.h in Headers */,
 				61ABAEBD204A0B0B006DBF0A /* GTXAssertions.h in Headers */,
 				610CA3FD204DFC76008BAAA1 /* GTXPluginXCTestCase.h in Headers */,
 				61ABAECB204A0B0B006DBF0A /* GTXCheckBlock.h in Headers */,
+				DC171BEF27864FF3007094FE /* NSObject+GTXLogging.h in Headers */,
 				6133088223FF2F53003F8D41 /* UIColor+GTXAdditions.h in Headers */,
 				616FDFF725BF4DC500CCCAD5 /* localized_strings_manager.h in Headers */,
 				61ABAEB9204A0B0B006DBF0A /* GTXChecking.h in Headers */,
+				DC171C092786500A007094FE /* check_result_resource_similarity.h in Headers */,
+				DC171BF127864FF3007094FE /* GTXTreeIteratorElement.h in Headers */,
 				616FDEF925BF49EC00CCCAD5 /* GTXHierarchyResultCollection.h in Headers */,
+				DC171C1F2786501D007094FE /* result.pb.h in Headers */,
 				6133088C23FF2F53003F8D41 /* GTXReport.h in Headers */,
 				61ABAEBE204A0B0B006DBF0A /* GTXImageRGBAData.h in Headers */,
-				616FDFFC25BF4DC500CCCAD5 /* check_result.h in Headers */,
+				DC171BEA27864FF3007094FE /* GTXTreeIteratorContext.h in Headers */,
+				DC171C1B2786501D007094FE /* check_result_clustering.h in Headers */,
 				616FDFEA25BF4DC500CCCAD5 /* image_color_utils.h in Headers */,
-				616FDEF625BF49EC00CCCAD5 /* NSObject+GTXAdditions.h in Headers */,
+				DC6E984D2617BB2B00B760E8 /* NSObject+GTXAdditions.h in Headers */,
 				618E065F23FF412800BDD929 /* GTXResult.h in Headers */,
 				616FDFE525BF4DC500CCCAD5 /* parameters.h in Headers */,
 				616FDEF025BF49EC00CCCAD5 /* GTXExcludeListFactory.h in Headers */,
@@ -829,21 +1007,26 @@
 				61ABAEC3204A0B0B006DBF0A /* GTXTestCase.h in Headers */,
 				616FDF0425BF49EC00CCCAD5 /* GTXElementReference.h in Headers */,
 				616FDFF825BF4DC500CCCAD5 /* error_message.h in Headers */,
-				616FDEFE25BF49EC00CCCAD5 /* NSString+GTXAdditions.h in Headers */,
 				61ABAEB1204A0B0B006DBF0A /* GTXAnalytics.h in Headers */,
+				DC145DB62617BE4E00E1DB4D /* element_trait.h in Headers */,
+				DC6E984C2617BB2B00B760E8 /* GTXToolKit+GTXOOPAdditions.h in Headers */,
 				61A0C4E02061896300DF0169 /* GTXiLibCore.h in Headers */,
-				616FDEF125BF49EC00CCCAD5 /* UIColor+GTXOOPAdditions.h in Headers */,
+				DC171BEC27864FF3007094FE /* GTXLogger.h in Headers */,
 				616FDFFB25BF4DC500CCCAD5 /* contrast_check.h in Headers */,
+				DC171C032786500A007094FE /* check_lookup.h in Headers */,
 				616FE00625BF4DF700CCCAD5 /* gtx.pb.h in Headers */,
 				61A0C4DF2061896300DF0169 /* GTXiLib.h in Headers */,
 				61ABAECA204A0B0B006DBF0A /* GTXChecksCollection.h in Headers */,
 				616FDEED25BF49EC00CCCAD5 /* GTXElementResultCollection.h in Headers */,
+				DC171BF327864FF3007094FE /* GTXLogProperty.h in Headers */,
+				DC145DAD2617BE4300E1DB4D /* enums.pb.h in Headers */,
 				616FDFFE25BF4DC500CCCAD5 /* element_type.h in Headers */,
-				616FDEF425BF49EC00CCCAD5 /* GTXToolKit+GTXOOPAdditions.h in Headers */,
 				616FDEEA25BF49EC00CCCAD5 /* GTXXCUIElementQueryProxy.h in Headers */,
+				DC6E984F2617BB2B00B760E8 /* GTXImageRGBAData+GTXOOPAdditions.h in Headers */,
 				61ABAEC1204A0B0B006DBF0A /* GTXTestSuite.h in Headers */,
+				DC6E98502617BB2B00B760E8 /* UIColor+GTXOOPAdditions.h in Headers */,
+				DC6E984B2617BB2B00B760E8 /* NSString+GTXAdditions.h in Headers */,
 				616FDEEE25BF49EC00CCCAD5 /* GTXXCUIApplicationProxy.h in Headers */,
-				61ABAEB7204A0B0B006DBF0A /* GTXLogging.h in Headers */,
 				616FDFFD25BF4DC500CCCAD5 /* string_utils.h in Headers */,
 				616FDEF525BF49EC00CCCAD5 /* GTXExcludeListBlock.h in Headers */,
 				61ABAEB0204A0B0B006DBF0A /* GTXAnalyticsUtils.h in Headers */,
@@ -911,6 +1094,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 613C3F49204A09E8007D44A8 /* Build configuration list for PBXNativeTarget "GTXiLib" */;
 			buildPhases = (
+				767EDB6BD053639712740F18 /* [CP] Check Pods Manifest.lock */,
 				613C3F3C204A09E7007D44A8 /* Sources */,
 				613C3F3D204A09E7007D44A8 /* Frameworks */,
 				613C3F3E204A09E7007D44A8 /* Headers */,
@@ -1101,6 +1285,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		767EDB6BD053639712740F18 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GTXiLib-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6115E782204F5BA2003E32F9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1152,7 +1361,7 @@
 				616FDF7D25BF4BB400CCCAD5 /* GTXTestGtxWorksForPassingTests.m in Sources */,
 				616FDF8225BF4BB400CCCAD5 /* GTXTestGtxWithDefaultChecks.m in Sources */,
 				616FDF7925BF4BB400CCCAD5 /* GTXTestFailingClassFailCheck.m in Sources */,
-				616FDF7825BF4BB400CCCAD5 /* GTXTestGtxCanWhitelistTestCases.m in Sources */,
+				616FDF7825BF4BB400CCCAD5 /* GTXTestGtxCanAllowlistTestCases.m in Sources */,
 				616FDF8125BF4BB400CCCAD5 /* GTXTestBaseTest.m in Sources */,
 				616FDF7B25BF4BB400CCCAD5 /* GTXTestAnalyticsBaseTest.m in Sources */,
 			);
@@ -1162,49 +1371,68 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC171BF427864FF3007094FE /* GTXTreeIteratorElement.m in Sources */,
+				DC171C1D2786501D007094FE /* accessibility_hierarchy_searching.cc in Sources */,
 				616FE00725BF4DF700CCCAD5 /* gtx.pb.cc in Sources */,
+				DC145DA82617BE4300E1DB4D /* enums.pb.cc in Sources */,
 				61ABAEC6204A0B0B006DBF0A /* GTXChecksCollection.m in Sources */,
+				DC171BF227864FF3007094FE /* GTXOCRContrastCheck.mm in Sources */,
 				616FDFF425BF4DC500CCCAD5 /* image_color_utils.cc in Sources */,
-				616FDEFF25BF49EC00CCCAD5 /* NSString+GTXAdditions.mm in Sources */,
 				616FDFE225BF4DC500CCCAD5 /* localized_strings_manager.cc in Sources */,
+				DC6E98542617BB2B00B760E8 /* GTXProtoUtils.mm in Sources */,
+				DC171BDC27864EB9007094FE /* GTXLocalizedStringsManagerUtils.mm in Sources */,
+				DC145DAB2617BE4300E1DB4D /* proto_utils.cc in Sources */,
 				61ABAECC204A0B0B006DBF0A /* GTXErrorReporter.m in Sources */,
-				616FDEE725BF49EC00CCCAD5 /* GTXImageRGBAData+GTXOOPAdditions.mm in Sources */,
 				616FDEE925BF49EC00CCCAD5 /* GTXSwizzler.m in Sources */,
 				616FDFE725BF4DC500CCCAD5 /* string_utils.cc in Sources */,
 				616FDF0025BF49EC00CCCAD5 /* GTXElementResultCollection.m in Sources */,
 				61ABAEB4204A0B0B006DBF0A /* GTXTestSuite.m in Sources */,
-				616FDFE325BF4DC500CCCAD5 /* check_result.cc in Sources */,
+				DC6E98522617BB2B00B760E8 /* NSObject+GTXAdditions.mm in Sources */,
 				618E066023FF412800BDD929 /* GTXResult.m in Sources */,
 				616FDEFA25BF49EC00CCCAD5 /* GTXXCUIApplicationProxy.m in Sources */,
 				6133088123FF2F53003F8D41 /* UIColor+GTXAdditions.m in Sources */,
+				DC145DA92617BE4300E1DB4D /* enums.proto in Sources */,
 				61ABAEC9204A0B0B006DBF0A /* GTXAnalytics.m in Sources */,
-				616FDEF825BF49EC00CCCAD5 /* UIColor+GTXOOPAdditions.mm in Sources */,
+				DC6E984E2617BB2B00B760E8 /* UIColor+GTXOOPAdditions.mm in Sources */,
+				DC171C042786500A007094FE /* no_label_check.cc in Sources */,
 				610CA3FE204DFC76008BAAA1 /* GTXPluginXCTestCase.m in Sources */,
+				DC171C0D2786500A007094FE /* xml_utils.cc in Sources */,
 				61284DDA211E437800F8FF29 /* GTXTestEnvironment.m in Sources */,
+				DC171BED27864FF3007094FE /* GTXLogger.m in Sources */,
+				DC171C1E2786501D007094FE /* result.pb.cc in Sources */,
+				DC171BEB27864FF3007094FE /* GTXTreeIteratorContext.m in Sources */,
 				616FDFF125BF4DC500CCCAD5 /* contrast_check.cc in Sources */,
 				616FDEFD25BF49EC00CCCAD5 /* GTXExcludeListFactory.m in Sources */,
 				61ABAEB8204A0B0B006DBF0A /* GTXAnalyticsUtils.m in Sources */,
 				6133088623FF2F53003F8D41 /* GTXError.m in Sources */,
+				DC6E98532617BB2B00B760E8 /* NSString+GTXAdditions.mm in Sources */,
+				DC171C222786501D007094FE /* metadata_map.cc in Sources */,
 				616FDFEE25BF4DC500CCCAD5 /* toolkit.cc in Sources */,
 				616FDFF525BF4DC500CCCAD5 /* minimum_tappable_area_check.cc in Sources */,
 				616FDF0225BF49EC00CCCAD5 /* GTXXCUIElementQueryProxy.m in Sources */,
 				61ABAEBF204A0B0B006DBF0A /* NSError+GTXAdditions.m in Sources */,
+				DC171C202786501D007094FE /* result.proto in Sources */,
 				616FDEF325BF49EC00CCCAD5 /* GTXCheckResult.m in Sources */,
 				616FDF0325BF49EC00CCCAD5 /* GTXExcludeListBlock.m in Sources */,
 				61ABAEBC204A0B0B006DBF0A /* GTXAccessibilityTree.m in Sources */,
 				616FDFEC25BF4DC500CCCAD5 /* error_message.cc in Sources */,
 				616FDFEB25BF4DC500CCCAD5 /* contrast_swatch.cc in Sources */,
 				616FDEEF25BF49EC00CCCAD5 /* GTXToolKit.mm in Sources */,
-				616FDF0525BF49EC00CCCAD5 /* NSObject+GTXAdditions.mm in Sources */,
 				616FDFF225BF4DC500CCCAD5 /* accessibility_label_not_punctuated_check.cc in Sources */,
+				DC171BF027864FF3007094FE /* GTXLogProperty.m in Sources */,
 				616FDEFB25BF49EC00CCCAD5 /* GTXElementReference.m in Sources */,
 				61ABAEC0204A0B0B006DBF0A /* GTXCheckBlock.m in Sources */,
 				616FDFEF25BF4DC500CCCAD5 /* gtx_types.cc in Sources */,
+				DC171C052786500A007094FE /* check_lookup.cc in Sources */,
+				DC6E984A2617BB2B00B760E8 /* GTXImageRGBAData+GTXOOPAdditions.mm in Sources */,
+				DC171BEE27864FF3007094FE /* NSObject+GTXLogging.m in Sources */,
+				DC171C1C2786501D007094FE /* check_result_clustering.cc in Sources */,
 				616FDFF625BF4DC500CCCAD5 /* check.cc in Sources */,
 				61ABAEBB204A0B0B006DBF0A /* GTXTestCase.m in Sources */,
+				DC171C082786500A007094FE /* nearest_ancestor_relation_resource_id_generator.cc in Sources */,
 				616FDEF725BF49EC00CCCAD5 /* GTXXCUIElementProxy.m in Sources */,
 				616FDEFC25BF49EC00CCCAD5 /* GTXHierarchyResultCollection.m in Sources */,
-				616FDFF025BF4DC500CCCAD5 /* ui_element.cc in Sources */,
+				DC171C0E2786500A007094FE /* check_result_resource_similarity.cc in Sources */,
 				61ABAECE204A0B0B006DBF0A /* GTXImageRGBAData.m in Sources */,
 				616FDF0125BF49EC00CCCAD5 /* GTXImageAndColorUtils.mm in Sources */,
 				616FDFE925BF4DC500CCCAD5 /* parameters.cc in Sources */,
@@ -1503,6 +1731,7 @@
 		};
 		613C3F4A204A09E8007D44A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD366890DD133FF034DC5C4A /* Pods-GTXiLib.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
@@ -1522,6 +1751,7 @@
 		};
 		613C3F4B204A09E8007D44A8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A429390C2DBEEB51ABAC74BB /* Pods-GTXiLib.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;

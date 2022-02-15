@@ -17,12 +17,13 @@
 #ifndef GTXILIB_OOPCLASSES_TOOLKIT_H_
 #define GTXILIB_OOPCLASSES_TOOLKIT_H_
 
+#include <memory>
+#include <string>
 #include <vector>
 
+#include "typedefs.h"
 #include "check.h"
-#include "check_result.h"
 #include "parameters.h"
-#include "ui_element.h"
 
 namespace gtx {
 
@@ -36,25 +37,30 @@ class Toolkit {
   static std::unique_ptr<Toolkit> ToolkitWithAllDefaultChecks();
 
   // Registers the given check to be executed on all elements this instance is
-  // used on, registering checks with the same name throws an assertion.
-  void RegisterCheck(std::unique_ptr<Check> &check);
+  // used on, unless a check with the new check's name already exists. Returns
+  // true if the check is registered successfully, false otherwise.
+  bool RegisterCheck(std::unique_ptr<Check> &check);
 
   // Returns a const reference to check that has been registered under the given
   // @c name, behavior is undefined if no such check exists.
   const gtx::Check &GetRegisteredCheckNamed(
       const std::string &check_name) const;
 
-  // Applies all the registered checks on the given element and returns an
-  // (unique pointer to) array of CheckResult objects, if no errors were found
-  // nullptr will be returned.
-  std::vector<CheckResult> CheckElement(const UIElement &element,
-                                        const Parameters &params);
+  // Applies all the registered checks on the given element and returns a vector
+  // of CheckResultProtos for each accessibility issue found. If none were
+  // found, returns an empty vector.
+  std::vector<CheckResultProto> CheckElement(const UIElementProto &element,
+                                             const Parameters &params);
 
-  // Applies all the registered checks on all the given list of elements and
-  // returns an (unique pointer to) array of CheckResult objects, if no errors
-  // were found nullptr will be returned.
-  std::vector<CheckResult> CheckElements(const std::vector<UIElement> &elements,
-                                         const Parameters &params);
+  // Applies all the registered checks on the accessibility hierarchy with root
+  // root_element. Returns a vector of CheckResultProtos, one for each
+  // accessibility issue on each element found. A single element may be
+  // associated with multiple CheckResultProtos if it fails multiple checks.
+  // Elements failing no checks will have no corresponding CheckResultProtos. If
+  // no accessibility issues are found, returns an empty vector.
+  std::vector<CheckResultProto> CheckElements(
+      const AccessibilityHierarchyProto &root_element,
+      const Parameters &params);
 
  private:
   // Collection of all the registered checks.

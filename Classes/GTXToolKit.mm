@@ -21,15 +21,17 @@
 #import "GTXChecksCollection.h"
 #import "GTXExcludeListBlock.h"
 #import "GTXExcludeListFactory.h"
-#import "GTXLogging.h"
+#import "GTXLogger.h"
 #import "NSError+GTXAdditions.h"
+#import "NSObject+GTXLogging.h"
+#import "GTXLocalizedStringsManagerUtils.h"
 #import "NSObject+GTXAdditions.h"
 #import "NSString+GTXAdditions.h"
+#include "typedefs.h"
 #include "check.h"
 #include "error_message.h"
 #include "localized_strings_manager.h"
 #include "toolkit.h"
-#include "ui_element.h"
 
 #pragma mark - Extension
 
@@ -73,7 +75,7 @@
   if (self) {
     _checks = [[NSMutableArray alloc] init];
     _excludeLists = [[NSMutableArray alloc] init];
-    _stringManager = std::make_unique<gtx::LocalizedStringsManager>();
+    _stringManager = [GTXLocalizedStringsManagerUtils defaultLocalizedStringsManager];
     _outOfProcessToolkit = std::make_unique<gtx::Toolkit>();
   }
   return self;
@@ -102,15 +104,14 @@
 - (void)registerOOPCheck:(std::unique_ptr<gtx::Check> &)check {
   NSString *name = [NSString gtx_stringFromSTDString:check->name()];
   _outOfProcessToolkit->RegisterCheck(check);
-  __weak __typeof(self) weakSelf = self;
+  __weak typeof(self) weakSelf = self;
   id<GTXChecking> wrappedCheck = [GTXToolKit
       checkWithName:name
               block:^BOOL(id _Nonnull element, GTXErrorRefType errorOrNil) {
-                return [weakSelf
-                    gtx_invokeRegisteredOOPCheckNamed:std::string([name
-                                                       cStringUsingEncoding:NSASCIIStringEncoding])
-                                            onElement:element
-                                                error:errorOrNil];
+                return [weakSelf gtx_invokeRegisteredOOPCheckNamed:
+                                     std::string([name cStringUsingEncoding:NSASCIIStringEncoding])
+                                                         onElement:element
+                                                             error:errorOrNil];
               }];
   [self registerCheck:wrappedCheck];
 }
@@ -129,8 +130,9 @@
 - (BOOL)checkAllElementsFromRootElements:(NSArray *)rootElements error:(GTXErrorRefType)errorOrNil {
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    GTX_LOG(@"-checkAllElementsFromRootElements:error: has been deprecated, please use "
-            @"-resultFromCheckingAllElementsFromRootElements: instead");
+    [GTXLogger
+        logInfoWithFormat:@"-checkAllElementsFromRootElements:error: has been deprecated, please "
+                          @"use -resultFromCheckingAllElementsFromRootElements: instead"];
   });
   GTXResult *result = [self resultFromCheckingAllElementsFromRootElements:rootElements];
   if (errorOrNil) {
@@ -140,6 +142,11 @@
 }
 
 - (GTXResult *)resultFromCheckingAllElementsFromRootElements:(NSArray *)rootElements {
+  for (id rootElement in rootElements) {
+    [[GTXLogger defaultLogger] logWithMaxLevel:GTXLogLevelDeveloper
+                                        prefix:@"Check from root "
+                           descriptionOfObject:rootElement];
+  }
   GTXAccessibilityTree *tree = [[GTXAccessibilityTree alloc] initWithRootElements:rootElements];
   NSMutableArray *errors;
   NSInteger elementsScanned = 0;
@@ -147,11 +154,19 @@
   for (id element in tree) {
     NSError *error;
     BOOL wasElementChecked;
+    [[GTXLogger defaultLogger] logWithMaxLevel:GTXLogLevelDeveloper
+                                        prefix:@"Evaluating "
+                           descriptionOfObject:element];
     if (![self gtx_checkElement:element
                 analyticsEnabled:NO
             outWasElementChecked:&wasElementChecked
                            error:&error]) {
+      [[GTXLogger defaultLogger] logWithMaxLevel:GTXLogLevelDeveloper
+                                          prefix:@"Checked "
+                             descriptionOfObject:element];
       if (!error) {
+        [[GTXLogger defaultLogger] logWithLevel:GTXLogLevelWarning
+                                         format:@"Failing check did not provide error description"];
         NSString *genericErrorDescription =
             @"One or more Gtx checks failed, error description was not provided by the check.";
         error = [NSError errorWithDomain:kGTXErrorDomain
@@ -168,6 +183,10 @@
     }
     if (wasElementChecked) {
       elementsScanned += 1;
+    } else {
+      [[GTXLogger defaultLogger] logWithMaxLevel:GTXLogLevelDeveloper
+                                          prefix:@"Skipped "
+                             descriptionOfObject:element];
     }
   }
 
@@ -190,13 +209,15 @@ Invokes the check registered on the given name.
 - (BOOL)gtx_invokeRegisteredOOPCheckNamed:(const std::string &)name
                                 onElement:(id)element
                                     error:(GTXErrorRefType)errorOrNil {
-  std::unique_ptr<gtx::UIElement> elementInfo = [element gtx_UIElement];
-  gtx::ErrorMessage checkError;
+  UIElementProto elementInfo = [element gtx_toProto];
   const gtx::Check &check = _outOfProcessToolkit->GetRegisteredCheckNamed(name);
-  BOOL success = (BOOL)check.CheckElement(*elementInfo, _parameters, &checkError);
+  absl::optional<CheckResultProto> result = check.CheckElement(elementInfo, _parameters);
+  BOOL success = !result.has_value();
   if (!success) {
-    NSString *errorDescription = [NSString
-        gtx_stringFromSTDString:_stringManager->LocalizedString(checkError.description_id())];
+    gtx::MetadataMap metadata = gtx::MetadataMap::FromProto(result->metadata());
+    std::string errorMessage =
+        check.GetPlainMessage(gtx::kLocaleEnglish, result->result_id(), metadata, *_stringManager);
+    NSString *errorDescription = [NSString gtx_stringFromSTDString:errorMessage];
     [NSError gtx_logOrSetGTXCheckFailedError:errorOrNil
                                      element:element
                                         name:[NSString gtx_stringFromSTDString:name]
@@ -244,8 +265,8 @@ Invokes the check registered on the given name.
 
     NSError *error = nil;
     if ([checker respondsToSelector:@selector(requiresWindowBeforeChecking)] &&
-        [checker requiresWindowBeforeChecking] &&
-        [element respondsToSelector:@selector(window)] && [element window] == nil) {
+        [checker requiresWindowBeforeChecking] && [element respondsToSelector:@selector(window)] &&
+        [element window] == nil) {
       // Elements without a window are not actually part of the view hierarchy and should not be
       // checked if [checker requiresWindowBeforeChecking] is @c YES.
       continue;

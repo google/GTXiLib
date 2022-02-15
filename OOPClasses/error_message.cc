@@ -16,7 +16,10 @@
 
 #include "error_message.h"
 
+#include <map>
 #include <string>
+
+#include "localized_strings_manager.h"
 
 namespace gtx {
 

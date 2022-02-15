@@ -16,24 +16,78 @@
 
 #include "minimum_tappable_area_check.h"
 
+#include <string>
+
+#include <abseil/absl/strings/substitute.h>
+#include <abseil/absl/types/optional.h>
+#include "gtx.pb.h"
+#include "metadata_map.h"
+#include "proto_utils.h"
+#include "typedefs.h"
+#include "check.h"
+#include "localized_string_ids.h"
+#include "localized_strings_manager.h"
+#include "parameters.h"
+
 namespace gtx {
+
+constexpr char MinimumTappableAreaCheck::KEY_EXPECTED_SIZE[];
+constexpr char MinimumTappableAreaCheck::KEY_ACTUAL_WIDTH[];
+constexpr char MinimumTappableAreaCheck::KEY_ACTUAL_HEIGHT[];
 
 // The minimum size (width or height) for a given element to be easily
 // accessible. Please read Material design guidelines for more on touch targets:
 // https://material.io/design/layout/spacing-methods.html#touch-click-targets
 static const float kMinSizeForAccessibleElements = 44.0;
 
-bool MinimumTappableAreaCheck::CheckElement(const UIElement &element,
-                                            const Parameters &params,
-                                            ErrorMessage *errorMessage) const {
-  if ((element.ax_traits() & ElementTrait::kButton) == ElementTrait::kNone) {
-    return true;
+std::string MinimumTappableAreaCheck::name() const {
+  return "MinimumTappableAreaCheck";
+}
+
+CheckCategory MinimumTappableAreaCheck::Category() const {
+  return CheckCategory::kTouchTargetSize;
+}
+
+absl::optional<CheckResultProto> MinimumTappableAreaCheck::CheckElement(
+    const UIElementProto &element, const Parameters &params) const {
+  if (!IsButtonElement(element)) {
+    return absl::nullopt;
   }
   if (element.ax_frame().size().width() < kMinSizeForAccessibleElements ||
       element.ax_frame().size().height() < kMinSizeForAccessibleElements) {
-    return false;
+    MetadataMap metadata;
+    metadata.SetFloat(KEY_EXPECTED_SIZE, kMinSizeForAccessibleElements);
+    metadata.SetFloat(KEY_ACTUAL_WIDTH, element.ax_frame().size().width());
+    metadata.SetFloat(KEY_ACTUAL_HEIGHT, element.ax_frame().size().height());
+    return CheckResult(RESULT_ID_INSUFFICIENT_TOUCH_TARGET_SIZE, element,
+                       metadata);
   }
-  return true;
+  return absl::nullopt;
+}
+
+std::string MinimumTappableAreaCheck::GetRichShortMessage(
+    Locale locale, int result_id, const MetadataMap &metadata,
+    const LocalizedStringsManager &string_manager) const {
+  return string_manager.LocalizedString(
+      locale, kLocalizedStringIDResultBriefMessageInsufficientTouchTargetSize);
+}
+
+std::string MinimumTappableAreaCheck::GetRichTitle(
+    Locale locale, int result_id, const MetadataMap &metadata,
+    const LocalizedStringsManager &string_manager) const {
+  return string_manager.LocalizedString(
+      locale, kLocalizedStringIDCheckTitleInsufficientTouchTargetSize);
+}
+
+std::string MinimumTappableAreaCheck::GetDefaultMessage(
+    Locale locale, int result_id, const MetadataMap &metadata,
+    const LocalizedStringsManager &string_manager) const {
+  std::string format = string_manager.LocalizedString(
+      locale, kLocalizedStringIDResultMessageInsufficientTouchTargetSize);
+  float expected_size = *metadata.GetFloat(KEY_EXPECTED_SIZE);
+  float actual_width = *metadata.GetFloat(KEY_ACTUAL_WIDTH);
+  float actual_height = *metadata.GetFloat(KEY_ACTUAL_HEIGHT);
+  return absl::Substitute(format, actual_width, actual_height, expected_size);
 }
 
 }  // namespace gtx

@@ -16,16 +16,20 @@
 
 #include "string_utils.h"
 
+#include <algorithm>
+#include <cctype>
+#include <iterator>
+#include <string>
+
 namespace gtx {
 
 std::string TrimWhitespace(std::string str) {
-  auto first_nonwhitespace_iter = std::find_if_not(
-      str.begin(), str.end(), [](char c) { return std::isspace(c); });
+  auto first_nonwhitespace_iter =
+      std::find_if_not(str.begin(), str.end(), std::isspace);
   auto trimmed_leading = str.substr(first_nonwhitespace_iter - str.begin(),
                                     str.end() - first_nonwhitespace_iter);
-  auto last_nonwhitespace_iter =
-      std::find_if_not(trimmed_leading.rbegin(), trimmed_leading.rend(),
-                       [](char c) { return std::isspace(c); });
+  auto last_nonwhitespace_iter = std::find_if_not(
+      trimmed_leading.rbegin(), trimmed_leading.rend(), std::isspace);
   return trimmed_leading.substr(
       0, trimmed_leading.rend() - last_nonwhitespace_iter);
 }

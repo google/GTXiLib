@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <!-- Checks -->
+
+  <!-- No Accessibility Label Check-->
+  <string description="The result message of a check describing that this view (UI element) requires an accessibility label but does not have one. [CHAR LIMIT=NONE]"
+    name="result_message_no_accessibility_label">This element may not have an accessibility label readable by VoiceOver. All accessibility elements should have accessibility labels.</string>
+  <string description="The title of a check describing that this view (UI element) requires an accessibility label but does not have one. [CHAR LIMIT=50]"
+    name="check_title_no_accessibility_label">Accessibility label</string>
+  <string description="The brief result message of a check describing that this view (UI element) requires an accessibility label but does not have one. [CHAR LIMIT=NONE]"
+    name="result_message_brief_no_accessibility_label">Consider adding an accessibility label to this element.</string>
+
+  <!-- Accessibility Label Not Punctuated Check -->
+  <string description="The result message of a check describing that an accessibility label does end with punctuation but should not. [CHAR LIMIT=NONE]"
+    name="result_message_accessibility_label_is_punctuated">This element may have an accessibility label that ends in punctuation but doesn't have a text trait. If this element visually displays text, consider adding the <xliff:g example="UIAccessibilityStaticTrait" name="ui_a11y_static_text_trait">&lt;tt&gt;UIAccessibilityStaticTrait&lt;/tt&gt;</xliff:g>, similar to <xliff:g example="UITextView" name="ui_text_view">&lt;tt&gt;UITextView&lt;/tt&gt;</xliff:g> or <xliff:g example="UILabel" name="ui_label">&lt;tt&gt;UILabel&lt;/tt&gt;</xliff:g>. If the element does not display text, consider removing the punctuation. Label found: <xliff:g example="Save." id="accessibility_label">&lt;tt&gt;$0&lt;/tt&gt;</xliff:g></string>
+  <string description="The title of a check describing that an accessibility label does end with punctuation but should not. [CHAR LIMIT=50]"
+    name="check_title_accessibility_label_is_punctuated">Accessibility label punctuation</string>
+  <string description="The result message of a check describing that an accessibility label does end with punctuation but should not. [CHAR LIMIT=NONE]"
+    name="result_message_brief_accessibility_label_is_punctuated">Consider removing the punctuation at the end of this element's accessibility label.</string>
+
+  <!-- Text Contrast Check -->
+  <string description="The result message of a check describing that the color of this element's text on the color of the background has too low a contrast ratio and is difficult to read. [CHAR LIMIT=NONE]"
+    name="result_message_insufficient_text_contrast">The element's text contrast ratio is <xliff:g example="2.0" id="actual_contrast_ratio">$0</xliff:g>. This ratio is based on a text color of <xliff:g example="#880000" id="actual_text_color">&lt;tt&gt;$1&lt;/tt&gt;</xliff:g> and background color of <xliff:g example="#443300" id="actual_background_color">&lt;tt&gt;$2&lt;/tt&gt;</xliff:g>. Consider increasing this element's text contrast ratio to <xliff:g example="4.5" id="expected_contrast_ratio">$3</xliff:g> or greater.</string>
+  <string description="The title of a check describing that the contrast ratio (the ratio of the luminance of the foreground and background colors) of this view (UI element) is lower than the required ratio. [CHAR LIMIT=50]"
+    name="check_title_text_contrast">Text contrast</string>
+  <string description="The brief result message of a check describing that the contrast ratio (the ratio of the luminance of the foreground and background colors) of the text in this view (UI element) is lower than the required ratio. [CHAR LIMIT=NONE]"
+    name="result_message_brief_insufficient_text_contrast">Consider increasing this element's text foreground to background contrast ratio.</string>
+
+  <!-- Touch Target Size Check -->
+  <string description="The result message of a check describing that this view (UI element) is too small to be touched accurately. [CHAR LIMIT=NONE]"
+    name="result_message_insufficient_touch_target_size">This element's size is <xliff:g example="30" id="actual_width">&lt;tt&gt;$0&lt;/tt&gt;</xliff:g> by <xliff:g example="30" id="actual_height">&lt;tt&gt;$1&lt;/tt&gt;</xliff:g> points. Consider making this touch target <xliff:g example="44" id="expected_size">&lt;tt&gt;$2&lt;/tt&gt;</xliff:g> points wide and <xliff:g example="44" id="expected_size">&lt;tt&gt;$2&lt;/tt&gt;</xliff:g> points high or larger.</string>
+  <string description="The title of a check describing that the size of this view (UI element) is below minimum requirements. [CHAR LIMIT=50]"
+    name="check_title_touch_target_size">Touch target</string>
+  <string description="The brief result message of a check describing that the size of this view (UI element) may be too small to be touched or interacted with reliably. [CHAR LIMIT=NONE]"
+  name="result_message_brief_insufficient_touch_target_size">Consider making this element's size larger.</string>
+
+</resources>

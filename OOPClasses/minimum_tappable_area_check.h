@@ -17,18 +17,45 @@
 #ifndef GTXILIB_OOPCLASSES_MINIMUM_TAPPABLE_AREA_CHECK_H_
 #define GTXILIB_OOPCLASSES_MINIMUM_TAPPABLE_AREA_CHECK_H_
 
+#include <string>
+
+#include <abseil/absl/types/optional.h>
+#include "metadata_map.h"
+#include "typedefs.h"
 #include "check.h"
-#include "ui_element.h"
+#include "localized_strings_manager.h"
+#include "parameters.h"
 
 namespace gtx {
 
 // Check for detecting small tappable areas.
 class MinimumTappableAreaCheck : public Check {
  public:
-  MinimumTappableAreaCheck(const std::string &name) : Check(name) {}
+  static const int RESULT_ID_INSUFFICIENT_TOUCH_TARGET_SIZE = 1;
 
-  bool CheckElement(const UIElement &element, const Parameters &params,
-                    ErrorMessage *errorMessage) const override;
+  static constexpr char KEY_EXPECTED_SIZE[] = "KEY_EXPECTED_SIZE";
+  static constexpr char KEY_ACTUAL_WIDTH[] = "KEY_ACTUAL_WIDTH";
+  static constexpr char KEY_ACTUAL_HEIGHT[] = "KEY_ACTUAL_HEIGHT";
+
+  std::string name() const override;
+
+  CheckCategory Category() const override;
+
+  absl::optional<CheckResultProto> CheckElement(
+      const UIElementProto &element, const Parameters &params) const override;
+
+  std::string GetRichShortMessage(
+      Locale locale, int result_id, const MetadataMap &metadata,
+      const LocalizedStringsManager &string_manager) const override;
+
+  std::string GetRichTitle(
+      Locale locale, int result_id, const MetadataMap &metadata,
+      const LocalizedStringsManager &string_manager) const override;
+
+ protected:
+  std::string GetDefaultMessage(
+      Locale locale, int result_id, const MetadataMap &metadata,
+      const LocalizedStringsManager &string_manager) const override;
 };
 
 }  // namespace gtx

@@ -16,6 +16,8 @@
 
 #include "parameters.h"
 
+#include "gtx_types.h"
+
 namespace gtx {
 
 Rect Parameters::ConvertRectToScreenshotSpace(

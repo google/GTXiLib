@@ -16,7 +16,13 @@
 
 #include "contrast_swatch.h"
 
+#include <stdint.h>
+
 #include <unordered_map>
+#include <utility>
+
+#include <abseil/absl/types/optional.h>
+#include "gtx_types.h"
 
 namespace gtx {
 
@@ -43,36 +49,27 @@ ContrastSwatch ContrastSwatch::Extract(const Image &image,
     }
   }
 
-  // The most dominant color is considered the background color. Note that the
-  // key 0 may not exist in the histogram, however for colors that dont exist
-  // the count will be zero causing tap_key to be replaced by an actual color in
-  // the histogram with count > zero.
-  int top_key = 0;
-  int penultimate_key = 0;
-  // Save the count of entires in histogram *before* processing it since
-  // accessing keys that dont exist may lead to creating the enties with count
-  // 0.
-  int64_t count = (int64_t)color_histogram.size();
-  for (auto& color : color_histogram) {
-    auto const& key = color.first;
-    auto const& value = color.second;
-    if (value > color_histogram[top_key]) {
+  // If only one color exists, it is considered both the foreground and the
+  // background color.
+  if (color_histogram.size() < 2) {
+    Color color = Color::UnpackedColor(color_histogram.cbegin()->first);
+    return ContrastSwatch(color, color);
+  }
+  absl::optional<int> top_key = absl::nullopt;
+  absl::optional<int> penultimate_key = absl::nullopt;
+  for (auto const &[key, value] : color_histogram) {
+    if (!top_key || value > color_histogram[*top_key]) {
       penultimate_key = top_key;
       top_key = key;
-    } else if (value > color_histogram[penultimate_key]) {
+    } else if (!penultimate_key || value > color_histogram[*penultimate_key]) {
       penultimate_key = key;
     }
   }
 
-  Color background = Color::UnpackedColor(top_key);
-  Color foreground;
-  if (count < 2) {
-    // When image has a single color, background and foreground colors are
-    // assumed to be the same.
-    foreground = background;
-  } else {
-    foreground = Color::UnpackedColor(penultimate_key);
-  }
+  // Histogram is guaranteed to have 2 colors, so both top_key and
+  // penultimate_key will have been set.
+  Color background = Color::UnpackedColor(*top_key);
+  Color foreground = Color::UnpackedColor(*penultimate_key);
   return ContrastSwatch(foreground, background);
 }
 

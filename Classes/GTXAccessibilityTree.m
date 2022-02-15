@@ -18,6 +18,9 @@
 
 #import "GTXAccessibilityTree.h"
 
+#import "GTXAssertions.h"
+#import "GTXTreeIteratorContext.h"
+
 /**
  * There seems to be errors in accessibility children reported by some UIKit classes especially
  * UITextEffectsWindow which reports 9223372036854775807 possibly due to internal type conversions
@@ -39,43 +42,90 @@ static NSString *const kUIPickerTableViewAccessibilityElementClassName =
     @"UITableViewCellAccessibilityElement";
 
 @implementation GTXAccessibilityTree {
-  // A queue of elements to be visited.
-  NSMutableArray *_queue;
-  // A queue of elements already visited.
-  NSMutableSet *_visitedElements;
+  // Context for this object's NSEnumerator.
+  GTXTreeIteratorContext *_enumeratorContext;
+
+  // Root elements that this object handles.
+  NSArray *_rootElements;
 }
 
 - (instancetype)initWithRootElements:(NSArray *)rootElements {
   self = [super init];
   if (self) {
-    _queue = [[NSMutableArray alloc] initWithArray:rootElements];
-    _visitedElements = [[NSMutableSet alloc] init];
+    for (id element in rootElements) {
+      if ([element isKindOfClass:[UIViewController class]]) {
+        GTX_ASSERT(NO,
+                   @"Invalid root element %@ found. Check GTXToolkit docs to learn more about "
+                   @"valid root elements. Did you mean to use the .view property instead?",
+                   element);
+      }
+    }
+
+    _enumeratorContext = [[GTXTreeIteratorContext alloc] initWithElements:rootElements];
+    _rootElements = rootElements;
   }
   return self;
+}
+
+- (void)iterateAllElementsWithBlock:(GTXTreeIterationBlock)block {
+  // Create a new tree object for iteration since the current object may be in the middle of a
+  // for-in loop.
+  GTXAccessibilityTree *tree = [[GTXAccessibilityTree alloc] initWithRootElements:_rootElements];
+  GTXTreeIteratorElement *iteratorElement;
+  while ((iteratorElement = [tree gtx_nextObject])) {
+    block(iteratorElement);
+  }
 }
 
 #pragma mark - NSEnumerator
 
 - (id)nextObject {
-  if ([_queue count] == 0) {
+  id nextObject = [self gtx_nextObject].current;
+  if (!nextObject) {
+    // Allow the tree object to be re-enumerated once through.
+    _enumeratorContext = [[GTXTreeIteratorContext alloc] initWithElements:_rootElements];
+  }
+  return nextObject;
+}
+
+#pragma mark - NSExtendedEnumerator
+
+- (NSArray *)allObjects {
+  NSMutableArray *allObjects = [[NSMutableArray alloc] init];
+  [self iterateAllElementsWithBlock:^(GTXTreeIteratorElement *_Nonnull iteratorElement) {
+    [allObjects addObject:iteratorElement.current];
+  }];
+  return allObjects;
+}
+
+#pragma mark - Private
+
+/**
+ *  @return The next @c GTXTreeIteratorElement for the current @c GTXTreeIteratorContext.
+ */
+- (GTXTreeIteratorElement *)gtx_nextObject {
+  if (![_enumeratorContext hasElementsInQueue]) {
     return nil;
   }
 
   id nextInQueue;
+  GTXTreeIteratorElement *nextIterationElementInQueue;
   // Get the next "unvisited" element.
   do {
-    id candidateNext = [_queue firstObject];
-    [_queue removeObjectAtIndex:0];
-    if (![_visitedElements containsObject:candidateNext]) {
-      if (![self gtx_isAccessibilityHiddenElement:candidateNext]) {
-        nextInQueue = candidateNext;
+    GTXTreeIteratorElement *nextIterationElementCandidate = [_enumeratorContext peekNextElement];
+    id nextCandidate = nextIterationElementCandidate.current;
+    [_enumeratorContext dequeueNextElement];
+    if (![_enumeratorContext didVisitElement:nextCandidate]) {
+      if (![self gtx_isAccessibilityHiddenElement:nextCandidate]) {
+        nextInQueue = nextCandidate;
+        nextIterationElementInQueue = nextIterationElementCandidate;
       }
     }
-  } while ([_queue count] > 0 && !nextInQueue);
+  } while ([_enumeratorContext hasElementsInQueue] && !nextInQueue);
   if (!nextInQueue) {
     return nil;
   }
-  [_visitedElements addObject:nextInQueue];
+  [_enumeratorContext visitElement:nextInQueue];
   if ([nextInQueue respondsToSelector:@selector(isAccessibilityElement)]) {
     if (![nextInQueue isAccessibilityElement]) {
       // nextInQueue could be an accessibility container, if so enqueue its children.
@@ -98,8 +148,7 @@ static NSString *const kUIPickerTableViewAccessibilityElementClassName =
                  @" elements via one method or provide the same elements.\nDetails:\nElements via"
                  @" accessibilityElements:%@\nElements via accessibilityElementAtIndex:\n"
                  @"accessibilityElementCount:%@\nElements:%@",
-                 accessibilityElementsSet,
-                 @([nextInQueue accessibilityElementCount]),
+                 accessibilityElementsSet, @([nextInQueue accessibilityElementCount]),
                  accessibilityElementsFromIndicesSet);
 
         // Ensure accessibilityElements* are marked as used even if NSAssert is removed.
@@ -112,8 +161,10 @@ static NSString *const kUIPickerTableViewAccessibilityElementClassName =
       if (![nextInQueue respondsToSelector:@selector(accessibilityElementsHidden)] ||
           ![nextInQueue accessibilityElementsHidden]) {
         for (id element in axElements) {
-          if (![_visitedElements containsObject:element]) {
-            [_queue addObject:element];
+          if (![_enumeratorContext didVisitElement:element]) {
+            [_enumeratorContext
+                queueElement:[[GTXTreeIteratorElement alloc] initWithElement:element
+                                                                 inContainer:nextInQueue]];
           }
         }
       }
@@ -126,32 +177,19 @@ static NSString *const kUIPickerTableViewAccessibilityElementClassName =
       } else if ([nextInQueue respondsToSelector:@selector(subviews)]) {
         subViews = [nextInQueue subviews];
       }
-      if ([nextInQueue respondsToSelector:@selector(isHidden)] &&
-          ![nextInQueue isHidden]) {
+      if ([nextInQueue respondsToSelector:@selector(isHidden)] && ![nextInQueue isHidden]) {
         for (id child in subViews) {
-          if (![_visitedElements containsObject:child]) {
-            [_queue addObject:child];
+          if (![_enumeratorContext didVisitElement:child]) {
+            [_enumeratorContext
+                queueElement:[[GTXTreeIteratorElement alloc] initWithElement:child
+                                                                 inContainer:nextInQueue]];
           }
         }
       }
     }
   }
-  return nextInQueue;
+  return nextIterationElementInQueue;
 }
-
-#pragma mark - NSExtendedEnumerator
-
-- (NSArray *)allObjects {
-  NSMutableArray *remainingObjects = [[NSMutableArray alloc] init];
-  id nextObject;
-  while ((nextObject = [self nextObject])) {
-    [remainingObjects addObject:nextObject];
-  }
-  return remainingObjects;
-}
-
-#pragma mark - Private
-
 
 /**
  *  @return An array of accessible children of the given @c element as reported by the selector
@@ -203,8 +241,8 @@ static NSString *const kUIPickerTableViewAccessibilityElementClassName =
   }
   if ([element respondsToSelector:@selector(accessibilityFrame)]) {
     CGRect accessibilityFrame = [element accessibilityFrame];
-    isHiddenDueToAccessibilityFrame = (accessibilityFrame.size.width == 0 ||
-                                       accessibilityFrame.size.height == 0);
+    isHiddenDueToAccessibilityFrame =
+        (accessibilityFrame.size.width == 0 || accessibilityFrame.size.height == 0);
   }
   if ([element respondsToSelector:@selector(frame)]) {
     CGRect frame = [element frame];

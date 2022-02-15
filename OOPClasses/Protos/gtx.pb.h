@@ -31,8 +31,8 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
-#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "enums.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_gtx_2eproto
@@ -48,7 +48,7 @@ struct TableStruct_gtx_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[5]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[8]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -58,9 +58,18 @@ extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table
 namespace gtxilib {
 namespace oopclasses {
 namespace protos {
-class ElementType;
-class ElementTypeDefaultTypeInternal;
-extern ElementTypeDefaultTypeInternal _ElementType_default_instance_;
+class AccessibilityHierarchy;
+class AccessibilityHierarchyDefaultTypeInternal;
+extern AccessibilityHierarchyDefaultTypeInternal _AccessibilityHierarchy_default_instance_;
+class Color;
+class ColorDefaultTypeInternal;
+extern ColorDefaultTypeInternal _Color_default_instance_;
+class DeviceState;
+class DeviceStateDefaultTypeInternal;
+extern DeviceStateDefaultTypeInternal _DeviceState_default_instance_;
+class DisplayMetrics;
+class DisplayMetricsDefaultTypeInternal;
+extern DisplayMetricsDefaultTypeInternal _DisplayMetrics_default_instance_;
 class Point;
 class PointDefaultTypeInternal;
 extern PointDefaultTypeInternal _Point_default_instance_;
@@ -77,7 +86,10 @@ extern UIElementDefaultTypeInternal _UIElement_default_instance_;
 }  // namespace oopclasses
 }  // namespace gtxilib
 PROTOBUF_NAMESPACE_OPEN
-template<> ::gtxilib::oopclasses::protos::ElementType* Arena::CreateMaybeMessage<::gtxilib::oopclasses::protos::ElementType>(Arena*);
+template<> ::gtxilib::oopclasses::protos::AccessibilityHierarchy* Arena::CreateMaybeMessage<::gtxilib::oopclasses::protos::AccessibilityHierarchy>(Arena*);
+template<> ::gtxilib::oopclasses::protos::Color* Arena::CreateMaybeMessage<::gtxilib::oopclasses::protos::Color>(Arena*);
+template<> ::gtxilib::oopclasses::protos::DeviceState* Arena::CreateMaybeMessage<::gtxilib::oopclasses::protos::DeviceState>(Arena*);
+template<> ::gtxilib::oopclasses::protos::DisplayMetrics* Arena::CreateMaybeMessage<::gtxilib::oopclasses::protos::DisplayMetrics>(Arena*);
 template<> ::gtxilib::oopclasses::protos::Point* Arena::CreateMaybeMessage<::gtxilib::oopclasses::protos::Point>(Arena*);
 template<> ::gtxilib::oopclasses::protos::Rect* Arena::CreateMaybeMessage<::gtxilib::oopclasses::protos::Rect>(Arena*);
 template<> ::gtxilib::oopclasses::protos::Size* Arena::CreateMaybeMessage<::gtxilib::oopclasses::protos::Size>(Arena*);
@@ -87,112 +99,6 @@ namespace gtxilib {
 namespace oopclasses {
 namespace protos {
 
-enum ElementType_ElementTypeEnum : int {
-  ElementType_ElementTypeEnum_ANY = 0,
-  ElementType_ElementTypeEnum_OTHER = 1,
-  ElementType_ElementTypeEnum_APPLICATION = 2,
-  ElementType_ElementTypeEnum_GROUP = 3,
-  ElementType_ElementTypeEnum_WINDOW = 4,
-  ElementType_ElementTypeEnum_SHEET = 5,
-  ElementType_ElementTypeEnum_DRAWER = 6,
-  ElementType_ElementTypeEnum_ALERT = 7,
-  ElementType_ElementTypeEnum_DIALOG = 8,
-  ElementType_ElementTypeEnum_BUTTON = 9,
-  ElementType_ElementTypeEnum_RADIO_BUTTON = 10,
-  ElementType_ElementTypeEnum_RADIO_GROUP = 11,
-  ElementType_ElementTypeEnum_CHECK_BOX = 12,
-  ElementType_ElementTypeEnum_DISCLOSURE_TRIANGLE = 13,
-  ElementType_ElementTypeEnum_POP_UP_BUTTON = 14,
-  ElementType_ElementTypeEnum_COMBO_BOX = 15,
-  ElementType_ElementTypeEnum_MENU_BUTTON = 16,
-  ElementType_ElementTypeEnum_TOOLBAR_BUTTON = 17,
-  ElementType_ElementTypeEnum_POPOVER = 18,
-  ElementType_ElementTypeEnum_KEYBOARD = 19,
-  ElementType_ElementTypeEnum_KEY = 20,
-  ElementType_ElementTypeEnum_NAVIGATION_BAR = 21,
-  ElementType_ElementTypeEnum_TAB_BAR = 22,
-  ElementType_ElementTypeEnum_TAB_GROUP = 23,
-  ElementType_ElementTypeEnum_TOOLBAR = 24,
-  ElementType_ElementTypeEnum_STATUS_BAR = 25,
-  ElementType_ElementTypeEnum_TABLE = 26,
-  ElementType_ElementTypeEnum_TABLE_ROW = 27,
-  ElementType_ElementTypeEnum_TABLE_COLUMN = 28,
-  ElementType_ElementTypeEnum_OUTLINE = 29,
-  ElementType_ElementTypeEnum_OUTLINE_ROW = 30,
-  ElementType_ElementTypeEnum_BROWSER = 31,
-  ElementType_ElementTypeEnum_COLLECTION_VIEW = 32,
-  ElementType_ElementTypeEnum_SLIDER = 33,
-  ElementType_ElementTypeEnum_PAGE_INDICATOR = 34,
-  ElementType_ElementTypeEnum_PROGRESS_INDICATOR = 35,
-  ElementType_ElementTypeEnum_ACTIVITY_INDICATOR = 36,
-  ElementType_ElementTypeEnum_SEGMENTED_CONTROL = 37,
-  ElementType_ElementTypeEnum_PICKER = 38,
-  ElementType_ElementTypeEnum_PICKER_WHEEL = 39,
-  ElementType_ElementTypeEnum_SWITCH = 40,
-  ElementType_ElementTypeEnum_TOGGLE = 41,
-  ElementType_ElementTypeEnum_LINK = 42,
-  ElementType_ElementTypeEnum_IMAGE = 43,
-  ElementType_ElementTypeEnum_ICON = 44,
-  ElementType_ElementTypeEnum_SEARCH_FIELD = 45,
-  ElementType_ElementTypeEnum_SCROLL_VIEW = 46,
-  ElementType_ElementTypeEnum_SCROLL_BAR = 47,
-  ElementType_ElementTypeEnum_STATIC_TEXT = 48,
-  ElementType_ElementTypeEnum_TEXT_FIELD = 49,
-  ElementType_ElementTypeEnum_SECURE_TEXT_FIELD = 50,
-  ElementType_ElementTypeEnum_DATE_PICKER = 51,
-  ElementType_ElementTypeEnum_TEXT_VIEW = 52,
-  ElementType_ElementTypeEnum_MENU = 53,
-  ElementType_ElementTypeEnum_MENU_ITEM = 54,
-  ElementType_ElementTypeEnum_MENU_BAR = 55,
-  ElementType_ElementTypeEnum_MENU_BAR_ITEM = 56,
-  ElementType_ElementTypeEnum_MAP = 57,
-  ElementType_ElementTypeEnum_WEB_VIEW = 58,
-  ElementType_ElementTypeEnum_INCREMENT_ARROW = 59,
-  ElementType_ElementTypeEnum_DECREMENT_ARROW = 60,
-  ElementType_ElementTypeEnum_TIMELINE = 61,
-  ElementType_ElementTypeEnum_RATING_INDICATOR = 62,
-  ElementType_ElementTypeEnum_VALUE_INDICATOR = 63,
-  ElementType_ElementTypeEnum_SPLIT_GROUP = 64,
-  ElementType_ElementTypeEnum_SPLITTER = 65,
-  ElementType_ElementTypeEnum_RELEVANCE_INDICATOR = 66,
-  ElementType_ElementTypeEnum_COLOR_WELL = 67,
-  ElementType_ElementTypeEnum_HELP_TAG = 68,
-  ElementType_ElementTypeEnum_MATTE = 69,
-  ElementType_ElementTypeEnum_DOCK_ITEM = 70,
-  ElementType_ElementTypeEnum_RULER = 71,
-  ElementType_ElementTypeEnum_RULER_MARKER = 72,
-  ElementType_ElementTypeEnum_GRID = 73,
-  ElementType_ElementTypeEnum_LEVEL_INDICATOR = 74,
-  ElementType_ElementTypeEnum_CELL = 75,
-  ElementType_ElementTypeEnum_LAYOUT_AREA = 76,
-  ElementType_ElementTypeEnum_LAYOUT_ITEM = 77,
-  ElementType_ElementTypeEnum_HANDLE = 78,
-  ElementType_ElementTypeEnum_STEPPER = 79,
-  ElementType_ElementTypeEnum_TAB = 80,
-  ElementType_ElementTypeEnum_TOUCH_BAR = 81,
-  ElementType_ElementTypeEnum_STATUS_ITEM = 82,
-  ElementType_ElementTypeEnum_ElementType_ElementTypeEnum_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
-  ElementType_ElementTypeEnum_ElementType_ElementTypeEnum_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
-};
-bool ElementType_ElementTypeEnum_IsValid(int value);
-constexpr ElementType_ElementTypeEnum ElementType_ElementTypeEnum_ElementTypeEnum_MIN = ElementType_ElementTypeEnum_ANY;
-constexpr ElementType_ElementTypeEnum ElementType_ElementTypeEnum_ElementTypeEnum_MAX = ElementType_ElementTypeEnum_STATUS_ITEM;
-constexpr int ElementType_ElementTypeEnum_ElementTypeEnum_ARRAYSIZE = ElementType_ElementTypeEnum_ElementTypeEnum_MAX + 1;
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ElementType_ElementTypeEnum_descriptor();
-template<typename T>
-inline const std::string& ElementType_ElementTypeEnum_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, ElementType_ElementTypeEnum>::value ||
-    ::std::is_integral<T>::value,
-    "Incorrect type passed to function ElementType_ElementTypeEnum_Name.");
-  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    ElementType_ElementTypeEnum_descriptor(), enum_t_value);
-}
-inline bool ElementType_ElementTypeEnum_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ElementType_ElementTypeEnum* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ElementType_ElementTypeEnum>(
-    ElementType_ElementTypeEnum_descriptor(), name, value);
-}
 // ===================================================================
 
 class Point PROTOBUF_FINAL :
@@ -312,6 +218,10 @@ class Point PROTOBUF_FINAL :
     kYFieldNumber = 2,
   };
   // float x = 1;
+  bool has_x() const;
+  private:
+  bool _internal_has_x() const;
+  public:
   void clear_x();
   float x() const;
   void set_x(float value);
@@ -321,6 +231,10 @@ class Point PROTOBUF_FINAL :
   public:
 
   // float y = 2;
+  bool has_y() const;
+  private:
+  bool _internal_has_y() const;
+  public:
   void clear_y();
   float y() const;
   void set_y(float value);
@@ -336,9 +250,10 @@ class Point PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   float x_;
   float y_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_gtx_2eproto;
 };
 // -------------------------------------------------------------------
@@ -460,6 +375,10 @@ class Size PROTOBUF_FINAL :
     kHeightFieldNumber = 2,
   };
   // float width = 1;
+  bool has_width() const;
+  private:
+  bool _internal_has_width() const;
+  public:
   void clear_width();
   float width() const;
   void set_width(float value);
@@ -469,6 +388,10 @@ class Size PROTOBUF_FINAL :
   public:
 
   // float height = 2;
+  bool has_height() const;
+  private:
+  bool _internal_has_height() const;
+  public:
   void clear_height();
   float height() const;
   void set_height(float value);
@@ -484,9 +407,10 @@ class Size PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   float width_;
   float height_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_gtx_2eproto;
 };
 // -------------------------------------------------------------------
@@ -650,30 +574,31 @@ class Rect PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::gtxilib::oopclasses::protos::Point* origin_;
   ::gtxilib::oopclasses::protos::Size* size_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_gtx_2eproto;
 };
 // -------------------------------------------------------------------
 
-class ElementType PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:gtxilib.oopclasses.protos.ElementType) */ {
+class Color PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:gtxilib.oopclasses.protos.Color) */ {
  public:
-  inline ElementType() : ElementType(nullptr) {}
-  virtual ~ElementType();
+  inline Color() : Color(nullptr) {}
+  virtual ~Color();
 
-  ElementType(const ElementType& from);
-  ElementType(ElementType&& from) noexcept
-    : ElementType() {
+  Color(const Color& from);
+  Color(Color&& from) noexcept
+    : Color() {
     *this = ::std::move(from);
   }
 
-  inline ElementType& operator=(const ElementType& from) {
+  inline Color& operator=(const Color& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ElementType& operator=(ElementType&& from) noexcept {
+  inline Color& operator=(Color&& from) noexcept {
     if (GetArena() == from.GetArena()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -691,20 +616,20 @@ class ElementType PROTOBUF_FINAL :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const ElementType& default_instance();
+  static const Color& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const ElementType* internal_default_instance() {
-    return reinterpret_cast<const ElementType*>(
-               &_ElementType_default_instance_);
+  static inline const Color* internal_default_instance() {
+    return reinterpret_cast<const Color*>(
+               &_Color_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     3;
 
-  friend void swap(ElementType& a, ElementType& b) {
+  friend void swap(Color& a, Color& b) {
     a.Swap(&b);
   }
-  inline void Swap(ElementType* other) {
+  inline void Swap(Color* other) {
     if (other == this) return;
     if (GetArena() == other->GetArena()) {
       InternalSwap(other);
@@ -712,7 +637,7 @@ class ElementType PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ElementType* other) {
+  void UnsafeArenaSwap(Color* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -720,17 +645,17 @@ class ElementType PROTOBUF_FINAL :
 
   // implements Message ----------------------------------------------
 
-  inline ElementType* New() const final {
-    return CreateMaybeMessage<ElementType>(nullptr);
+  inline Color* New() const final {
+    return CreateMaybeMessage<Color>(nullptr);
   }
 
-  ElementType* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<ElementType>(arena);
+  Color* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Color>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const ElementType& from);
-  void MergeFrom(const ElementType& from);
+  void CopyFrom(const Color& from);
+  void MergeFrom(const Color& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -744,13 +669,13 @@ class ElementType PROTOBUF_FINAL :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(ElementType* other);
+  void InternalSwap(Color* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "gtxilib.oopclasses.protos.ElementType";
+    return "gtxilib.oopclasses.protos.Color";
   }
   protected:
-  explicit ElementType(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  explicit Color(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   private:
   static void ArenaDtor(void* object);
   inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -767,208 +692,79 @@ class ElementType PROTOBUF_FINAL :
 
   // nested types ----------------------------------------------------
 
-  typedef ElementType_ElementTypeEnum ElementTypeEnum;
-  static constexpr ElementTypeEnum ANY =
-    ElementType_ElementTypeEnum_ANY;
-  static constexpr ElementTypeEnum OTHER =
-    ElementType_ElementTypeEnum_OTHER;
-  static constexpr ElementTypeEnum APPLICATION =
-    ElementType_ElementTypeEnum_APPLICATION;
-  static constexpr ElementTypeEnum GROUP =
-    ElementType_ElementTypeEnum_GROUP;
-  static constexpr ElementTypeEnum WINDOW =
-    ElementType_ElementTypeEnum_WINDOW;
-  static constexpr ElementTypeEnum SHEET =
-    ElementType_ElementTypeEnum_SHEET;
-  static constexpr ElementTypeEnum DRAWER =
-    ElementType_ElementTypeEnum_DRAWER;
-  static constexpr ElementTypeEnum ALERT =
-    ElementType_ElementTypeEnum_ALERT;
-  static constexpr ElementTypeEnum DIALOG =
-    ElementType_ElementTypeEnum_DIALOG;
-  static constexpr ElementTypeEnum BUTTON =
-    ElementType_ElementTypeEnum_BUTTON;
-  static constexpr ElementTypeEnum RADIO_BUTTON =
-    ElementType_ElementTypeEnum_RADIO_BUTTON;
-  static constexpr ElementTypeEnum RADIO_GROUP =
-    ElementType_ElementTypeEnum_RADIO_GROUP;
-  static constexpr ElementTypeEnum CHECK_BOX =
-    ElementType_ElementTypeEnum_CHECK_BOX;
-  static constexpr ElementTypeEnum DISCLOSURE_TRIANGLE =
-    ElementType_ElementTypeEnum_DISCLOSURE_TRIANGLE;
-  static constexpr ElementTypeEnum POP_UP_BUTTON =
-    ElementType_ElementTypeEnum_POP_UP_BUTTON;
-  static constexpr ElementTypeEnum COMBO_BOX =
-    ElementType_ElementTypeEnum_COMBO_BOX;
-  static constexpr ElementTypeEnum MENU_BUTTON =
-    ElementType_ElementTypeEnum_MENU_BUTTON;
-  static constexpr ElementTypeEnum TOOLBAR_BUTTON =
-    ElementType_ElementTypeEnum_TOOLBAR_BUTTON;
-  static constexpr ElementTypeEnum POPOVER =
-    ElementType_ElementTypeEnum_POPOVER;
-  static constexpr ElementTypeEnum KEYBOARD =
-    ElementType_ElementTypeEnum_KEYBOARD;
-  static constexpr ElementTypeEnum KEY =
-    ElementType_ElementTypeEnum_KEY;
-  static constexpr ElementTypeEnum NAVIGATION_BAR =
-    ElementType_ElementTypeEnum_NAVIGATION_BAR;
-  static constexpr ElementTypeEnum TAB_BAR =
-    ElementType_ElementTypeEnum_TAB_BAR;
-  static constexpr ElementTypeEnum TAB_GROUP =
-    ElementType_ElementTypeEnum_TAB_GROUP;
-  static constexpr ElementTypeEnum TOOLBAR =
-    ElementType_ElementTypeEnum_TOOLBAR;
-  static constexpr ElementTypeEnum STATUS_BAR =
-    ElementType_ElementTypeEnum_STATUS_BAR;
-  static constexpr ElementTypeEnum TABLE =
-    ElementType_ElementTypeEnum_TABLE;
-  static constexpr ElementTypeEnum TABLE_ROW =
-    ElementType_ElementTypeEnum_TABLE_ROW;
-  static constexpr ElementTypeEnum TABLE_COLUMN =
-    ElementType_ElementTypeEnum_TABLE_COLUMN;
-  static constexpr ElementTypeEnum OUTLINE =
-    ElementType_ElementTypeEnum_OUTLINE;
-  static constexpr ElementTypeEnum OUTLINE_ROW =
-    ElementType_ElementTypeEnum_OUTLINE_ROW;
-  static constexpr ElementTypeEnum BROWSER =
-    ElementType_ElementTypeEnum_BROWSER;
-  static constexpr ElementTypeEnum COLLECTION_VIEW =
-    ElementType_ElementTypeEnum_COLLECTION_VIEW;
-  static constexpr ElementTypeEnum SLIDER =
-    ElementType_ElementTypeEnum_SLIDER;
-  static constexpr ElementTypeEnum PAGE_INDICATOR =
-    ElementType_ElementTypeEnum_PAGE_INDICATOR;
-  static constexpr ElementTypeEnum PROGRESS_INDICATOR =
-    ElementType_ElementTypeEnum_PROGRESS_INDICATOR;
-  static constexpr ElementTypeEnum ACTIVITY_INDICATOR =
-    ElementType_ElementTypeEnum_ACTIVITY_INDICATOR;
-  static constexpr ElementTypeEnum SEGMENTED_CONTROL =
-    ElementType_ElementTypeEnum_SEGMENTED_CONTROL;
-  static constexpr ElementTypeEnum PICKER =
-    ElementType_ElementTypeEnum_PICKER;
-  static constexpr ElementTypeEnum PICKER_WHEEL =
-    ElementType_ElementTypeEnum_PICKER_WHEEL;
-  static constexpr ElementTypeEnum SWITCH =
-    ElementType_ElementTypeEnum_SWITCH;
-  static constexpr ElementTypeEnum TOGGLE =
-    ElementType_ElementTypeEnum_TOGGLE;
-  static constexpr ElementTypeEnum LINK =
-    ElementType_ElementTypeEnum_LINK;
-  static constexpr ElementTypeEnum IMAGE =
-    ElementType_ElementTypeEnum_IMAGE;
-  static constexpr ElementTypeEnum ICON =
-    ElementType_ElementTypeEnum_ICON;
-  static constexpr ElementTypeEnum SEARCH_FIELD =
-    ElementType_ElementTypeEnum_SEARCH_FIELD;
-  static constexpr ElementTypeEnum SCROLL_VIEW =
-    ElementType_ElementTypeEnum_SCROLL_VIEW;
-  static constexpr ElementTypeEnum SCROLL_BAR =
-    ElementType_ElementTypeEnum_SCROLL_BAR;
-  static constexpr ElementTypeEnum STATIC_TEXT =
-    ElementType_ElementTypeEnum_STATIC_TEXT;
-  static constexpr ElementTypeEnum TEXT_FIELD =
-    ElementType_ElementTypeEnum_TEXT_FIELD;
-  static constexpr ElementTypeEnum SECURE_TEXT_FIELD =
-    ElementType_ElementTypeEnum_SECURE_TEXT_FIELD;
-  static constexpr ElementTypeEnum DATE_PICKER =
-    ElementType_ElementTypeEnum_DATE_PICKER;
-  static constexpr ElementTypeEnum TEXT_VIEW =
-    ElementType_ElementTypeEnum_TEXT_VIEW;
-  static constexpr ElementTypeEnum MENU =
-    ElementType_ElementTypeEnum_MENU;
-  static constexpr ElementTypeEnum MENU_ITEM =
-    ElementType_ElementTypeEnum_MENU_ITEM;
-  static constexpr ElementTypeEnum MENU_BAR =
-    ElementType_ElementTypeEnum_MENU_BAR;
-  static constexpr ElementTypeEnum MENU_BAR_ITEM =
-    ElementType_ElementTypeEnum_MENU_BAR_ITEM;
-  static constexpr ElementTypeEnum MAP =
-    ElementType_ElementTypeEnum_MAP;
-  static constexpr ElementTypeEnum WEB_VIEW =
-    ElementType_ElementTypeEnum_WEB_VIEW;
-  static constexpr ElementTypeEnum INCREMENT_ARROW =
-    ElementType_ElementTypeEnum_INCREMENT_ARROW;
-  static constexpr ElementTypeEnum DECREMENT_ARROW =
-    ElementType_ElementTypeEnum_DECREMENT_ARROW;
-  static constexpr ElementTypeEnum TIMELINE =
-    ElementType_ElementTypeEnum_TIMELINE;
-  static constexpr ElementTypeEnum RATING_INDICATOR =
-    ElementType_ElementTypeEnum_RATING_INDICATOR;
-  static constexpr ElementTypeEnum VALUE_INDICATOR =
-    ElementType_ElementTypeEnum_VALUE_INDICATOR;
-  static constexpr ElementTypeEnum SPLIT_GROUP =
-    ElementType_ElementTypeEnum_SPLIT_GROUP;
-  static constexpr ElementTypeEnum SPLITTER =
-    ElementType_ElementTypeEnum_SPLITTER;
-  static constexpr ElementTypeEnum RELEVANCE_INDICATOR =
-    ElementType_ElementTypeEnum_RELEVANCE_INDICATOR;
-  static constexpr ElementTypeEnum COLOR_WELL =
-    ElementType_ElementTypeEnum_COLOR_WELL;
-  static constexpr ElementTypeEnum HELP_TAG =
-    ElementType_ElementTypeEnum_HELP_TAG;
-  static constexpr ElementTypeEnum MATTE =
-    ElementType_ElementTypeEnum_MATTE;
-  static constexpr ElementTypeEnum DOCK_ITEM =
-    ElementType_ElementTypeEnum_DOCK_ITEM;
-  static constexpr ElementTypeEnum RULER =
-    ElementType_ElementTypeEnum_RULER;
-  static constexpr ElementTypeEnum RULER_MARKER =
-    ElementType_ElementTypeEnum_RULER_MARKER;
-  static constexpr ElementTypeEnum GRID =
-    ElementType_ElementTypeEnum_GRID;
-  static constexpr ElementTypeEnum LEVEL_INDICATOR =
-    ElementType_ElementTypeEnum_LEVEL_INDICATOR;
-  static constexpr ElementTypeEnum CELL =
-    ElementType_ElementTypeEnum_CELL;
-  static constexpr ElementTypeEnum LAYOUT_AREA =
-    ElementType_ElementTypeEnum_LAYOUT_AREA;
-  static constexpr ElementTypeEnum LAYOUT_ITEM =
-    ElementType_ElementTypeEnum_LAYOUT_ITEM;
-  static constexpr ElementTypeEnum HANDLE =
-    ElementType_ElementTypeEnum_HANDLE;
-  static constexpr ElementTypeEnum STEPPER =
-    ElementType_ElementTypeEnum_STEPPER;
-  static constexpr ElementTypeEnum TAB =
-    ElementType_ElementTypeEnum_TAB;
-  static constexpr ElementTypeEnum TOUCH_BAR =
-    ElementType_ElementTypeEnum_TOUCH_BAR;
-  static constexpr ElementTypeEnum STATUS_ITEM =
-    ElementType_ElementTypeEnum_STATUS_ITEM;
-  static inline bool ElementTypeEnum_IsValid(int value) {
-    return ElementType_ElementTypeEnum_IsValid(value);
-  }
-  static constexpr ElementTypeEnum ElementTypeEnum_MIN =
-    ElementType_ElementTypeEnum_ElementTypeEnum_MIN;
-  static constexpr ElementTypeEnum ElementTypeEnum_MAX =
-    ElementType_ElementTypeEnum_ElementTypeEnum_MAX;
-  static constexpr int ElementTypeEnum_ARRAYSIZE =
-    ElementType_ElementTypeEnum_ElementTypeEnum_ARRAYSIZE;
-  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
-  ElementTypeEnum_descriptor() {
-    return ElementType_ElementTypeEnum_descriptor();
-  }
-  template<typename T>
-  static inline const std::string& ElementTypeEnum_Name(T enum_t_value) {
-    static_assert(::std::is_same<T, ElementTypeEnum>::value ||
-      ::std::is_integral<T>::value,
-      "Incorrect type passed to function ElementTypeEnum_Name.");
-    return ElementType_ElementTypeEnum_Name(enum_t_value);
-  }
-  static inline bool ElementTypeEnum_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
-      ElementTypeEnum* value) {
-    return ElementType_ElementTypeEnum_Parse(name, value);
-  }
-
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:gtxilib.oopclasses.protos.ElementType)
+  enum : int {
+    kRFieldNumber = 1,
+    kGFieldNumber = 2,
+    kBFieldNumber = 3,
+    kAFieldNumber = 4,
+  };
+  // float r = 1;
+  bool has_r() const;
+  private:
+  bool _internal_has_r() const;
+  public:
+  void clear_r();
+  float r() const;
+  void set_r(float value);
+  private:
+  float _internal_r() const;
+  void _internal_set_r(float value);
+  public:
+
+  // float g = 2;
+  bool has_g() const;
+  private:
+  bool _internal_has_g() const;
+  public:
+  void clear_g();
+  float g() const;
+  void set_g(float value);
+  private:
+  float _internal_g() const;
+  void _internal_set_g(float value);
+  public:
+
+  // float b = 3;
+  bool has_b() const;
+  private:
+  bool _internal_has_b() const;
+  public:
+  void clear_b();
+  float b() const;
+  void set_b(float value);
+  private:
+  float _internal_b() const;
+  void _internal_set_b(float value);
+  public:
+
+  // float a = 4;
+  bool has_a() const;
+  private:
+  bool _internal_has_a() const;
+  public:
+  void clear_a();
+  float a() const;
+  void set_a(float value);
+  private:
+  float _internal_a() const;
+  void _internal_set_a(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:gtxilib.oopclasses.protos.Color)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  float r_;
+  float g_;
+  float b_;
+  float a_;
   friend struct ::TableStruct_gtx_2eproto;
 };
 // -------------------------------------------------------------------
@@ -1086,13 +882,92 @@ class UIElement PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kAxLabelFieldNumber = 3,
-    kAxFrameFieldNumber = 4,
-    kAxTraitsFieldNumber = 2,
-    kIsAxElementFieldNumber = 1,
-    kAxElementTypeFieldNumber = 5,
+    kChildIdsFieldNumber = 3,
+    kClassNamesHierarchyFieldNumber = 15,
+    kAxLabelFieldNumber = 6,
+    kAxHintFieldNumber = 7,
+    kAxIdentifierFieldNumber = 9,
+    kTitleFieldNumber = 32,
+    kTextFieldNumber = 33,
+    kAxFrameFieldNumber = 8,
+    kBackgroundColorFieldNumber = 16,
+    kTintColorFieldNumber = 21,
+    kFrameFieldNumber = 26,
+    kBoundsFieldNumber = 27,
+    kIdFieldNumber = 1,
+    kParentIdFieldNumber = 2,
+    kAxTraitsFieldNumber = 5,
+    kIsAxElementFieldNumber = 4,
+    kHittableFieldNumber = 10,
+    kExistsFieldNumber = 11,
+    kXcSelectedFieldNumber = 12,
+    kElementTypeFieldNumber = 14,
+    kAlphaFieldNumber = 18,
+    kXcEnabledFieldNumber = 13,
+    kHiddenFieldNumber = 17,
+    kOpaqueFieldNumber = 20,
+    kClipsToBoundsFieldNumber = 22,
+    kControlStateFieldNumber = 28,
+    kUserInteractionEnabledFieldNumber = 23,
+    kMultipleTouchEnabledFieldNumber = 24,
+    kExclusiveTouchFieldNumber = 25,
+    kEnabledFieldNumber = 29,
+    kSelectedFieldNumber = 30,
+    kHighlightedFieldNumber = 31,
+    kOnFieldNumber = 34,
+    kValueFieldNumber = 35,
   };
-  // string ax_label = 3;
+  // repeated int32 child_ids = 3;
+  int child_ids_size() const;
+  private:
+  int _internal_child_ids_size() const;
+  public:
+  void clear_child_ids();
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_child_ids(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+      _internal_child_ids() const;
+  void _internal_add_child_ids(::PROTOBUF_NAMESPACE_ID::int32 value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+      _internal_mutable_child_ids();
+  public:
+  ::PROTOBUF_NAMESPACE_ID::int32 child_ids(int index) const;
+  void set_child_ids(int index, ::PROTOBUF_NAMESPACE_ID::int32 value);
+  void add_child_ids(::PROTOBUF_NAMESPACE_ID::int32 value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+      child_ids() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+      mutable_child_ids();
+
+  // repeated string class_names_hierarchy = 15;
+  int class_names_hierarchy_size() const;
+  private:
+  int _internal_class_names_hierarchy_size() const;
+  public:
+  void clear_class_names_hierarchy();
+  const std::string& class_names_hierarchy(int index) const;
+  std::string* mutable_class_names_hierarchy(int index);
+  void set_class_names_hierarchy(int index, const std::string& value);
+  void set_class_names_hierarchy(int index, std::string&& value);
+  void set_class_names_hierarchy(int index, const char* value);
+  void set_class_names_hierarchy(int index, const char* value, size_t size);
+  std::string* add_class_names_hierarchy();
+  void add_class_names_hierarchy(const std::string& value);
+  void add_class_names_hierarchy(std::string&& value);
+  void add_class_names_hierarchy(const char* value);
+  void add_class_names_hierarchy(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& class_names_hierarchy() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_class_names_hierarchy();
+  private:
+  const std::string& _internal_class_names_hierarchy(int index) const;
+  std::string* _internal_add_class_names_hierarchy();
+  public:
+
+  // string ax_label = 6;
+  bool has_ax_label() const;
+  private:
+  bool _internal_has_ax_label() const;
+  public:
   void clear_ax_label();
   const std::string& ax_label() const;
   void set_ax_label(const std::string& value);
@@ -1108,7 +983,87 @@ class UIElement PROTOBUF_FINAL :
   std::string* _internal_mutable_ax_label();
   public:
 
-  // .gtxilib.oopclasses.protos.Rect ax_frame = 4;
+  // string ax_hint = 7;
+  bool has_ax_hint() const;
+  private:
+  bool _internal_has_ax_hint() const;
+  public:
+  void clear_ax_hint();
+  const std::string& ax_hint() const;
+  void set_ax_hint(const std::string& value);
+  void set_ax_hint(std::string&& value);
+  void set_ax_hint(const char* value);
+  void set_ax_hint(const char* value, size_t size);
+  std::string* mutable_ax_hint();
+  std::string* release_ax_hint();
+  void set_allocated_ax_hint(std::string* ax_hint);
+  private:
+  const std::string& _internal_ax_hint() const;
+  void _internal_set_ax_hint(const std::string& value);
+  std::string* _internal_mutable_ax_hint();
+  public:
+
+  // string ax_identifier = 9;
+  bool has_ax_identifier() const;
+  private:
+  bool _internal_has_ax_identifier() const;
+  public:
+  void clear_ax_identifier();
+  const std::string& ax_identifier() const;
+  void set_ax_identifier(const std::string& value);
+  void set_ax_identifier(std::string&& value);
+  void set_ax_identifier(const char* value);
+  void set_ax_identifier(const char* value, size_t size);
+  std::string* mutable_ax_identifier();
+  std::string* release_ax_identifier();
+  void set_allocated_ax_identifier(std::string* ax_identifier);
+  private:
+  const std::string& _internal_ax_identifier() const;
+  void _internal_set_ax_identifier(const std::string& value);
+  std::string* _internal_mutable_ax_identifier();
+  public:
+
+  // string title = 32;
+  bool has_title() const;
+  private:
+  bool _internal_has_title() const;
+  public:
+  void clear_title();
+  const std::string& title() const;
+  void set_title(const std::string& value);
+  void set_title(std::string&& value);
+  void set_title(const char* value);
+  void set_title(const char* value, size_t size);
+  std::string* mutable_title();
+  std::string* release_title();
+  void set_allocated_title(std::string* title);
+  private:
+  const std::string& _internal_title() const;
+  void _internal_set_title(const std::string& value);
+  std::string* _internal_mutable_title();
+  public:
+
+  // string text = 33;
+  bool has_text() const;
+  private:
+  bool _internal_has_text() const;
+  public:
+  void clear_text();
+  const std::string& text() const;
+  void set_text(const std::string& value);
+  void set_text(std::string&& value);
+  void set_text(const char* value);
+  void set_text(const char* value, size_t size);
+  std::string* mutable_text();
+  std::string* release_text();
+  void set_allocated_text(std::string* text);
+  private:
+  const std::string& _internal_text() const;
+  void _internal_set_text(const std::string& value);
+  std::string* _internal_mutable_text();
+  public:
+
+  // .gtxilib.oopclasses.protos.Rect ax_frame = 8;
   bool has_ax_frame() const;
   private:
   bool _internal_has_ax_frame() const;
@@ -1126,7 +1081,109 @@ class UIElement PROTOBUF_FINAL :
       ::gtxilib::oopclasses::protos::Rect* ax_frame);
   ::gtxilib::oopclasses::protos::Rect* unsafe_arena_release_ax_frame();
 
-  // uint64 ax_traits = 2;
+  // .gtxilib.oopclasses.protos.Color background_color = 16;
+  bool has_background_color() const;
+  private:
+  bool _internal_has_background_color() const;
+  public:
+  void clear_background_color();
+  const ::gtxilib::oopclasses::protos::Color& background_color() const;
+  ::gtxilib::oopclasses::protos::Color* release_background_color();
+  ::gtxilib::oopclasses::protos::Color* mutable_background_color();
+  void set_allocated_background_color(::gtxilib::oopclasses::protos::Color* background_color);
+  private:
+  const ::gtxilib::oopclasses::protos::Color& _internal_background_color() const;
+  ::gtxilib::oopclasses::protos::Color* _internal_mutable_background_color();
+  public:
+  void unsafe_arena_set_allocated_background_color(
+      ::gtxilib::oopclasses::protos::Color* background_color);
+  ::gtxilib::oopclasses::protos::Color* unsafe_arena_release_background_color();
+
+  // .gtxilib.oopclasses.protos.Color tint_color = 21;
+  bool has_tint_color() const;
+  private:
+  bool _internal_has_tint_color() const;
+  public:
+  void clear_tint_color();
+  const ::gtxilib::oopclasses::protos::Color& tint_color() const;
+  ::gtxilib::oopclasses::protos::Color* release_tint_color();
+  ::gtxilib::oopclasses::protos::Color* mutable_tint_color();
+  void set_allocated_tint_color(::gtxilib::oopclasses::protos::Color* tint_color);
+  private:
+  const ::gtxilib::oopclasses::protos::Color& _internal_tint_color() const;
+  ::gtxilib::oopclasses::protos::Color* _internal_mutable_tint_color();
+  public:
+  void unsafe_arena_set_allocated_tint_color(
+      ::gtxilib::oopclasses::protos::Color* tint_color);
+  ::gtxilib::oopclasses::protos::Color* unsafe_arena_release_tint_color();
+
+  // .gtxilib.oopclasses.protos.Rect frame = 26;
+  bool has_frame() const;
+  private:
+  bool _internal_has_frame() const;
+  public:
+  void clear_frame();
+  const ::gtxilib::oopclasses::protos::Rect& frame() const;
+  ::gtxilib::oopclasses::protos::Rect* release_frame();
+  ::gtxilib::oopclasses::protos::Rect* mutable_frame();
+  void set_allocated_frame(::gtxilib::oopclasses::protos::Rect* frame);
+  private:
+  const ::gtxilib::oopclasses::protos::Rect& _internal_frame() const;
+  ::gtxilib::oopclasses::protos::Rect* _internal_mutable_frame();
+  public:
+  void unsafe_arena_set_allocated_frame(
+      ::gtxilib::oopclasses::protos::Rect* frame);
+  ::gtxilib::oopclasses::protos::Rect* unsafe_arena_release_frame();
+
+  // .gtxilib.oopclasses.protos.Rect bounds = 27;
+  bool has_bounds() const;
+  private:
+  bool _internal_has_bounds() const;
+  public:
+  void clear_bounds();
+  const ::gtxilib::oopclasses::protos::Rect& bounds() const;
+  ::gtxilib::oopclasses::protos::Rect* release_bounds();
+  ::gtxilib::oopclasses::protos::Rect* mutable_bounds();
+  void set_allocated_bounds(::gtxilib::oopclasses::protos::Rect* bounds);
+  private:
+  const ::gtxilib::oopclasses::protos::Rect& _internal_bounds() const;
+  ::gtxilib::oopclasses::protos::Rect* _internal_mutable_bounds();
+  public:
+  void unsafe_arena_set_allocated_bounds(
+      ::gtxilib::oopclasses::protos::Rect* bounds);
+  ::gtxilib::oopclasses::protos::Rect* unsafe_arena_release_bounds();
+
+  // int32 id = 1;
+  bool has_id() const;
+  private:
+  bool _internal_has_id() const;
+  public:
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::int32 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 parent_id = 2;
+  bool has_parent_id() const;
+  private:
+  bool _internal_has_parent_id() const;
+  public:
+  void clear_parent_id();
+  ::PROTOBUF_NAMESPACE_ID::int32 parent_id() const;
+  void set_parent_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_parent_id() const;
+  void _internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // uint64 ax_traits = 5;
+  bool has_ax_traits() const;
+  private:
+  bool _internal_has_ax_traits() const;
+  public:
   void clear_ax_traits();
   ::PROTOBUF_NAMESPACE_ID::uint64 ax_traits() const;
   void set_ax_traits(::PROTOBUF_NAMESPACE_ID::uint64 value);
@@ -1135,7 +1192,11 @@ class UIElement PROTOBUF_FINAL :
   void _internal_set_ax_traits(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
-  // bool is_ax_element = 1;
+  // bool is_ax_element = 4;
+  bool has_is_ax_element() const;
+  private:
+  bool _internal_has_is_ax_element() const;
+  public:
   void clear_is_ax_element();
   bool is_ax_element() const;
   void set_is_ax_element(bool value);
@@ -1144,13 +1205,238 @@ class UIElement PROTOBUF_FINAL :
   void _internal_set_is_ax_element(bool value);
   public:
 
-  // .gtxilib.oopclasses.protos.ElementType.ElementTypeEnum ax_element_type = 5;
-  void clear_ax_element_type();
-  ::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum ax_element_type() const;
-  void set_ax_element_type(::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum value);
+  // bool hittable = 10;
+  bool has_hittable() const;
   private:
-  ::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum _internal_ax_element_type() const;
-  void _internal_set_ax_element_type(::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum value);
+  bool _internal_has_hittable() const;
+  public:
+  void clear_hittable();
+  bool hittable() const;
+  void set_hittable(bool value);
+  private:
+  bool _internal_hittable() const;
+  void _internal_set_hittable(bool value);
+  public:
+
+  // bool exists = 11;
+  bool has_exists() const;
+  private:
+  bool _internal_has_exists() const;
+  public:
+  void clear_exists();
+  bool exists() const;
+  void set_exists(bool value);
+  private:
+  bool _internal_exists() const;
+  void _internal_set_exists(bool value);
+  public:
+
+  // bool xc_selected = 12;
+  bool has_xc_selected() const;
+  private:
+  bool _internal_has_xc_selected() const;
+  public:
+  void clear_xc_selected();
+  bool xc_selected() const;
+  void set_xc_selected(bool value);
+  private:
+  bool _internal_xc_selected() const;
+  void _internal_set_xc_selected(bool value);
+  public:
+
+  // .gtxilib.oopclasses.protos.ElementType.ElementTypeEnum element_type = 14;
+  bool has_element_type() const;
+  private:
+  bool _internal_has_element_type() const;
+  public:
+  void clear_element_type();
+  ::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum element_type() const;
+  void set_element_type(::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum value);
+  private:
+  ::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum _internal_element_type() const;
+  void _internal_set_element_type(::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum value);
+  public:
+
+  // float alpha = 18;
+  bool has_alpha() const;
+  private:
+  bool _internal_has_alpha() const;
+  public:
+  void clear_alpha();
+  float alpha() const;
+  void set_alpha(float value);
+  private:
+  float _internal_alpha() const;
+  void _internal_set_alpha(float value);
+  public:
+
+  // bool xc_enabled = 13;
+  bool has_xc_enabled() const;
+  private:
+  bool _internal_has_xc_enabled() const;
+  public:
+  void clear_xc_enabled();
+  bool xc_enabled() const;
+  void set_xc_enabled(bool value);
+  private:
+  bool _internal_xc_enabled() const;
+  void _internal_set_xc_enabled(bool value);
+  public:
+
+  // bool hidden = 17;
+  bool has_hidden() const;
+  private:
+  bool _internal_has_hidden() const;
+  public:
+  void clear_hidden();
+  bool hidden() const;
+  void set_hidden(bool value);
+  private:
+  bool _internal_hidden() const;
+  void _internal_set_hidden(bool value);
+  public:
+
+  // bool opaque = 20;
+  bool has_opaque() const;
+  private:
+  bool _internal_has_opaque() const;
+  public:
+  void clear_opaque();
+  bool opaque() const;
+  void set_opaque(bool value);
+  private:
+  bool _internal_opaque() const;
+  void _internal_set_opaque(bool value);
+  public:
+
+  // bool clips_to_bounds = 22;
+  bool has_clips_to_bounds() const;
+  private:
+  bool _internal_has_clips_to_bounds() const;
+  public:
+  void clear_clips_to_bounds();
+  bool clips_to_bounds() const;
+  void set_clips_to_bounds(bool value);
+  private:
+  bool _internal_clips_to_bounds() const;
+  void _internal_set_clips_to_bounds(bool value);
+  public:
+
+  // uint64 control_state = 28;
+  bool has_control_state() const;
+  private:
+  bool _internal_has_control_state() const;
+  public:
+  void clear_control_state();
+  ::PROTOBUF_NAMESPACE_ID::uint64 control_state() const;
+  void set_control_state(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_control_state() const;
+  void _internal_set_control_state(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // bool user_interaction_enabled = 23;
+  bool has_user_interaction_enabled() const;
+  private:
+  bool _internal_has_user_interaction_enabled() const;
+  public:
+  void clear_user_interaction_enabled();
+  bool user_interaction_enabled() const;
+  void set_user_interaction_enabled(bool value);
+  private:
+  bool _internal_user_interaction_enabled() const;
+  void _internal_set_user_interaction_enabled(bool value);
+  public:
+
+  // bool multiple_touch_enabled = 24;
+  bool has_multiple_touch_enabled() const;
+  private:
+  bool _internal_has_multiple_touch_enabled() const;
+  public:
+  void clear_multiple_touch_enabled();
+  bool multiple_touch_enabled() const;
+  void set_multiple_touch_enabled(bool value);
+  private:
+  bool _internal_multiple_touch_enabled() const;
+  void _internal_set_multiple_touch_enabled(bool value);
+  public:
+
+  // bool exclusive_touch = 25;
+  bool has_exclusive_touch() const;
+  private:
+  bool _internal_has_exclusive_touch() const;
+  public:
+  void clear_exclusive_touch();
+  bool exclusive_touch() const;
+  void set_exclusive_touch(bool value);
+  private:
+  bool _internal_exclusive_touch() const;
+  void _internal_set_exclusive_touch(bool value);
+  public:
+
+  // bool enabled = 29;
+  bool has_enabled() const;
+  private:
+  bool _internal_has_enabled() const;
+  public:
+  void clear_enabled();
+  bool enabled() const;
+  void set_enabled(bool value);
+  private:
+  bool _internal_enabled() const;
+  void _internal_set_enabled(bool value);
+  public:
+
+  // bool selected = 30;
+  bool has_selected() const;
+  private:
+  bool _internal_has_selected() const;
+  public:
+  void clear_selected();
+  bool selected() const;
+  void set_selected(bool value);
+  private:
+  bool _internal_selected() const;
+  void _internal_set_selected(bool value);
+  public:
+
+  // bool highlighted = 31;
+  bool has_highlighted() const;
+  private:
+  bool _internal_has_highlighted() const;
+  public:
+  void clear_highlighted();
+  bool highlighted() const;
+  void set_highlighted(bool value);
+  private:
+  bool _internal_highlighted() const;
+  void _internal_set_highlighted(bool value);
+  public:
+
+  // bool on = 34;
+  bool has_on() const;
+  private:
+  bool _internal_has_on() const;
+  public:
+  void clear_on();
+  bool on() const;
+  void set_on(bool value);
+  private:
+  bool _internal_on() const;
+  void _internal_set_on(bool value);
+  public:
+
+  // float value = 35;
+  bool has_value() const;
+  private:
+  bool _internal_has_value() const;
+  public:
+  void clear_value();
+  float value() const;
+  void set_value(float value);
+  private:
+  float _internal_value() const;
+  void _internal_set_value(float value);
   public:
 
   // @@protoc_insertion_point(class_scope:gtxilib.oopclasses.protos.UIElement)
@@ -1160,12 +1446,551 @@ class UIElement PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 > child_ids_;
+  mutable std::atomic<int> _child_ids_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> class_names_hierarchy_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ax_label_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ax_hint_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ax_identifier_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr text_;
   ::gtxilib::oopclasses::protos::Rect* ax_frame_;
+  ::gtxilib::oopclasses::protos::Color* background_color_;
+  ::gtxilib::oopclasses::protos::Color* tint_color_;
+  ::gtxilib::oopclasses::protos::Rect* frame_;
+  ::gtxilib::oopclasses::protos::Rect* bounds_;
+  ::PROTOBUF_NAMESPACE_ID::int32 id_;
+  ::PROTOBUF_NAMESPACE_ID::int32 parent_id_;
   ::PROTOBUF_NAMESPACE_ID::uint64 ax_traits_;
   bool is_ax_element_;
-  int ax_element_type_;
+  bool hittable_;
+  bool exists_;
+  bool xc_selected_;
+  int element_type_;
+  float alpha_;
+  bool xc_enabled_;
+  bool hidden_;
+  bool opaque_;
+  bool clips_to_bounds_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 control_state_;
+  bool user_interaction_enabled_;
+  bool multiple_touch_enabled_;
+  bool exclusive_touch_;
+  bool enabled_;
+  bool selected_;
+  bool highlighted_;
+  bool on_;
+  float value_;
+  friend struct ::TableStruct_gtx_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DeviceState PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:gtxilib.oopclasses.protos.DeviceState) */ {
+ public:
+  inline DeviceState() : DeviceState(nullptr) {}
+  virtual ~DeviceState();
+
+  DeviceState(const DeviceState& from);
+  DeviceState(DeviceState&& from) noexcept
+    : DeviceState() {
+    *this = ::std::move(from);
+  }
+
+  inline DeviceState& operator=(const DeviceState& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DeviceState& operator=(DeviceState&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const DeviceState& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const DeviceState* internal_default_instance() {
+    return reinterpret_cast<const DeviceState*>(
+               &_DeviceState_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(DeviceState& a, DeviceState& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DeviceState* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DeviceState* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DeviceState* New() const final {
+    return CreateMaybeMessage<DeviceState>(nullptr);
+  }
+
+  DeviceState* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<DeviceState>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const DeviceState& from);
+  void MergeFrom(const DeviceState& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DeviceState* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "gtxilib.oopclasses.protos.DeviceState";
+  }
+  protected:
+  explicit DeviceState(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gtx_2eproto);
+    return ::descriptor_table_gtx_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIosVersionFieldNumber = 2,
+    kDisplayMetricsFieldNumber = 1,
+  };
+  // string ios_version = 2;
+  bool has_ios_version() const;
+  private:
+  bool _internal_has_ios_version() const;
+  public:
+  void clear_ios_version();
+  const std::string& ios_version() const;
+  void set_ios_version(const std::string& value);
+  void set_ios_version(std::string&& value);
+  void set_ios_version(const char* value);
+  void set_ios_version(const char* value, size_t size);
+  std::string* mutable_ios_version();
+  std::string* release_ios_version();
+  void set_allocated_ios_version(std::string* ios_version);
+  private:
+  const std::string& _internal_ios_version() const;
+  void _internal_set_ios_version(const std::string& value);
+  std::string* _internal_mutable_ios_version();
+  public:
+
+  // .gtxilib.oopclasses.protos.DisplayMetrics display_metrics = 1;
+  bool has_display_metrics() const;
+  private:
+  bool _internal_has_display_metrics() const;
+  public:
+  void clear_display_metrics();
+  const ::gtxilib::oopclasses::protos::DisplayMetrics& display_metrics() const;
+  ::gtxilib::oopclasses::protos::DisplayMetrics* release_display_metrics();
+  ::gtxilib::oopclasses::protos::DisplayMetrics* mutable_display_metrics();
+  void set_allocated_display_metrics(::gtxilib::oopclasses::protos::DisplayMetrics* display_metrics);
+  private:
+  const ::gtxilib::oopclasses::protos::DisplayMetrics& _internal_display_metrics() const;
+  ::gtxilib::oopclasses::protos::DisplayMetrics* _internal_mutable_display_metrics();
+  public:
+  void unsafe_arena_set_allocated_display_metrics(
+      ::gtxilib::oopclasses::protos::DisplayMetrics* display_metrics);
+  ::gtxilib::oopclasses::protos::DisplayMetrics* unsafe_arena_release_display_metrics();
+
+  // @@protoc_insertion_point(class_scope:gtxilib.oopclasses.protos.DeviceState)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ios_version_;
+  ::gtxilib::oopclasses::protos::DisplayMetrics* display_metrics_;
+  friend struct ::TableStruct_gtx_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DisplayMetrics PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:gtxilib.oopclasses.protos.DisplayMetrics) */ {
+ public:
+  inline DisplayMetrics() : DisplayMetrics(nullptr) {}
+  virtual ~DisplayMetrics();
+
+  DisplayMetrics(const DisplayMetrics& from);
+  DisplayMetrics(DisplayMetrics&& from) noexcept
+    : DisplayMetrics() {
+    *this = ::std::move(from);
+  }
+
+  inline DisplayMetrics& operator=(const DisplayMetrics& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DisplayMetrics& operator=(DisplayMetrics&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const DisplayMetrics& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const DisplayMetrics* internal_default_instance() {
+    return reinterpret_cast<const DisplayMetrics*>(
+               &_DisplayMetrics_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(DisplayMetrics& a, DisplayMetrics& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DisplayMetrics* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DisplayMetrics* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline DisplayMetrics* New() const final {
+    return CreateMaybeMessage<DisplayMetrics>(nullptr);
+  }
+
+  DisplayMetrics* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<DisplayMetrics>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const DisplayMetrics& from);
+  void MergeFrom(const DisplayMetrics& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DisplayMetrics* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "gtxilib.oopclasses.protos.DisplayMetrics";
+  }
+  protected:
+  explicit DisplayMetrics(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gtx_2eproto);
+    return ::descriptor_table_gtx_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kScreenWidthFieldNumber = 1,
+    kScreenHeightFieldNumber = 2,
+    kScreenScaleFieldNumber = 3,
+  };
+  // int32 screen_width = 1;
+  bool has_screen_width() const;
+  private:
+  bool _internal_has_screen_width() const;
+  public:
+  void clear_screen_width();
+  ::PROTOBUF_NAMESPACE_ID::int32 screen_width() const;
+  void set_screen_width(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_screen_width() const;
+  void _internal_set_screen_width(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 screen_height = 2;
+  bool has_screen_height() const;
+  private:
+  bool _internal_has_screen_height() const;
+  public:
+  void clear_screen_height();
+  ::PROTOBUF_NAMESPACE_ID::int32 screen_height() const;
+  void set_screen_height(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_screen_height() const;
+  void _internal_set_screen_height(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // float screen_scale = 3;
+  bool has_screen_scale() const;
+  private:
+  bool _internal_has_screen_scale() const;
+  public:
+  void clear_screen_scale();
+  float screen_scale() const;
+  void set_screen_scale(float value);
+  private:
+  float _internal_screen_scale() const;
+  void _internal_set_screen_scale(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:gtxilib.oopclasses.protos.DisplayMetrics)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::int32 screen_width_;
+  ::PROTOBUF_NAMESPACE_ID::int32 screen_height_;
+  float screen_scale_;
+  friend struct ::TableStruct_gtx_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AccessibilityHierarchy PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:gtxilib.oopclasses.protos.AccessibilityHierarchy) */ {
+ public:
+  inline AccessibilityHierarchy() : AccessibilityHierarchy(nullptr) {}
+  virtual ~AccessibilityHierarchy();
+
+  AccessibilityHierarchy(const AccessibilityHierarchy& from);
+  AccessibilityHierarchy(AccessibilityHierarchy&& from) noexcept
+    : AccessibilityHierarchy() {
+    *this = ::std::move(from);
+  }
+
+  inline AccessibilityHierarchy& operator=(const AccessibilityHierarchy& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AccessibilityHierarchy& operator=(AccessibilityHierarchy&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const AccessibilityHierarchy& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const AccessibilityHierarchy* internal_default_instance() {
+    return reinterpret_cast<const AccessibilityHierarchy*>(
+               &_AccessibilityHierarchy_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(AccessibilityHierarchy& a, AccessibilityHierarchy& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AccessibilityHierarchy* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AccessibilityHierarchy* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AccessibilityHierarchy* New() const final {
+    return CreateMaybeMessage<AccessibilityHierarchy>(nullptr);
+  }
+
+  AccessibilityHierarchy* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AccessibilityHierarchy>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AccessibilityHierarchy& from);
+  void MergeFrom(const AccessibilityHierarchy& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AccessibilityHierarchy* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "gtxilib.oopclasses.protos.AccessibilityHierarchy";
+  }
+  protected:
+  explicit AccessibilityHierarchy(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_gtx_2eproto);
+    return ::descriptor_table_gtx_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kElementsFieldNumber = 2,
+    kDeviceStateFieldNumber = 1,
+  };
+  // repeated .gtxilib.oopclasses.protos.UIElement elements = 2;
+  int elements_size() const;
+  private:
+  int _internal_elements_size() const;
+  public:
+  void clear_elements();
+  ::gtxilib::oopclasses::protos::UIElement* mutable_elements(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::gtxilib::oopclasses::protos::UIElement >*
+      mutable_elements();
+  private:
+  const ::gtxilib::oopclasses::protos::UIElement& _internal_elements(int index) const;
+  ::gtxilib::oopclasses::protos::UIElement* _internal_add_elements();
+  public:
+  const ::gtxilib::oopclasses::protos::UIElement& elements(int index) const;
+  ::gtxilib::oopclasses::protos::UIElement* add_elements();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::gtxilib::oopclasses::protos::UIElement >&
+      elements() const;
+
+  // .gtxilib.oopclasses.protos.DeviceState device_state = 1;
+  bool has_device_state() const;
+  private:
+  bool _internal_has_device_state() const;
+  public:
+  void clear_device_state();
+  const ::gtxilib::oopclasses::protos::DeviceState& device_state() const;
+  ::gtxilib::oopclasses::protos::DeviceState* release_device_state();
+  ::gtxilib::oopclasses::protos::DeviceState* mutable_device_state();
+  void set_allocated_device_state(::gtxilib::oopclasses::protos::DeviceState* device_state);
+  private:
+  const ::gtxilib::oopclasses::protos::DeviceState& _internal_device_state() const;
+  ::gtxilib::oopclasses::protos::DeviceState* _internal_mutable_device_state();
+  public:
+  void unsafe_arena_set_allocated_device_state(
+      ::gtxilib::oopclasses::protos::DeviceState* device_state);
+  ::gtxilib::oopclasses::protos::DeviceState* unsafe_arena_release_device_state();
+
+  // @@protoc_insertion_point(class_scope:gtxilib.oopclasses.protos.AccessibilityHierarchy)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::gtxilib::oopclasses::protos::UIElement > elements_;
+  ::gtxilib::oopclasses::protos::DeviceState* device_state_;
   friend struct ::TableStruct_gtx_2eproto;
 };
 // ===================================================================
@@ -1180,8 +2005,16 @@ class UIElement PROTOBUF_FINAL :
 // Point
 
 // float x = 1;
+inline bool Point::_internal_has_x() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool Point::has_x() const {
+  return _internal_has_x();
+}
 inline void Point::clear_x() {
   x_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline float Point::_internal_x() const {
   return x_;
@@ -1191,7 +2024,7 @@ inline float Point::x() const {
   return _internal_x();
 }
 inline void Point::_internal_set_x(float value) {
-  
+  _has_bits_[0] |= 0x00000001u;
   x_ = value;
 }
 inline void Point::set_x(float value) {
@@ -1200,8 +2033,16 @@ inline void Point::set_x(float value) {
 }
 
 // float y = 2;
+inline bool Point::_internal_has_y() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool Point::has_y() const {
+  return _internal_has_y();
+}
 inline void Point::clear_y() {
   y_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline float Point::_internal_y() const {
   return y_;
@@ -1211,7 +2052,7 @@ inline float Point::y() const {
   return _internal_y();
 }
 inline void Point::_internal_set_y(float value) {
-  
+  _has_bits_[0] |= 0x00000002u;
   y_ = value;
 }
 inline void Point::set_y(float value) {
@@ -1224,8 +2065,16 @@ inline void Point::set_y(float value) {
 // Size
 
 // float width = 1;
+inline bool Size::_internal_has_width() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool Size::has_width() const {
+  return _internal_has_width();
+}
 inline void Size::clear_width() {
   width_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline float Size::_internal_width() const {
   return width_;
@@ -1235,7 +2084,7 @@ inline float Size::width() const {
   return _internal_width();
 }
 inline void Size::_internal_set_width(float value) {
-  
+  _has_bits_[0] |= 0x00000001u;
   width_ = value;
 }
 inline void Size::set_width(float value) {
@@ -1244,8 +2093,16 @@ inline void Size::set_width(float value) {
 }
 
 // float height = 2;
+inline bool Size::_internal_has_height() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool Size::has_height() const {
+  return _internal_has_height();
+}
 inline void Size::clear_height() {
   height_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline float Size::_internal_height() const {
   return height_;
@@ -1255,7 +2112,7 @@ inline float Size::height() const {
   return _internal_height();
 }
 inline void Size::_internal_set_height(float value) {
-  
+  _has_bits_[0] |= 0x00000002u;
   height_ = value;
 }
 inline void Size::set_height(float value) {
@@ -1269,7 +2126,9 @@ inline void Size::set_height(float value) {
 
 // .gtxilib.oopclasses.protos.Point origin = 1;
 inline bool Rect::_internal_has_origin() const {
-  return this != internal_default_instance() && origin_ != nullptr;
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || origin_ != nullptr);
+  return value;
 }
 inline bool Rect::has_origin() const {
   return _internal_has_origin();
@@ -1279,6 +2138,7 @@ inline void Rect::clear_origin() {
     delete origin_;
   }
   origin_ = nullptr;
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline const ::gtxilib::oopclasses::protos::Point& Rect::_internal_origin() const {
   const ::gtxilib::oopclasses::protos::Point* p = origin_;
@@ -1296,14 +2156,14 @@ inline void Rect::unsafe_arena_set_allocated_origin(
   }
   origin_ = origin;
   if (origin) {
-    
+    _has_bits_[0] |= 0x00000001u;
   } else {
-    
+    _has_bits_[0] &= ~0x00000001u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:gtxilib.oopclasses.protos.Rect.origin)
 }
 inline ::gtxilib::oopclasses::protos::Point* Rect::release_origin() {
-  
+  _has_bits_[0] &= ~0x00000001u;
   ::gtxilib::oopclasses::protos::Point* temp = origin_;
   origin_ = nullptr;
   if (GetArena() != nullptr) {
@@ -1313,13 +2173,13 @@ inline ::gtxilib::oopclasses::protos::Point* Rect::release_origin() {
 }
 inline ::gtxilib::oopclasses::protos::Point* Rect::unsafe_arena_release_origin() {
   // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.Rect.origin)
-  
+  _has_bits_[0] &= ~0x00000001u;
   ::gtxilib::oopclasses::protos::Point* temp = origin_;
   origin_ = nullptr;
   return temp;
 }
 inline ::gtxilib::oopclasses::protos::Point* Rect::_internal_mutable_origin() {
-  
+  _has_bits_[0] |= 0x00000001u;
   if (origin_ == nullptr) {
     auto* p = CreateMaybeMessage<::gtxilib::oopclasses::protos::Point>(GetArena());
     origin_ = p;
@@ -1342,9 +2202,9 @@ inline void Rect::set_allocated_origin(::gtxilib::oopclasses::protos::Point* ori
       origin = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, origin, submessage_arena);
     }
-    
+    _has_bits_[0] |= 0x00000001u;
   } else {
-    
+    _has_bits_[0] &= ~0x00000001u;
   }
   origin_ = origin;
   // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.Rect.origin)
@@ -1352,7 +2212,9 @@ inline void Rect::set_allocated_origin(::gtxilib::oopclasses::protos::Point* ori
 
 // .gtxilib.oopclasses.protos.Size size = 2;
 inline bool Rect::_internal_has_size() const {
-  return this != internal_default_instance() && size_ != nullptr;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || size_ != nullptr);
+  return value;
 }
 inline bool Rect::has_size() const {
   return _internal_has_size();
@@ -1362,6 +2224,7 @@ inline void Rect::clear_size() {
     delete size_;
   }
   size_ = nullptr;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline const ::gtxilib::oopclasses::protos::Size& Rect::_internal_size() const {
   const ::gtxilib::oopclasses::protos::Size* p = size_;
@@ -1379,14 +2242,14 @@ inline void Rect::unsafe_arena_set_allocated_size(
   }
   size_ = size;
   if (size) {
-    
+    _has_bits_[0] |= 0x00000002u;
   } else {
-    
+    _has_bits_[0] &= ~0x00000002u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:gtxilib.oopclasses.protos.Rect.size)
 }
 inline ::gtxilib::oopclasses::protos::Size* Rect::release_size() {
-  
+  _has_bits_[0] &= ~0x00000002u;
   ::gtxilib::oopclasses::protos::Size* temp = size_;
   size_ = nullptr;
   if (GetArena() != nullptr) {
@@ -1396,13 +2259,13 @@ inline ::gtxilib::oopclasses::protos::Size* Rect::release_size() {
 }
 inline ::gtxilib::oopclasses::protos::Size* Rect::unsafe_arena_release_size() {
   // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.Rect.size)
-  
+  _has_bits_[0] &= ~0x00000002u;
   ::gtxilib::oopclasses::protos::Size* temp = size_;
   size_ = nullptr;
   return temp;
 }
 inline ::gtxilib::oopclasses::protos::Size* Rect::_internal_mutable_size() {
-  
+  _has_bits_[0] |= 0x00000002u;
   if (size_ == nullptr) {
     auto* p = CreateMaybeMessage<::gtxilib::oopclasses::protos::Size>(GetArena());
     size_ = p;
@@ -1425,9 +2288,9 @@ inline void Rect::set_allocated_size(::gtxilib::oopclasses::protos::Size* size) 
       size = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, size, submessage_arena);
     }
-    
+    _has_bits_[0] |= 0x00000002u;
   } else {
-    
+    _has_bits_[0] &= ~0x00000002u;
   }
   size_ = size;
   // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.Rect.size)
@@ -1435,15 +2298,238 @@ inline void Rect::set_allocated_size(::gtxilib::oopclasses::protos::Size* size) 
 
 // -------------------------------------------------------------------
 
-// ElementType
+// Color
+
+// float r = 1;
+inline bool Color::_internal_has_r() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool Color::has_r() const {
+  return _internal_has_r();
+}
+inline void Color::clear_r() {
+  r_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline float Color::_internal_r() const {
+  return r_;
+}
+inline float Color::r() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.Color.r)
+  return _internal_r();
+}
+inline void Color::_internal_set_r(float value) {
+  _has_bits_[0] |= 0x00000001u;
+  r_ = value;
+}
+inline void Color::set_r(float value) {
+  _internal_set_r(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.Color.r)
+}
+
+// float g = 2;
+inline bool Color::_internal_has_g() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool Color::has_g() const {
+  return _internal_has_g();
+}
+inline void Color::clear_g() {
+  g_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline float Color::_internal_g() const {
+  return g_;
+}
+inline float Color::g() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.Color.g)
+  return _internal_g();
+}
+inline void Color::_internal_set_g(float value) {
+  _has_bits_[0] |= 0x00000002u;
+  g_ = value;
+}
+inline void Color::set_g(float value) {
+  _internal_set_g(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.Color.g)
+}
+
+// float b = 3;
+inline bool Color::_internal_has_b() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool Color::has_b() const {
+  return _internal_has_b();
+}
+inline void Color::clear_b() {
+  b_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline float Color::_internal_b() const {
+  return b_;
+}
+inline float Color::b() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.Color.b)
+  return _internal_b();
+}
+inline void Color::_internal_set_b(float value) {
+  _has_bits_[0] |= 0x00000004u;
+  b_ = value;
+}
+inline void Color::set_b(float value) {
+  _internal_set_b(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.Color.b)
+}
+
+// float a = 4;
+inline bool Color::_internal_has_a() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool Color::has_a() const {
+  return _internal_has_a();
+}
+inline void Color::clear_a() {
+  a_ = 0;
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline float Color::_internal_a() const {
+  return a_;
+}
+inline float Color::a() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.Color.a)
+  return _internal_a();
+}
+inline void Color::_internal_set_a(float value) {
+  _has_bits_[0] |= 0x00000008u;
+  a_ = value;
+}
+inline void Color::set_a(float value) {
+  _internal_set_a(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.Color.a)
+}
 
 // -------------------------------------------------------------------
 
 // UIElement
 
-// bool is_ax_element = 1;
+// int32 id = 1;
+inline bool UIElement::_internal_has_id() const {
+  bool value = (_has_bits_[0] & 0x00000400u) != 0;
+  return value;
+}
+inline bool UIElement::has_id() const {
+  return _internal_has_id();
+}
+inline void UIElement::clear_id() {
+  id_ = 0;
+  _has_bits_[0] &= ~0x00000400u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 UIElement::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 UIElement::id() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.id)
+  return _internal_id();
+}
+inline void UIElement::_internal_set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000400u;
+  id_ = value;
+}
+inline void UIElement::set_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.id)
+}
+
+// int32 parent_id = 2;
+inline bool UIElement::_internal_has_parent_id() const {
+  bool value = (_has_bits_[0] & 0x00000800u) != 0;
+  return value;
+}
+inline bool UIElement::has_parent_id() const {
+  return _internal_has_parent_id();
+}
+inline void UIElement::clear_parent_id() {
+  parent_id_ = 0;
+  _has_bits_[0] &= ~0x00000800u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 UIElement::_internal_parent_id() const {
+  return parent_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 UIElement::parent_id() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.parent_id)
+  return _internal_parent_id();
+}
+inline void UIElement::_internal_set_parent_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000800u;
+  parent_id_ = value;
+}
+inline void UIElement::set_parent_id(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_parent_id(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.parent_id)
+}
+
+// repeated int32 child_ids = 3;
+inline int UIElement::_internal_child_ids_size() const {
+  return child_ids_.size();
+}
+inline int UIElement::child_ids_size() const {
+  return _internal_child_ids_size();
+}
+inline void UIElement::clear_child_ids() {
+  child_ids_.Clear();
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 UIElement::_internal_child_ids(int index) const {
+  return child_ids_.Get(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 UIElement::child_ids(int index) const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.child_ids)
+  return _internal_child_ids(index);
+}
+inline void UIElement::set_child_ids(int index, ::PROTOBUF_NAMESPACE_ID::int32 value) {
+  child_ids_.Set(index, value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.child_ids)
+}
+inline void UIElement::_internal_add_child_ids(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  child_ids_.Add(value);
+}
+inline void UIElement::add_child_ids(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_add_child_ids(value);
+  // @@protoc_insertion_point(field_add:gtxilib.oopclasses.protos.UIElement.child_ids)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+UIElement::_internal_child_ids() const {
+  return child_ids_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >&
+UIElement::child_ids() const {
+  // @@protoc_insertion_point(field_list:gtxilib.oopclasses.protos.UIElement.child_ids)
+  return _internal_child_ids();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+UIElement::_internal_mutable_child_ids() {
+  return &child_ids_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >*
+UIElement::mutable_child_ids() {
+  // @@protoc_insertion_point(field_mutable_list:gtxilib.oopclasses.protos.UIElement.child_ids)
+  return _internal_mutable_child_ids();
+}
+
+// bool is_ax_element = 4;
+inline bool UIElement::_internal_has_is_ax_element() const {
+  bool value = (_has_bits_[0] & 0x00002000u) != 0;
+  return value;
+}
+inline bool UIElement::has_is_ax_element() const {
+  return _internal_has_is_ax_element();
+}
 inline void UIElement::clear_is_ax_element() {
   is_ax_element_ = false;
+  _has_bits_[0] &= ~0x00002000u;
 }
 inline bool UIElement::_internal_is_ax_element() const {
   return is_ax_element_;
@@ -1453,7 +2539,7 @@ inline bool UIElement::is_ax_element() const {
   return _internal_is_ax_element();
 }
 inline void UIElement::_internal_set_is_ax_element(bool value) {
-  
+  _has_bits_[0] |= 0x00002000u;
   is_ax_element_ = value;
 }
 inline void UIElement::set_is_ax_element(bool value) {
@@ -1461,9 +2547,17 @@ inline void UIElement::set_is_ax_element(bool value) {
   // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.is_ax_element)
 }
 
-// uint64 ax_traits = 2;
+// uint64 ax_traits = 5;
+inline bool UIElement::_internal_has_ax_traits() const {
+  bool value = (_has_bits_[0] & 0x00001000u) != 0;
+  return value;
+}
+inline bool UIElement::has_ax_traits() const {
+  return _internal_has_ax_traits();
+}
 inline void UIElement::clear_ax_traits() {
   ax_traits_ = PROTOBUF_ULONGLONG(0);
+  _has_bits_[0] &= ~0x00001000u;
 }
 inline ::PROTOBUF_NAMESPACE_ID::uint64 UIElement::_internal_ax_traits() const {
   return ax_traits_;
@@ -1473,7 +2567,7 @@ inline ::PROTOBUF_NAMESPACE_ID::uint64 UIElement::ax_traits() const {
   return _internal_ax_traits();
 }
 inline void UIElement::_internal_set_ax_traits(::PROTOBUF_NAMESPACE_ID::uint64 value) {
-  
+  _has_bits_[0] |= 0x00001000u;
   ax_traits_ = value;
 }
 inline void UIElement::set_ax_traits(::PROTOBUF_NAMESPACE_ID::uint64 value) {
@@ -1481,9 +2575,17 @@ inline void UIElement::set_ax_traits(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.ax_traits)
 }
 
-// string ax_label = 3;
+// string ax_label = 6;
+inline bool UIElement::_internal_has_ax_label() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool UIElement::has_ax_label() const {
+  return _internal_has_ax_label();
+}
 inline void UIElement::clear_ax_label() {
   ax_label_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline const std::string& UIElement::ax_label() const {
   // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.ax_label)
@@ -1501,51 +2603,131 @@ inline const std::string& UIElement::_internal_ax_label() const {
   return ax_label_.Get();
 }
 inline void UIElement::_internal_set_ax_label(const std::string& value) {
-  
+  _has_bits_[0] |= 0x00000001u;
   ax_label_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
 }
 inline void UIElement::set_ax_label(std::string&& value) {
-  
+  _has_bits_[0] |= 0x00000001u;
   ax_label_.Set(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
   // @@protoc_insertion_point(field_set_rvalue:gtxilib.oopclasses.protos.UIElement.ax_label)
 }
 inline void UIElement::set_ax_label(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
-  
+  _has_bits_[0] |= 0x00000001u;
   ax_label_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
               GetArena());
   // @@protoc_insertion_point(field_set_char:gtxilib.oopclasses.protos.UIElement.ax_label)
 }
 inline void UIElement::set_ax_label(const char* value,
     size_t size) {
-  
+  _has_bits_[0] |= 0x00000001u;
   ax_label_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
   // @@protoc_insertion_point(field_set_pointer:gtxilib.oopclasses.protos.UIElement.ax_label)
 }
 inline std::string* UIElement::_internal_mutable_ax_label() {
-  
+  _has_bits_[0] |= 0x00000001u;
   return ax_label_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline std::string* UIElement::release_ax_label() {
   // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.UIElement.ax_label)
-  return ax_label_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  if (!_internal_has_ax_label()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  return ax_label_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 inline void UIElement::set_allocated_ax_label(std::string* ax_label) {
   if (ax_label != nullptr) {
-    
+    _has_bits_[0] |= 0x00000001u;
   } else {
-    
+    _has_bits_[0] &= ~0x00000001u;
   }
   ax_label_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ax_label,
       GetArena());
   // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.UIElement.ax_label)
 }
 
-// .gtxilib.oopclasses.protos.Rect ax_frame = 4;
+// string ax_hint = 7;
+inline bool UIElement::_internal_has_ax_hint() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool UIElement::has_ax_hint() const {
+  return _internal_has_ax_hint();
+}
+inline void UIElement::clear_ax_hint() {
+  ax_hint_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const std::string& UIElement::ax_hint() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.ax_hint)
+  return _internal_ax_hint();
+}
+inline void UIElement::set_ax_hint(const std::string& value) {
+  _internal_set_ax_hint(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.ax_hint)
+}
+inline std::string* UIElement::mutable_ax_hint() {
+  // @@protoc_insertion_point(field_mutable:gtxilib.oopclasses.protos.UIElement.ax_hint)
+  return _internal_mutable_ax_hint();
+}
+inline const std::string& UIElement::_internal_ax_hint() const {
+  return ax_hint_.Get();
+}
+inline void UIElement::_internal_set_ax_hint(const std::string& value) {
+  _has_bits_[0] |= 0x00000002u;
+  ax_hint_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void UIElement::set_ax_hint(std::string&& value) {
+  _has_bits_[0] |= 0x00000002u;
+  ax_hint_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:gtxilib.oopclasses.protos.UIElement.ax_hint)
+}
+inline void UIElement::set_ax_hint(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000002u;
+  ax_hint_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:gtxilib.oopclasses.protos.UIElement.ax_hint)
+}
+inline void UIElement::set_ax_hint(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000002u;
+  ax_hint_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:gtxilib.oopclasses.protos.UIElement.ax_hint)
+}
+inline std::string* UIElement::_internal_mutable_ax_hint() {
+  _has_bits_[0] |= 0x00000002u;
+  return ax_hint_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* UIElement::release_ax_hint() {
+  // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.UIElement.ax_hint)
+  if (!_internal_has_ax_hint()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000002u;
+  return ax_hint_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void UIElement::set_allocated_ax_hint(std::string* ax_hint) {
+  if (ax_hint != nullptr) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  ax_hint_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ax_hint,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.UIElement.ax_hint)
+}
+
+// .gtxilib.oopclasses.protos.Rect ax_frame = 8;
 inline bool UIElement::_internal_has_ax_frame() const {
-  return this != internal_default_instance() && ax_frame_ != nullptr;
+  bool value = (_has_bits_[0] & 0x00000020u) != 0;
+  PROTOBUF_ASSUME(!value || ax_frame_ != nullptr);
+  return value;
 }
 inline bool UIElement::has_ax_frame() const {
   return _internal_has_ax_frame();
@@ -1555,6 +2737,7 @@ inline void UIElement::clear_ax_frame() {
     delete ax_frame_;
   }
   ax_frame_ = nullptr;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline const ::gtxilib::oopclasses::protos::Rect& UIElement::_internal_ax_frame() const {
   const ::gtxilib::oopclasses::protos::Rect* p = ax_frame_;
@@ -1572,14 +2755,14 @@ inline void UIElement::unsafe_arena_set_allocated_ax_frame(
   }
   ax_frame_ = ax_frame;
   if (ax_frame) {
-    
+    _has_bits_[0] |= 0x00000020u;
   } else {
-    
+    _has_bits_[0] &= ~0x00000020u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:gtxilib.oopclasses.protos.UIElement.ax_frame)
 }
 inline ::gtxilib::oopclasses::protos::Rect* UIElement::release_ax_frame() {
-  
+  _has_bits_[0] &= ~0x00000020u;
   ::gtxilib::oopclasses::protos::Rect* temp = ax_frame_;
   ax_frame_ = nullptr;
   if (GetArena() != nullptr) {
@@ -1589,13 +2772,13 @@ inline ::gtxilib::oopclasses::protos::Rect* UIElement::release_ax_frame() {
 }
 inline ::gtxilib::oopclasses::protos::Rect* UIElement::unsafe_arena_release_ax_frame() {
   // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.UIElement.ax_frame)
-  
+  _has_bits_[0] &= ~0x00000020u;
   ::gtxilib::oopclasses::protos::Rect* temp = ax_frame_;
   ax_frame_ = nullptr;
   return temp;
 }
 inline ::gtxilib::oopclasses::protos::Rect* UIElement::_internal_mutable_ax_frame() {
-  
+  _has_bits_[0] |= 0x00000020u;
   if (ax_frame_ == nullptr) {
     auto* p = CreateMaybeMessage<::gtxilib::oopclasses::protos::Rect>(GetArena());
     ax_frame_ = p;
@@ -1618,37 +2801,1548 @@ inline void UIElement::set_allocated_ax_frame(::gtxilib::oopclasses::protos::Rec
       ax_frame = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, ax_frame, submessage_arena);
     }
-    
+    _has_bits_[0] |= 0x00000020u;
   } else {
-    
+    _has_bits_[0] &= ~0x00000020u;
   }
   ax_frame_ = ax_frame;
   // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.UIElement.ax_frame)
 }
 
-// .gtxilib.oopclasses.protos.ElementType.ElementTypeEnum ax_element_type = 5;
-inline void UIElement::clear_ax_element_type() {
-  ax_element_type_ = 0;
+// string ax_identifier = 9;
+inline bool UIElement::_internal_has_ax_identifier() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
 }
-inline ::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum UIElement::_internal_ax_element_type() const {
-  return static_cast< ::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum >(ax_element_type_);
+inline bool UIElement::has_ax_identifier() const {
+  return _internal_has_ax_identifier();
 }
-inline ::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum UIElement::ax_element_type() const {
-  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.ax_element_type)
-  return _internal_ax_element_type();
+inline void UIElement::clear_ax_identifier() {
+  ax_identifier_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  _has_bits_[0] &= ~0x00000004u;
 }
-inline void UIElement::_internal_set_ax_element_type(::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum value) {
-  
-  ax_element_type_ = value;
+inline const std::string& UIElement::ax_identifier() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.ax_identifier)
+  return _internal_ax_identifier();
 }
-inline void UIElement::set_ax_element_type(::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum value) {
-  _internal_set_ax_element_type(value);
-  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.ax_element_type)
+inline void UIElement::set_ax_identifier(const std::string& value) {
+  _internal_set_ax_identifier(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.ax_identifier)
+}
+inline std::string* UIElement::mutable_ax_identifier() {
+  // @@protoc_insertion_point(field_mutable:gtxilib.oopclasses.protos.UIElement.ax_identifier)
+  return _internal_mutable_ax_identifier();
+}
+inline const std::string& UIElement::_internal_ax_identifier() const {
+  return ax_identifier_.Get();
+}
+inline void UIElement::_internal_set_ax_identifier(const std::string& value) {
+  _has_bits_[0] |= 0x00000004u;
+  ax_identifier_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void UIElement::set_ax_identifier(std::string&& value) {
+  _has_bits_[0] |= 0x00000004u;
+  ax_identifier_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:gtxilib.oopclasses.protos.UIElement.ax_identifier)
+}
+inline void UIElement::set_ax_identifier(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000004u;
+  ax_identifier_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:gtxilib.oopclasses.protos.UIElement.ax_identifier)
+}
+inline void UIElement::set_ax_identifier(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000004u;
+  ax_identifier_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:gtxilib.oopclasses.protos.UIElement.ax_identifier)
+}
+inline std::string* UIElement::_internal_mutable_ax_identifier() {
+  _has_bits_[0] |= 0x00000004u;
+  return ax_identifier_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* UIElement::release_ax_identifier() {
+  // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.UIElement.ax_identifier)
+  if (!_internal_has_ax_identifier()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000004u;
+  return ax_identifier_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void UIElement::set_allocated_ax_identifier(std::string* ax_identifier) {
+  if (ax_identifier != nullptr) {
+    _has_bits_[0] |= 0x00000004u;
+  } else {
+    _has_bits_[0] &= ~0x00000004u;
+  }
+  ax_identifier_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ax_identifier,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.UIElement.ax_identifier)
+}
+
+// bool hittable = 10;
+inline bool UIElement::_internal_has_hittable() const {
+  bool value = (_has_bits_[0] & 0x00004000u) != 0;
+  return value;
+}
+inline bool UIElement::has_hittable() const {
+  return _internal_has_hittable();
+}
+inline void UIElement::clear_hittable() {
+  hittable_ = false;
+  _has_bits_[0] &= ~0x00004000u;
+}
+inline bool UIElement::_internal_hittable() const {
+  return hittable_;
+}
+inline bool UIElement::hittable() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.hittable)
+  return _internal_hittable();
+}
+inline void UIElement::_internal_set_hittable(bool value) {
+  _has_bits_[0] |= 0x00004000u;
+  hittable_ = value;
+}
+inline void UIElement::set_hittable(bool value) {
+  _internal_set_hittable(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.hittable)
+}
+
+// bool exists = 11;
+inline bool UIElement::_internal_has_exists() const {
+  bool value = (_has_bits_[0] & 0x00008000u) != 0;
+  return value;
+}
+inline bool UIElement::has_exists() const {
+  return _internal_has_exists();
+}
+inline void UIElement::clear_exists() {
+  exists_ = false;
+  _has_bits_[0] &= ~0x00008000u;
+}
+inline bool UIElement::_internal_exists() const {
+  return exists_;
+}
+inline bool UIElement::exists() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.exists)
+  return _internal_exists();
+}
+inline void UIElement::_internal_set_exists(bool value) {
+  _has_bits_[0] |= 0x00008000u;
+  exists_ = value;
+}
+inline void UIElement::set_exists(bool value) {
+  _internal_set_exists(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.exists)
+}
+
+// bool xc_selected = 12;
+inline bool UIElement::_internal_has_xc_selected() const {
+  bool value = (_has_bits_[0] & 0x00010000u) != 0;
+  return value;
+}
+inline bool UIElement::has_xc_selected() const {
+  return _internal_has_xc_selected();
+}
+inline void UIElement::clear_xc_selected() {
+  xc_selected_ = false;
+  _has_bits_[0] &= ~0x00010000u;
+}
+inline bool UIElement::_internal_xc_selected() const {
+  return xc_selected_;
+}
+inline bool UIElement::xc_selected() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.xc_selected)
+  return _internal_xc_selected();
+}
+inline void UIElement::_internal_set_xc_selected(bool value) {
+  _has_bits_[0] |= 0x00010000u;
+  xc_selected_ = value;
+}
+inline void UIElement::set_xc_selected(bool value) {
+  _internal_set_xc_selected(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.xc_selected)
+}
+
+// bool xc_enabled = 13;
+inline bool UIElement::_internal_has_xc_enabled() const {
+  bool value = (_has_bits_[0] & 0x00080000u) != 0;
+  return value;
+}
+inline bool UIElement::has_xc_enabled() const {
+  return _internal_has_xc_enabled();
+}
+inline void UIElement::clear_xc_enabled() {
+  xc_enabled_ = false;
+  _has_bits_[0] &= ~0x00080000u;
+}
+inline bool UIElement::_internal_xc_enabled() const {
+  return xc_enabled_;
+}
+inline bool UIElement::xc_enabled() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.xc_enabled)
+  return _internal_xc_enabled();
+}
+inline void UIElement::_internal_set_xc_enabled(bool value) {
+  _has_bits_[0] |= 0x00080000u;
+  xc_enabled_ = value;
+}
+inline void UIElement::set_xc_enabled(bool value) {
+  _internal_set_xc_enabled(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.xc_enabled)
+}
+
+// .gtxilib.oopclasses.protos.ElementType.ElementTypeEnum element_type = 14;
+inline bool UIElement::_internal_has_element_type() const {
+  bool value = (_has_bits_[0] & 0x00020000u) != 0;
+  return value;
+}
+inline bool UIElement::has_element_type() const {
+  return _internal_has_element_type();
+}
+inline void UIElement::clear_element_type() {
+  element_type_ = 0;
+  _has_bits_[0] &= ~0x00020000u;
+}
+inline ::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum UIElement::_internal_element_type() const {
+  return static_cast< ::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum >(element_type_);
+}
+inline ::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum UIElement::element_type() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.element_type)
+  return _internal_element_type();
+}
+inline void UIElement::_internal_set_element_type(::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum value) {
+  _has_bits_[0] |= 0x00020000u;
+  element_type_ = value;
+}
+inline void UIElement::set_element_type(::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum value) {
+  _internal_set_element_type(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.element_type)
+}
+
+// repeated string class_names_hierarchy = 15;
+inline int UIElement::_internal_class_names_hierarchy_size() const {
+  return class_names_hierarchy_.size();
+}
+inline int UIElement::class_names_hierarchy_size() const {
+  return _internal_class_names_hierarchy_size();
+}
+inline void UIElement::clear_class_names_hierarchy() {
+  class_names_hierarchy_.Clear();
+}
+inline std::string* UIElement::add_class_names_hierarchy() {
+  // @@protoc_insertion_point(field_add_mutable:gtxilib.oopclasses.protos.UIElement.class_names_hierarchy)
+  return _internal_add_class_names_hierarchy();
+}
+inline const std::string& UIElement::_internal_class_names_hierarchy(int index) const {
+  return class_names_hierarchy_.Get(index);
+}
+inline const std::string& UIElement::class_names_hierarchy(int index) const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.class_names_hierarchy)
+  return _internal_class_names_hierarchy(index);
+}
+inline std::string* UIElement::mutable_class_names_hierarchy(int index) {
+  // @@protoc_insertion_point(field_mutable:gtxilib.oopclasses.protos.UIElement.class_names_hierarchy)
+  return class_names_hierarchy_.Mutable(index);
+}
+inline void UIElement::set_class_names_hierarchy(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.class_names_hierarchy)
+  class_names_hierarchy_.Mutable(index)->assign(value);
+}
+inline void UIElement::set_class_names_hierarchy(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.class_names_hierarchy)
+  class_names_hierarchy_.Mutable(index)->assign(std::move(value));
+}
+inline void UIElement::set_class_names_hierarchy(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  class_names_hierarchy_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:gtxilib.oopclasses.protos.UIElement.class_names_hierarchy)
+}
+inline void UIElement::set_class_names_hierarchy(int index, const char* value, size_t size) {
+  class_names_hierarchy_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:gtxilib.oopclasses.protos.UIElement.class_names_hierarchy)
+}
+inline std::string* UIElement::_internal_add_class_names_hierarchy() {
+  return class_names_hierarchy_.Add();
+}
+inline void UIElement::add_class_names_hierarchy(const std::string& value) {
+  class_names_hierarchy_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:gtxilib.oopclasses.protos.UIElement.class_names_hierarchy)
+}
+inline void UIElement::add_class_names_hierarchy(std::string&& value) {
+  class_names_hierarchy_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:gtxilib.oopclasses.protos.UIElement.class_names_hierarchy)
+}
+inline void UIElement::add_class_names_hierarchy(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  class_names_hierarchy_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:gtxilib.oopclasses.protos.UIElement.class_names_hierarchy)
+}
+inline void UIElement::add_class_names_hierarchy(const char* value, size_t size) {
+  class_names_hierarchy_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:gtxilib.oopclasses.protos.UIElement.class_names_hierarchy)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+UIElement::class_names_hierarchy() const {
+  // @@protoc_insertion_point(field_list:gtxilib.oopclasses.protos.UIElement.class_names_hierarchy)
+  return class_names_hierarchy_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+UIElement::mutable_class_names_hierarchy() {
+  // @@protoc_insertion_point(field_mutable_list:gtxilib.oopclasses.protos.UIElement.class_names_hierarchy)
+  return &class_names_hierarchy_;
+}
+
+// .gtxilib.oopclasses.protos.Color background_color = 16;
+inline bool UIElement::_internal_has_background_color() const {
+  bool value = (_has_bits_[0] & 0x00000040u) != 0;
+  PROTOBUF_ASSUME(!value || background_color_ != nullptr);
+  return value;
+}
+inline bool UIElement::has_background_color() const {
+  return _internal_has_background_color();
+}
+inline void UIElement::clear_background_color() {
+  if (GetArena() == nullptr && background_color_ != nullptr) {
+    delete background_color_;
+  }
+  background_color_ = nullptr;
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline const ::gtxilib::oopclasses::protos::Color& UIElement::_internal_background_color() const {
+  const ::gtxilib::oopclasses::protos::Color* p = background_color_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::gtxilib::oopclasses::protos::Color*>(
+      &::gtxilib::oopclasses::protos::_Color_default_instance_);
+}
+inline const ::gtxilib::oopclasses::protos::Color& UIElement::background_color() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.background_color)
+  return _internal_background_color();
+}
+inline void UIElement::unsafe_arena_set_allocated_background_color(
+    ::gtxilib::oopclasses::protos::Color* background_color) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(background_color_);
+  }
+  background_color_ = background_color;
+  if (background_color) {
+    _has_bits_[0] |= 0x00000040u;
+  } else {
+    _has_bits_[0] &= ~0x00000040u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:gtxilib.oopclasses.protos.UIElement.background_color)
+}
+inline ::gtxilib::oopclasses::protos::Color* UIElement::release_background_color() {
+  _has_bits_[0] &= ~0x00000040u;
+  ::gtxilib::oopclasses::protos::Color* temp = background_color_;
+  background_color_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::gtxilib::oopclasses::protos::Color* UIElement::unsafe_arena_release_background_color() {
+  // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.UIElement.background_color)
+  _has_bits_[0] &= ~0x00000040u;
+  ::gtxilib::oopclasses::protos::Color* temp = background_color_;
+  background_color_ = nullptr;
+  return temp;
+}
+inline ::gtxilib::oopclasses::protos::Color* UIElement::_internal_mutable_background_color() {
+  _has_bits_[0] |= 0x00000040u;
+  if (background_color_ == nullptr) {
+    auto* p = CreateMaybeMessage<::gtxilib::oopclasses::protos::Color>(GetArena());
+    background_color_ = p;
+  }
+  return background_color_;
+}
+inline ::gtxilib::oopclasses::protos::Color* UIElement::mutable_background_color() {
+  // @@protoc_insertion_point(field_mutable:gtxilib.oopclasses.protos.UIElement.background_color)
+  return _internal_mutable_background_color();
+}
+inline void UIElement::set_allocated_background_color(::gtxilib::oopclasses::protos::Color* background_color) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete background_color_;
+  }
+  if (background_color) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(background_color);
+    if (message_arena != submessage_arena) {
+      background_color = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, background_color, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000040u;
+  } else {
+    _has_bits_[0] &= ~0x00000040u;
+  }
+  background_color_ = background_color;
+  // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.UIElement.background_color)
+}
+
+// bool hidden = 17;
+inline bool UIElement::_internal_has_hidden() const {
+  bool value = (_has_bits_[0] & 0x00100000u) != 0;
+  return value;
+}
+inline bool UIElement::has_hidden() const {
+  return _internal_has_hidden();
+}
+inline void UIElement::clear_hidden() {
+  hidden_ = false;
+  _has_bits_[0] &= ~0x00100000u;
+}
+inline bool UIElement::_internal_hidden() const {
+  return hidden_;
+}
+inline bool UIElement::hidden() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.hidden)
+  return _internal_hidden();
+}
+inline void UIElement::_internal_set_hidden(bool value) {
+  _has_bits_[0] |= 0x00100000u;
+  hidden_ = value;
+}
+inline void UIElement::set_hidden(bool value) {
+  _internal_set_hidden(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.hidden)
+}
+
+// float alpha = 18;
+inline bool UIElement::_internal_has_alpha() const {
+  bool value = (_has_bits_[0] & 0x00040000u) != 0;
+  return value;
+}
+inline bool UIElement::has_alpha() const {
+  return _internal_has_alpha();
+}
+inline void UIElement::clear_alpha() {
+  alpha_ = 0;
+  _has_bits_[0] &= ~0x00040000u;
+}
+inline float UIElement::_internal_alpha() const {
+  return alpha_;
+}
+inline float UIElement::alpha() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.alpha)
+  return _internal_alpha();
+}
+inline void UIElement::_internal_set_alpha(float value) {
+  _has_bits_[0] |= 0x00040000u;
+  alpha_ = value;
+}
+inline void UIElement::set_alpha(float value) {
+  _internal_set_alpha(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.alpha)
+}
+
+// bool opaque = 20;
+inline bool UIElement::_internal_has_opaque() const {
+  bool value = (_has_bits_[0] & 0x00200000u) != 0;
+  return value;
+}
+inline bool UIElement::has_opaque() const {
+  return _internal_has_opaque();
+}
+inline void UIElement::clear_opaque() {
+  opaque_ = false;
+  _has_bits_[0] &= ~0x00200000u;
+}
+inline bool UIElement::_internal_opaque() const {
+  return opaque_;
+}
+inline bool UIElement::opaque() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.opaque)
+  return _internal_opaque();
+}
+inline void UIElement::_internal_set_opaque(bool value) {
+  _has_bits_[0] |= 0x00200000u;
+  opaque_ = value;
+}
+inline void UIElement::set_opaque(bool value) {
+  _internal_set_opaque(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.opaque)
+}
+
+// .gtxilib.oopclasses.protos.Color tint_color = 21;
+inline bool UIElement::_internal_has_tint_color() const {
+  bool value = (_has_bits_[0] & 0x00000080u) != 0;
+  PROTOBUF_ASSUME(!value || tint_color_ != nullptr);
+  return value;
+}
+inline bool UIElement::has_tint_color() const {
+  return _internal_has_tint_color();
+}
+inline void UIElement::clear_tint_color() {
+  if (GetArena() == nullptr && tint_color_ != nullptr) {
+    delete tint_color_;
+  }
+  tint_color_ = nullptr;
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline const ::gtxilib::oopclasses::protos::Color& UIElement::_internal_tint_color() const {
+  const ::gtxilib::oopclasses::protos::Color* p = tint_color_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::gtxilib::oopclasses::protos::Color*>(
+      &::gtxilib::oopclasses::protos::_Color_default_instance_);
+}
+inline const ::gtxilib::oopclasses::protos::Color& UIElement::tint_color() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.tint_color)
+  return _internal_tint_color();
+}
+inline void UIElement::unsafe_arena_set_allocated_tint_color(
+    ::gtxilib::oopclasses::protos::Color* tint_color) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(tint_color_);
+  }
+  tint_color_ = tint_color;
+  if (tint_color) {
+    _has_bits_[0] |= 0x00000080u;
+  } else {
+    _has_bits_[0] &= ~0x00000080u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:gtxilib.oopclasses.protos.UIElement.tint_color)
+}
+inline ::gtxilib::oopclasses::protos::Color* UIElement::release_tint_color() {
+  _has_bits_[0] &= ~0x00000080u;
+  ::gtxilib::oopclasses::protos::Color* temp = tint_color_;
+  tint_color_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::gtxilib::oopclasses::protos::Color* UIElement::unsafe_arena_release_tint_color() {
+  // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.UIElement.tint_color)
+  _has_bits_[0] &= ~0x00000080u;
+  ::gtxilib::oopclasses::protos::Color* temp = tint_color_;
+  tint_color_ = nullptr;
+  return temp;
+}
+inline ::gtxilib::oopclasses::protos::Color* UIElement::_internal_mutable_tint_color() {
+  _has_bits_[0] |= 0x00000080u;
+  if (tint_color_ == nullptr) {
+    auto* p = CreateMaybeMessage<::gtxilib::oopclasses::protos::Color>(GetArena());
+    tint_color_ = p;
+  }
+  return tint_color_;
+}
+inline ::gtxilib::oopclasses::protos::Color* UIElement::mutable_tint_color() {
+  // @@protoc_insertion_point(field_mutable:gtxilib.oopclasses.protos.UIElement.tint_color)
+  return _internal_mutable_tint_color();
+}
+inline void UIElement::set_allocated_tint_color(::gtxilib::oopclasses::protos::Color* tint_color) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete tint_color_;
+  }
+  if (tint_color) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(tint_color);
+    if (message_arena != submessage_arena) {
+      tint_color = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, tint_color, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000080u;
+  } else {
+    _has_bits_[0] &= ~0x00000080u;
+  }
+  tint_color_ = tint_color;
+  // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.UIElement.tint_color)
+}
+
+// bool clips_to_bounds = 22;
+inline bool UIElement::_internal_has_clips_to_bounds() const {
+  bool value = (_has_bits_[0] & 0x00400000u) != 0;
+  return value;
+}
+inline bool UIElement::has_clips_to_bounds() const {
+  return _internal_has_clips_to_bounds();
+}
+inline void UIElement::clear_clips_to_bounds() {
+  clips_to_bounds_ = false;
+  _has_bits_[0] &= ~0x00400000u;
+}
+inline bool UIElement::_internal_clips_to_bounds() const {
+  return clips_to_bounds_;
+}
+inline bool UIElement::clips_to_bounds() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.clips_to_bounds)
+  return _internal_clips_to_bounds();
+}
+inline void UIElement::_internal_set_clips_to_bounds(bool value) {
+  _has_bits_[0] |= 0x00400000u;
+  clips_to_bounds_ = value;
+}
+inline void UIElement::set_clips_to_bounds(bool value) {
+  _internal_set_clips_to_bounds(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.clips_to_bounds)
+}
+
+// bool user_interaction_enabled = 23;
+inline bool UIElement::_internal_has_user_interaction_enabled() const {
+  bool value = (_has_bits_[0] & 0x01000000u) != 0;
+  return value;
+}
+inline bool UIElement::has_user_interaction_enabled() const {
+  return _internal_has_user_interaction_enabled();
+}
+inline void UIElement::clear_user_interaction_enabled() {
+  user_interaction_enabled_ = false;
+  _has_bits_[0] &= ~0x01000000u;
+}
+inline bool UIElement::_internal_user_interaction_enabled() const {
+  return user_interaction_enabled_;
+}
+inline bool UIElement::user_interaction_enabled() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.user_interaction_enabled)
+  return _internal_user_interaction_enabled();
+}
+inline void UIElement::_internal_set_user_interaction_enabled(bool value) {
+  _has_bits_[0] |= 0x01000000u;
+  user_interaction_enabled_ = value;
+}
+inline void UIElement::set_user_interaction_enabled(bool value) {
+  _internal_set_user_interaction_enabled(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.user_interaction_enabled)
+}
+
+// bool multiple_touch_enabled = 24;
+inline bool UIElement::_internal_has_multiple_touch_enabled() const {
+  bool value = (_has_bits_[0] & 0x02000000u) != 0;
+  return value;
+}
+inline bool UIElement::has_multiple_touch_enabled() const {
+  return _internal_has_multiple_touch_enabled();
+}
+inline void UIElement::clear_multiple_touch_enabled() {
+  multiple_touch_enabled_ = false;
+  _has_bits_[0] &= ~0x02000000u;
+}
+inline bool UIElement::_internal_multiple_touch_enabled() const {
+  return multiple_touch_enabled_;
+}
+inline bool UIElement::multiple_touch_enabled() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.multiple_touch_enabled)
+  return _internal_multiple_touch_enabled();
+}
+inline void UIElement::_internal_set_multiple_touch_enabled(bool value) {
+  _has_bits_[0] |= 0x02000000u;
+  multiple_touch_enabled_ = value;
+}
+inline void UIElement::set_multiple_touch_enabled(bool value) {
+  _internal_set_multiple_touch_enabled(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.multiple_touch_enabled)
+}
+
+// bool exclusive_touch = 25;
+inline bool UIElement::_internal_has_exclusive_touch() const {
+  bool value = (_has_bits_[0] & 0x04000000u) != 0;
+  return value;
+}
+inline bool UIElement::has_exclusive_touch() const {
+  return _internal_has_exclusive_touch();
+}
+inline void UIElement::clear_exclusive_touch() {
+  exclusive_touch_ = false;
+  _has_bits_[0] &= ~0x04000000u;
+}
+inline bool UIElement::_internal_exclusive_touch() const {
+  return exclusive_touch_;
+}
+inline bool UIElement::exclusive_touch() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.exclusive_touch)
+  return _internal_exclusive_touch();
+}
+inline void UIElement::_internal_set_exclusive_touch(bool value) {
+  _has_bits_[0] |= 0x04000000u;
+  exclusive_touch_ = value;
+}
+inline void UIElement::set_exclusive_touch(bool value) {
+  _internal_set_exclusive_touch(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.exclusive_touch)
+}
+
+// .gtxilib.oopclasses.protos.Rect frame = 26;
+inline bool UIElement::_internal_has_frame() const {
+  bool value = (_has_bits_[0] & 0x00000100u) != 0;
+  PROTOBUF_ASSUME(!value || frame_ != nullptr);
+  return value;
+}
+inline bool UIElement::has_frame() const {
+  return _internal_has_frame();
+}
+inline void UIElement::clear_frame() {
+  if (GetArena() == nullptr && frame_ != nullptr) {
+    delete frame_;
+  }
+  frame_ = nullptr;
+  _has_bits_[0] &= ~0x00000100u;
+}
+inline const ::gtxilib::oopclasses::protos::Rect& UIElement::_internal_frame() const {
+  const ::gtxilib::oopclasses::protos::Rect* p = frame_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::gtxilib::oopclasses::protos::Rect*>(
+      &::gtxilib::oopclasses::protos::_Rect_default_instance_);
+}
+inline const ::gtxilib::oopclasses::protos::Rect& UIElement::frame() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.frame)
+  return _internal_frame();
+}
+inline void UIElement::unsafe_arena_set_allocated_frame(
+    ::gtxilib::oopclasses::protos::Rect* frame) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(frame_);
+  }
+  frame_ = frame;
+  if (frame) {
+    _has_bits_[0] |= 0x00000100u;
+  } else {
+    _has_bits_[0] &= ~0x00000100u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:gtxilib.oopclasses.protos.UIElement.frame)
+}
+inline ::gtxilib::oopclasses::protos::Rect* UIElement::release_frame() {
+  _has_bits_[0] &= ~0x00000100u;
+  ::gtxilib::oopclasses::protos::Rect* temp = frame_;
+  frame_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::gtxilib::oopclasses::protos::Rect* UIElement::unsafe_arena_release_frame() {
+  // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.UIElement.frame)
+  _has_bits_[0] &= ~0x00000100u;
+  ::gtxilib::oopclasses::protos::Rect* temp = frame_;
+  frame_ = nullptr;
+  return temp;
+}
+inline ::gtxilib::oopclasses::protos::Rect* UIElement::_internal_mutable_frame() {
+  _has_bits_[0] |= 0x00000100u;
+  if (frame_ == nullptr) {
+    auto* p = CreateMaybeMessage<::gtxilib::oopclasses::protos::Rect>(GetArena());
+    frame_ = p;
+  }
+  return frame_;
+}
+inline ::gtxilib::oopclasses::protos::Rect* UIElement::mutable_frame() {
+  // @@protoc_insertion_point(field_mutable:gtxilib.oopclasses.protos.UIElement.frame)
+  return _internal_mutable_frame();
+}
+inline void UIElement::set_allocated_frame(::gtxilib::oopclasses::protos::Rect* frame) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete frame_;
+  }
+  if (frame) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(frame);
+    if (message_arena != submessage_arena) {
+      frame = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, frame, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000100u;
+  } else {
+    _has_bits_[0] &= ~0x00000100u;
+  }
+  frame_ = frame;
+  // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.UIElement.frame)
+}
+
+// .gtxilib.oopclasses.protos.Rect bounds = 27;
+inline bool UIElement::_internal_has_bounds() const {
+  bool value = (_has_bits_[0] & 0x00000200u) != 0;
+  PROTOBUF_ASSUME(!value || bounds_ != nullptr);
+  return value;
+}
+inline bool UIElement::has_bounds() const {
+  return _internal_has_bounds();
+}
+inline void UIElement::clear_bounds() {
+  if (GetArena() == nullptr && bounds_ != nullptr) {
+    delete bounds_;
+  }
+  bounds_ = nullptr;
+  _has_bits_[0] &= ~0x00000200u;
+}
+inline const ::gtxilib::oopclasses::protos::Rect& UIElement::_internal_bounds() const {
+  const ::gtxilib::oopclasses::protos::Rect* p = bounds_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::gtxilib::oopclasses::protos::Rect*>(
+      &::gtxilib::oopclasses::protos::_Rect_default_instance_);
+}
+inline const ::gtxilib::oopclasses::protos::Rect& UIElement::bounds() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.bounds)
+  return _internal_bounds();
+}
+inline void UIElement::unsafe_arena_set_allocated_bounds(
+    ::gtxilib::oopclasses::protos::Rect* bounds) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(bounds_);
+  }
+  bounds_ = bounds;
+  if (bounds) {
+    _has_bits_[0] |= 0x00000200u;
+  } else {
+    _has_bits_[0] &= ~0x00000200u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:gtxilib.oopclasses.protos.UIElement.bounds)
+}
+inline ::gtxilib::oopclasses::protos::Rect* UIElement::release_bounds() {
+  _has_bits_[0] &= ~0x00000200u;
+  ::gtxilib::oopclasses::protos::Rect* temp = bounds_;
+  bounds_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::gtxilib::oopclasses::protos::Rect* UIElement::unsafe_arena_release_bounds() {
+  // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.UIElement.bounds)
+  _has_bits_[0] &= ~0x00000200u;
+  ::gtxilib::oopclasses::protos::Rect* temp = bounds_;
+  bounds_ = nullptr;
+  return temp;
+}
+inline ::gtxilib::oopclasses::protos::Rect* UIElement::_internal_mutable_bounds() {
+  _has_bits_[0] |= 0x00000200u;
+  if (bounds_ == nullptr) {
+    auto* p = CreateMaybeMessage<::gtxilib::oopclasses::protos::Rect>(GetArena());
+    bounds_ = p;
+  }
+  return bounds_;
+}
+inline ::gtxilib::oopclasses::protos::Rect* UIElement::mutable_bounds() {
+  // @@protoc_insertion_point(field_mutable:gtxilib.oopclasses.protos.UIElement.bounds)
+  return _internal_mutable_bounds();
+}
+inline void UIElement::set_allocated_bounds(::gtxilib::oopclasses::protos::Rect* bounds) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete bounds_;
+  }
+  if (bounds) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(bounds);
+    if (message_arena != submessage_arena) {
+      bounds = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, bounds, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000200u;
+  } else {
+    _has_bits_[0] &= ~0x00000200u;
+  }
+  bounds_ = bounds;
+  // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.UIElement.bounds)
+}
+
+// uint64 control_state = 28;
+inline bool UIElement::_internal_has_control_state() const {
+  bool value = (_has_bits_[0] & 0x00800000u) != 0;
+  return value;
+}
+inline bool UIElement::has_control_state() const {
+  return _internal_has_control_state();
+}
+inline void UIElement::clear_control_state() {
+  control_state_ = PROTOBUF_ULONGLONG(0);
+  _has_bits_[0] &= ~0x00800000u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 UIElement::_internal_control_state() const {
+  return control_state_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 UIElement::control_state() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.control_state)
+  return _internal_control_state();
+}
+inline void UIElement::_internal_set_control_state(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _has_bits_[0] |= 0x00800000u;
+  control_state_ = value;
+}
+inline void UIElement::set_control_state(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_control_state(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.control_state)
+}
+
+// bool enabled = 29;
+inline bool UIElement::_internal_has_enabled() const {
+  bool value = (_has_bits_[0] & 0x08000000u) != 0;
+  return value;
+}
+inline bool UIElement::has_enabled() const {
+  return _internal_has_enabled();
+}
+inline void UIElement::clear_enabled() {
+  enabled_ = false;
+  _has_bits_[0] &= ~0x08000000u;
+}
+inline bool UIElement::_internal_enabled() const {
+  return enabled_;
+}
+inline bool UIElement::enabled() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.enabled)
+  return _internal_enabled();
+}
+inline void UIElement::_internal_set_enabled(bool value) {
+  _has_bits_[0] |= 0x08000000u;
+  enabled_ = value;
+}
+inline void UIElement::set_enabled(bool value) {
+  _internal_set_enabled(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.enabled)
+}
+
+// bool selected = 30;
+inline bool UIElement::_internal_has_selected() const {
+  bool value = (_has_bits_[0] & 0x10000000u) != 0;
+  return value;
+}
+inline bool UIElement::has_selected() const {
+  return _internal_has_selected();
+}
+inline void UIElement::clear_selected() {
+  selected_ = false;
+  _has_bits_[0] &= ~0x10000000u;
+}
+inline bool UIElement::_internal_selected() const {
+  return selected_;
+}
+inline bool UIElement::selected() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.selected)
+  return _internal_selected();
+}
+inline void UIElement::_internal_set_selected(bool value) {
+  _has_bits_[0] |= 0x10000000u;
+  selected_ = value;
+}
+inline void UIElement::set_selected(bool value) {
+  _internal_set_selected(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.selected)
+}
+
+// bool highlighted = 31;
+inline bool UIElement::_internal_has_highlighted() const {
+  bool value = (_has_bits_[0] & 0x20000000u) != 0;
+  return value;
+}
+inline bool UIElement::has_highlighted() const {
+  return _internal_has_highlighted();
+}
+inline void UIElement::clear_highlighted() {
+  highlighted_ = false;
+  _has_bits_[0] &= ~0x20000000u;
+}
+inline bool UIElement::_internal_highlighted() const {
+  return highlighted_;
+}
+inline bool UIElement::highlighted() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.highlighted)
+  return _internal_highlighted();
+}
+inline void UIElement::_internal_set_highlighted(bool value) {
+  _has_bits_[0] |= 0x20000000u;
+  highlighted_ = value;
+}
+inline void UIElement::set_highlighted(bool value) {
+  _internal_set_highlighted(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.highlighted)
+}
+
+// string title = 32;
+inline bool UIElement::_internal_has_title() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool UIElement::has_title() const {
+  return _internal_has_title();
+}
+inline void UIElement::clear_title() {
+  title_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline const std::string& UIElement::title() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.title)
+  return _internal_title();
+}
+inline void UIElement::set_title(const std::string& value) {
+  _internal_set_title(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.title)
+}
+inline std::string* UIElement::mutable_title() {
+  // @@protoc_insertion_point(field_mutable:gtxilib.oopclasses.protos.UIElement.title)
+  return _internal_mutable_title();
+}
+inline const std::string& UIElement::_internal_title() const {
+  return title_.Get();
+}
+inline void UIElement::_internal_set_title(const std::string& value) {
+  _has_bits_[0] |= 0x00000008u;
+  title_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void UIElement::set_title(std::string&& value) {
+  _has_bits_[0] |= 0x00000008u;
+  title_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:gtxilib.oopclasses.protos.UIElement.title)
+}
+inline void UIElement::set_title(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000008u;
+  title_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:gtxilib.oopclasses.protos.UIElement.title)
+}
+inline void UIElement::set_title(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000008u;
+  title_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:gtxilib.oopclasses.protos.UIElement.title)
+}
+inline std::string* UIElement::_internal_mutable_title() {
+  _has_bits_[0] |= 0x00000008u;
+  return title_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* UIElement::release_title() {
+  // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.UIElement.title)
+  if (!_internal_has_title()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000008u;
+  return title_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void UIElement::set_allocated_title(std::string* title) {
+  if (title != nullptr) {
+    _has_bits_[0] |= 0x00000008u;
+  } else {
+    _has_bits_[0] &= ~0x00000008u;
+  }
+  title_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), title,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.UIElement.title)
+}
+
+// string text = 33;
+inline bool UIElement::_internal_has_text() const {
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline bool UIElement::has_text() const {
+  return _internal_has_text();
+}
+inline void UIElement::clear_text() {
+  text_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline const std::string& UIElement::text() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.text)
+  return _internal_text();
+}
+inline void UIElement::set_text(const std::string& value) {
+  _internal_set_text(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.text)
+}
+inline std::string* UIElement::mutable_text() {
+  // @@protoc_insertion_point(field_mutable:gtxilib.oopclasses.protos.UIElement.text)
+  return _internal_mutable_text();
+}
+inline const std::string& UIElement::_internal_text() const {
+  return text_.Get();
+}
+inline void UIElement::_internal_set_text(const std::string& value) {
+  _has_bits_[0] |= 0x00000010u;
+  text_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void UIElement::set_text(std::string&& value) {
+  _has_bits_[0] |= 0x00000010u;
+  text_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:gtxilib.oopclasses.protos.UIElement.text)
+}
+inline void UIElement::set_text(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000010u;
+  text_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:gtxilib.oopclasses.protos.UIElement.text)
+}
+inline void UIElement::set_text(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000010u;
+  text_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:gtxilib.oopclasses.protos.UIElement.text)
+}
+inline std::string* UIElement::_internal_mutable_text() {
+  _has_bits_[0] |= 0x00000010u;
+  return text_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* UIElement::release_text() {
+  // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.UIElement.text)
+  if (!_internal_has_text()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000010u;
+  return text_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void UIElement::set_allocated_text(std::string* text) {
+  if (text != nullptr) {
+    _has_bits_[0] |= 0x00000010u;
+  } else {
+    _has_bits_[0] &= ~0x00000010u;
+  }
+  text_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), text,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.UIElement.text)
+}
+
+// bool on = 34;
+inline bool UIElement::_internal_has_on() const {
+  bool value = (_has_bits_[0] & 0x40000000u) != 0;
+  return value;
+}
+inline bool UIElement::has_on() const {
+  return _internal_has_on();
+}
+inline void UIElement::clear_on() {
+  on_ = false;
+  _has_bits_[0] &= ~0x40000000u;
+}
+inline bool UIElement::_internal_on() const {
+  return on_;
+}
+inline bool UIElement::on() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.on)
+  return _internal_on();
+}
+inline void UIElement::_internal_set_on(bool value) {
+  _has_bits_[0] |= 0x40000000u;
+  on_ = value;
+}
+inline void UIElement::set_on(bool value) {
+  _internal_set_on(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.on)
+}
+
+// float value = 35;
+inline bool UIElement::_internal_has_value() const {
+  bool value = (_has_bits_[0] & 0x80000000u) != 0;
+  return value;
+}
+inline bool UIElement::has_value() const {
+  return _internal_has_value();
+}
+inline void UIElement::clear_value() {
+  value_ = 0;
+  _has_bits_[0] &= ~0x80000000u;
+}
+inline float UIElement::_internal_value() const {
+  return value_;
+}
+inline float UIElement::value() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.UIElement.value)
+  return _internal_value();
+}
+inline void UIElement::_internal_set_value(float value) {
+  _has_bits_[0] |= 0x80000000u;
+  value_ = value;
+}
+inline void UIElement::set_value(float value) {
+  _internal_set_value(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.UIElement.value)
+}
+
+// -------------------------------------------------------------------
+
+// DeviceState
+
+// .gtxilib.oopclasses.protos.DisplayMetrics display_metrics = 1;
+inline bool DeviceState::_internal_has_display_metrics() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || display_metrics_ != nullptr);
+  return value;
+}
+inline bool DeviceState::has_display_metrics() const {
+  return _internal_has_display_metrics();
+}
+inline void DeviceState::clear_display_metrics() {
+  if (GetArena() == nullptr && display_metrics_ != nullptr) {
+    delete display_metrics_;
+  }
+  display_metrics_ = nullptr;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline const ::gtxilib::oopclasses::protos::DisplayMetrics& DeviceState::_internal_display_metrics() const {
+  const ::gtxilib::oopclasses::protos::DisplayMetrics* p = display_metrics_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::gtxilib::oopclasses::protos::DisplayMetrics*>(
+      &::gtxilib::oopclasses::protos::_DisplayMetrics_default_instance_);
+}
+inline const ::gtxilib::oopclasses::protos::DisplayMetrics& DeviceState::display_metrics() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.DeviceState.display_metrics)
+  return _internal_display_metrics();
+}
+inline void DeviceState::unsafe_arena_set_allocated_display_metrics(
+    ::gtxilib::oopclasses::protos::DisplayMetrics* display_metrics) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(display_metrics_);
+  }
+  display_metrics_ = display_metrics;
+  if (display_metrics) {
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:gtxilib.oopclasses.protos.DeviceState.display_metrics)
+}
+inline ::gtxilib::oopclasses::protos::DisplayMetrics* DeviceState::release_display_metrics() {
+  _has_bits_[0] &= ~0x00000002u;
+  ::gtxilib::oopclasses::protos::DisplayMetrics* temp = display_metrics_;
+  display_metrics_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::gtxilib::oopclasses::protos::DisplayMetrics* DeviceState::unsafe_arena_release_display_metrics() {
+  // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.DeviceState.display_metrics)
+  _has_bits_[0] &= ~0x00000002u;
+  ::gtxilib::oopclasses::protos::DisplayMetrics* temp = display_metrics_;
+  display_metrics_ = nullptr;
+  return temp;
+}
+inline ::gtxilib::oopclasses::protos::DisplayMetrics* DeviceState::_internal_mutable_display_metrics() {
+  _has_bits_[0] |= 0x00000002u;
+  if (display_metrics_ == nullptr) {
+    auto* p = CreateMaybeMessage<::gtxilib::oopclasses::protos::DisplayMetrics>(GetArena());
+    display_metrics_ = p;
+  }
+  return display_metrics_;
+}
+inline ::gtxilib::oopclasses::protos::DisplayMetrics* DeviceState::mutable_display_metrics() {
+  // @@protoc_insertion_point(field_mutable:gtxilib.oopclasses.protos.DeviceState.display_metrics)
+  return _internal_mutable_display_metrics();
+}
+inline void DeviceState::set_allocated_display_metrics(::gtxilib::oopclasses::protos::DisplayMetrics* display_metrics) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete display_metrics_;
+  }
+  if (display_metrics) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(display_metrics);
+    if (message_arena != submessage_arena) {
+      display_metrics = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, display_metrics, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000002u;
+  } else {
+    _has_bits_[0] &= ~0x00000002u;
+  }
+  display_metrics_ = display_metrics;
+  // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.DeviceState.display_metrics)
+}
+
+// string ios_version = 2;
+inline bool DeviceState::_internal_has_ios_version() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool DeviceState::has_ios_version() const {
+  return _internal_has_ios_version();
+}
+inline void DeviceState::clear_ios_version() {
+  ios_version_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& DeviceState::ios_version() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.DeviceState.ios_version)
+  return _internal_ios_version();
+}
+inline void DeviceState::set_ios_version(const std::string& value) {
+  _internal_set_ios_version(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.DeviceState.ios_version)
+}
+inline std::string* DeviceState::mutable_ios_version() {
+  // @@protoc_insertion_point(field_mutable:gtxilib.oopclasses.protos.DeviceState.ios_version)
+  return _internal_mutable_ios_version();
+}
+inline const std::string& DeviceState::_internal_ios_version() const {
+  return ios_version_.Get();
+}
+inline void DeviceState::_internal_set_ios_version(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  ios_version_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void DeviceState::set_ios_version(std::string&& value) {
+  _has_bits_[0] |= 0x00000001u;
+  ios_version_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:gtxilib.oopclasses.protos.DeviceState.ios_version)
+}
+inline void DeviceState::set_ios_version(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000001u;
+  ios_version_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:gtxilib.oopclasses.protos.DeviceState.ios_version)
+}
+inline void DeviceState::set_ios_version(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000001u;
+  ios_version_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:gtxilib.oopclasses.protos.DeviceState.ios_version)
+}
+inline std::string* DeviceState::_internal_mutable_ios_version() {
+  _has_bits_[0] |= 0x00000001u;
+  return ios_version_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* DeviceState::release_ios_version() {
+  // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.DeviceState.ios_version)
+  if (!_internal_has_ios_version()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  return ios_version_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void DeviceState::set_allocated_ios_version(std::string* ios_version) {
+  if (ios_version != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  ios_version_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ios_version,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.DeviceState.ios_version)
+}
+
+// -------------------------------------------------------------------
+
+// DisplayMetrics
+
+// int32 screen_width = 1;
+inline bool DisplayMetrics::_internal_has_screen_width() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool DisplayMetrics::has_screen_width() const {
+  return _internal_has_screen_width();
+}
+inline void DisplayMetrics::clear_screen_width() {
+  screen_width_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 DisplayMetrics::_internal_screen_width() const {
+  return screen_width_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 DisplayMetrics::screen_width() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.DisplayMetrics.screen_width)
+  return _internal_screen_width();
+}
+inline void DisplayMetrics::_internal_set_screen_width(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000001u;
+  screen_width_ = value;
+}
+inline void DisplayMetrics::set_screen_width(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_screen_width(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.DisplayMetrics.screen_width)
+}
+
+// int32 screen_height = 2;
+inline bool DisplayMetrics::_internal_has_screen_height() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool DisplayMetrics::has_screen_height() const {
+  return _internal_has_screen_height();
+}
+inline void DisplayMetrics::clear_screen_height() {
+  screen_height_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 DisplayMetrics::_internal_screen_height() const {
+  return screen_height_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 DisplayMetrics::screen_height() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.DisplayMetrics.screen_height)
+  return _internal_screen_height();
+}
+inline void DisplayMetrics::_internal_set_screen_height(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _has_bits_[0] |= 0x00000002u;
+  screen_height_ = value;
+}
+inline void DisplayMetrics::set_screen_height(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_screen_height(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.DisplayMetrics.screen_height)
+}
+
+// float screen_scale = 3;
+inline bool DisplayMetrics::_internal_has_screen_scale() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool DisplayMetrics::has_screen_scale() const {
+  return _internal_has_screen_scale();
+}
+inline void DisplayMetrics::clear_screen_scale() {
+  screen_scale_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline float DisplayMetrics::_internal_screen_scale() const {
+  return screen_scale_;
+}
+inline float DisplayMetrics::screen_scale() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.DisplayMetrics.screen_scale)
+  return _internal_screen_scale();
+}
+inline void DisplayMetrics::_internal_set_screen_scale(float value) {
+  _has_bits_[0] |= 0x00000004u;
+  screen_scale_ = value;
+}
+inline void DisplayMetrics::set_screen_scale(float value) {
+  _internal_set_screen_scale(value);
+  // @@protoc_insertion_point(field_set:gtxilib.oopclasses.protos.DisplayMetrics.screen_scale)
+}
+
+// -------------------------------------------------------------------
+
+// AccessibilityHierarchy
+
+// .gtxilib.oopclasses.protos.DeviceState device_state = 1;
+inline bool AccessibilityHierarchy::_internal_has_device_state() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || device_state_ != nullptr);
+  return value;
+}
+inline bool AccessibilityHierarchy::has_device_state() const {
+  return _internal_has_device_state();
+}
+inline void AccessibilityHierarchy::clear_device_state() {
+  if (GetArena() == nullptr && device_state_ != nullptr) {
+    delete device_state_;
+  }
+  device_state_ = nullptr;
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const ::gtxilib::oopclasses::protos::DeviceState& AccessibilityHierarchy::_internal_device_state() const {
+  const ::gtxilib::oopclasses::protos::DeviceState* p = device_state_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::gtxilib::oopclasses::protos::DeviceState*>(
+      &::gtxilib::oopclasses::protos::_DeviceState_default_instance_);
+}
+inline const ::gtxilib::oopclasses::protos::DeviceState& AccessibilityHierarchy::device_state() const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.AccessibilityHierarchy.device_state)
+  return _internal_device_state();
+}
+inline void AccessibilityHierarchy::unsafe_arena_set_allocated_device_state(
+    ::gtxilib::oopclasses::protos::DeviceState* device_state) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(device_state_);
+  }
+  device_state_ = device_state;
+  if (device_state) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:gtxilib.oopclasses.protos.AccessibilityHierarchy.device_state)
+}
+inline ::gtxilib::oopclasses::protos::DeviceState* AccessibilityHierarchy::release_device_state() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::gtxilib::oopclasses::protos::DeviceState* temp = device_state_;
+  device_state_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::gtxilib::oopclasses::protos::DeviceState* AccessibilityHierarchy::unsafe_arena_release_device_state() {
+  // @@protoc_insertion_point(field_release:gtxilib.oopclasses.protos.AccessibilityHierarchy.device_state)
+  _has_bits_[0] &= ~0x00000001u;
+  ::gtxilib::oopclasses::protos::DeviceState* temp = device_state_;
+  device_state_ = nullptr;
+  return temp;
+}
+inline ::gtxilib::oopclasses::protos::DeviceState* AccessibilityHierarchy::_internal_mutable_device_state() {
+  _has_bits_[0] |= 0x00000001u;
+  if (device_state_ == nullptr) {
+    auto* p = CreateMaybeMessage<::gtxilib::oopclasses::protos::DeviceState>(GetArena());
+    device_state_ = p;
+  }
+  return device_state_;
+}
+inline ::gtxilib::oopclasses::protos::DeviceState* AccessibilityHierarchy::mutable_device_state() {
+  // @@protoc_insertion_point(field_mutable:gtxilib.oopclasses.protos.AccessibilityHierarchy.device_state)
+  return _internal_mutable_device_state();
+}
+inline void AccessibilityHierarchy::set_allocated_device_state(::gtxilib::oopclasses::protos::DeviceState* device_state) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete device_state_;
+  }
+  if (device_state) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(device_state);
+    if (message_arena != submessage_arena) {
+      device_state = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, device_state, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  device_state_ = device_state;
+  // @@protoc_insertion_point(field_set_allocated:gtxilib.oopclasses.protos.AccessibilityHierarchy.device_state)
+}
+
+// repeated .gtxilib.oopclasses.protos.UIElement elements = 2;
+inline int AccessibilityHierarchy::_internal_elements_size() const {
+  return elements_.size();
+}
+inline int AccessibilityHierarchy::elements_size() const {
+  return _internal_elements_size();
+}
+inline void AccessibilityHierarchy::clear_elements() {
+  elements_.Clear();
+}
+inline ::gtxilib::oopclasses::protos::UIElement* AccessibilityHierarchy::mutable_elements(int index) {
+  // @@protoc_insertion_point(field_mutable:gtxilib.oopclasses.protos.AccessibilityHierarchy.elements)
+  return elements_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::gtxilib::oopclasses::protos::UIElement >*
+AccessibilityHierarchy::mutable_elements() {
+  // @@protoc_insertion_point(field_mutable_list:gtxilib.oopclasses.protos.AccessibilityHierarchy.elements)
+  return &elements_;
+}
+inline const ::gtxilib::oopclasses::protos::UIElement& AccessibilityHierarchy::_internal_elements(int index) const {
+  return elements_.Get(index);
+}
+inline const ::gtxilib::oopclasses::protos::UIElement& AccessibilityHierarchy::elements(int index) const {
+  // @@protoc_insertion_point(field_get:gtxilib.oopclasses.protos.AccessibilityHierarchy.elements)
+  return _internal_elements(index);
+}
+inline ::gtxilib::oopclasses::protos::UIElement* AccessibilityHierarchy::_internal_add_elements() {
+  return elements_.Add();
+}
+inline ::gtxilib::oopclasses::protos::UIElement* AccessibilityHierarchy::add_elements() {
+  // @@protoc_insertion_point(field_add:gtxilib.oopclasses.protos.AccessibilityHierarchy.elements)
+  return _internal_add_elements();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::gtxilib::oopclasses::protos::UIElement >&
+AccessibilityHierarchy::elements() const {
+  // @@protoc_insertion_point(field_list:gtxilib.oopclasses.protos.AccessibilityHierarchy.elements)
+  return elements_;
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -1663,16 +4357,6 @@ inline void UIElement::set_ax_element_type(::gtxilib::oopclasses::protos::Elemen
 }  // namespace protos
 }  // namespace oopclasses
 }  // namespace gtxilib
-
-PROTOBUF_NAMESPACE_OPEN
-
-template <> struct is_proto_enum< ::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum> : ::std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum>() {
-  return ::gtxilib::oopclasses::protos::ElementType_ElementTypeEnum_descriptor();
-}
-
-PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

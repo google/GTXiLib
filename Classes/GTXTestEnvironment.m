@@ -16,7 +16,7 @@
 
 #import "GTXTestEnvironment.h"
 
-#import "GTXLogging.h"
+#import "GTXLogger.h"
 #import "NSError+GTXAdditions.h"
 
 #include <dlfcn.h>
@@ -168,7 +168,7 @@ static char *const kGTXAXSetterMethodName = "_AXSSetAutomationEnabled";
  *  Enables accessibility to allow using accessibility properties on devices.
  */
 + (BOOL)gtx_enableAccessibilityOnDeviceWithError:(GTXErrorRefType)errorOrNil {
-  GTX_LOG(@"Enabling accessibility to access UI accessibility properties.");
+  [GTXLogger logInfoWithFormat:@"Enabling accessibility to access UI accessibility properties."];
   char const *const libAccessibilityPath = [kGTXPathToAXDyLib fileSystemRepresentation];
   void *handle = dlopen(libAccessibilityPath, RTLD_LOCAL);
 

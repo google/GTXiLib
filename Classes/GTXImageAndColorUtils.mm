@@ -100,6 +100,14 @@ const CGFloat kGTXContrastRatioAccuracy = 0.05f;
   CGContextRestoreGState(context);
 }
 
++ (UIImage *)imageFromUIView:(UIView *)view {
+  UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
+  [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+  UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  return finalImage;
+}
+
 + (UIImage *)imageByCompositingViews:(NSArray<UIView *> *)views {
   GTX_ASSERT(views.count > 0, @"views cannot be empty.");
   CGSize size = [[self class] gtx_maximumSizeInViews:views];

@@ -41,6 +41,14 @@ FOUNDATION_EXTERN NSString *const kGTXErrorUnderlyingErrorsKey;
 FOUNDATION_EXTERN NSString *const kGTXErrorCheckNameKey;
 
 /**
+ *  The key to the value in NSError's @c userInfo object containing the description of the failing
+ *  GTXCheck. The value at this key is also contained in the value at key NSLocalizedDescription.
+ *  The raw error message exists at @c kGTXErrorDescriptionKey. The formatted error message exists
+ *  at @c NSLocalizedDescription.
+ */
+FOUNDATION_EXTERN NSString *const kGTXErrorDescriptionKey;
+
+/**
  *  Error codes for various errors that can occur when GTXChecks are performed.
  */
 typedef NS_ENUM(NSInteger, GTXCheckErrorCode) {

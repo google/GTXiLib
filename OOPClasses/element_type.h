@@ -17,7 +17,8 @@
 #ifndef GTXILIB_OOPCLASSES_ELEMENT_TYPE_H_
 #define GTXILIB_OOPCLASSES_ELEMENT_TYPE_H_
 
-#include "Protos/gtx.pb.h"
+#include "enums.pb.h"
+#include "gtx.pb.h"
 
 namespace gtx {
 

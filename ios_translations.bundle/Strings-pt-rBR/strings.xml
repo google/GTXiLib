@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="result_message_no_accessibility_label">Talvez este elemento não tenha um rótulo de acessibilidade que pode ser lido pelo recurso de narração. Todos os elementos de acessibilidade precisam ter rótulos de acessibilidade.</string>
+  <string name="check_title_no_accessibility_label">Rótulo de acessibilidade</string>
+  <string name="result_message_brief_no_accessibility_label">Adicione um rótulo de acessibilidade ao elemento.</string>
+  <string name="result_message_accessibility_label_is_punctuated">O elemento pode ter um rótulo de acessibilidade que termina em uma pontuação, mas não apresenta características textuais. Se ele exibir textos, adicione o &lt;tt&gt;UIAccessibilityStaticTrait&lt;/tt&gt;, igual ao &lt;tt&gt;UITextView&lt;/tt&gt; ou &lt;tt&gt;UILabel&lt;/tt&gt;. Caso contrário, remova a pontuação. Rótulo encontrado: &lt;tt&gt;$0&lt;/tt&gt;</string>
+  <string name="check_title_accessibility_label_is_punctuated">Pontuação do rótulo de acessibilidade</string>
+  <string name="result_message_brief_accessibility_label_is_punctuated">Remova a pontuação no fim do rótulo de acessibilidade deste elemento.</string>
+  <string name="result_message_insufficient_text_contrast">A taxa de contraste de texto do elemento é $0. Ela é determinada com base na cor de texto &lt;tt&gt;$1&lt;/tt&gt; e na cor de fundo &lt;tt&gt;$2&lt;/tt&gt;. Aumente esse valor para $3 ou mais.</string>
+  <string name="check_title_text_contrast">Contraste do texto</string>
+  <string name="result_message_brief_insufficient_text_contrast">Aumente a taxa de contraste do primeiro plano e do plano de fundo do texto neste elemento.</string>
+  <string name="result_message_insufficient_touch_target_size">O tamanho deste elemento é de &lt;tt&gt;$0&lt;/tt&gt; por &lt;tt&gt;$1&lt;/tt&gt;. Aumente essa largura em &lt;tt&gt;$2&lt;/tt&gt; e a altura em &lt;tt&gt;$2&lt;/tt&gt;.</string>
+  <string name="check_title_touch_target_size">Área de toque</string>
+  <string name="result_message_brief_insufficient_touch_target_size">Aumente a largura deste elemento.</string>
+</resources>

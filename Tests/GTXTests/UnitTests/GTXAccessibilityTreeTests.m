@@ -37,6 +37,13 @@
   [self gtxtest_assertGTXAccessibilityTreeWithRootElements:@[ element ] yields:@[ element ]];
 }
 
+- (void)testGTXAccessibilityTreeThrowsWhenViewControllerIsRootView {
+  UIViewController *controller = [[UIViewController alloc] init];
+  id element = [self gtxtest_newUIElementWithAccessibility:YES];
+  [controller.view addSubview:element];
+  XCTAssertThrows([[GTXAccessibilityTree alloc] initWithRootElements:@[ controller ]]);
+}
+
 - (void)testGTXAccessibilityTreeWorksWithMultipleElementsAtSameLevel {
   id element1 = [self gtxtest_newUIElementWithAccessibility:YES];
   id element2 = [self gtxtest_newUIElementWithAccessibility:YES];
@@ -194,15 +201,58 @@
   [self gtxtest_assertGTXAccessibilityTreeWithRootElements:@[ root ] yields:elements];
 }
 
+- (void)testGTXAccessibilityTreeBlockAPIsCanBeCalledFromLoopIteration {
+  id element1 = [self gtxtest_newUIElementWithAccessibility:YES];
+  id element2 = [self gtxtest_newUIElementWithAccessibility:YES];
+  NSArray *elements = @[ element1, element2 ];
+  GTXAccessibilityTree *tree = [[GTXAccessibilityTree alloc] initWithRootElements:elements];
+  NSMutableArray *actualLoopIterationElements = [[NSMutableArray alloc] init];
+  for (id loopElement in tree) {
+    [actualLoopIterationElements addObject:loopElement];
+    NSMutableArray *actualBlockIterationElements = [[NSMutableArray alloc] init];
+    [tree iterateAllElementsWithBlock:^(GTXTreeIteratorElement *_Nonnull iteratorElement) {
+      [actualBlockIterationElements addObject:iteratorElement.current];
+    }];
+    XCTAssertEqualObjects(elements, actualBlockIterationElements);
+  }
+  XCTAssertEqualObjects(elements, actualLoopIterationElements);
+}
+
+- (void)testGTXAccessibilityLoopIterationWorksFromWithinBlockIteration {
+  id element1 = [self gtxtest_newUIElementWithAccessibility:YES];
+  id element2 = [self gtxtest_newUIElementWithAccessibility:YES];
+  NSArray *elements = @[ element1, element2 ];
+  GTXAccessibilityTree *tree = [[GTXAccessibilityTree alloc] initWithRootElements:elements];
+  NSMutableArray *actualBlockIterationElements = [[NSMutableArray alloc] init];
+  [tree iterateAllElementsWithBlock:^(GTXTreeIteratorElement *_Nonnull iteratorElement) {
+    [actualBlockIterationElements addObject:iteratorElement.current];
+    NSMutableArray *actualLoopIterationElements = [[NSMutableArray alloc] init];
+    for (id loopElement in tree) {
+      [actualLoopIterationElements addObject:loopElement];
+    }
+    XCTAssertEqualObjects(elements, actualLoopIterationElements);
+  }];
+  XCTAssertEqualObjects(elements, actualBlockIterationElements);
+}
+
 #pragma mark - Private
 
 - (void)gtxtest_assertGTXAccessibilityTreeWithRootElements:(NSArray *)rootElements
                                                     yields:(NSArray *)expectedElements {
-  NSMutableArray *actualElemets = [[NSMutableArray alloc] init];
+  // Verify loop iteration.
+  NSMutableArray *actualLoopIterationElements = [[NSMutableArray alloc] init];
   for (id element in [[GTXAccessibilityTree alloc] initWithRootElements:rootElements]) {
-    [actualElemets addObject:element];
+    [actualLoopIterationElements addObject:element];
   }
-  XCTAssertEqualObjects(expectedElements, actualElemets);
+  XCTAssertEqualObjects(expectedElements, actualLoopIterationElements);
+
+  // Verify block iteration.
+  NSMutableArray *actualBlockIterationElements = [[NSMutableArray alloc] init];
+  GTXAccessibilityTree *tree = [[GTXAccessibilityTree alloc] initWithRootElements:rootElements];
+  [tree iterateAllElementsWithBlock:^(GTXTreeIteratorElement *_Nonnull iteratorElement) {
+    [actualBlockIterationElements addObject:iteratorElement.current];
+  }];
+  XCTAssertEqualObjects(expectedElements, actualBlockIterationElements);
 }
 
 - (id)gtxtest_newTestElementWithChildren {

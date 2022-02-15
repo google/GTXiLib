@@ -16,42 +16,56 @@
 
 #include "toolkit.h"
 
+#include <assert.h>
+
+#include <iostream>
 #include <memory>
 #include <string>
+#include <utility>
 #include <vector>
 
+#include <abseil/absl/types/optional.h>
+#include "typedefs.h"
 #include "accessibility_label_not_punctuated_check.h"
+#include "check.h"
 #include "contrast_check.h"
 #include "minimum_tappable_area_check.h"
 #include "no_label_check.h"
+#include "parameters.h"
 
 namespace gtx {
 
 std::unique_ptr<Toolkit> Toolkit::ToolkitWithAllDefaultChecks() {
   auto toolkit = std::make_unique<Toolkit>();
-  std::unique_ptr<Check> no_label_check(new NoLabelCheck("NoLabelCheck"));
+  std::unique_ptr<gtx::Check> no_label_check = std::make_unique<NoLabelCheck>();
+  std::unique_ptr<gtx::Check> minimum_tappable_area_check =
+      std::make_unique<MinimumTappableAreaCheck>();
+  std::unique_ptr<gtx::Check> contrast_check =
+      std::make_unique<ContrastCheck>();
+  std::unique_ptr<gtx::Check> accessibility_label_not_punctuated_check =
+      std::make_unique<AccessibilityLabelNotPunctuatedCheck>();
   toolkit->RegisterCheck(no_label_check);
-  std::unique_ptr<Check> minimum_tappable_area_check(
-      new MinimumTappableAreaCheck("MinimumTappableAreaCheck"));
   toolkit->RegisterCheck(minimum_tappable_area_check);
-  std::unique_ptr<Check> contrast_check(new ContrastCheck("ContrastCheck"));
   toolkit->RegisterCheck(contrast_check);
-  std::unique_ptr<Check> accessibility_label_not_punctuated(
-      new AccessibilityLabelNotPunctuatedCheck(
-          "AccessibilityLabelNotPunctuatedCheck"));
-  toolkit->RegisterCheck(accessibility_label_not_punctuated);
+  toolkit->RegisterCheck(accessibility_label_not_punctuated_check);
   return toolkit;
 }
 
-void Toolkit::RegisterCheck(std::unique_ptr<Check> &check) {
+bool Toolkit::RegisterCheck(std::unique_ptr<Check> &check) {
   // Look for duplicate checks before adding a new check.
   const std::string &check_name = check->name();
   for (const auto &registered_check : registered_checks_) {
     const std::string &registered_check_name = registered_check->name();
-    assert(check_name != registered_check_name);
+    if (check_name == registered_check_name) {
+      // It is invalid to register duplicate checks with the same name.
+      std::cerr << "attempted to register check with existing name '"
+                << check_name << "'" << std::endl;
+      return false;
+    }
   }
 
   registered_checks_.push_back(std::move(check));
+  return true;
 }
 
 const gtx::Check &Toolkit::GetRegisteredCheckNamed(
@@ -66,28 +80,28 @@ const gtx::Check &Toolkit::GetRegisteredCheckNamed(
   return *null_check;
 }
 
-std::vector<CheckResult> Toolkit::CheckElement(const UIElement &element,
-                                               const Parameters &params) {
-  std::vector<CheckResult> result;
+std::vector<CheckResultProto> Toolkit::CheckElement(
+    const UIElementProto &element, const Parameters &params) {
+  std::vector<CheckResultProto> result;
   if (!element.is_ax_element()) {
     // Currently all checks are only applicable to accessibility elements.
     return result;
   }
 
   for (const auto &check : registered_checks_) {
-    ErrorMessage single_check_result;
-    if (!check->CheckElement(element, params, &single_check_result)) {
-      result.push_back(
-          CheckResult(single_check_result, nullptr, check->name()));
+    absl::optional<CheckResultProto> check_result =
+        check->CheckElement(element, params);
+    if (check_result.has_value()) {
+      result.push_back(*check_result);
     }
   }
   return result;
 }
 
-std::vector<CheckResult> Toolkit::CheckElements(
-    const std::vector<UIElement> &elements, const Parameters &params) {
-  std::vector<CheckResult> result;
-  for (const auto &element : elements) {
+std::vector<CheckResultProto> Toolkit::CheckElements(
+    const AccessibilityHierarchyProto &root_element, const Parameters &params) {
+  std::vector<CheckResultProto> result;
+  for (const auto &element : root_element.elements()) {
     auto errors = CheckElement(element, params);
     if (!errors.empty()) {
       result.insert(result.end(), errors.begin(), errors.end());

@@ -43,7 +43,8 @@ typedef NS_ENUM(NSUInteger, GTXVersion) {
  *  for implementing their own checks. These checks are based on recommendations found in
  *  "Accessibility Programming Guide for iOS"
     @link
- https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/iPhoneAccessibility/Introduction/Introduction.html // NOLINT
+ https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/iPhoneAccessibility/Introduction/Introduction.html
+ // NOLINT
  *  and on WCAG.
  */
 @interface GTXChecksCollection : NSObject
@@ -110,10 +111,22 @@ typedef NS_ENUM(NSUInteger, GTXVersion) {
 + (id<GTXChecking>)checkForSufficientTextViewContrastRatio;
 
 /**
+ *  @return a check that verifies that contrast of all text elements using OCR when available.
+ */
++ (id<GTXChecking>)checkForSufficientContrastRatioUsingOCR;
+
+/**
  *  @return a check that verifies that a text displaying element automatically scales font size with
  *  Dynamic Type. Text displaying elements include UILabel, UITextView, and UITextField, and custom
  *  views that implement @c adjustsFontForContentSizeCategory and @c font.
  */
 + (id<GTXChecking>)checkForSupportsDynamicType;
+
+#pragma mark - Utils
+
+/**
+ *  @return @c YES if @c element displays text @c NO otherwise.
+ */
++ (BOOL)isTextDisplayingElement:(id)element;
 
 @end

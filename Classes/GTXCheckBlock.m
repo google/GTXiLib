@@ -22,6 +22,7 @@
   NSString *_name;
   GTXCheckHandlerBlock _block;
   BOOL _requiresWindow;
+  NSMutableArray<GTXMessageProvider> *_messageProviders;
 }
 
 + (id<GTXChecking>)GTXCheckWithName:(NSString *)name
@@ -46,6 +47,7 @@
     _name = [name copy];
     _block = [block copy];
     _requiresWindow = requiresWindow;
+    _messageProviders = [[NSMutableArray alloc] init];
   }
   return self;
 }
@@ -54,10 +56,22 @@
   return [NSString stringWithFormat:@"%@ %p: %@", [self class], self, _name];
 }
 
+- (void)registerMessageProvider:(GTXMessageProvider)messageProvider {
+  [_messageProviders addObject:messageProvider];
+}
+
 #pragma mark - GTXCheck
 
 - (BOOL)check:(id)element error:(GTXErrorRefType)errorOrNil {
-  return _block(element, errorOrNil);
+  BOOL success = _block(element, errorOrNil);
+  if (!success && errorOrNil != nil && *errorOrNil != nil) {
+    NSString *originalMessage = [[*errorOrNil userInfo] objectForKey:kGTXErrorDescriptionKey];
+    if (originalMessage == nil) {
+      originalMessage = [[*errorOrNil userInfo] objectForKey:NSLocalizedDescriptionKey];
+    }
+    [self gtx_runProvidersOnMessage:originalMessage element:element forError:errorOrNil];
+  }
+  return success;
 }
 
 - (NSString *)name {
@@ -66,6 +80,30 @@
 
 - (BOOL)requiresWindowBeforeChecking {
   return _requiresWindow;
+}
+
+#pragma mark - Private
+
+/**
+ * Runs all registered message providers on @c originalMessage. The intermediate message is passed
+ * to the next message provider until all message providers are run. The final message is stored
+ * in the error pointed to by @c error.
+ *
+ * @param      originalMessage The original message produced by the check block.
+ * @param      element The element failing the accessibility check.
+ * @param[out] error The error set on failure. Must be non-nil.
+ */
+- (void)gtx_runProvidersOnMessage:(NSString *)originalMessage
+                          element:(id)element
+                         forError:(GTXErrorRefType)error {
+  NSString *newMessage = originalMessage;
+  for (GTXMessageProvider provider in _messageProviders) {
+    newMessage = provider(newMessage, element, *error);
+  }
+  [NSError gtx_logOrSetGTXCheckFailedError:error
+                                   element:element
+                                      name:[self name]
+                               description:newMessage];
 }
 
 @end

@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#import "GTXUITestBaseTest.h"
+#import "GTXTestIntegrationTestCase.h"
 
-@interface GTXTestXCUIElementTests : GTXUITestBaseTest
+@interface GTXTestXCUIElementTests : GTXTestIntegrationTestCase
 @end
 
 @implementation GTXTestXCUIElementTests

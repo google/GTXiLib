@@ -14,8 +14,6 @@
 // limitations under the License.
 //
 
-#import "GTXLogging.h"
-
 #ifndef GTX_ASSERTIONS_INCLUDED
 #define GTX_ASSERTIONS_INCLUDED
 

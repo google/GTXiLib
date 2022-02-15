@@ -19,7 +19,6 @@
 #import "GTXAssertions.h"
 #import "GTXChecking.h"
 #import "GTXChecksCollection.h"
-#import "GTXLogging.h"
 #import "GTXPluginXCTestCase.h"
 #import "GTXToolKit.h"
 #import "GTXXCUIApplicationProxy.h"
@@ -250,6 +249,7 @@ static BOOL gIsInTearDown;
       [self gtx_checkAllElementsFromRootElements:rootElements];
     }
   }
+  [GTXXCUIApplicationProxy didFinishTestTeardown];
 }
 
 /**

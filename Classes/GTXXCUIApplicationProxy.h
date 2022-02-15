@@ -31,6 +31,12 @@
 + (GTXXCUIApplicationProxy *)lastKnownApplicationProxy;
 
 /**
+ Indicates to the proxy class that test teardown is now complete. (allows the proxy class
+ to clear some caches).
+ */
++ (void)didFinishTestTeardown;
+
+/**
  @return Array of all onscreen accessibility elements (of the app referenced by the last known
  XCUIApplication instance). NOTE: we need gtx_ prefix here to avoid name collision with actual
  XCUIApplication methods.

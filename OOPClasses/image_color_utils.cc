@@ -16,6 +16,7 @@
 
 #include "image_color_utils.h"
 
+#include <assert.h>
 #include <math.h>
 
 #include <algorithm>

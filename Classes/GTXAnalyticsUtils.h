@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
                               value:(NSString *)value;
 
 /**
- @return The an appropriate clientID for analytics that is based on hash of App's bundle ID.
+ @return An appropriate clientID for analytics that is based on hash of App's bundle ID.
  */
 + (NSString *)clientID;
 
