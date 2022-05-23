@@ -89,19 +89,19 @@ message UIElement {
   optional float value = 35;  // UIStepper and UISlider
 }
 
-// Global device state at a snapshot in time.
-// Next index: 3.
-message DeviceState {
-  optional DisplayMetrics display_metrics = 1;
-  optional string ios_version = 2;
-}
-
 // Metrics about the device, such as screen dimensions.
 // Next index: 4.
 message DisplayMetrics {
   optional int32 screen_width = 1;
   optional int32 screen_height = 2;
   optional float screen_scale = 3;
+}
+
+// Global device state at a snapshot in time.
+// Next index: 3.
+message DeviceState {
+  optional DisplayMetrics display_metrics = 1;
+  optional string ios_version = 2;
 }
 
 // The state of the accessibility hierarchy of an app at a snapshot in time.

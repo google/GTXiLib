@@ -22,10 +22,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "map.h"
-#include "repeated_field.h"
 #include <abseil/absl/types/optional.h>
-#include "result.pb.h"
 #include "typedefs.h"
 
 namespace gtx {

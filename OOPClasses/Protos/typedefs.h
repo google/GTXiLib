@@ -21,8 +21,8 @@
 #include "gtx.pb.h"
 #include "result.pb.h"
 
-typedef gtxilib::oopclasses::protos::Rect PointProto;
-typedef gtxilib::oopclasses::protos::Rect SizeProto;
+typedef gtxilib::oopclasses::protos::Point PointProto;
+typedef gtxilib::oopclasses::protos::Size SizeProto;
 typedef gtxilib::oopclasses::protos::Rect RectProto;
 typedef gtxilib::oopclasses::protos::Color ColorProto;
 typedef gtxilib::oopclasses::protos::
