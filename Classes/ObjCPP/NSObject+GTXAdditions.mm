@@ -241,40 +241,4 @@
   return classNames;
 }
 
-- (NSArray<GTXLogProperty *> *)gtx_logProperties {
-  return @[
-    [GTXLogProperty propertyWithName:@"isAXElement"
-              isDeveloperLogProperty:NO
-                     descriptorBlock:^(NSObject *object) {
-                       BOOL isAccessibilityElement =
-                           [object respondsToSelector:@selector(isAccessibilityElement)]
-                               ? [object isAccessibilityElement]
-                               : NO;
-                       return isAccessibilityElement ? @"YES" : @"NO";
-                     }],
-    [GTXLogProperty propertyWithName:@"AXID"
-              isDeveloperLogProperty:NO
-                     descriptorBlock:^(NSObject *object) {
-                       return [object respondsToSelector:@selector(accessibilityIdentifier)]
-                                  ? [object performSelector:@selector(accessibilityIdentifier)]
-                                  : nil;
-                     }],
-    [GTXLogProperty propertyWithName:@"AXLabel"
-              isDeveloperLogProperty:YES
-                     descriptorBlock:^(NSObject *object) {
-                       return [object respondsToSelector:@selector(accessibilityLabel)]
-                                  ? [object accessibilityLabel]
-                                  : nil;
-                     }],
-    [GTXLogProperty propertyWithName:@"AXFrame"
-              isDeveloperLogProperty:NO
-                     descriptorBlock:^(NSObject *object) {
-                       if ([object respondsToSelector:@selector(accessibilityFrame)]) {
-                         return NSStringFromCGRect([object accessibilityFrame]);
-                       }
-                       return (NSString *)nil;
-                     }],
-  ];
-}
-
 @end
