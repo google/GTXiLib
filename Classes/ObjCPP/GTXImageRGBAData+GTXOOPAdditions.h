@@ -21,6 +21,7 @@
 
 #import "GTXImageRGBAData.h"
 #include "check.h"
+#include "gtx_types.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

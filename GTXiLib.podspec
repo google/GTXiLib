@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "GTXiLib"
-  s.version      = "5.1.1"
+  s.version      = "5.1.2"
   s.summary      = "iOS Accessibility testing library."
   s.description  = <<-DESC
   iOS Accessibility testing library that works with XCTest based frameworks.
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.license      = "Apache License 2.0"
   s.author       = "j-sid"
   s.platform     = :ios
-  s.source       = { :git => "https://github.com/google/GTXiLib.git", :tag => "5.1.1" }
+  s.source       = { :git => "https://github.com/google/GTXiLib.git", :tag => "5.1.2" }
   s.ios.deployment_target = "9.0"
   # Manually specify modulemap to use a custom umbrella header. CocoaPods' default
   # umbrella header includes public headers from GTXOOPLib, which include C++ symbols.
