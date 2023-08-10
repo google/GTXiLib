@@ -16,6 +16,8 @@ accessibility label) on all elements on the screen.
 To install GTXiLib on all the tests of a specific test class add the following
 snippet of code to it.
 
+In Objective-C. Note that GTX is installed in the class `+ (void)setUp`, not the instance `- (void)setUp`.
+
 ```objective-c
 // Include the GTXiLib umbrella header.
 
@@ -34,6 +36,17 @@ snippet of code to it.
   [GTXiLib installOnTestSuite:[GTXTestSuite suiteWithAllTestsInClass:self]
                        checks:checksToBeInstalled
           elementExcludeLists:@[]];
+}
+```
+
+In Swift. Note that GTX is installed in the class `class func setUp`, not the instance `func setUp()`.
+
+```swift
+override class func setUp() {
+  super.setUp()
+
+  let checksToBeInstalled = GTXChecksCollection.allGTXChecks()!
+    GTXiLib.install(on: GTXTestSuite(allTestsIn: self)!, checks: checksToBeInstalled, elementExcludeLists: [])
 }
 ```
 
