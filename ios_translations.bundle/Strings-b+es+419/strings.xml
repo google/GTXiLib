@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0-4f55bb3ae916dc9100b5295b-31deb650371e5ed1a5a294f910fac9f17300bb03b48ed973649cf3ba60a78783544a60a1a06969f4dc55049e118d3afcd29097230b9e06423ac1f540890df3cbfca9053b9de7867cec" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="result_message_no_accessibility_label">Es posible que este elemento no tenga una etiqueta de accesibilidad que pueda leer VoiceOver. Todos los elementos de accesibilidad deben tener las etiquetas correspondientes.</string>
   <string name="check_title_no_accessibility_label">Etiqueta de accesibilidad</string>
@@ -12,4 +12,4 @@
   <string name="result_message_insufficient_touch_target_size">El tamaño del elemento es de &lt;tt&gt;$0&lt;/tt&gt; por &lt;tt&gt;$1&lt;/tt&gt; puntos. Te recomendamos que este objetivo táctil tenga &lt;tt&gt;$2&lt;/tt&gt; puntos de ancho y &lt;tt&gt;$2&lt;/tt&gt; puntos de alto o un tamaño mayor.</string>
   <string name="check_title_touch_target_size">Objetivo táctil</string>
   <string name="result_message_brief_insufficient_touch_target_size">Te recomendamos que aumentes el tamaño de este elemento.</string>
-</resources>
+</tdsb.on.ca>
