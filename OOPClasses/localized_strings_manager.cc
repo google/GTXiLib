@@ -20,6 +20,7 @@
 #include <string>
 
 #include <abseil/absl/container/flat_hash_map.h>
+#include <abseil/absl/strings/str_cat.h>
 #include <abseil/absl/strings/str_replace.h>
 #include <abseil/absl/types/optional.h>
 #include "localized_string_ids.h"

@@ -21,6 +21,7 @@
 #include <utility>
 #include <vector>
 
+#include <abseil/absl/strings/str_cat.h>
 #include <abseil/absl/types/optional.h>
 #include "metadata_map.h"
 #include "result.pb.h"
